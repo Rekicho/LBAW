@@ -60,105 +60,249 @@
           <a class="dropdown-item" href="#">Log Out</a>
         </div>
       </div>
-      <ul id="roles" class="nav nav-tabs nav-fill">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Moderating</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Accounting</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1">Stock</a>
-        </li>
-      </ul>
     </nav>
-    <div class="table-responsive">
-      <h4>
-        Payments
-      </h4>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Product</th>
-            <th scope="col">Value</th>
-            <th scope="col">Proof</th>
-            <th scope="col">Confirm</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <button type="button" class="btn btn-success">
-                <i class="fas fa-check-circle"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-responsive">
-      <h4>
-        Transfer history
-      </h4>
-      <form>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            id="search-transfer"
-            placeholder="Search"
-          />
+    <ul id="roles" class="nav nav-tabs nav-fill" role="tablist">
+      <li class="nav-item">
+        <a
+          id="admin-tab"
+          class="nav-link active"
+          data-toggle="tab"
+          href="#admin"
+          role="tab"
+          aria-controls="admin"
+          aria-selected="true"
+          >Admin</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          id="mod-tab"
+          class="nav-link"
+          data-toggle="tab"
+          href="#mod"
+          role="tab"
+          aria-controls="mod"
+          aria-selected="false"
+          >Moderating</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          id="accounting-tab"
+          class="nav-link"
+          data-toggle="tab"
+          href="#accounting"
+          role="tab"
+          aria-controls="accounting"
+          aria-selected="false"
+          >Accounting</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          id="stock-tab"
+          class="nav-link"
+          data-toggle="tab"
+          href="#stock"
+          role="tab"
+          aria-controls="stock"
+          aria-selected="false"
+          >Stock</a
+        >
+      </li>
+    </ul>
+    <div class="tab-content" id="rolesContent">
+      <div
+        class="tab-pane fade show active"
+        id="admin"
+        role="tabpanel"
+        aria-labelledby="admin-tab"
+      >
+        <div>
+          <h4>Add Staff Member</h4>
+          <form>
+            <div class="form-group">
+              <label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                />
+              </label>
+            </div>
+            <div class="form-group">
+              <label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                />
+              </label>
+            </div>
+            <button type="button" class="btn btn-lg btn-primary">
+              <span class="glyphicon glyphicon-earphone pull-left"
+                ><i class="fas fa-plus-circle"></i
+              ></span>
+              Add
+            </button>
+          </form>
         </div>
-      </form>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Product</th>
-            <th scope="col">Value</th>
-            <th scope="col">Proof</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+
+        <div>
+          <h4>Disable Staff Member</h4>
+          <form>
+            <div class="form-group">
+              <label>
+                <input
+                  class="form-control"
+                  type="username"
+                  name="username"
+                  placeholder="Username"
+                />
+              </label>
+            </div>
+            <button type="button" class="btn btn-lg btn-primary">
+              <span class="glyphicon glyphicon-earphone pull-left">
+                <i class="fas fa-minus-circle"></i>
+              </span>
+              Disable
+            </button>
+          </form>
+        </div>
+
+        <div>
+          <h4>Enable Staff Member</h4>
+          <form>
+            <div class="form-group">
+              <label>
+                <input
+                  class="form-control"
+                  type="username"
+                  name="username"
+                  placeholder="Username"
+                />
+              </label>
+            </div>
+          </form>
+
+          <button class="btn btn-lg btn-primary">
+            <span class="glyphicon glyphicon-earphone pull-left"
+              ><i class="fas fa-save"></i
+            ></span>
+            Enable
+          </button>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="mod"
+        role="tabpanel"
+        aria-labelledby="mod-tab"
+      >
+        lorem ipsum
+      </div>
+      <div
+        class="tab-pane fade"
+        id="accounting"
+        role="tabpanel"
+        aria-labelledby="accounting-tab"
+      >
+        <div class="table-responsive">
+          <h4>
+            Payments
+          </h4>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Product</th>
+                <th scope="col">Value</th>
+                <th scope="col">Proof</th>
+                <th scope="col">Confirm</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>
+                  <button type="button" class="btn btn-success">
+                    <i class="fas fa-check-circle"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-responsive">
+          <h4>
+            Transfer history
+          </h4>
+          <form>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="search-transfer"
+                placeholder="Search"
+              />
+            </div>
+          </form>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Product</th>
+                <th scope="col">Value</th>
+                <th scope="col">Proof</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="stock"
+        role="tabpanel"
+        aria-labelledby="stock-tab"
+      >
+        asdasd
+      </div>
     </div>
   </body>
 </html>
