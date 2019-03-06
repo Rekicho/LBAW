@@ -41,7 +41,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Online Shop</a>
+      <a class="navbar-brand" href="dashboard.html">Online Shop</a>
       <div class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -55,13 +55,14 @@
           Username
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="profile.html">Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Log Out</a>
         </div>
       </div>
     </nav>
-    <ul id="roles" class="nav nav-tabs nav-fill" role="tablist">
+
+    <!-- <ul id="roles" class="nav nav-tabs nav-fill" role="tablist">
       <li class="nav-item">
         <a
           id="admin-tab"
@@ -111,6 +112,8 @@
         >
       </li>
     </ul>
+
+
     <div class="tab-content" id="rolesContent">
       <div
         class="tab-pane fade show active"
@@ -141,7 +144,7 @@
                 />
               </label>
             </div>
-            <button type="button" class="btn btn-lg btn-primary">
+            <button type="button" class="btn btn-med btn-primary">
               <span class="glyphicon glyphicon-earphone pull-left"
                 ><i class="fas fa-plus-circle"></i
               ></span>
@@ -163,7 +166,7 @@
                 />
               </label>
             </div>
-            <button type="button" class="btn btn-lg btn-primary">
+            <button type="button" class="btn btn-med btn-primary">
               <span class="glyphicon glyphicon-earphone pull-left">
                 <i class="fas fa-minus-circle"></i>
               </span>
@@ -187,7 +190,7 @@
             </div>
           </form>
 
-          <button class="btn btn-lg btn-primary">
+          <button class="btn btn-med btn-primary">
             <span class="glyphicon glyphicon-earphone pull-left"
               ><i class="fas fa-save"></i
             ></span>
@@ -302,6 +305,335 @@
         aria-labelledby="stock-tab"
       >
         asdasd
+      </div>
+    </div> -->
+
+    <div class="accordion" id="roles">
+      <div class="card">
+        <div class="card-header" id="admin">
+          <h2 class="mb-0">
+            <button
+              class="btn btn-link"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseAdmin"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Administration
+            </button>
+          </h2>
+        </div>
+
+        <div
+          id="collapseAdmin"
+          class="collapse show"
+          aria-labelledby="headingOne"
+          data-parent="#admin"
+        >
+          <div class="card-body">
+            <div
+              class="tab-pane fade show active"
+              id="admin"
+              role="tabpanel"
+              aria-labelledby="admin-tab"
+            >
+              <div>
+                <h4>Add Staff Member</h4>
+                <form>
+                  <div class="form-group">
+                    <label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                      />
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <input
+                        class="form-control"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                      />
+                    </label>
+                  </div>
+                  <button type="button" class="btn btn-med btn-primary">
+                    <span class="glyphicon glyphicon-earphone pull-left"
+                      ><i class="fas fa-plus-circle"></i
+                    ></span>
+                    Add
+                  </button>
+                </form>
+              </div>
+
+              <div>
+                <h4>Disable Staff Member</h4>
+                <form>
+                  <div class="form-group">
+                    <label>
+                      <input
+                        class="form-control"
+                        type="username"
+                        name="username"
+                        placeholder="Username"
+                      />
+                    </label>
+                  </div>
+                  <button type="button" class="btn btn-med btn-primary">
+                    <span class="glyphicon glyphicon-earphone pull-left">
+                      <i class="fas fa-minus-circle"></i>
+                    </span>
+                    Disable
+                  </button>
+                </form>
+              </div>
+
+              <div>
+                <h4>Enable Staff Member</h4>
+                <form>
+                  <div class="form-group">
+                    <label>
+                      <input
+                        class="form-control"
+                        type="username"
+                        name="username"
+                        placeholder="Username"
+                      />
+                    </label>
+                  </div>
+                </form>
+
+                <button class="btn btn-med btn-primary">
+                  <span class="glyphicon glyphicon-earphone pull-left"
+                    ><i class="fas fa-save"></i
+                  ></span>
+                  Enable
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="mod">
+          <h2 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseMod"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Moderating <span class="badge badge-info">9</span>
+              <span class="sr-only">Moderating notifications</span>
+            </button>
+          </h2>
+        </div>
+        <div
+          id="collapseMod"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#mod"
+        >
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+            terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
+            skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+            single-origin coffee nulla assumenda shoreditch et. Nihil anim
+            keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+            sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth
+            nesciunt you probably haven't heard of them accusamus labore
+            sustainable VHS.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="stock">
+          <h2 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseStock"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Stock <span class="badge badge-info">3</span>
+              <span class="sr-only">Stock notifications</span>
+            </button>
+          </h2>
+        </div>
+        <div
+          id="collapseStock"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#stock"
+        >
+          <div class="card-body">
+            <h4>Add product</h4>
+            <form>
+              <div class="form-group">
+                <label>
+                  Name
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                  />
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  Stock
+                  <input
+                    class="form-control"
+                    type="number"
+                    name="stock"
+                    placeholder="Stock"
+                  />
+                </label>
+              </div>
+
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="custom-file-input"
+                  id="productImage"
+                />
+                <label class="custom-file-label" for="productImage"
+                  >Choose file</label
+                >
+              </div>
+
+              <button type="button" class="btn btn-med btn-primary">
+                <span class="glyphicon glyphicon-earphone pull-left"
+                  ><i class="fas fa-plus-circle"></i
+                ></span>
+                Add
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="accounting">
+          <h2 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseAccounting"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              Accounting <span class="badge badge-info">1</span>
+              <span class="sr-only">Accounting notifications</span>
+            </button>
+          </h2>
+        </div>
+        <div
+          id="collapseAccounting"
+          class="collapse"
+          aria-labelledby="headingThree"
+          data-parent="#accounting"
+        >
+          <div class="card-body">
+            <div class="table-responsive">
+              <h4>
+                Payments
+              </h4>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Proof</th>
+                    <th scope="col">Confirm</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>
+                      <button type="button" class="btn btn-success">
+                        <i class="fas fa-check-circle"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-responsive">
+              <h4>
+                Transfer history
+              </h4>
+              <form>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="search-transfer"
+                    placeholder="Search"
+                  />
+                </div>
+              </form>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Proof</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
