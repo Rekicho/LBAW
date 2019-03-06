@@ -1,0 +1,8 @@
+#buttons {
+    margin: 4em 3em;
+}
+
+#buttons > a {
+    padding: 2em 1em;
+    margin: 1em auto;
+}
