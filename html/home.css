@@ -4,17 +4,26 @@ body {
 
 .bg-primary
 {
-	background-color: orange !important;
+	background-color: var(--light-grey) !important;
 }
 
-.bg-secondary
+/* .bg-secondary
 {
 	background-color: lightblue !important;
-}
+} 
+*/
 
 .bg-info
 {
 	background-color: gray !important;
+}
+
+.main-color {
+	background-color: var(--main-color);
+}
+
+.main-color, .main-color a {
+	color: white !important;
 }
 
 .line-through
@@ -27,6 +36,7 @@ body {
 .carousel {
 	margin: 50px auto;
 	padding: 0 70px;
+	max-height: 300px;
 }
 
 .carousel .item {
@@ -77,4 +87,24 @@ body {
     color: rgba(0, 0, 0, 0.8);
     text-shadow: none;
     font-weight: bold;
+}
+.carousel.slide {
+	margin-top: 30px;
+}
+
+
+/*
+	Product-block
+*/
+.product-block {
+	background-color: white;
+	/*max-height: 15% !important;*/
+}
+
+.product-block-title {
+	font-size: 30px;
+	font-weight: bold;
+	position: relative;
+	top: 15px;
+	left: 40px;
 }
