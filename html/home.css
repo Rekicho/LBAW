@@ -112,3 +112,7 @@ body {
 	top: 15px;
 	left: 40px;
 }
+
+.nav-icon {
+	color: var(--secondary-color);
+}
