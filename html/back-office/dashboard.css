@@ -6,3 +6,7 @@
     padding: 2em 1em;
     margin: 1em auto;
 }
+
+.sec-color {
+    color: var(--secondary-color);
+}
