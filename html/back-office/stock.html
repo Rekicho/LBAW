@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Loja Online</title>
+    <title>KEYVALUE - Online Store</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -37,11 +37,14 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <link href="stock.css" rel="stylesheet" />
+    <link href="../colors.css" rel="stylesheet" >
+    <link href="../home.css" rel="stylesheet" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="dashboard.html">Online Shop</a>
+    <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
+      <div class="navbar-nav mr-auto">
+        <a class="navbar-brand" href="dashboard.html"> <span class = "sec-color">KEY</span>VALUE</a>
+      </div>
       <div class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -87,27 +90,59 @@
         >
           <div class="card-body">
             <form>
-              <div class="form-group">
-                <label>
-                  Name
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                  />
-                </label>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>
+                    Name
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                    />
+                  </label>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>
+                    Reference
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="reference"
+                      placeholder="Reference"
+                    />
+                  </label>
+                </div>
               </div>
-              <div class="form-group">
-                <label>
-                  Stock
-                  <input
-                    class="form-control"
-                    type="number"
-                    name="stock"
-                    placeholder="Stock"
-                  />
-                </label>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>
+                    Stock
+                    <input
+                      class="form-control"
+                      type="number"
+                      name="stock"
+                      placeholder="Stock"
+                    />
+                  </label>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>
+                    Price
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">€</div>
+                      </div>
+                      <input
+                        class="form-control"
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                      />
+                    </div>
+                  </label>
+                </div>
               </div>
 
               <img
@@ -419,13 +454,18 @@
         >
           <div class="card-body">
             <form>
-              <div class="form-group">
+              <div class="input-group">
                 <input
                   type="text"
                   class="form-control"
                   id="search-product"
                   placeholder="Search"
                 />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="button">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
               </div>
             </form>
             <div class="table-responsive">
