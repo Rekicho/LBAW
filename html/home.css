@@ -18,8 +18,12 @@ body {
 	background-color: gray !important;
 }
 
-.main-color {
+.main-color-bg {
 	background-color: var(--main-color);
+}
+
+.sec-color {
+	color: var(--secondary-color);
 }
 
 .main-color, .main-color a {
