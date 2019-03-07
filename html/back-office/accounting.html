@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Loja Online</title>
+    <title>KEYVALUE - Online Store</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -37,11 +37,16 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <link href="stock.css" rel="stylesheet" />
+    <link href="../colors.css" rel="stylesheet" />
+    <link href="../home.css" rel="stylesheet" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="dashboard.html">Online Shop</a>
+    <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
+      <div class="navbar-nav mr-auto">
+        <a class="navbar-brand" href="dashboard.html">
+          <span class="sec-color">KEY</span>VALUE</a
+        >
+      </div>
       <div class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -92,17 +97,17 @@
                   <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Product</th>
-                    <th scope="col">Value</th>
+                    <th scope="col">Value (€)</th>
                     <th scope="col">Proof</th>
                     <th scope="col">Confirm</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">07/03/2019</th>
+                    <td><a href="../product.html">#1234</td>
+                    <td>20</td>
+                    <td><a href="#">Click</a></td>
                     <td>
                       <button type="button" class="btn btn-success">
                         <i class="fas fa-check-circle"></i>
@@ -110,18 +115,48 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <th scope="row">06/03/2019</th>
+                    <td><a href="../product.html">#1544</td>
+                      <td>124</td>
+                    <td><a href="#">Click</a></td>
+                    <td>
+                      <button type="button" class="btn btn-success">
+                        <i class="fas fa-check-circle"></i>
+                      </button>
+                    </td>
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row">05/03/2019</th>
+                    <td><a href="../product.html">#9853</td>
+                      <td>599</td>
+                    <td><a href="#">Click</a></td>
+                    <td>
+                      <button type="button" class="btn btn-success">
+                        <i class="fas fa-check-circle"></i>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+              <nav aria-label="table navigation">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
             </div>
           </div>
         </div>
@@ -151,13 +186,18 @@
           <div class="card-body">
             <div class="table-responsive">
               <form>
-                <div class="form-group">
+                <div class="input-group">
                   <input
                     type="text"
                     class="form-control"
                     id="search-transfer"
                     placeholder="Search"
                   />
+                  <div class="input-group-append">
+                      <button class="btn btn-outline-primary" type="button">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
                 </div>
               </form>
               <table class="table table-hover">
@@ -165,30 +205,50 @@
                   <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Product</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Proof</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">06/03/2019</th>
+                    <td><a href="../product.html">#1544</td>
+                      <td>Sale</td>
+                    <td>1</td>
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                      <th scope="row">06/03/2019</th>
+                      <td><a href="../product.html">#4564</td>
+                        <td>Purchase</td>
+                    <td>100</td>
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
+                      <th scope="row">06/03/2019</th>
+                      <td><a href="../product.html">#8544</td>
+                        <td>Purchase</td>
+                    <td>50</td>
                   </tr>
                 </tbody>
               </table>
+              <nav aria-label="table navigation">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
             </div>
           </div>
         </div>
