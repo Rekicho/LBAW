@@ -16,6 +16,11 @@
 	color: var(--secondary-color);
 }
 
+
+/*
+    NAVBARS
+*/
+
 .dept-navbar {
     border-bottom: 1px lightgrey solid;
     height: 40px;
@@ -40,3 +45,9 @@
 .dept-navbar-item:hover span {
     color: var(--secondary-color);
 }
+
+@media only screen and (max-width: 991px) {
+    .dept-navbar {
+        display: none;
+    }
+  }
