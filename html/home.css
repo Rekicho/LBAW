@@ -182,3 +182,20 @@ img {
 	height: 100%;
 	width: auto;
 }
+
+/*
+	Carousel
+*/
+.carouselSizing {
+	width: 1350px !important;
+}
+
+.carousel-control-next-icon {
+	position: relative;
+	right: 20px !important;
+}
+
+.carousel-control-prev-icon {
+	position: relative;
+	left: 20px !important;
+}	
