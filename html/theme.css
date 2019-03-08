@@ -1,0 +1,42 @@
+.bg-primary
+{
+	background-color: var(--light-grey) !important;
+}
+
+.bg-info
+{
+	background-color: gray !important;
+}
+
+.main-color-bg {
+	background-color: var(--main-color);
+}
+
+.sec-color {
+	color: var(--secondary-color);
+}
+
+.dept-navbar {
+    border-bottom: 1px lightgrey solid;
+    height: 40px;
+}
+
+.dept-navbar-item {
+    height: 40px;
+    padding: 6px;
+    margin-right: 30px;
+}
+
+.dept-navbar-item span {
+    font-size: 15px;
+    color: black;
+}
+
+.dept-navbar-item:hover {
+    border-bottom: 3px var(--secondary-color) solid;
+    text-decoration: none;
+}
+
+.dept-navbar-item:hover span {
+    color: var(--secondary-color);
+}
