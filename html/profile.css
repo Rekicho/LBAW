@@ -1,0 +1,26 @@
+body {
+	color: black;
+}
+
+.bg-primary
+{
+	background-color: var(--light-grey) !important;
+}
+
+.bg-info
+{
+	background-color: gray !important;
+}
+
+.main-color-bg {
+	background-color: var(--main-color);
+	color: gray;
+}
+
+img {
+	float: center;
+}
+
+.icon {
+	color: var(--secondary-color);
+}
