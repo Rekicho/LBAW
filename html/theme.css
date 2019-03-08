@@ -22,18 +22,18 @@
 */
 
 .dept-navbar {
-    border-bottom: 1px lightgrey solid;
-    height: 40px;
+    border-bottom: 1px var(--light-grey) solid;
+    height: 35px;
 }
 
 .dept-navbar-item {
-    height: 40px;
+    height: 35px;
     padding: 6px;
     margin-right: 30px;
 }
 
 .dept-navbar-item span {
-    font-size: 15px;
+    font-size: 14px;
     color: black;
 }
 

@@ -1,0 +1,15 @@
+.search-result-bar {
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid rgba(211, 211, 211, 0.959);
+    border-bottom: 1px solid rgba(211, 211, 211, 0.959);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.search-count {
+    display: inline-block;
+    vertical-align: center;
+    line-height: normal;
+}
+
