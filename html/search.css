@@ -58,12 +58,20 @@
     display: flex;
     justify-content: center;
     align-items: center; 
+    position: relative;
 }
 
 .filter {
     color: grey;
-    height: 30px !important;
-    width: 30px !important;
+    height: 34px !important;
+    width: 36px !important;
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+
+.filter:hover {
+    cursor: pointer;
+    background-color: var(--light-grey);
 }
 
 .filter-circle {
@@ -72,7 +80,7 @@
     width: 20px;
     height: 20px;
     position: relative;
-    right: 55px;
+    right: 60px;
     top: 0px;
 }
 
@@ -83,4 +91,35 @@
     position: relative;
     top: -10px;
     right: -5px;
+}
+
+.modal-body {
+    margin: auto;
+    min-width: 300px;
+}
+
+.filter-title {
+    margin-right: 20px;
+    position: relative;
+    top: 3px;
+}
+
+.fs20 {
+    font-size: 20px;
+}
+
+.filter-clause {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+.form-check-label {
+    position: relative;
+    bottom: 5px;
+    left: 5px;
+}
+
+.form-check {
+    padding: 0;
 }
