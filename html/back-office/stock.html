@@ -39,6 +39,7 @@
     ></script>
     <link href="../colors.css" rel="stylesheet" >
     <link href="../home.css" rel="stylesheet" />
+    <link href="stock.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
@@ -175,216 +176,6 @@
       </div>
 
       <div class="card">
-        <div class="card-header" id="disableProductHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#disableProduct"
-              aria-expanded="true"
-              aria-controls="disableProduct"
-            >
-              Disable product
-            </button>
-          </h2>
-        </div>
-
-        <div
-          id="disableProduct"
-          class="collapse "
-          aria-labelledby="disableProductHeading"
-          data-parent="#stockActions"
-        >
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label>
-                  Reference
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="reference"
-                    placeholder="Reference"
-                    required
-                  />
-                </label>
-              </div>
-              <button type="submit" class="btn btn-med btn-primary">
-                <span class="glyphicon glyphicon-earphone pull-left"
-                  ><i class="fas fa-minus-circle"></i
-                ></span>
-                Disable
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" id="enableProductHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#enableProduct"
-              aria-expanded="true"
-              aria-controls="enableProduct"
-            >
-              Enable product
-            </button>
-          </h2>
-        </div>
-
-        <div
-          id="enableProduct"
-          class="collapse "
-          aria-labelledby="enableProductHeading"
-          data-parent="#stockActions"
-        >
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label>
-                  Reference
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="reference"
-                    placeholder="Reference"
-                    required
-                  />
-                </label>
-              </div>
-              <button type="submit" class="btn btn-med btn-primary">
-                <span class="glyphicon glyphicon-earphone pull-left"
-                  ><i class="fas fa-plus-circle"></i
-                ></span>
-                Enable
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" id="updateStockHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#updateStock"
-              aria-expanded="true"
-              aria-controls="updateStock"
-            >
-              Update stock
-            </button>
-          </h2>
-        </div>
-
-        <div
-          id="updateStock"
-          class="collapse "
-          aria-labelledby="updateStockHeading"
-          data-parent="#stockActions"
-        >
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label>
-                  Reference
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="reference"
-                    placeholder="Reference"
-                    required
-                  />
-                </label>
-              </div>
-              <div class="form-group">
-                <label>
-                  Stock
-                  <input
-                    class="form-control"
-                    type="number"
-                    name="stock"
-                    placeholder="Stock"
-                  />
-                </label>
-              </div>
-              <button type="submit" class="btn btn-med btn-primary">
-                <span class="glyphicon glyphicon-earphone pull-left"
-                  ><i class="fas fa-wrench"></i
-                ></span>
-                Update
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" id="updateProductPriceHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#updateProductPrice"
-              aria-expanded="true"
-              aria-controls="updateProductPrice"
-            >
-              Update product price
-            </button>
-          </h2>
-        </div>
-
-        <div
-          id="updateProductPrice"
-          class="collapse "
-          aria-labelledby="updateProductPriceHeading"
-          data-parent="#stockActions"
-        >
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label>
-                  Reference
-                  <input
-                    class="form-control"
-                    type="text"
-                    name="reference"
-                    placeholder="Reference"
-                    required
-                  />
-                </label>
-              </div>
-              <div class="form-group">
-                <label>
-                  New price
-                  <input
-                    class="form-control"
-                    type="Number"
-                    name="price"
-                    placeholder="Price"
-                  />
-                </label>
-              </div>
-              <button type="submit" class="btn btn-med btn-primary">
-                <span class="glyphicon glyphicon-earphone pull-left"
-                  ><i class="fas fa-wrench"></i
-                ></span>
-                Update
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
         <div class="card-header" id="addCategoryHeading">
           <h2 class="mb-0">
             <button
@@ -453,7 +244,7 @@
           data-parent="#stockActions"
         >
           <div class="card-body">
-            <form>
+            <form class="form-inline my-2 my-lg-0 justify-content-md-center">
               <div class="input-group">
                 <input
                   type="text"
@@ -475,6 +266,8 @@
                     <th scope="col">Reference</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Price (€)</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -482,23 +275,210 @@
                     <th scope="row"><a href="../product.html">1</a></th>
                     <td>10</td>
                     <td>15,5</td>
+                    <td>Enabled</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDisable">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                            ><i class="fas fa-minus-circle"></i
+                          ></span>
+                          <span class="button-text">Disable</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateStockModal">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                              ><i class="fas fa-wrench"></i
+                            ></span> 
+                            <span class="button-text">Update stock</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updatePriceModal">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                              ><i class="fas fa-wrench"></i
+                            ></span> 
+                            <span class="button-text">Update price</span>
+                        </button>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row"><a href="../product.html">2</a></th>
                     <td style="color: red">2</td>
                     <td>10</td>
+                    <td>Enabled</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDisable">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                            ><i class="fas fa-minus-circle"></i
+                          ></span>
+                          <span class="button-text">Disable</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateStockModal">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                              ><i class="fas fa-wrench"></i
+                            ></span>
+                            <span class="button-text">Update stock</span>
+                          </button>
+                          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updatePriceModal">
+                              <span class="glyphicon glyphicon-earphone pull-left"
+                                ><i class="fas fa-wrench"></i
+                              ></span> 
+                              <span class="button-text">Update price</span>
+                          </button>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row"><a href="../product.html">3</a></th>
                     <td>20</td>
                     <td>456,99</td>
+                    <td>Disabled</td>
+                    <td>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmEnable">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                            ><i class="fas fa-check-circle"></i
+                          ></span>
+                          <span class="button-text">Enable</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateStockModal">
+                            <span class="glyphicon glyphicon-earphone pull-left"
+                              ><i class="fas fa-wrench"></i
+                            ></span>
+                            <span class="button-text">Update stock</span>
+                          </button>
+                          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updatePriceModal">
+                              <span class="glyphicon glyphicon-earphone pull-left"
+                                ><i class="fas fa-wrench"></i
+                              ></span> 
+                              <span class="button-text">Update price</span>
+                          </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+              <nav aria-label="table navigation">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Disable Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="modal fade" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enable Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="modal fade" id="updateStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Stock</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                          <label>
+                            Stock
+                            <input
+                              class="form-control"
+                              type="number"
+                              name="stock"
+                              placeholder="Stock"
+                            />
+                          </label>
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+    </div>
+
+    <div class="modal fade" id="updatePriceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Price</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                      <label>
+                        New price
+                        <input
+                          class="form-control"
+                          type="Number"
+                          name="price"
+                          placeholder="Price"
+                        />
+                      </label>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </body>
 </html>
