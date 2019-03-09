@@ -63,3 +63,7 @@
     border: 0.1px var(--darker-light-grey) solid;
 }
 
+.img-responsive:hover {
+    cursor: pointer;
+}
+
