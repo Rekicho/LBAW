@@ -123,6 +123,20 @@ body {
 	bottom: 15px;
 }
 
+@media only screen and (max-width: 991px) {
+	.single-product-block-container > .single-product-block:not(:first-child),
+	.product-block .productSize:not(:first-child) {
+        display: none;
+	}
+	
+	.single-product-block,
+	.product-block,
+	.productSize {
+		width: 95% !important;
+		margin: auto;
+	}
+}
+
 /*
 	Single product block
 */

@@ -16,6 +16,10 @@
 	color: var(--secondary-color);
 }
 
+.marginL10 {
+    margin-left: 10%;
+}
+
 
 /*
     NAVBARS
@@ -42,7 +46,7 @@
     text-decoration: none;
 }
 
-.dept-navbar-item:hover span {
+.dept-navbar-item:hover span {  
     color: var(--secondary-color);
 }
 
@@ -50,4 +54,4 @@
     .dept-navbar {
         display: none;
     }
-  }
+}
