@@ -171,10 +171,6 @@ body {
 	Images
 */
 
-.nav-icon {
-	color: var(--secondary-color);
-}
-
 .productSize {
 	height: 200px;
 	width: auto;
