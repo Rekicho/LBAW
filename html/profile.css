@@ -15,6 +15,16 @@ body {
 	color: gray;
 }
 
+.light-main-color-bg {
+	background-color: var(--light-main-color);
+	color: black;
+}
+
+.light-main-color-bg a {
+	color: var(--secondary-color);
+	text-decoration: none;
+}
+
 img {
 	float: center;
 }
