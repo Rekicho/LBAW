@@ -48,3 +48,39 @@
 .single-product-info-text .oldprice:empty {
     padding-right: 0;
 }
+
+/*
+    FILTER
+*/
+.filter-container {
+    height: 100%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.filter {
+    color: grey;
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.filter-circle {
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    width: 20px;
+    height: 20px;
+    position: relative;
+    right: 55px;
+    top: 0px;
+}
+
+.filter-counter {
+    z-index: 2;
+    font-weight: bold;
+    color:white;
+    position: relative;
+    top: -10px;
+    right: -5px;
+}
