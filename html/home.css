@@ -207,3 +207,20 @@ img {
 	position: relative;
 	left: 20px !important;
 }	
+
+.carousel-item img {
+    min-width: 300px !important;
+}
+
+@media only screen and (max-width: 650px) {
+    .carousel {
+		width: 100%;
+		margin: 0 auto 0 auto !important;
+		padding: 20px;
+		padding-bottom: 0px;
+	}
+	
+	.single-product-block-container {
+		margin: 20px 0;
+	}
+}
