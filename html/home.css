@@ -135,6 +135,12 @@ body {
 		width: 95% !important;
 		margin: auto;
 	}
+
+	.single-product-block-container,
+	.product-block {
+		margin-top: 20px;
+		margin-bottom: 0px; 
+	}
 }
 
 /*
