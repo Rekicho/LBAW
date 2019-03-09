@@ -2,13 +2,11 @@ body {
 	color: black;
 }
 
-.bg-primary
-{
+.bg-primary {
 	background-color: var(--light-grey) !important;
 }
 
-.bg-info
-{
+.bg-info {
 	background-color: gray !important;
 }
 
@@ -21,6 +19,7 @@ img {
 	float: center;
 }
 
-.icon {
+.fas,
+.far {
 	color: var(--secondary-color);
 }
