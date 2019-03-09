@@ -43,27 +43,9 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
-      <div class="navbar-nav mr-auto">
-        <a class="navbar-brand" href="dashboard.html"> <span class = "sec-color">KEY</span>VALUE</a>
-      </div>
-      <div class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Username
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="profile.html">Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Log Out</a>
-        </div>
-      </div>
+        <a class="p-1 flex-grow-1 navbar-brand" href="dashboard.html"><span class = "sec-color">KEY</span>VALUE</a>
+        <a class="p-1 nav-link" href="profile.html">Username </a>
+        <a class="p-1 nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
     </nav>
 
     <div class="accordion" id="stockActions">
@@ -100,6 +82,7 @@
                       type="text"
                       name="name"
                       placeholder="Name"
+                      required
                     />
                   </label>
                 </div>
@@ -111,6 +94,7 @@
                       type="text"
                       name="reference"
                       placeholder="Reference"
+                      required
                     />
                   </label>
                 </div>
@@ -125,6 +109,7 @@
                       type="number"
                       name="stock"
                       placeholder="Stock"
+                      required
                     />
                   </label>
                 </div>
@@ -140,6 +125,7 @@
                         type="number"
                         name="price"
                         placeholder="Price"
+                        required
                       />
                     </div>
                   </label>
@@ -158,6 +144,7 @@
                   type="file"
                   class="custom-file-input"
                   id="productImage"
+                  required
                 />
                 <label class="custom-file-label" for="productImage"
                   >Choose file</label
