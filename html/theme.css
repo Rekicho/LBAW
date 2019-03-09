@@ -55,3 +55,11 @@
         display: none;
     }
 }
+
+
+.single-product-info-container:hover,
+.single-product-block:hover,
+.product-block:hover {
+    border: 0.1px var(--darker-light-grey) solid;
+}
+
