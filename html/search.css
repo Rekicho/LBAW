@@ -20,7 +20,7 @@
 .single-product-info-container {
     background-color: white;
     width: 95%;
-    height: 125px;
+    min-height: 125px;
     margin: 10px auto;
     padding: 10px;
 }

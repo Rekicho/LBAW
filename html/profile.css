@@ -4,19 +4,24 @@ body {
 
 #profile {
 	border-radius: 10px;
+	min-width: 180px;
 }
 
-.collapse>h2 {
+#history h2,
+#wishlist h2,
+#edit h2 {
 	padding: 10px;
 	border-radius: 10px;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 767px) {
 	#profile {
 		border-radius: 0px;
 	}
 
-	.collapse>h2 {
+	#history h2,
+	#wishlist h2,
+	#edit h2 {
 		border-radius: 0px;
 	}
 }
@@ -68,7 +73,7 @@ h2 {
 
 .single-product-info-container {
 	background-color: white;
-	height: 125px;
+	min-height: 125px;
 	margin: 10px auto;
 	padding: 10px;
 }
