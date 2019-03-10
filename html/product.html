@@ -120,7 +120,7 @@
 		<div class="reviews bg-light">
 			<article class="review">
 				<span class="username">LeBrão Jaimes</span>
-				<i class="fas fa-flag"></i>
+				<i class="fas fa-flag" data-toggle="modal" data-target="#reportModal" ></i>
 				<div class="float-right product-rating">
 					<i class="fas fa-star"></i>
 					<i class="fas fa-star"></i>
@@ -198,6 +198,42 @@
 			<a href=""> KEYVALUE</a>
 		</div>
 	</footer>
+
+
+	<!-- MODALS -->
+	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Report</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+				
+				<div class="radio">
+					<label><input type="radio" name="optradio" checked>Report User</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio">Report Review</label>
+				</div>	
+				
+				<div class="form-group">
+					<label for="message-text" class="col-form-label">Reason:</label>
+					<textarea class="form-control" id="message-text"></textarea>
+				</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Send</button>
+			</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>
