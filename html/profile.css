@@ -70,7 +70,7 @@ h2 {
 	font-weight: bold;
 }
 
-#history a {
+#history a, #wishlist a {
 	color: black;
 	text-decoration: none;
 }
@@ -79,31 +79,36 @@ h2 {
 	padding: 0 5%;
 }
 
-#history .col-6{
+#history .col-6, #wishlist .col-6 {
 	padding: 0% 0%;
 }
 
-#history .state{
+#history .state, #wishlist .state {
 	text-align: right;
 }
 
-/* PAYMENT STATES */
-.pay-complt
-{
-	color: green;
+#wishlist .single-product-info-text .oldprice {
+    text-decoration: line-through;
+    padding-right: 5px;
 }
 
-.pay-paid
-{
-	color: blue;
-}
-
-.pay-wait
-{
+.remove {
 	color: red;
 }
 
-.pay-wait-apprv
-{
+/* PAYMENT STATES */
+.pay-complt {
+	color: green;
+}
+
+.pay-paid {
+	color: blue;
+}
+
+.pay-wait {
+	color: red;
+}
+
+.pay-wait-apprv {
 	color: orangered;
 }
