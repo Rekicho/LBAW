@@ -24,11 +24,6 @@ header {
 	min-width: 100%;
 }
 
-.product-page-container {
-	margin: 20px auto;
-	width: 90%;
-}
-
 .product-title {
 	font-size: 20px;
 	font-weight: bold;
@@ -95,4 +90,26 @@ article.review .date {
 
 .product-buttons .price {
 	font-weight: bold;
+}
+
+
+@media only screen and (min-width: 992px) {
+	.img-frame {
+		width: 400px;
+		height: 400px;
+		float: left;
+	}
+
+	.product-info {
+		max-width: 55%;
+		float: left;
+		position: relative;
+		left: 30px;
+		top: 10px;
+	}
+
+	.reviews {
+		clear: both;
+		margin-top: 475px;
+	}
 }
