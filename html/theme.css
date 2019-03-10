@@ -96,3 +96,15 @@ ul {
         margin-bottom: 0px !important;
     }
 }
+
+
+/*
+    BUTTONS
+*/
+.btn-primary {
+	background-color: var(--secondary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--darker-secondary-color) !important;
+}
