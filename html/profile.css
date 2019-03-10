@@ -3,7 +3,7 @@ body {
 }
 
 .container-profile {
-	margin: 40px 10% !important;
+	margin: 0px 10%;
 }
 
 #profile {
@@ -49,8 +49,11 @@ body {
 		flex: 0 0 25% !important;
 		max-width: 25% !important;
 	}
-}
 
+	.container-profile {
+		margin-top: 40px !important;
+	}
+}
 
 .bg-primary {
 	background-color: var(--light-grey) !important;
