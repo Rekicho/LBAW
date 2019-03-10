@@ -6,8 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>KEYVALUE - Online Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
 
     <!-- <link rel="stylesheet" type = "text/css" href = "../lbaw/bootstrap/css/bootstrap.min.css">  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -25,10 +29,10 @@
     <link href="../home.css" rel="stylesheet" />
 
 
-    <!-- TODO: move to a different file -->
+    <!-- TODO: move to a different file (mudar para javascipt?)-->
     <script>
         $(document).ready(function () {
-            $("#myInput").on("keyup", function () {
+            $("#search-member").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $("#staffMemberTable tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
@@ -40,124 +44,12 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
-        <div class="navbar-nav mr-auto">
-            <a class="navbar-brand" href="dashboard.html"> <span class="sec-color">KEY</span>VALUE</a>
-        </div>
-        <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Username
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="profile.html">Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Log Out</a>
-            </div>
-        </div>
+        <a class="p-1 flex-grow-1 navbar-brand" href="dashboard.html"><span class="sec-color">KEY</span>VALUE</a>
+        <a class="p-1 nav-link" href="profile.html">Username </a>
+        <a class="p-1 nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
     </nav>
 
-    <div class="table-responsive">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        <table class="table table-striped table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Member</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id="staffMemberTable">
-                <tr>
-                    <td>mark</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>jacob</td>
-                    <td>Disabled</td>
-                    <td><button type="button" class="btn btn-outline-primary btn-sm">Enable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-                <tr>
-                    <td>larry</td>
-                    <td>Enabled</td>
-                    <td><button type="button" class="btn btn-outline-warning btn-sm">Disable</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-
-    <!--<div class="accordion" id="adminActions">
+    <div class="accordion" id="staffActions">
         <div class="card">
             <div class="card-header" id="addStaffMemberHeading">
                 <h2 class="mb-0">
@@ -169,7 +61,7 @@
             </div>
 
             <div id="addStaffMember" class="collapse" aria-labelledby="addStaffMemberHeading"
-                data-parent="#adminActions">
+                data-parent="#staffActions">
                 <div class="card-body">
                     <form>
                         <div class="form-row">
@@ -190,9 +82,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-med btn-primary">
-                            <span class="glyphicon glyphicon-earphone pull-left"><i
-                                    class="fas fa-plus-circle"></i></span>
-                            Add
+                            <i class="fas fa-plus-circle"></i> Add
                         </button>
                     </form>
                 </div>
@@ -200,69 +90,133 @@
         </div>
 
         <div class="card">
-            <div class="card-header" id="disableStaffMemberHeading">
+            <div class="card-header" id="listStaffHeading">
                 <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#disableStaffMember"
-                        aria-expanded="true" aria-controls="disableStaffMember">
-                        Disable staff member
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#listStaff"
+                        aria-expanded="true" aria-controls="listStaff">
+                        List staff members
                     </button>
                 </h2>
             </div>
-
-            <div id="disableStaffMember" class="collapse " aria-labelledby="disableStaffMemberHeading"
-                data-parent="#adminActions">
+            <div id="listStaff" class="collapse" aria-labelledby="listStaffHeading" data-parent="#staffActions">
                 <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label>
-                                Username
-                                <input class="form-control" type="text" name="username" placeholder="Username"
-                                    required />
-                            </label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
                         </div>
-                        <button type="submit" class="btn btn-med btn-primary">
-                            <span class="glyphicon glyphicon-earphone pull-left"><i
-                                    class="fas fa-minus-circle"></i></span>
-                            Disable
-                        </button>
-                    </form>
+                        <input class="form-control" id="search-member" type="text" placeholder="Search...">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col"><a href="#">Member <i class="fas fa-sort"></i></a></th>
+                                    <th scope="col"><a href="#">Status <i class="fas fa-sort"></i></a></th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staffMemberTable">
+                                <tr>
+                                    <td>mark</td>
+                                    <td>Enabled</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#confirmDisable">
+                                            <i class="fas fa-minus-circle"></i>
+                                            <span class="button-text">Disable</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>jacob</td>
+                                    <td>Disabled</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#confirmEnable">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span class="button-text">Enable</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>larry</td>
+                                    <td>Enabled</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#confirmDisable">
+                                            <i class="fas fa-minus-circle"></i>
+                                            <span class="button-text">Disable</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <nav aria-label="table navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="card">
-            <div class="card-header" id="enableStaffMemberHeading">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#enableStaffMember"
-                        aria-expanded="true" aria-controls="enableStaffMember">
-                        Enable staff member
+    <!-- Modals -->
+    <div class="modal fade" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="disableModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="disableModalLabel">Disable Member</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                </h2>
-            </div>
-
-            <div id="enableStaffMember" class="collapse" aria-labelledby="enableStaffMemberHeading"
-                data-parent="#adminActions">
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label>
-                                Username
-                                <input class="form-control" type="text" name="username" placeholder="Username"
-                                    required />
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-med btn-primary">
-                            <span class="glyphicon glyphicon-earphone pull-left"><i
-                                    class="fas fa-plus-circle"></i></span>
-                            Enable
-                        </button>
-                    </form>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
-
-    </div>-->
-
+    </div>
+    <div class="modal fade" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="enableModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enableModalLabel">Enable Member</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
