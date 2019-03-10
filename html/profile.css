@@ -2,24 +2,55 @@ body {
 	color: black;
 }
 
-#profile {
-	border-radius: 10px;
+.container-profile {
+	margin: 40px 10% !important;
 }
 
-.collapse>h2 {
+#profile {
+	border-radius: 10px;
+	min-width: 180px;
+}
+
+@media only screen and (min-width: 800px) {
+	.profile-right {
+		padding-left: 40px !important;
+	}
+}
+
+.profile-right {
+	padding-left: 50px;
+}
+
+#history h2,
+#wishlist h2,
+#edit h2 {
 	padding: 10px;
 	border-radius: 10px;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 767px) {
 	#profile {
 		border-radius: 0px;
 	}
 
-	.collapse>h2 {
+	#history h2,
+	#wishlist h2,
+	#edit h2 {
 		border-radius: 0px;
 	}
+
+	.profile-right {
+		padding-left: 15px !important;
+	}
 }
+
+@media only screen and (min-width: 916) {
+	.profile-aside {
+		flex: 0 0 25% !important;
+		max-width: 25% !important;
+	}
+}
+
 
 .bg-primary {
 	background-color: var(--light-grey) !important;
@@ -68,7 +99,7 @@ h2 {
 
 .single-product-info-container {
 	background-color: white;
-	height: 125px;
+	min-height: 125px;
 	margin: 10px auto;
 	padding: 10px;
 }

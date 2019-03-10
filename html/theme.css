@@ -97,6 +97,10 @@ ul {
     }
 }
 
+footer {
+    margin-top: 20px !important;
+}
+
 
 /*
     BUTTONS
@@ -108,3 +112,4 @@ ul {
 .btn-primary:hover {
     background-color: var(--darker-secondary-color) !important;
 }
+
