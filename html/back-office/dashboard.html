@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
     <!-- <link rel="stylesheet" type = "text/css" href = "../lbaw/bootstrap/css/bootstrap.min.css">  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -23,26 +22,39 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <link href="dashboard.css" rel="stylesheet" />
-    <link href="../colors.css" rel="stylesheet" >
+    <link href="../colors.css" rel="stylesheet">
     <link href="../home.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="bg-primary">
 
-    <nav class="d-flex navbar navbar-dark main-color-bg">
-        <a class="p-1 flex-grow-1 navbar-brand" href="dashboard.html"><span class = "sec-color">KEY</span>VALUE</a>
-        <a class="p-1 nav-link" href="profile.html">Username </a>
+    <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
+        <a class="p-1 flex-grow-1 navbar-brand" href="dashboard.html"><span class="sec-color">KEY</span>VALUE</a>
+        <a class="p-1 nav-link mr-2" href="profile.html">Username </a>
         <a class="p-1 nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
     </nav>
 
-    <div id="buttons">
-        <a class="btn btn-primary btn-lg btn-block" href="admin.html">Administration</a>
-        <a class="btn btn-primary btn-lg btn-block" href="moderator.html">Moderating</a>
-        <a class="btn btn-primary btn-lg btn-block" href="stock.html">Stock</a>
-        <a class="btn btn-primary btn-lg btn-block" href="accounting.html">Accounting</a>
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col-sm mb-5">
+                <a class="btn main-color-bg main-color-border btn-primary btn-lg btn-block" href="admin.html">Administration</a>
+            </div>
+            <div class="col-sm mb-5">
+                <a class="btn main-color-bg main-color-border btn-primary btn-lg btn-block" href="moderator.html">Moderating <span
+                        class="badge bg-primary main-color-text ml-2">3</span></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm mb-5">
+                <a class="btn main-color-bg main-color-border btn-primary btn-lg btn-block" href="stock.html">Stock <span
+                        class="badge bg-primary main-color-text ml-2">0</span></a>
+            </div>
+            <div class="col-sm mb-5">
+                <a class="btn main-color-bg main-color-border btn-primary btn-lg btn-block" href="accounting.html">Accounting <span
+                        class="badge bg-primary main-color-text ml-2">11</span></a>
+            </div>
+        </div>
     </div>
-
 </body>
 
 </html>

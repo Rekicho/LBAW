@@ -16,6 +16,14 @@ body {
 	background-color: var(--main-color);
 }
 
+.main-color-border {
+	border-color: var(--main-color);
+}
+
+.main-color-text {
+	color: var(--main-color);
+}
+
 .sec-color {
 	color: var(--secondary-color);
 }
