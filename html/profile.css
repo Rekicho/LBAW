@@ -33,3 +33,16 @@ img {
 .far {
 	color: var(--secondary-color);
 }
+
+h2 {
+	color: white;
+	background-color: var(--main-color);
+}
+
+#edit input {
+	color: black;
+}
+
+#edit input:focus {
+	color: black;
+}
