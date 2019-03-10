@@ -3,11 +3,6 @@ header {
 	font-weight: bold;
 }
 
-.btn-primary
-{
-	background-color: orange !important;
-}
-
 .container-fluid {
 	padding-bottom: 70px;
 }
