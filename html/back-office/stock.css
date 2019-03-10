@@ -5,13 +5,3 @@
 img {
     padding-bottom: 1em;
 }
-
-#search-products {
-    padding-bottom: 1em;
-}
-
-@media only screen and (max-width: 991px) {
-    .button-text {
-        display: none;
-    }
-  }
