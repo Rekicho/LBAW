@@ -18,6 +18,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="colors.css">
+	<link rel="stylesheet" href="theme.css">
 	<link href="profile.css" rel="stylesheet" />
 </head>
 
@@ -107,19 +108,85 @@
 			<div class="col-md-9 text-center">
 				<div id="history" class="collapse">
 					<h2><b>Purchase history</b></h2>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
+					<ul>
+						<li class="single-product-info-container">
+							<a href="product.html"><img src="https://i5.walmartimages.ca/images/Large/020/6_1/999999-628915250206_1.jpg" alt=""></a>
+							<div class="single-product-info-text">
+								<div class="row">
+									<div class="col-6">
+										<a href="product.html"><span class="title">Football</span></a>
+									</div>
+									<div class="col-6 state">
+										<i class="fas fa-circle pay-wait"></i> Waiting for payment
+									</div>
+								</div>
+								10/03/2019 22:22
+								<div>
+									You can only review a product after paying it!
+								</div>
+								<span class="price">0,69€</span>
+							</div>
+						</li>
+						<li class="single-product-info-container">
+							<a href="product.html"><img src="https://i5.walmartimages.ca/images/Large/020/6_1/999999-628915250206_1.jpg" alt=""></a>
+							<div class="single-product-info-text">
+								<div class="row">
+									<div class="col-6">
+										<a href="product.html"><span class="title">Football</span></a>
+									</div>
+									<div class="col-6 state">
+										<i class="fas fa-circle pay-wait-apprv"></i> Waiting for payment approval
+									</div>
+								</div>
+								10/03/2019 11:11
+								<div>
+									You can only review a product after paying it!
+								</div>
+								<span class="price">0,69€</span>
+							</div>
+						</li>
+						<li class="single-product-info-container">
+							<a href="product.html"><img src="https://images-na.ssl-images-amazon.com/images/I/61A5lkj1eXL._SX425_.jpg" alt=""></a>
+							<div class="single-product-info-text">
+								<div class="row">
+									<div class="col-6">
+										<a href="product.html"><span class="title">Pet Ball</span></a>
+									</div>
+									<div class="col-6 state">
+										<i class="fas fa-circle pay-paid"></i> Paid
+									</div>
+								</div>
+								29/02/2019 12:21
+								<div>
+									<a href="product.html"><button type="button" class="btn btn-secondary">Review</button></a>
+								</div>
+								<span class="price">23,45€</span>
+							</div>
+						</li>
+						<li class="single-product-info-container">
+							<a href="product.html"><img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg"
+								 alt=""></a>
+							<div class="single-product-info-text">
+								<div class="row">
+									<div class="col-6">
+										<a href="product.html"><span class="title">Official NBA Ball</span></a>
+									</div>
+									<div class="col-6 state">
+										<i class="fas fa-circle pay-complt"></i> Completed
+									</div>
+								</div>
+								22/01/2019 12:34
+								<div>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+								</div>
+								<span class="price">130.50€</span>
+							</div>
+						</li>
+					</ul>
 				</div>
 				<div id="wishlist" class="collapse">
 					<h2><b>Wish List</b></h2>
@@ -141,7 +208,7 @@
 					<div class="mb-3">
 						<h2><b>Edit Profile</b></h2>
 					</div>
-					<form class="form-edit-profile light-main-color-bg p-3" action="profile.html">
+					<form class="form-edit-profile light-main-color-bg px-3" action="profile.html">
 						<div class="mb-3">
 							<h3>Profile Information</h3>
 						</div>
@@ -161,7 +228,7 @@
 							Edit Profile Information
 						</button>
 					</form>
-					<form class="form-edit-billing light-main-color-bg p-3" action="profile.html">
+					<form class="form-edit-billing light-main-color-bg px-3" action="profile.html">
 						<div class="my-3">
 							<h3>Shipping & Billing Information</h3>
 						</div>
@@ -189,7 +256,7 @@
 							Edit Billing & Shipping Information
 						</button>
 					</form>
-					<form class="form-edit-profile light-main-color-bg p-3" action="profile.html">
+					<form class="form-edit-profile light-main-color-bg px-3" action="profile.html">
 						<div class="my-3">
 							<h3>Account Information</h3>
 						</div>

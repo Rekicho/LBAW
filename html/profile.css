@@ -46,3 +46,64 @@ h2 {
 #edit input:focus {
 	color: black;
 }
+
+.single-product-info-container {
+	background-color: white;
+	height: 125px;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+.single-product-info-text {
+	text-align: left;
+}
+
+.single-product-info-container img {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	float: left;
+}
+
+.single-product-info-text .title,
+.single-product-info-text .price {
+	font-weight: bold;
+}
+
+#history a {
+	color: black;
+	text-decoration: none;
+}
+
+#history button {
+	padding: 0 5%;
+}
+
+#history .col-6{
+	padding: 0% 0%;
+}
+
+#history .state{
+	text-align: right;
+}
+
+/* PAYMENT STATES */
+.pay-complt
+{
+	color: green;
+}
+
+.pay-paid
+{
+	color: blue;
+}
+
+.pay-wait
+{
+	color: red;
+}
+
+.pay-wait-apprv
+{
+	color: orangered;
+}
