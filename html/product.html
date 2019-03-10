@@ -24,120 +24,121 @@
 </head>
 
 <body class="bg-primary">
-	<!-- main navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark sticky-top main-color-bg">
-		<a class="navbar-brand" href="index.html"> <span class = "sec-color">KEY</span>VALUE</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-		 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	<div class="wrapper">
+		<!-- main navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark sticky-top main-color-bg">
+			<a class="navbar-brand" href="index.html"> <span class = "sec-color">KEY</span>VALUE</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="faq.html">FAQ</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="about.html">ABOUT</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="contact.html">CONTACT</a>
-				</li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-			<a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
-			<a href="cart.html"><i class="fas fa-shopping-cart p-3 nav-icon"></i></a>
-		</div>
-	</nav><!-- main navbar -->
-
-	
-	<!-- <div class="container-fluid mt-5">
-		<div class="row">
-			<div class="col-5 offset-1 bg-secondary p-2 d-flex align-items-center">
-				<img src="https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg" class="img-fluid" alt="Rubber Duck">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="faq.html">FAQ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">ABOUT</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contact.html">CONTACT</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+				<a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
+				<a href="cart.html"><i class="fas fa-shopping-cart p-3 nav-icon"></i></a>
 			</div>
-			<div class="col-5 bg-secondary text-center">
-				<div class="pt-5">
-					<header class="">Rubber Duck</header>
-					<div class="container-fluid">
+		</nav><!-- main navbar -->
+
+		
+		<!-- <div class="container-fluid mt-5">
+			<div class="row">
+				<div class="col-5 offset-1 bg-secondary p-2 d-flex align-items-center">
+					<img src="https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg" class="img-fluid" alt="Rubber Duck">
+				</div>
+				<div class="col-5 bg-secondary text-center">
+					<div class="pt-5">
+						<header class="">Rubber Duck</header>
+						<div class="container-fluid">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+						</div>
+						<a href="#reviews">74528 reviews</a>
+					</div>
+					<div class="pt-5">
+						<button type="button" class="btn btn-primary">Add to cart</button>
+						<button type="button" class="btn btn-secondary">Review</button>
+					</div>
+					<div class="pt-5">
+							<p>A rubber duck (also known as (rubber ducky) is a toy shaped like a stylized duck, generally yellow with a flat base. It may be made of rubber or rubber-like material such as vinyl plastic.[1] The yellow rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<div class="mt-3 container">
+			<span class="product-title float-left">Rubber Duck</span>
+			<div class="float-right product-rating">
+				<i class="fas fa-star"></i>
+				<i class="fas fa-star"></i>
+				<i class="fas fa-star"></i>
+				<i class="far fa-star"></i>
+				<i class="far fa-star"></i>
+			</div>
+			<br style="clear:both">
+			<hr>
+			<div class="img-frame">
+				<img src="https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg" alt="">
+			</div>
+			<div class="product-info">
+				<p class="p-3 mb-0">A rubber duck (also known as (rubber ducky) is a toy shaped like a stylized duck, generally yellow with a flat base. It may be made of rubber or rubber-like material such as vinyl plastic.[1] The yellow rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
+				<div class="product-buttons">
+					<span class="price">23,45€</span>
+					<button type="button" class="btn btn-primary">Add to cart</button>
+					<button type="button" class="btn btn-secondary">Review</button>
+				</div>
+			</div>
+			
+			<div class="reviews bg-light">
+				<article class="review">
+					<span class="username">LeBrão Jaimes</span>
+					<i class="fas fa-flag" data-toggle="modal" data-target="#reportModal" ></i>
+					<div class="float-right product-rating">
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 						<i class="far fa-star"></i>
 						<i class="far fa-star"></i>
 					</div>
-					<a href="#reviews">74528 reviews</a>
-				</div>
-				<div class="pt-5">
-					<button type="button" class="btn btn-primary">Add to cart</button>
-					<button type="button" class="btn btn-secondary">Review</button>
-				</div>
-				<div class="pt-5">
-						<p>A rubber duck (also known as (rubber ducky) is a toy shaped like a stylized duck, generally yellow with a flat base. It may be made of rubber or rubber-like material such as vinyl plastic.[1] The yellow rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
-				</div>
+					<p>Esta é a minha review e se ela for demasiado grande o que e que acontece e porque eu nao sei e estou a tentar testsar mas ir pesquisar por lorem da demasiado trabalho</p>
+					<span class="date">24/04/2019</span>
+				</article>
+
+				<hr>
+
+				<article class="review">
+					<span class="username">LeBrão Jaimes</span>
+					<i class="fas fa-flag"></i>
+					<div class="float-right product-rating">
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="fas fa-star"></i>
+						<i class="far fa-star"></i>
+						<i class="far fa-star"></i>
+					</div>
+					<p>Esta é a minha review</p>
+					<span class="date">24/04/2019</span>
+				</article>
 			</div>
-		</div>
-	</div> -->
-
-	<div class="mt-3 container">
-		<span class="product-title float-left">Rubber Duck</span>
-		<div class="float-right product-rating">
-			<i class="fas fa-star"></i>
-			<i class="fas fa-star"></i>
-			<i class="fas fa-star"></i>
-			<i class="far fa-star"></i>
-			<i class="far fa-star"></i>
-		</div>
-		<br style="clear:both">
-		<hr>
-		<div class="img-frame">
-			<img src="https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg" alt="">
-		</div>
-		<div class="product-info">
-			<p class="p-3 mb-0">A rubber duck (also known as (rubber ducky) is a toy shaped like a stylized duck, generally yellow with a flat base. It may be made of rubber or rubber-like material such as vinyl plastic.[1] The yellow rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
-			<div class="product-buttons">
-				<span class="price">23,45€</span>
-				<button type="button" class="btn btn-primary">Add to cart</button>
-				<button type="button" class="btn btn-secondary">Review</button>
-			</div>
-		</div>
-		
-		<div class="reviews bg-light">
-			<article class="review">
-				<span class="username">LeBrão Jaimes</span>
-				<i class="fas fa-flag" data-toggle="modal" data-target="#reportModal" ></i>
-				<div class="float-right product-rating">
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="far fa-star"></i>
-					<i class="far fa-star"></i>
-				</div>
-				<p>Esta é a minha review e se ela for demasiado grande o que e que acontece e porque eu nao sei e estou a tentar testsar mas ir pesquisar por lorem da demasiado trabalho</p>
-				<span class="date">24/04/2019</span>
-			</article>
-
-			<hr>
-
-			<article class="review">
-				<span class="username">LeBrão Jaimes</span>
-				<i class="fas fa-flag"></i>
-				<div class="float-right product-rating">
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="fas fa-star"></i>
-					<i class="far fa-star"></i>
-					<i class="far fa-star"></i>
-				</div>
-				<p>Esta é a minha review</p>
-				<span class="date">24/04/2019</span>
-			</article>
 		</div>
 	</div>
-	
 
 	<footer class="page-footer font-small blue p-4 main-color-bg text-light">
 		<div class="container-fluid text-center text-md-left">

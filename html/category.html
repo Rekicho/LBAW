@@ -23,258 +23,259 @@
 </head>
 
 <body class="bg-primary">
+    <div class="wrapper">
+        <!-- 
+            MAIN NAV ======================================================================================================
+        -->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top main-color-bg">
+            <a class="navbar-brand" href="index.html"> <span class = "sec-color">KEY</span>VALUE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- 
-        MAIN NAV ======================================================================================================
-     -->
-	 <nav class="navbar navbar-expand-lg navbar-dark sticky-top main-color-bg">
-		<a class="navbar-brand" href="index.html"> <span class = "sec-color">KEY</span>VALUE</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-		 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">CONTACT</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-cart p-3 nav-icon"></i></a>
+            </div>
+        </nav>
+        
+        <nav class="navbar navbar-expand-lg navbar-light lightgrey dept-navbar">
+            <ul class="navbar-nav marginL10">
+                <li class="nav-item">
+                    <a href="" class="dept-navbar-item">
+                        <span>
+                            Category 1
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="dept-navbar-item">
+                        <span>
+                            Category 2
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="dept-navbar-item">
+                        <span>
+                            Category 3
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="dept-navbar-item">
+                        <span>
+                            Category 4
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- 
+            MAIN NAV ======================================================================================================
+        -->
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="faq.html">FAQ</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="about.html">ABOUT</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="contact.html">CONTACT</a>
-				</li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-			<a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
-			<a href="cart.html"><i class="fas fa-shopping-cart p-3 nav-icon"></i></a>
-		</div>
-	</nav>
-	
-    <nav class="navbar navbar-expand-lg navbar-light lightgrey dept-navbar">
-		<ul class="navbar-nav marginL10">
-			<li class="nav-item">
-				<a href="" class="dept-navbar-item">
-					<span>
-						Category 1
-					</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="dept-navbar-item">
-					<span>
-						Category 2
-					</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="dept-navbar-item">
-					<span>
-						Category 3
-					</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="" class="dept-navbar-item">
-					<span>
-						Category 4
-					</span>
-				</a>
-			</li>
-		</ul>
-    </nav>
-    <!-- 
-        MAIN NAV ======================================================================================================
-     -->
-
-    <div class="search-result-bar bg-light">
-        <span class="result-count">
-            Category: <span class="sec-color font-weight-bold">Balls</span>
-        </span>
-        <div class="filter-container" data-toggle="modal" data-target="#exampleModal">
-            <img src="https://img.icons8.com/ios/50/000000/sorting-options.png" class="filter">
-            <div class="filter-circle">
-                <span class="filter-counter">3</span>
+        <div class="search-result-bar bg-light">
+            <span class="result-count">
+                Category: <span class="sec-color font-weight-bold">Balls</span>
+            </span>
+            <div class="filter-container" data-toggle="modal" data-target="#exampleModal">
+                <img src="https://img.icons8.com/ios/50/000000/sorting-options.png" class="filter">
+                <div class="filter-circle">
+                    <span class="filter-counter">3</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <ul>
-            <li class="single-product-info-container">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/61A5lkj1eXL._SX425_.jpg" alt="" >
-                <div class="single-product-info-text">
-                    <span class="title">Pet Ball</span><br>
-                    For your favorite pall
-                    <div>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+        <div class="container">
+            <ul>
+                <li class="single-product-info-container">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/61A5lkj1eXL._SX425_.jpg" alt="" >
+                    <div class="single-product-info-text">
+                        <span class="title">Pet Ball</span><br>
+                        For your favorite pall
+                        <div>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="oldprice"></span>
+                        <span class="price">23,45€</span>
                     </div>
-                    <span class="oldprice"></span>
-                    <span class="price">23,45€</span>
-                </div>
-            </li>
+                </li>
 
-            <li class="single-product-info-container">
-                <img src="https://i5.walmartimages.ca/images/Large/020/6_1/999999-628915250206_1.jpg" alt="" >
-                <div class="single-product-info-text">
-                    <span class="title">Football</span><br>
-                    Jk is another pet ball
-                    <div>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+                <li class="single-product-info-container">
+                    <img src="https://i5.walmartimages.ca/images/Large/020/6_1/999999-628915250206_1.jpg" alt="" >
+                    <div class="single-product-info-text">
+                        <span class="title">Football</span><br>
+                        Jk is another pet ball
+                        <div>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="oldprice">Free</span>
+                        <span class="price">0,69€</span>
                     </div>
-                    <span class="oldprice">Free</span>
-                    <span class="price">0,69€</span>
-                </div>
-            </li>
+                </li>
 
-            <li class="single-product-info-container">
-                <img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg" alt="" >
-                <div class="single-product-info-text">
-                    <span class="title">Official NBA Ball</span><br>
-                    Signed by Steph Curry
-                    <div>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+                <li class="single-product-info-container">
+                    <img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg" alt="" >
+                    <div class="single-product-info-text">
+                        <span class="title">Official NBA Ball</span><br>
+                        Signed by Steph Curry
+                        <div>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="oldprice">130,50€</span>
+                        <span class="price">Please just take it</span>
                     </div>
-                    <span class="oldprice">130,50€</span>
-                    <span class="price">Please just take it</span>
-                </div>
-            </li>
+                </li>
+            
+                <li class="single-product-info-container">
+                    <img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg" alt="" >
+                    <div class="single-product-info-text">
+                        <span class="title">Official NBA Ball</span><br>
+                        Signed by Steph Curry
+                        <div>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="oldprice">130,50€</span>
+                        <span class="price">Please just take it</span>
+                    </div>
+                </li>
+            
+                <li class="single-product-info-container">
+                    <img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg" alt="" >
+                    <div class="single-product-info-text">
+                        <span class="title">Official NBA Ball</span><br>
+                        Signed by Steph Curry
+                        <div>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="oldprice">130,50€</span>
+                        <span class="price">Please just take it</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- PAGE TURNER -->
         
-            <li class="single-product-info-container">
-                <img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg" alt="" >
-                <div class="single-product-info-text">
-                    <span class="title">Official NBA Ball</span><br>
-                    Signed by Steph Curry
-                    <div>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <span class="oldprice">130,50€</span>
-                    <span class="price">Please just take it</span>
-                </div>
-            </li>
+        <nav aria-label="table navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">«</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </li>
+            </ul>
+        </nav>
         
-            <li class="single-product-info-container">
-                <img src="http://www.spalding-basketball.com/fileadmin/_processed_/8/9/csm_3001511010317_b_5bc408da7c.jpg" alt="" >
-                <div class="single-product-info-text">
-                    <span class="title">Official NBA Ball</span><br>
-                    Signed by Steph Curry
-                    <div>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+        
+        <!-- ALL THE MODALS -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Filters</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <span class="oldprice">130,50€</span>
-                    <span class="price">Please just take it</span>
+                    <div class="modal-body">
+
+                        <!-- Sorting clause -->
+                        <div class="filter-clause">
+                            <span class="float-left filter-title fs20">Sort</span>
+                            <div class="dropdown float-left filter-btn">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Sort by
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Price: highest first</a>
+                                    <a class="dropdown-item" href="#">Price: lowest first</a>
+                                    <a class="dropdown-item" href="#">Highest ranking</a>
+                                </div>
+                            </div>
+                        </div>
+                        <br clear="both"/>
+                        <hr />
+
+                        <!-- IF IT IS ON STOCK -->
+                        <div class="filter-clause">
+                            <div class="form-check">
+                                <label class="form-check-label fs20 d-inline-block w-50" for="defaultCheck1">
+                                    In Stock
+                                </label>
+                                <input class="form-check-input d-inline-block" type="checkbox" value="" id="defaultCheck1">
+                            </div>
+                        </div>
+                        <hr />
+
+                        <!-- Look for a brand only -->
+                        <div class="filter-clause">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput" class="fs20">By Brand</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Brand">
+                            </div>
+                        </div>
+
+
+                        <!-- Other clauses -->
+
+                    </div> <!-- end of modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary main-color-bg">Apply filter</button>
+                    </div>
                 </div>
-            </li>
-        </ul>
-    </div>
-    <!-- PAGE TURNER -->
-    
-    <nav aria-label="table navigation">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
-            </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">»</span>
-                <span class="sr-only">Next</span>
-            </a>
-            </li>
-        </ul>
-    </nav>
-	
-	
-	<!-- ALL THE MODALS -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Filters</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
+            </div>
+        </div>
 
-					<!-- Sorting clause -->
-					<div class="filter-clause">
-						<span class="float-left filter-title fs20">Sort</span>
-						<div class="dropdown float-left filter-btn">
-							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Sort by
-							</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#">Price: highest first</a>
-								<a class="dropdown-item" href="#">Price: lowest first</a>
-								<a class="dropdown-item" href="#">Highest ranking</a>
-							</div>
-						</div>
-					</div>
-					<br clear="both"/>
-					<hr />
-
-					<!-- IF IT IS ON STOCK -->
-					<div class="filter-clause">
-						<div class="form-check">
-							<label class="form-check-label fs20 d-inline-block w-50" for="defaultCheck1">
-								In Stock
-							</label>
-							<input class="form-check-input d-inline-block" type="checkbox" value="" id="defaultCheck1">
-						</div>
-					</div>
-					<hr />
-
-					<!-- Look for a brand only -->
-					<div class="filter-clause">
-						<div class="form-group">
-							<label for="formGroupExampleInput" class="fs20">By Brand</label>
-							<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Brand">
-						</div>
-					</div>
-
-
-					<!-- Other clauses -->
-
-				</div> <!-- end of modal-body -->
- 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary main-color-bg">Apply filter</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
-    </div> <!-- container -->
+        <div class="container">
+        </div> <!-- container -->
+    </div><!--wrapper-->
     
     <footer class="page-footer font-small blue p-4 main-color-bg text-light">
             <div class="container-fluid text-center text-md-left">
