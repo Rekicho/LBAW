@@ -2,9 +2,23 @@ body {
 	color: black;
 }
 
+.container-profile {
+	margin: 40px 10% !important;
+}
+
 #profile {
 	border-radius: 10px;
 	min-width: 180px;
+}
+
+@media only screen and (min-width: 800px) {
+	.profile-right {
+		padding-left: 40px !important;
+	}
+}
+
+.profile-right {
+	padding-left: 50px;
 }
 
 #history h2,
@@ -24,7 +38,19 @@ body {
 	#edit h2 {
 		border-radius: 0px;
 	}
+
+	.profile-right {
+		padding-left: 15px !important;
+	}
 }
+
+@media only screen and (min-width: 916) {
+	.profile-aside {
+		flex: 0 0 25% !important;
+		max-width: 25% !important;
+	}
+}
+
 
 .bg-primary {
 	background-color: var(--light-grey) !important;
