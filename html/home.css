@@ -68,6 +68,10 @@ body {
 	right: 0;
 }
 
+.alert-primary {
+    margin: 10px;
+}
+
 .carousel .item .btn i {
 	font-size: 14px;
     font-weight: bold;
