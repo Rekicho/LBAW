@@ -1,0 +1,9 @@
+@media only screen and (max-width: 991px) {
+  .button-text {
+    display: none;
+  }
+}
+
+form {
+  padding-bottom: 1em;
+}
