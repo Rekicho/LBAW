@@ -2,6 +2,25 @@ body {
 	color: black;
 }
 
+#profile {
+	border-radius: 10px;
+}
+
+.collapse>h2 {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+@media only screen and (max-width: 991px) {
+	#profile {
+		border-radius: 0px;
+	}
+
+	.collapse>h2 {
+		border-radius: 0px;
+	}
+}
+
 .bg-primary {
 	background-color: var(--light-grey) !important;
 }
@@ -70,7 +89,8 @@ h2 {
 	font-weight: bold;
 }
 
-#history a, #wishlist a {
+#history a,
+#wishlist a {
 	color: black;
 	text-decoration: none;
 }
@@ -79,17 +99,19 @@ h2 {
 	padding: 0 5%;
 }
 
-#history .col-6, #wishlist .col-6 {
+#history .col-6,
+#wishlist .col-6 {
 	padding: 0% 0%;
 }
 
-#history .state, #wishlist .state {
+#history .state,
+#wishlist .state {
 	text-align: right;
 }
 
 #wishlist .single-product-info-text .oldprice {
-    text-decoration: line-through;
-    padding-right: 5px;
+	text-decoration: line-through;
+	padding-right: 5px;
 }
 
 .remove {
