@@ -80,3 +80,19 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+/*
+    FOOTER
+*/
+.push-down {
+    position: absolute;
+    bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .footer-ul {
+        position: static;
+        display: block;
+        margin-bottom: 0px !important;
+    }
+}
