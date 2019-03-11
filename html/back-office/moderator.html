@@ -1,513 +1,350 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>KEYVALUE - Online Store</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
 
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>KEYVALUE - Online Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-    <!-- <link rel="stylesheet" type = "text/css" href = "../lbaw/bootstrap/css/bootstrap.min.css">  -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
-    <link href="back-office.css" rel="stylesheet" />
-    <link href="../colors.css" rel="stylesheet" />
-    <link href="../home.css" rel="stylesheet" />
-  </head>
+  <!-- <link rel="stylesheet" type = "text/css" href = "../lbaw/bootstrap/css/bootstrap.min.css">  -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
-  <body class="bg-primary">
-    <nav class="d-flex navbar navbar-dark main-color-bg">
-      <a class="p-1 flex-grow-1 navbar-brand" href="dashboard.html"
-        ><span class="sec-color">KEY</span>VALUE</a
-      >
-      <a class="p-1 nav-link mr-2" href="profile.html">Username </a>
-      <a class="p-1 nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
-    </nav>
+  <link href="back-office.css" rel="stylesheet" />
+  <link href="../colors.css" rel="stylesheet" />
+  <link href="../home.css" rel="stylesheet" />
 
-    <div class="alert alert-primary" role="alert">
-        You have a new report
+
+  <!-- TODO: move to a different file (mudar para javascipt?)-->
+  <script>
+    $(document).ready(function () {
+      $("#search-user").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#usersTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  <!-- TODO: move to a different file (mudar para javascipt?)-->
+  <script>
+    $(document).ready(function () {
+      $("#search-report").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#reportsTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  <!-- TODO: move to a different file (mudar para javascipt?)-->
+  <script>
+    $(document).ready(function () {
+      $("#search-review").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#reviewsTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-primary">
+  <nav class="d-flex navbar navbar-dark main-color-bg">
+    <a class="p-1 flex-grow-1 navbar-brand" href="dashboard.html"><span class="sec-color">KEY</span>VALUE</a>
+    <a class="p-1 nav-link mr-2" href="profile.html">Username </a>
+    <a class="p-1 nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
+  </nav>
+
+  <div class="alert alert-primary" role="alert">
+    You have a new report
+  </div>
+
+  <div class="accordion" id="moderatorActions">
+    <div class="card">
+      <div class="card-header" id="listUsersHeading">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#listUsers"
+            aria-expanded="true" aria-controls="listUsers">
+            List users
+          </button>
+        </h2>
       </div>
-
-    <div class="accordion" id="moderatorActions">
-      <div class="card">
-        <div class="card-header" id="listUsersHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#listUsers"
-              aria-expanded="true"
-              aria-controls="listUsers"
-            >
-              List users
-            </button>
-          </h2>
-        </div>
-        <div
-          id="listUsers"
-          class="collapse "
-          aria-labelledby="listUsersHeading"
-          data-parent="#moderatorActions"
-        >
-          <div class="card-body">
-            <form
-              id="search-users"
-              class="form-inline my-2 my-lg-0 justify-content-md-center"
-            >
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" />
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="button">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row"><a href="../profile.html">bsousa</a></th>
-                    <td>Active</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        data-toggle="modal"
-                        data-target="#banUser"
-                      >
-                        <span class="glyphicon glyphicon-earphone pull-left"
-                          ><i class="fas fa-minus-circle"></i
-                        ></span>
-                        <span class="button-text">Ban</span>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <a href="../profile.html">pfernandes</a>
-                    </th>
-                    <td>Active</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        data-toggle="modal"
-                        data-target="#banUser"
-                      >
-                        <span class="glyphicon glyphicon-earphone pull-left"
-                          ><i class="fas fa-minus-circle"></i
-                        ></span>
-                        <span class="button-text">Ban</span>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="../profile.html">psilva</a></th>
-                    <td>Banned</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-warning"
-                        data-toggle="modal"
-                        data-target="#unbanUser"
-                      >
-                        <span class="glyphicon glyphicon-earphone pull-left"
-                          ><i class="fas fa-plus-circle"></i
-                        ></span>
-                        <span class="button-text">Unban</span>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <nav aria-label="table navigation">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+      <div id="listUsers" class="collapse " aria-labelledby="listUsersHeading" data-parent="#moderatorActions">
+        <div class="card-body">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
             </div>
+            <input class="form-control" id="search-user" type="text" placeholder="Search...">
           </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" id="listReportsHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#listReports"
-              aria-expanded="true"
-              aria-controls="listReports"
-            >
-              List reports
-            </button>
-          </h2>
-        </div>
-        <div
-          id="listReports"
-          class="collapse "
-          aria-labelledby="listReportsHeading"
-          data-parent="#moderatorActions"
-        >
-          <div class="card-body">
-            <form
-              id="search-users"
-              class="form-inline my-2 my-lg-0 justify-content-md-center"
-            >
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" />
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="button">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Review</th>
-                    <th scope="col">OP</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row"><a href="../product.html">L Sticker</a></th>
-                    <td><a href="../profile.html">bsousa</a></td>
-                    <td>Active</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        data-toggle="modal"
-                        data-target="#disableReview"
-                      >
-                        <span class="glyphicon glyphicon-earphone pull-left"
-                          ><i class="fas fa-minus-circle"></i
-                        ></span>
-                        <span class="button-text">Disable</span>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="../product.html">Duck</a></th>
-                    <td><a href="../profile.html">pfernandes</a></td>
-                    <td>Active</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        data-toggle="modal"
-                        data-target="#disableReview"
-                      >
-                        <span class="glyphicon glyphicon-earphone pull-left"
-                          ><i class="fas fa-minus-circle"></i
-                        ></span>
-                        <span class="button-text">Disable</span>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="../product.html">NBA Ball</a></th>
-                    <td><a href="../profile.html">osilva</a></td>
-                    <td>Disabled</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-warning"
-                        data-toggle="modal"
-                        data-target="#enableReview"
-                      >
-                        <span class="glyphicon glyphicon-earphone pull-left"
-                          ><i class="fas fa-plus-circle"></i
-                        ></span>
-                        <span class="button-text">Enable</span>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <nav aria-label="table navigation">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header" id="listReviewsHeading">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
-              data-toggle="collapse"
-              data-target="#listReviews"
-              aria-expanded="true"
-              aria-controls="listReviews"
-            >
-              List reviews
-            </button>
-          </h2>
-        </div>
-        <div
-          id="listReviews"
-          class="collapse "
-          aria-labelledby="listReviewsHeading"
-          data-parent="#moderatorActions"
-        >
-          <div class="card-body">
-            <form
-              id="search-users"
-              class="form-inline my-2 my-lg-0 justify-content-md-center"
-            >
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" />
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="button">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">OP</th>
-                    <th scope="col">Rating</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row"><a href="../product.html">L Sticker</a></th>
-                    <td><a href="../profile.html">bsousa</a></td>
-                    <td>						
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="../product.html">Duck</a></th>
-                    <td><a href="../profile.html">pfernandes</a></td>
-                    <td>                      
-                      <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><a href="../product.html">NBA Ball</a></th>
-                    <td><a href="../profile.html">osilva</a></td>
-                    <td>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <nav aria-label="table navigation">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col"><a href="#">Username <i class="fas fa-sort"></i></a></th>
+                  <th scope="col"><a href="#">Status <i class="fas fa-sort"></i></a></th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="usersTable">
+                <tr>
+                  <th scope="row"><a href="../profile.html">bsousa</a></th>
+                  <td>Active</td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#banUser">
+                      <i class="fas fa-minus-circle"></i>
+                      <span class="button-text">Ban</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <a href="../profile.html">pfernandes</a>
+                  </th>
+                  <td>Active</td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#banUser">
+                      <i class="fas fa-minus-circle"></i>
+                      <span class="button-text">Ban</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a href="../profile.html">psilva</a></th>
+                  <td>Banned</td>
+                  <td>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#unbanUser">
+                      <i class="fas fa-plus-circle"></i>
+                      <span class="button-text">Unban</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="table navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Modals -->
-    <div
-      class="modal fade"
-      id="banUser"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ban user</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="card">
+      <div class="card-header" id="listReportsHeading">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#listReports"
+            aria-expanded="true" aria-controls="listReports">
+            List reports
+          </button>
+        </h2>
+      </div>
+      <div id="listReports" class="collapse " aria-labelledby="listReportsHeading" data-parent="#moderatorActions">
+        <div class="card-body">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
+            </div>
+            <input class="form-control" id="search-report" type="text" placeholder="Search...">
           </div>
-          <div class="modal-body">
-            Are you sure?
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col"><a href="#">Review <i class="fas fa-sort"></i></a></th>
+                  <th scope="col"><a href="#">OP <i class="fas fa-sort"></i></a></th>
+                  <th scope="col"><a href="#">Status <i class="fas fa-sort"></i></a></th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="reportsTable">
+                <tr>
+                  <th scope="row"><a href="../product.html">L Sticker</a></th>
+                  <td><a href="../profile.html">bsousa</a></td>
+                  <td>Active</td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                      data-target="#disableReview">
+                      <i class="fas fa-minus-circle"></i>
+                      <span class="button-text">Disable</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a href="../product.html">Duck</a></th>
+                  <td><a href="../profile.html">pfernandes</a></td>
+                  <td>Active</td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                      data-target="#disableReview">
+                      <i class="fas fa-minus-circle"></i>
+                      <span class="button-text">Disable</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a href="../product.html">NBA Ball</a></th>
+                  <td><a href="../profile.html">osilva</a></td>
+                  <td>Disabled</td>
+                  <td>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                      data-target="#enableReview">
+                      <i class="fas fa-plus-circle"></i>
+                      <span class="button-text">Enable</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="table navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
     </div>
 
-    <div
-      class="modal fade"
-      id="unbanUser"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Unban user</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="card">
+      <div class="card-header" id="listReviewsHeading">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#listReviews"
+            aria-expanded="true" aria-controls="listReviews">
+            List reviews
+          </button>
+        </h2>
+      </div>
+      <div id="listReviews" class="collapse " aria-labelledby="listReviewsHeading" data-parent="#moderatorActions">
+        <div class="card-body">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
+            </div>
+            <input class="form-control" id="search-review" type="text" placeholder="Search...">
           </div>
-          <div class="modal-body">
-            Are you sure?
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col"><a href="#">Product <i class="fas fa-sort"></i></a></th>
+                  <th scope="col"><a href="#">OP <i class="fas fa-sort"></i></a></th>
+                  <th scope="col"><a href="#">Rating <i class="fas fa-sort"></i></a></th>
+                </tr>
+              </thead>
+              <tbody id="reviewsTable">
+                <tr>
+                  <th scope="row"><a href="../product.html">L Sticker</a></th>
+                  <td><a href="../profile.html">bsousa</a></td>
+                  <td>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a href="../product.html">Duck</a></th>
+                  <td><a href="../profile.html">pfernandes</a></td>
+                  <td>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a href="../product.html">NBA Ball</a></th>
+                  <td><a href="../profile.html">osilva</a></td>
+                  <td>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="table navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-    class="modal fade"
-    id="disableReview"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
+  <!-- Modals -->
+  <div class="modal fade" id="banUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Disable review</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <h5 class="modal-title" id="exampleModalLabel">Ban user</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -515,11 +352,7 @@
           Are you sure?
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-          >
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
           <button type="button" class="btn btn-primary">Save changes</button>
@@ -528,42 +361,74 @@
     </div>
   </div>
 
-  <div
-  class="modal fade"
-  id="enableReview"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Enable review</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure?
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-dismiss="modal"
-        >
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  <div class="modal fade" id="unbanUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Unban user</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  </body>
+
+  <div class="modal fade" id="disableReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Disable review</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="enableReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enable review</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
