@@ -7,3 +7,17 @@
 form {
   padding-bottom: 1em;
 }
+
+
+
+/* Navbar */
+
+.notification-container {
+  position: relative;
+}
+
+.badge-counter {
+  position: absolute;
+  top: -8px;
+  right: -18px;
+}
