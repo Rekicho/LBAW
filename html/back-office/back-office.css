@@ -2,6 +2,10 @@
   .button-text {
     display: none;
   }
+
+  #products tr > *:nth-child(5) {
+    display: none;
+}
 }
 
 form {
