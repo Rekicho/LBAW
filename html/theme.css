@@ -162,3 +162,14 @@ footer .container-fluid {
     background-color: var(--darker-secondary-color) !important;
 }
 
+
+/*
+    Format conditions
+*/
+.max-text-width {
+    max-width: 550px;
+}
+
+.ourteam {
+    clear: both;
+}
