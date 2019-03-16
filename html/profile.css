@@ -70,7 +70,7 @@ body {
 
 .light-main-color-bg {
 	background-color: var(--light-main-color);
-	color: black;
+	color: white;
 }
 
 .light-main-color-bg a {
@@ -167,4 +167,19 @@ h2 {
 
 .pay-wait-apprv {
 	color: orangered;
+}
+
+/*
+	FORMS
+*/
+.form-edit-profile,
+.form-edit-billing {
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.form-edit-profile :not(.form-control),
+.form-edit-billing :not(.form-control) {
+	color: white;
+	text-align: left;
 }
