@@ -176,6 +176,7 @@ h2 {
 .form-edit-billing {
 	padding: 10px;
 	margin-bottom: 10px;
+	padding-bottom: 70px !important;
 }
 
 .form-edit-profile :not(.form-control),
