@@ -82,6 +82,11 @@ input[type="search"]::-webkit-search-results-decoration {
     background-color: var(--secondary-color) !important; 
 }
 
+#navbarSupportedContent .form-control {
+    max-width: 250px;
+    margin-right: 10px;
+}
+
 
 @media only screen and (max-width: 991px) {
     .dept-navbar {
