@@ -204,4 +204,16 @@ footer .container-fluid {
     .space-title {
         margin-top: 40px !important;
     }
+
+    .mobile-only {
+        display: none !important;
+    }
+    
+    .desktop-only {
+        display: initial !important;
+    }
+}
+
+.desktop-only {
+    display: none;
 }
