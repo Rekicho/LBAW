@@ -21,3 +21,19 @@ form {
   top: -8px;
   right: -18px;
 }
+
+nav .navbar-nav .nav-item .nav-link {
+	color: white;
+}
+
+nav .navbar-nav .nav-item .nav-link:hover {
+	color: var(--secondary-color);
+}
+
+nav .user-options .nav-item .nav-link {
+	color:  dodgerblue;
+}
+
+nav .user-options  .nav-item .nav-link:hover {
+	color: var(--secondary-color);
+}
