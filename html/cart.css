@@ -33,3 +33,11 @@
 		padding-top: 10px;
 	}
 }
+
+.remove {
+	color: red;
+}
+
+.state {
+	text-align: right;
+}

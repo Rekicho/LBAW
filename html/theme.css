@@ -46,6 +46,10 @@ nav .navbar-nav .nav-item .nav-link:hover {
 	margin-right: 30px;
 }
 
+ul.navbar-nav :first-child .dept-navbar-item {
+	padding: 0px;
+}
+
 .dept-navbar-item span {
 	font-size: 14px;
 	color: black;
@@ -119,6 +123,10 @@ input[type="search"]::-webkit-search-results-decoration {
 		right: 40%;
 		top: 10%;
 	}
+}
+
+.secondary-nav-first-item {
+	padding: 0px;
 }
 
 /*
