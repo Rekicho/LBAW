@@ -123,16 +123,13 @@ h2 {
 	font-weight: bold;
 }
 
-.other-button {
+.received {
 	font-weight: bold;
-	background-color: var(--secondary-color);
 }
 
-.other-button .fas {
+.received .fas {
 	color: black;
 }
-
-
 
 #history a,
 #wishlist a {
