@@ -104,22 +104,22 @@ input[type="search"]::-webkit-search-results-decoration {
 		display: none;
 	}
 
-	.fas.fa-sign-in-alt {
+	nav.nav-bar .collapse .fas.fa-sign-in-alt {
 		padding-left: 0px !important;
 		padding-right: 10px !important;
 	}
 
-	.fa-sign-in-alt:after {
+	nav.nav-bar .collapse .fa-sign-in-alt:after {
 		padding-left: 10px;
 		content: "Sign-in";
 	}
 
-	.fa-shopping-cart:after {
+	nav.nav-bar .collapse .fa-shopping-cart:after {
 		padding-left: 10px;
 		content: "Cart";
 	}
 
-	.cart[data-count]:after {
+	nav.nav-bar .collapse .cart[data-count]:after {
 		right: 40%;
 		top: 10%;
 	}
