@@ -38,6 +38,10 @@ nav .user-options .nav-item .nav-link {
 	color:  dodgerblue;
 }
 
-nav .user-options  .nav-item .nav-link:hover {
+nav .user-options .nav-item .nav-link:hover {
 	color: var(--secondary-color);
+}
+
+body > nav.navbar a.nav-link.active {
+  color: var(--secondary-color) !important;
 }
