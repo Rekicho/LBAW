@@ -6,7 +6,24 @@
   #products tr > *:nth-child(5) {
     display: none;
   }
+
+
+  #payments tr > *:nth-child(4) {
+    display: none;
+  }
+  #payments tr > *:nth-child(5) {
+    display: none;
+  }
+
+  #users tr > *:nth-child(3) {
+    display: none;
+  }
+
+  #reports tr > *:nth-child(4) {
+    display: none;
+  }
 }
+
 
 form {
   padding-bottom: 1em;

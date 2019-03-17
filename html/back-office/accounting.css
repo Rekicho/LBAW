@@ -1,13 +1,3 @@
 #search-transfers {
     padding-bottom: 1em;
 }
-
-@media only screen and (max-width: 991px) {
- 
-    #payments tr > *:nth-child(4) {
-      display: none;
-    }
-    #payments tr > *:nth-child(5) {
-        display: none;
-    }
-}
