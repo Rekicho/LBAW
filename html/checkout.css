@@ -35,6 +35,12 @@
     }
 }
 
+@media only screen and (max-width: 400px) {
+	.checkout-theme {
+        padding-bottom: 100px !important;
+    }
+}
+
 .ship-container {
     display: flex;
     flex-direction: column;
