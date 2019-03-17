@@ -212,6 +212,14 @@ footer .container-fluid {
 	padding: 0 !important;
 }
 
+label.quantity {
+	margin-right: 25px;
+}
+
+.product-quantity {
+	width: 50px;
+}
+
 /*
     BUTTONS
 */
