@@ -50,7 +50,11 @@
 					<button class="btn pl-0 my-2 my-sm-0" type="submit"><i class="fas fa-search nav-icon"></i></button>
 				</form>
 				<a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
-				<a href="cart.html"><i class="fas fa-shopping-cart p-3 nav-icon"></i></a>
+				<div class="cart">
+					<span class="p1 fa-stack has-badge" data-count="4">
+						<a href="cart.html"> <i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
+					</span>
+				</div>
 			</div>
 		</nav><!-- main navbar -->
 
@@ -85,7 +89,9 @@
 					<br style="clear:both">
 					<hr>
 				</div>
-				<p class="p-3 mb-0">A rubber duck (also known as (rubber ducky) is a toy shaped like a stylized duck, generally yellow with a flat base. It may be made of rubber or rubber-like material such as vinyl plastic.[1] The yellow rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
+				<p class="p-3 mb-0">A rubber duck (also known as (rubber ducky) is a toy shaped like a stylized duck, generally
+					yellow with a flat base. It may be made of rubber or rubber-like material such as vinyl plastic.[1] The yellow
+					rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
 				<div class="p-3">
 					<button type="button" class="btn btn-secondary float-left">Review</button>
 					<button type="button" class="btn btn-primary float-right">Add to cart</button>
@@ -96,7 +102,7 @@
 			<div class="reviews bg-light">
 				<article class="review">
 					<a href="profile.html"><span class="username">LeBrão Jaimes</span></a>
-					<i class="fas fa-flag" data-toggle="modal" data-target="#reportModal" ></i>
+					<i class="fas fa-flag" data-toggle="modal" data-target="#reportModal"></i>
 					<div class="float-right product-rating">
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
@@ -104,7 +110,8 @@
 						<i class="far fa-star"></i>
 						<i class="far fa-star"></i>
 					</div>
-					<p>Esta é a minha review e se ela for demasiado grande o que e que acontece e porque eu nao sei e estou a tentar testsar mas ir pesquisar por lorem da demasiado trabalho</p>
+					<p>Esta é a minha review e se ela for demasiado grande o que e que acontece e porque eu nao sei e estou a tentar
+						testsar mas ir pesquisar por lorem da demasiado trabalho</p>
 					<span class="date">24/04/2019</span>
 				</article>
 
@@ -139,32 +146,32 @@
 					<h5 class="text-uppercase">Categories</h5>
 					<ul class="list-unstyled">
 						<li>
-						<a href="category.html">Balls</a>
+							<a href="category.html">Balls</a>
 						</li>
 						<li>
-						<a href="category.html">Watches</a>
+							<a href="category.html">Watches</a>
 						</li>
 						<li>
-						<a href="category.html">Beauty products</a>
+							<a href="category.html">Beauty products</a>
 						</li>
 						<li>
-						<a href="category.html">Video Games</a>
+							<a href="category.html">Video Games</a>
 						</li>
 					</ul>
 				</div>
 				<div class="col-md-3 mb-md-0 mb-3 position-relative">
 					<ul class="list-unstyled push-down footer-ul">
 						<li>
-						<a href="category.html">Board Games</a>
+							<a href="category.html">Board Games</a>
 						</li>
 						<li>
-						<a href="category.html">Unsold Curry merchandise</a>
+							<a href="category.html">Unsold Curry merchandise</a>
 						</li>
 						<li>
-						<a href="category.html">Computers</a>
+							<a href="category.html">Computers</a>
 						</li>
 						<li>
-						<a href="category.html">Mugs</a>
+							<a href="category.html">Mugs</a>
 						</li>
 					</ul>
 				</div>
@@ -180,32 +187,32 @@
 	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Report</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form>
-				
-				<div class="radio">
-					<label><input type="radio" name="optradio" checked>Report User</label>
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Report</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				<div class="radio">
-					<label><input type="radio" name="optradio">Report Review</label>
-				</div>	
-				
-				<div class="form-group">
-					<label for="message-text" class="col-form-label">Reason:</label>
-					<textarea class="form-control" id="message-text"></textarea>
+				<div class="modal-body">
+					<form>
+
+						<div class="radio">
+							<label><input type="radio" name="optradio" checked>Report User</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="optradio">Report Review</label>
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Reason:</label>
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
 				</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Send</button>
-			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Send</button>
+				</div>
 			</div>
 		</div>
 	</div>
