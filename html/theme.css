@@ -85,14 +85,7 @@ input[type="search"]::-webkit-search-results-decoration {
 	margin-right: 10px;
 }
 
-
-@media only screen and (max-width: 991px) {
-	.dept-navbar {
-		display: none;
-	}
-}
-
-.cart span[data-count]:after {
+.cart[data-count]:after {
 	position: absolute;
 	right: 15%;
 	top: 10%;
@@ -104,6 +97,32 @@ input[type="search"]::-webkit-search-results-decoration {
 	background: var(--light-grey);
 	text-align: center;
 	min-width: 1em;
+}
+
+@media only screen and (max-width: 991px) {
+	.dept-navbar {
+		display: none;
+	}
+
+	.fas.fa-sign-in-alt {
+		padding-left: 0px !important;
+		padding-right: 10px !important;
+	}
+
+	.fa-sign-in-alt:after {
+		padding-left: 10px;
+		content: "Sign-in";
+	}
+
+	.fa-shopping-cart:after {
+		padding-left: 10px;
+		content: "Cart";
+	}
+
+	.cart[data-count]:after {
+		right: 40%;
+		top: 10%;
+	}
 }
 
 /*
