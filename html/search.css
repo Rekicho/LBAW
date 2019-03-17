@@ -60,21 +60,35 @@ a>.title {
 .filter-container {
 	height: 100%;
 	float: right;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+	margin-right: 20px;
 }
 
-.filter {
+.filter-container .circle {
+	background-color: var(--secondary-color);
+	border-radius: 25%;
+}
+
+.filter-container .circle .fas.fa-times {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 991px) {
+	.filter-container {
+		margin-right: 0px;
+	}
+
+	.filter-container .circle {
+		display: none;
+	}
+}
+
+.filter-icon {
 	color: grey;
 	height: 34px !important;
 	width: 36px !important;
-	padding: 2px 4px;
-	border-radius: 5px;
 }
 
-.filter:hover {
+.filter-icon:hover {
 	cursor: pointer;
 	background-color: var(--light-grey);
 }
