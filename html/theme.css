@@ -223,12 +223,12 @@ label.quantity {
 /*
     BUTTONS
 */
-.btn-primary {
+.btn-primary, .btn-secondary {
 	background-color: var(--secondary-color) !important;
 	border-color: var(--darker-secondary-color);
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-secondary:hover {
 	background-color: var(--darker-secondary-color) !important;
 	border-color: var(--darker-secondary-color);
 }
