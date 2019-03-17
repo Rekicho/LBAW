@@ -22,6 +22,11 @@
   #reports tr > *:nth-child(4) {
     display: none;
   }
+
+
+  #staff tr > *:nth-child(3) {
+    display: none;
+  }
 }
 
 
