@@ -103,7 +103,7 @@ h2 {
 .single-product-info-container {
 	background-color: white;
 	min-height: 125px;
-	margin: 10px auto;
+	margin: 0px auto;
 	padding: 10px;
 }
 
@@ -169,6 +169,10 @@ h2 {
 	color: orangered;
 }
 
+.fa-circle {
+	margin-right: 5px;
+}
+
 /*
 	FORMS
 */
@@ -183,4 +187,33 @@ h2 {
 .form-edit-billing :not(.form-control) {
 	color: white;
 	text-align: left;
+}
+
+.card-body {
+	padding: 0px;
+}
+
+#accordion span {
+	color: black;
+}
+
+#accordion span:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.cart-info {
+	color:black;
+}
+
+.step-by-step {
+	display: block;
+}
+
+.deactivate {
+	color: grey;
+}
+
+hr {
+	margin: 5px;
 }

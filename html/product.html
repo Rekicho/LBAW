@@ -50,11 +50,9 @@
 					<button class="btn pl-0 my-2 my-sm-0" type="submit"><i class="fas fa-search nav-icon"></i></button>
 				</form>
 				<a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
-				<div class="cart">
-					<span class="p1 fa-stack has-badge" data-count="4">
-						<a href="cart.html"> <i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
-					</span>
-				</div>
+				<span class="cart fa-stack has-badge" data-count="4">
+					<a href="cart.html"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
+				</span>
 			</div>
 		</nav><!-- main navbar -->
 
@@ -94,8 +92,13 @@
 					rubber duck has achieved an iconic status in Western pop culture and is often symbolically linked to bathing.</p>
 				<div class="p-3">
 					<button type="button" class="btn btn-secondary float-left">Review</button>
-					<button type="button" class="btn btn-primary float-right">Add to cart</button>
+					<button type="button" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+parseInt($('.product-quantity').val()));">
+						Add to cart
+					</button>
 					<span class="price float-right">23,45€</span>
+					<label class="float-right quantity">
+						<input type="number" class="product-quantity" value="1"> x
+					</label>
 				</div>
 			</div>
 			<br style="clear:both">
