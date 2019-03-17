@@ -19,10 +19,6 @@ html {
 	color: var(--secondary-color);
 }
 
-.marginL10 {
-	margin-left: 10%;
-}
-
 a:hover {
 	text-decoration: none;
 }
@@ -213,10 +209,12 @@ footer .container-fluid {
 */
 .btn-primary {
 	background-color: var(--secondary-color) !important;
+	border-color: var(--darker-secondary-color);
 }
 
 .btn-primary:hover {
 	background-color: var(--darker-secondary-color) !important;
+	border-color: var(--darker-secondary-color);
 }
 
 
