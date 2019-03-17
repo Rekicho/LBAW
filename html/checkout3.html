@@ -94,13 +94,39 @@
 					</div>
 				</div>
 				<br style="clear:both">
-				<button class="btn btn-lg btn-primary my-2 float-right" type="submit">
-					Finish
+		
+				<button type="button" class="btn btn-primary float-right m-1"  data-toggle="modal" data-target="#offlinepayment">
+					<i class="fas fa-money-bill"></i> Pay
+					Offline
 				</button>
+				<button type="button" class="btn btn-primary float-right m-1" style="background-color:rgb(22, 155, 215) !important">
+					<i class="fab fa-paypal paypal-icon"></i> Pay with PayPal
+				</button>
+
 			</form>
 		</div>
 	</div>
 	
+
+	<div class="modal" id="offlinepayment" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Offline payment</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>We will contact you by email with instructions to proceed with your payment.</p>
+				</div>
+				<div class="modal-footer">
+					<a href="profile.html"> <button type="button" class="btn btn-primary">Proceed with offline payment</button></a>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
 			
 	<footer class="page-footer font-small blue p-4 main-color-bg text-light">
 		<div class="container-fluid text-center text-md-left">

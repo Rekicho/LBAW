@@ -49,3 +49,7 @@
     margin: auto;
     margin-bottom: 30px;
 }
+
+.btn-primary, .btn-primary i {
+    color: white !important;
+}

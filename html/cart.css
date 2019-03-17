@@ -45,3 +45,10 @@
 .align-right {
 	text-align: right;
 }
+
+.checkout-btn {
+	float: right;
+	position: relative;
+	bottom: 20px;
+	right: 20px;
+}
