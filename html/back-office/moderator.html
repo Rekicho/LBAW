@@ -27,6 +27,8 @@
   <link href="../colors.css" rel="stylesheet" />
   <link href="../home.css" rel="stylesheet" />
 
+  <script src="moderator.js" defer></script>
+
   <!-- TODO: move to a different file (mudar para javascipt?)-->
   <script>
     $(document).ready(function () {
@@ -500,6 +502,48 @@
             Close
           </button>
           <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="userActionsModal" tabindex="-1" role="dialog" aria-labelledby="userActionsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userActionsModalLabel">Update status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-danger"><i class="fas fa-minus-circle"></i> Ban</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="reportActionsModal" tabindex="-1" role="dialog" aria-labelledby="reportActionsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reportActionsModalLabel">Update status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-danger"><i class="fas fa-minus-circle"></i> Disable</button>
         </div>
       </div>
     </div>
