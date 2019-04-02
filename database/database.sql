@@ -92,19 +92,19 @@ CREATE TABLE report (
 
 CREATE TABLE report_log (
     report_id INTEGER REFERENCES report (id) PRIMARY KEY,
-    id_staff_member INTEGER NOT NULL REFERENCES staff_member (id),
+    id_user INTEGER NOT NULL REFERENCES "user" (id),
     has_deleted BOOLEAN NOT NULL,
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE billing_information (
     id SERIAL PRIMARY KEY,
-    id_client INTEGER NOT NULL REFERENCES "user" (id)
+    id_client INTEGER NOT NULL REFERENCES "user" (id),
     full_name TEXT NOT NULL,
     address TEXT NOT NULL,
     city TEXT NOT NULL,
     state TEXT NOT NULL,
-    zip_code TEXT NOT NULL,
+    zip_code TEXT NOT NULL
 );
 
 CREATE TABLE purchase (
@@ -139,18 +139,18 @@ CREATE TABLE purchase_log (
 
 CREATE TABLE ban (
     id SERIAL PRIMARY KEY,
-    id_staff_member INTEGER NOT NULL REFERENCES staff_member (id),
+    id_user INTEGER NOT NULL REFERENCES "user" (id),
     id_client INTEGER NOT NULL REFERENCES "user" (id),
-    start TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    end TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    start_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    end_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     reason TEXT NOT NULL
 );
 
 CREATE TABLE discount (
     id SERIAL PRIMARY KEY,
     id_category INTEGER REFERENCES Category (id),
-    start TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    end TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+    start_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    end_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 -----------------------------------------
