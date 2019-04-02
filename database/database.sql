@@ -20,9 +20,17 @@ DROP TABLE IF EXISTS discount CASCADE;
 
 DROP TYPE IF EXISTS state_purchase;
 
+DROP FUNCTION IF EXISTS ensure_admin() CASCADE;
+DROP FUNCTION IF EXISTS ensure_stock() CASCADE;
 DROP FUNCTION IF EXISTS user_review() CASCADE;
+--DROP FUNCTION IF EXISTS ensure_single_review() CASCADE;
+--DROP FUNCTION IF EXISTS ensure_single_report() CASCADE;
 
+DROP TRIGGER IF EXISTS ensure_admin ON "user";
+DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON review;
+--DROP TRIGGER IF EXISTS ensure_single_review ON review;
+--DROP TRIGGER IF EXISTS ensure_single_report ON review;
 
 -----------------------------------------
 -- Types
@@ -55,8 +63,8 @@ CREATE TABLE "user" (
     username TEXT NOT NULL CONSTRAINT user_username_uk UNIQUE,
     email TEXT NOT NULL CONSTRAINT client_email_uk UNIQUE,
     password TEXT NOT NULL,
-    is_admin BOOLEAN,
-    is_enabled BOOLEAN
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL,
+    is_enabled BOOLEAN DEFAULT TRUE NOT NULL
 );
 
 CREATE TABLE wishlist (
@@ -87,7 +95,8 @@ CREATE TABLE report (
     reason TEXT NOT NULL,
     id_review INTEGER NOT NULL REFERENCES review (id),
     id_client INTEGER NOT NULL REFERENCES "user" (id),
-    "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+    "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    CONSTRAINT report_review_client_uk UNIQUE(id_review, id_client)
 );
 
 CREATE TABLE report_log (
@@ -162,7 +171,43 @@ CREATE TABLE discount (
 -- TRIGGERS and UDFs
 -----------------------------------------
 
-CREATE FUNCTION  user_review() RETURNS TRIGGER AS
+-- TODO: mudar para um check na propria tabela
+
+CREATE FUNCTION ensure_admin() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (SELECT COUNT(*) FROM "user" WHERE is_admin = true) = 1
+    THEN RAISE EXCEPTION 'There must be at least one administrator.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER ensure_admin
+    BEFORE UPDATE OF is_admin ON "user"
+    FOR EACH ROW
+    EXECUTE PROCEDURE ensure_admin();
+
+
+CREATE FUNCTION ensure_stock() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (SELECT * FROM product WHERE id_product = New.id_product AND stock >= New.quantity)
+    THEN RAISE EXCEPTION 'A product must have available stock in order to be bought.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER ensure_stock
+    BEFORE INSERT ON purchased_product
+    FOR EACH ROW
+    EXECUTE PROCEDURE ensure_stock();
+
+
+CREATE FUNCTION user_review() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     IF NOT EXISTS ( SELECT * FROM review, purchased_product, purchase
@@ -170,7 +215,8 @@ BEGIN
                         AND purchased_product.id_purchase == purchase.id_purchase
                         AND purchase.id_client == NEW.id_client
                         AND NEW.date_time > purchase.date_time
-                ) THEN RAISE EXCEPTION 'A client can only review a product after buying it';
+                )
+    THEN RAISE EXCEPTION 'A client can only review a product after buying it';
     END IF;
     RETURN NEW;
 END
@@ -182,6 +228,40 @@ CREATE TRIGGER user_review
     FOR EACH ROW
     EXECUTE PROCEDURE user_review();
 
+/*
+CREATE FUNCTION ensure_single_review() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF EXISTS EXISTS (SELECT * FROM review WHERE id_product = New.id_product AND id_client = New.id_client) 
+THEN RAISE EXCEPTION 'A user can only review a product once.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER ensure_single_review
+    BEFORE INSERT ON review
+    FOR EACH ROW
+    EXECUTE PROCEDURE ensure_single_review();
+
+
+CREATE FUNCTION ensure_single_report() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF EXISTS EXISTS (SELECT * FROM report WHERE id_review = New.id_review AND id_client = New.id_client) 
+THEN RAISE EXCEPTION 'A user can only report a review once.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER ensure_single_report
+    BEFORE INSERT ON REVIEW
+    FOR EACH ROW
+    EXECUTE PROCEDURE ensure_single_report();
+*/
 -----------------------------------------
 -- end
 -----------------------------------------
