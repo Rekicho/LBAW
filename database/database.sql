@@ -23,14 +23,10 @@ DROP TYPE IF EXISTS state_purchase;
 DROP FUNCTION IF EXISTS ensure_admin() CASCADE;
 DROP FUNCTION IF EXISTS ensure_stock() CASCADE;
 DROP FUNCTION IF EXISTS user_review() CASCADE;
---DROP FUNCTION IF EXISTS ensure_single_review() CASCADE;
---DROP FUNCTION IF EXISTS ensure_single_report() CASCADE;
 
 DROP TRIGGER IF EXISTS ensure_admin ON "user";
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON review;
---DROP TRIGGER IF EXISTS ensure_single_review ON review;
---DROP TRIGGER IF EXISTS ensure_single_report ON review;
 
 -----------------------------------------
 -- Types
@@ -228,40 +224,6 @@ CREATE TRIGGER user_review
     FOR EACH ROW
     EXECUTE PROCEDURE user_review();
 
-/*
-CREATE FUNCTION ensure_single_review() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-IF EXISTS EXISTS (SELECT * FROM review WHERE id_product = New.id_product AND id_client = New.id_client) 
-THEN RAISE EXCEPTION 'A user can only review a product once.';
-    END IF;
-    RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER ensure_single_review
-    BEFORE INSERT ON review
-    FOR EACH ROW
-    EXECUTE PROCEDURE ensure_single_review();
-
-
-CREATE FUNCTION ensure_single_report() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-IF EXISTS EXISTS (SELECT * FROM report WHERE id_review = New.id_review AND id_client = New.id_client) 
-THEN RAISE EXCEPTION 'A user can only report a review once.';
-    END IF;
-    RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER ensure_single_report
-    BEFORE INSERT ON REVIEW
-    FOR EACH ROW
-    EXECUTE PROCEDURE ensure_single_report();
-*/
 -----------------------------------------
 -- end
 -----------------------------------------
