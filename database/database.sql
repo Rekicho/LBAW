@@ -23,10 +23,12 @@ DROP TYPE IF EXISTS state_purchase;
 DROP FUNCTION IF EXISTS ensure_admin() CASCADE;
 DROP FUNCTION IF EXISTS ensure_stock() CASCADE;
 DROP FUNCTION IF EXISTS user_review() CASCADE;
+DROP FUNCTION IF EXISTS product_search_update() CASCADE;
 
 DROP TRIGGER IF EXISTS ensure_admin ON "user";
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON review;
+DROP TRIGGER IF EXISTS product_search ON product;
 
 -----------------------------------------
 -- Types
@@ -51,7 +53,8 @@ CREATE TABLE product (
     description TEXT NOT NULL,
     discount FLOAT NOT NULL CONSTRAINT product_discount_ck CHECK (((discount >= 0) OR (discount <= 1))),
     stock INTEGER NOT NULL CONSTRAINT product_stock_ck CHECK (stock >= 0),
-    is_enabled BOOLEAN DEFAULT TRUE NOT NULL
+    is_enabled BOOLEAN DEFAULT TRUE NOT NULL,
+    search tsvector
 );
 
 CREATE TABLE "user" (
@@ -223,6 +226,26 @@ CREATE TRIGGER user_review
     BEFORE INSERT ON review
     FOR EACH ROW
     EXECUTE PROCEDURE user_review();
+
+
+CREATE FUNCTION product_search_update() RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        NEW.search = to_tsvector('english', NEW.name || ' ' || NEW.description);
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+        IF NEW.name <> OLD.name OR NEW.description <> OLD.description THEN
+            NEW.search = to_tsvector('english', NEW.name || ' ' || NEW.description);
+        END IF;
+    END IF;
+    RETURN NEW;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER product_search
+    BEFORE INSERT OR UPDATE ON product
+    FOR EACH ROW
+    EXECUTE PROCEDURE product_search_update()
 
 -----------------------------------------
 -- end
