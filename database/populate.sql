@@ -707,8 +707,7 @@ INSERT INTO "purchase_state" (id,state_purchase) VALUES (2,'Waiting for payment 
 INSERT INTO "purchase_state" (id,state_purchase) VALUES (3,'Paid');
 INSERT INTO "purchase_state" (id,state_purchase) VALUES (4,'Shipped');
 INSERT INTO "purchase_state" (id,state_purchase) VALUES (5,'Completed');
-INSERT INTO "purchase_state" (id,state_purchase) VALUES (6,'nulla');
-INSERT INTO "purchase_state" (id,state_purchase) VALUES (7,'Returned');
+INSERT INTO "purchase_state" (id,state_purchase) VALUES (6,'Returned');
 
 /* PURCHASE PRDUCT */
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,"Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o'clock. The dial also features the Armani Exchange logo at 12 o'clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.",0,21);
