@@ -24,6 +24,9 @@ DROP FUNCTION IF EXISTS ensure_admin() CASCADE;
 DROP FUNCTION IF EXISTS ensure_stock() CASCADE;
 DROP FUNCTION IF EXISTS user_review() CASCADE;
 DROP FUNCTION IF EXISTS product_search_update() CASCADE;
+DROP FUNCTION IF EXISTS add_initial_state() CASCADE;
+DROP FUNCTION IF EXISTS update_stock() CASCADE;
+
 
 DROP TRIGGER IF EXISTS ensure_admin ON "user";
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
@@ -182,15 +185,15 @@ CREATE TABLE discount (
 
  CREATE INDEX product_discount ON product USING btree (discount); 
 
- CREATE INDEX start_discount ON discount USING btree (start); 
+ CREATE INDEX start_discount ON discount USING btree (start_t); 
 
- CREATE INDEX end_discount ON discount USING btree (end); 
+ CREATE INDEX end_discount ON discount USING btree (end_t); 
 
 -----------------------------------------
 -- FULL TEXT SEARCH
 -----------------------------------------
 
- CREATE INDEX product_search_index ON PRODUCT USING GIST (search)
+ CREATE INDEX product_search_index ON PRODUCT USING GIST (search);
 
 -----------------------------------------
 -- TRIGGERS and UDFs
@@ -271,27 +274,31 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER product_search
     BEFORE INSERT OR UPDATE ON product
     FOR EACH ROW
-    EXECUTE PROCEDURE product_search_update()
+    EXECUTE PROCEDURE product_search_update();
     
-CREATE FUNCTION add_initial_state() RETURNS TRIGGER AS $$
-BEGIN
-    INSERT INTO purchase_log (id_purchase_state, id_purchase, "date_time")
-    VALUES (SELECT id FROM purchase_state WHERE state_purchase = 'Waiting for payment', New.id, New."date_time")
-END
-$$ LANGUAGE plpgsql;
+-- CREATE FUNCTION add_initial_state() RETURNS TRIGGER AS
+-- $BODY$
+-- BEGIN
+--     INSERT INTO purchase_log (id_purchase_state, id_purchase, "date_time")
+--     VALUES (SELECT id FROM purchase_state WHERE state_purchase = 'Waiting for payment', New.id, New."date_time");
+-- END
+-- $BODY$ 
+-- LANGUAGE plpgsql;
 
-CREATE TRIGGER add_initial_state
-    AFTER INSERT ON purchase
-    FOR EACH ROW
-    EXECUTE PROCEDURE add_initial_state();
+-- CREATE TRIGGER add_initial_state
+--     AFTER INSERT ON purchase
+--     FOR EACH ROW
+--     EXECUTE PROCEDURE add_initial_state();
 
 
-CREATE FUNCTION update_stock() RETURNS TRIGGER AS $$
+CREATE FUNCTION update_stock() RETURNS TRIGGER AS
+$BODY$
 BEGIN
     UPDATE product SET stock = stock - New.quantity
-    WHERE id_product = New.id_product
+    WHERE id_product = New.id_product;
 END
-$$ LANGUAGE plpgsql;
+$BODY$
+LANGUAGE plpgsql;
 
 
 CREATE TRIGGER update_stock
