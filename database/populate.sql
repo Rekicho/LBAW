@@ -713,6 +713,7 @@ INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,d
 
 /* PURCHASE LOG */
 /* WAITING FOR PAYMENT */ 
+/*
 INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (1,1,1,'2019-02-01 03:36:19');
 INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (2,1,2,'2019-02-01 09:48:45');
 INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (3,1,3,'2019-02-01 13:59:24');
@@ -743,92 +744,92 @@ INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES
 INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (28,1,28,'2019-02-01 10:06:22');
 INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (29,1,29,'2019-02-01 00:54:41');
 INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (30,1,30,'2019-02-01 16:57:25');
+*/
 
 /* WAITING FOR PAYMENT APPROVAL */
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (31,2,1,'2019-02-02 05:01:51');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (32,2,2,'2019-02-02 05:44:33');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (33,2,3,'2019-02-02 22:13:32');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (34,2,4,'2019-02-02 09:11:37');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (35,2,5,'2019-02-02 18:55:18');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (36,2,6,'2019-02-02 11:26:05');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (37,2,7,'2019-02-02 15:23:42');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (38,2,8,'2019-02-02 08:51:43');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (39,2,9,'2019-02-02 19:23:05');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (40,2,10,'2019-02-02 16:27:19');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (41,2,11,'2019-02-02 16:49:58');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (42,2,12,'2019-02-02 00:48:42');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (43,2,13,'2019-02-02 20:12:29');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (44,2,14,'2019-02-02 18:47:15');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (45,2,15,'2019-02-02 12:00:23');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (46,2,16,'2019-02-02 05:11:12');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (47,2,17,'2019-02-02 05:23:18');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (48,2,18,'2019-02-02 22:42:37');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (49,2,19,'2019-02-02 15:48:12');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (50,2,20,'2019-02-02 18:43:26');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (51,2,21,'2019-02-02 19:49:44');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (52,2,22,'2019-02-02 11:32:49');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (53,2,23,'2019-02-02 00:03:21');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (54,2,24,'2019-02-02 14:01:26');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (55,2,25,'2019-02-02 10:18:23');
-/* PAID */
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (56,3,1,'2019-02-03 03:12:19');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (57,3,2,'2019-02-03 00:07:29');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (58,3,3,'2019-02-03 18:04:05');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (59,3,4,'2019-02-03 17:32:47');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (60,3,5,'2019-02-03 21:01:22');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (61,3,6,'2019-02-03 15:46:22');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (62,3,7,'2019-02-03 02:28:45');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (63,3,8,'2019-02-03 04:02:46');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (64,3,9,'2019-02-03 02:10:45');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (65,3,10,'2019-02-03 02:15:27');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (66,3,11,'2019-02-03 05:43:03');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (67,3,12,'2019-02-03 02:01:51');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (68,3,13,'2019-02-03 03:09:29');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (69,3,14,'2019-02-03 14:43:44');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (70,3,15,'2019-02-03 16:47:00');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (71,3,16,'2019-02-03 16:39:16');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (72,3,17,'2019-02-03 05:54:39');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (73,3,18,'2019-02-03 01:46:37');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (74,3,19,'2019-02-03 11:13:26');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (75,3,20,'2019-02-03 12:58:51');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,1,'2019-02-02 05:01:51');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,2,'2019-02-02 05:44:33');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,3,'2019-02-02 22:13:32');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,4,'2019-02-02 09:11:37');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,5,'2019-02-02 18:55:18');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,6,'2019-02-02 11:26:05');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,7,'2019-02-02 15:23:42');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,8,'2019-02-02 08:51:43');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,9,'2019-02-02 19:23:05');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,10,'2019-02-02 16:27:19');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,11,'2019-02-02 16:49:58');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,12,'2019-02-02 00:48:42');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,13,'2019-02-02 20:12:29');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,14,'2019-02-02 18:47:15');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,15,'2019-02-02 12:00:23');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,16,'2019-02-02 05:11:12');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,17,'2019-02-02 05:23:18');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,18,'2019-02-02 22:42:37');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,19,'2019-02-02 15:48:12');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,20,'2019-02-02 18:43:26');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,21,'2019-02-02 19:49:44');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,22,'2019-02-02 11:32:49');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,23,'2019-02-02 00:03:21');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,24,'2019-02-02 14:01:26');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (2,25,'2019-02-02 10:18:23');
 
+/* PAID */
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,1,'2019-02-03 03:12:19');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,2,'2019-02-03 00:07:29');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,3,'2019-02-03 18:04:05');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,4,'2019-02-03 17:32:47');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,5,'2019-02-03 21:01:22');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,6,'2019-02-03 15:46:22');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,7,'2019-02-03 02:28:45');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,8,'2019-02-03 04:02:46');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,9,'2019-02-03 02:10:45');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,10,'2019-02-03 02:15:27');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,11,'2019-02-03 05:43:03');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,12,'2019-02-03 02:01:51');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,13,'2019-02-03 03:09:29');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,14,'2019-02-03 14:43:44');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,15,'2019-02-03 16:47:00');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,16,'2019-02-03 16:39:16');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,17,'2019-02-03 05:54:39');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,18,'2019-02-03 01:46:37');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,19,'2019-02-03 11:13:26');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (3,20,'2019-02-03 12:58:51');
 
 /* SHIPPED */
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (76,4,1,'2019-02-04 10:47:14');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (77,4,2,'2019-02-04 19:48:59');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (78,4,3,'2019-02-04 06:43:36');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (79,4,4,'2019-02-04 09:49:06');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (80,4,5,'2019-02-04 18:34:11');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (81,4,6,'2019-02-04 10:01:29');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (82,4,7,'2019-02-04 22:46:08');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (83,4,8,'2019-02-04 01:17:00');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (84,4,9,'2019-02-04 10:18:44');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (85,4,10,'2019-02-04 18:08:25');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (86,4,11,'2019-02-04 05:17:03');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (87,4,12,'2019-02-04 19:38:03');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (88,4,13,'2019-02-04 07:52:24');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (89,4,14,'2019-02-04 00:19:55');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (90,4,15,'2019-02-04 13:24:37');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,1,'2019-02-04 10:47:14');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,2,'2019-02-04 19:48:59');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,3,'2019-02-04 06:43:36');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,4,'2019-02-04 09:49:06');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,5,'2019-02-04 18:34:11');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,6,'2019-02-04 10:01:29');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,7,'2019-02-04 22:46:08');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,8,'2019-02-04 01:17:00');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,9,'2019-02-04 10:18:44');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,10,'2019-02-04 18:08:25');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,11,'2019-02-04 05:17:03');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,12,'2019-02-04 19:38:03');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,13,'2019-02-04 07:52:24');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,14,'2019-02-04 00:19:55');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (4,15,'2019-02-04 13:24:37');
 
 /* COMPLETED */
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (91,5,1,'2019-02-05 01:51:50');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (92,5,2,'2019-02-05 11:09:02');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (93,5,3,'2019-02-05 19:42:36');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (94,5,4,'2019-02-05 03:38:55');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (95,5,5,'2019-02-05 18:52:40');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (96,5,6,'2019-02-05 21:50:05');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (97,5,7,'2019-02-05 10:21:54');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (98,5,8,'2019-02-05 02:06:59');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (99,5,9,'2019-02-05 16:30:22');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (100,5,10,'2019-02-05 06:59:57');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,1,'2019-02-05 01:51:50');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,2,'2019-02-05 11:09:02');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,3,'2019-02-05 19:42:36');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,4,'2019-02-05 03:38:55');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,5,'2019-02-05 18:52:40');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,6,'2019-02-05 21:50:05');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,7,'2019-02-05 10:21:54');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,8,'2019-02-05 02:06:59');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,9,'2019-02-05 16:30:22');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (5,10,'2019-02-05 06:59:57');
 
 /* RETURNED */
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (101,6,1,'2019-02-06 12:59:04');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (102,6,2,'2019-02-06 16:42:13');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (103,6,3,'2019-02-06 07:28:27');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (104,6,4,'2019-02-06 16:13:30');
-INSERT INTO "purchase_log" (id,id_purchase_state,id_purchase,"date_time") VALUES (105,6,5,'2019-02-06 08:06:28');
-
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (6,1,'2019-02-06 12:59:04');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (6,2,'2019-02-06 16:42:13');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (6,3,'2019-02-06 07:28:27');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (6,4,'2019-02-06 16:13:30');
+INSERT INTO "purchase_log" (id_purchase_state,id_purchase,"date_time") VALUES (6,5,'2019-02-06 08:06:28');
 
 
 /* BAN */
