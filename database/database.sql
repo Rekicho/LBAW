@@ -125,7 +125,7 @@ CREATE TABLE purchase (
 
 CREATE TABLE purchase_state (
     id SERIAL PRIMARY KEY,
-    TYPE state_purchase CONSTRAINT state_purchase_uk UNIQUE NOT NULL
+    state_p state_purchase NOT NULL CONSTRAINT state_p_uk UNIQUE
 );
 
 CREATE TABLE purchased_product (
@@ -193,7 +193,7 @@ CREATE TRIGGER ensure_admin
 CREATE FUNCTION ensure_stock() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM product WHERE id_product = New.id_product AND stock >= New.quantity)
+    IF EXISTS (SELECT * FROM product WHERE product.id = New.id_product AND stock < New.quantity)
     THEN RAISE EXCEPTION 'A product must have available stock in order to be bought.';
     END IF;
     RETURN NEW;
@@ -210,10 +210,10 @@ CREATE TRIGGER ensure_stock
 CREATE FUNCTION user_review() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NOT EXISTS ( SELECT * FROM review, purchased_product, purchase
-                    WHERE NEW.id_product == purchased_product.id_product
-                        AND purchased_product.id_purchase == purchase.id_purchase
-                        AND purchase.id_client == NEW.id_client
+    IF NOT EXISTS ( SELECT * FROM purchased_product, purchase
+                    WHERE NEW.id_product = purchased_product.id_product
+                        AND purchased_product.id_purchase = purchase.id
+                        AND purchase.id_client = NEW.id_client
                         AND NEW.date_time > purchase.date_time
                 )
     THEN RAISE EXCEPTION 'A client can only review a product after buying it';
