@@ -11,15 +11,15 @@ INSERT INTO "category" (id,name) VALUES (9,'Beauty');
 INSERT INTO "category" (id,name) VALUES (10,'Toys and Games');
 
 /* Product insert */
-/* Watches */ 
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,"Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o'clock. The dial also features the Armani Exchange logo at 12 o'clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.",0,21,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (2,1,'Casio G-Shock DW-5600HRGRZ-1ER',80.13,'From G-SHOCK, which strives for toughness, comes a Black & Red Series that makes the most of G-SHOCK colors. A bi-color molding process makes it possible to create a band that is black on the outside and red on the inside. The flashes of red from the inside of the band when putting on or taking off the watch are a bold statement of G-SHOCK identity. FREE Exclusive Gorillaz track "Tranz (Sibot Remix)" with purchase.',0,10,True);
+/* Watches */
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,'Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o''clock. The dial also features the Armani Exchange logo at 12 o''clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.',0,21,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (2,1,'Casio G-Shock DW-5600HRGRZ-1ER',80.13,'From G-SHOCK, which strives for toughness, comes a Black & Red Series that makes the most of G-SHOCK colors. A bi-color molding process makes it possible to create a band that is black on the outside and red on the inside. The flashes of red from the inside of the band when putting on or taking off the watch are a bold statement of G-SHOCK identity. FREE Exclusive Gorillaz track 'Tranz (Sibot Remix)' with purchase.',0,10,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (3,1,'HUGO Jump Watch',255.45,'HUGO Jump 1530028 is a functional and special Gents watch from JUMP collection. Material of the case is Black Ion-plated Steel and the Black dial gives the watch that unique look. 30 metres water resistancy will protect the watch and allows it to be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,38,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (4,1,'Tommy Hilfiger 1791121',262.31,'Stylish and unashamed, Luke by Tommy Hilfiger features a gold PVD plated case and bracelet with blue bezel, and is fitted with a quartz movement with day, date and 24 hour function shown on a silvery white dial, and is water resistant to 5atm.',0,10,True); 
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (5,1,'STORM 47363/GY',139.88,'STORM 47363/GY is a functional and handsome Gents watch. Case material is Stainless Steel while the dial colour is Grey. In regards to the water resistance, the watch has got a resistancy up to 50 metres. It means it can be submerged in water for periods, so can be used for swimming and fishing. It is not reccomended for high impact water sports.',0,37,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (6,1,'Jack Wills Acland',128.24,'Jack Wills Acland JW003SLBR is a practical and very impressive Gents watch from Acland collection. Material of the case is Alloy, which stands for a high quality of the item and the Silver dial gives the watch that unique look. 30 metres water resistancy will protect the watch and allows it to be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,15,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (7,1,'Accurist Chronograph',139.88,'Accurist London Vintage 7033 is a super special Gents watch. Case material is Stainless Steel while the dial colour is Cream. The features of the watch include (among others) a chronograph and date function. 50 metres water resistancy will protect the watch and allows it to be submerged in water for periods, so can be used for swimming and fishing. It is not reccomended for high impact water sports.',0,21,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (8,1,"Tissot Classic Dream",157.38,"This men's Tissot Classic Dream watch has a stainless steel case with sapphire crystal and is powered by a quartz movement. It is fastened with a brown leather strap and has a white dial with crisp roman numerals. The watch has a date function.",0,42,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (8,1,'Tissot Classic Dream',157.38,'This men''s Tissot Classic Dream watch has a stainless steel case with sapphire crystal and is powered by a quartz movement. It is fastened with a brown leather strap and has a white dial with crisp roman numerals. The watch has a date function.',0,42,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (9,1,'Guess W0668G4',177.82,'Polished gold case, sunray champagne dial, brushed and polished gold bracelet.',0,50,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (10,1,'Bulova 96A208',406.87,'Sophisticated design with full exhibition dial and case-back. Stainless steel screw-back case, skeletonized black three-hand dial revealing the intricate workings of the self-winding 21-jewel movement, domed mineral crystal, stainless steel bracelet with push-button deployant clasp, and water resistance to 30 meters. Diameter: 43mm Thickness: 12.15mm',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (101,1,'Smart Turnout Master',112.59,'Smart Turnout Master Watch Lime Embossed Leather Strap STL3/RW/56/LIM is a trendy Unisex watch. Material of the case is PVD rose plating while the dial colour is Off white. 30 metres water resistancy will protect the watch and allows it to be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35,True);
@@ -27,7 +27,7 @@ INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_e
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (103,1,'LLARSEN 147GWG3-GCAMEL20',207.77,'LLARSEN Oliver 147GWG3-GCAMEL20 is a practical and handsome Gents watch from LW47 collection. Material of the case is Stainless Steel while the dial colour is White. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (104,1,'G-Shock GA-100-1A1ER',66.16,'High-impact mens Casio X-Large G-Shock model in stealth black resin with black detailing, with white hour hand detailing. Features include chronograph, 5 daily alarms, countdown timer, world time from a Japanese Quartz movement with perpetual calendar and date function, LED backlight and digital tachymeter. The watch fastens with a sturdy rubber strap with double tang buckle for extra security. Impressively sized at 55mm and built as tough as possible, with 20 bar water resistance and the signature G-Shock design.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (105,1,'Bulova 98D149',672.06,'From the Precisionist Collection. New Champlain style in grey IP stainless steel with rose gold-tone accents on case and bracelet, 11 diamonds individually hand set on two-tone black/grey dial with calendar feature, curved mineral glass, screw-back case, fold-over buckle closure with safety lock and extender, and water resistance to 300 meters. Powered by Bulova’s proprietary three-prong quartz crystal Precisionist movement with a 262kHz vibrational frequency—eight times greater than standard watches—for unparalleled accuracy. Diameter: 46.5mm Thickness: 14.3mm',0,35,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (106,1,'Citizen CA0080-03E',265.81,"Citizen Red Arrows World Time model with a stainless steel round case. This intelligent time piece features 1/5 second chronograph, world time in 24 cities, 12.24 hour time, screw-back case and movement calibre: B612. It also has date function and is powered by Eco-Drive movement. The round black dial has high-visibility baton hour markers and hands which light up in the dark, red touches and date function. It's 100 meter water resistant and fastens with a quality black with red stitching genuine leather strap.",0,35,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (106,1,'Citizen CA0080-03E',265.81,'Citizen Red Arrows World Time model with a stainless steel round case. This intelligent time piece features 1/5 second chronograph, world time in 24 cities, 12.24 hour time, screw-back case and movement calibre: B612. It also has date function and is powered by Eco-Drive movement. The round black dial has high-visibility baton hour markers and hands which light up in the dark, red touches and date function. It's 100 meter water resistant and fastens with a quality black with red stitching genuine leather strap.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (107,1,'Accurist MB921BX',104.47,'Mens Accurist Diamond watch in PVD gold plating, set around a black rectangular dial with gold baton hour markers.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (108,1,'Jean Paul Gaultier',104.47,'This iconic watch from the ENFANTS TERRIBLES collection by eponymous designer Jean Paul Gaultier features the unmistakeable stripes paired with a soft navy blue silicon strap for a sporty look and comfortable fit. Touches of warm rose gold make this a super trendy stand-out piece from the collection!',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (109,1,'Armani AX2103',113.56,'This stylish mens Armani Exchange watch in stainless steel features a 47mm case and centred on a black dial with silver baton hour markers and date function. The watch is fitted with quartz movement and fastens with a silver stainless steel bracelet.',0,35,True);
@@ -37,7 +37,7 @@ INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_e
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (113,1,'STORM 47075/B',104.85,'Mens Storm Sotec Lazer watch in stainless steel, centred on a bright blue dial with date function and high-contrast hands.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (114,1,'STORM 47155/B',104.45,'STORM Cyro XL 47155/B is a functional and handsome Gents watch. Case material is Stainless Steel and the Blue dial gives the watch that unique look. The features of the watch include (among others) a date function. This watch is market as water resistant. It means it can withstand slight splashes and rain, but is NOT to be immersed in water. We ship it with an original box and a guarantee from the manufacturer.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (115,1,'Guess W0799G4',275.40,'Polished silver and gold case with crystal detailing, sunray white glitz multi-functional dial, polished silver and gold bracelt with crystals.',0,35,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (116,1,'Accurist MB933S',80.84,"This Men's watch by Accurist is made from PVD gold plated steel and has a 42mm case with a silver dial. The dial features 3 mini dials, chronograph, date function and gold baton hour markers with gold hands. This sought after model is 50m water resistant and powered by a quality quartz movement. It fastens with a gold metal bracelet.",0,35,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (116,1,'Accurist MB933S',80.84,'This Men's watch by Accurist is made from PVD gold plated steel and has a 42mm case with a silver dial. The dial features 3 mini dials, chronograph, date function and gold baton hour markers with gold hands. This sought after model is 50m water resistant and powered by a quality quartz movement. It fastens with a gold metal bracelet.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (117,1,'Swatch GB743',46.43,'The ever popular Swatch Once Again watch for men, proving that simple is always effective. This time piece in monochrome style comes with a water resistant resin case, with a reliable Swiss quartz movement with day / date function embedded into it, and an easy change battery cover. It has a minimal white dial with easy to read numeral hour markers in black, and a date magnification bubble in the acrylic glass. This model fastens with a black plastic strap.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (118,1,'Limit 5484.01',34.67,'Limit 5484.01 is an amazing and attractive Gents watch. Material of the case is PVD rose plating and the Black dial gives the watch that unique look. The features of the watch include (among others) a date function. In regards to the water resistance, the watch has got a resistancy up to 30 metres. It means it can be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (119,1,'Bulova 97A138',405.10,'Sophisticated design with full exhibition dial and case-back. Gold-tone stainless steel screw-back case, skeletonized silver white three-hand dial revealing the intricate workings of the self-winding 21-jewel movement, domed mineral crystal, brown leather strap with push-button deployant buckle, and water resistance to 30 meters. Diameter: 43mm Thickness: 12.15mm',0,35,True);
@@ -61,14 +61,14 @@ INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_e
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (23,3,'Rescue your Videotapes',83,'Digitize and dub VHS: Complete package including software and hardware',0,39,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (24,3,'Norton Security Deluxe',38,'Reliable data protection against cybercrime at home: Norton antivirus and firewall software provides security and protection against malware and viruses for up to 5 PCs, Macs, smartphones and tablets',0,18,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (25,3,'McAfee Internet Security',81,'Stay safe from Trojans, viruses, spyware, rootkits, and more, with state-of-the-art anti-malware protection Detects, quarantines, and blocks viruses and malware to prevent damage to your PC Keep zero-day threats and botnets at bay-McAfee Active Protection and Global Threat Intelligence technology have you covered',0,46,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (26,3,"BullGuard Internet Security',68,'All in one solution that protects PC's, Mac and Android devices so you can shop, game and bank online with absolute confidence",0,28,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (26,3,'BullGuard Internet Security',68,'All in one solution that protects PC's, Mac and Android devices so you can shop, game and bank online with absolute confidence',0,28,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (27,3,'AVG Internet Security ',93,'AVG Internet Security includes Internet Security for Windows, AntiVirus for Android and AntiVirus for Mac',1,21,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (28,3,'ESET Security',52,'Antivirus and Antispyware - Provides all-round protection against all types of threats, including Viruses, Rootkits and Spyware',1,32,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (29,3,'BullGuard Internet Security',83,'Antivirus - effectively catches all viruses',0,7,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (30,3,'Avast',26,'Intelligent antivirus - Stay safe from viruses, ransomware, trojans, and other types of malware.',0,24,True);
 
 /* Pet Supplies */
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (31,4,'Lintbells YuMOVE',54,"YuMOVE is the UK's no.1 veterinary joint supplement (Kynetec Vet Trak Sales Data, MAT Values - January 2019)",1,12,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (31,4,'Lintbells YuMOVE',54,'YuMOVE is the UK's no.1 veterinary joint supplement (Kynetec Vet Trak Sales Data, MAT Values - January 2019)',1,12,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (32,4,'Rocks Urine',79,'SAVE YOUR LAWN: Dog Rocks will help stop those unsightly urine burn patches ruining your luscious green lawn and shrubs. Your dog can save your lawn! Simply add a 200g pack of Dog Rocks for every 2 litres of water in the bowl and replace the rocks every 2 months. You can then sit back and enjoy your greener than green lawn knowing that no new burn patches will occur from 8-10 hours. With proper lawn maintenance, you will see vast improvements in 3-5 weeks.',1,28,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (33,4,'SmugPets Premium.',82,'EXTRA STRONG DOG POOP BAGS: What makes these 5 star rated dog waste bags so popular is that they have a thickness rating of 19 microns. This makes them 50% stronger and more reliable than other waste bags on the market.',0,48,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (34,4,'Idepet Dog Toy Ball',56,'NONTOXIC MATERIAL : the product is made by extra-tough rubber, good elasticity, bite-resistant and nontoxic,non-abrasive,safe for your sweet dog grinding and cleaning their teeth.',0,37,True);
@@ -77,15 +77,15 @@ INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_e
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (37,4,'Ear Cleaner',13.99,'DELIVERS RESULTS QUICKLY -Use For Excessive Head Shaking, Persistent Itching, Waxy Ears & Ear Odour. Scientifically Formulated to Clean Both Ears and Maintain Them in Good Condition.',0,46,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (38,4,'Dog Clippers.',20.99,'This pet grooming kit come with 6 kinds of tools: 1× Pet clipper (including a rechargeable battery),1×Power Adapter,1× Cleaning Brush, 6× Comb Attachments (3/6/9/12mm/ Left /Right Oblique),1× Stainless Steel Scissor,1× Stainless Steel Comb. Pet clippers fit for all HAIRY PETS!',0,5,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (39,4,'Collapsible Dog Bowls',4.95,'PORTABLE & CONVENIENT: Collapsible dog pet cat bowl is 5.1 inches wide, 2.1 inches height, each bowl holds up to 12 fluid ounces of water or 1.5 cups of dog food. - 0.5 inches when compact - simply Pop-Up and then fold away',0,44,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (40,4,'Pet Carrier Crate',75,"Mool's large sized black pet crate is ideal for travelling, camping or around the house to provide your pet with a luxurious place to rest",0,40,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (40,4,'Pet Carrier Crate',75,'Mool's large sized black pet crate is ideal for travelling, camping or around the house to provide your pet with a luxurious place to rest',0,40,True);
 
 /* Video Games */
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (41,5,'The Division 2',38.99,'In the wake of the virus, storms, flooding, and subsequent chaos have radically transformed Washington, D.C. Explore a living open world full of diverse environments, from flooded urban areas to historic sites and landmarks, during one of the hottest summers in history',0,35,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (42,5,'Assassins Creed Odyssey',23.99,"Become a legendary Greek hero - In a first for the Assassin's Creed franchise, you can choose which hero to embody throughout this epic journey, Alexios or Kassandra",0,50,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (42,5,'Assassins Creed Odyssey',23.99,'Become a legendary Greek hero - In a first for the Assassin's Creed franchise, you can choose which hero to embody throughout this epic journey, Alexios or Kassandra',0,50,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (43,5,'Spider-Man',35.98,'Be Spider-Man - An experienced Spider-Man with several years of crime fighting under his belt, Peter Parker has sheer mastery of his powerful spider-sense, dynamic skills, acrobatic abilities, and new suit.',0,8,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (44,5,'God of War (PS4)',44.99,'A New Beginning - His vengeance against the gods of Olympus far behind him, Kratos now lives as a man in the lands of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive... and teach his son to do the same',0,4,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (45,5,'Devil May Cry 5 (PS4)',39.99,'Nero, one of the series main protagonists and a young demon hunter who has the blood of Sparda, heads to Red Grave City to face the hellish onslaught of demons, with weapons craftswoman and new partner-in-crime, Nico',1,7,True);
-INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (46,5,'Mortal Kombat 11 (PS4)',49.99,"Featuring a roster of new and returning Klassic Fighters, Mortal Kombat's best in class cinematic story mode continues the epic saga over 25 years in the making",1,41,True);
+INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (46,5,'Mortal Kombat 11 (PS4)',49.99,'Featuring a roster of new and returning Klassic Fighters, Mortal Kombat's best in class cinematic story mode continues the epic saga over 25 years in the making',1,41,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (47,5,'World War Z (PS4)',34.99,'Battle swarms of hundreds of zombies - the Swarm Engine seamlessly renders hordes of zombies in incredible firefights. Advanced gore systems offer gruesomely satisfying action.',1,43,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (48,5,'Borderlands 3',74.99,'Stop the fanatical Calypso Twins from uniting the bandit clans and claiming the galaxy',0,12,True);
 INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (49,5,'Pokemon Sword',54.99,'New entries in the main series of Pokémon RPGs arrive on Nintendo Switch simultaneously in late 2019',1,45,True);
@@ -491,11 +491,11 @@ INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES
 INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (20,5,32,'My order got lost and I had to wait 3 more days',2,'2019-02-31 07:22:49');
 
 /* REPORT */
-INSERT INTO "report" (id,reason,id_review,id_client,"date_time") VALUES (1,"It has a swear word in it",1,32,"2019-02-11 14:53:40");
+INSERT INTO "report" (id,reason,id_review,id_client,"date_time") VALUES (1,'It has a swear word in it',1,32,'2019-02-11 14:53:40');
 
 
 /* REPORT LOG*/
-INSERT INTO "report_log" (report_id,id_staff_member,has_deleted,"date_time") VALUES (1,1,True,"2019-02-13 14:53:40");
+INSERT INTO "report_log" (report_id,id_staff_member,has_deleted,"date_time") VALUES (1,1,True,'2019-02-13 14:53:40');
 
 /* BILLING INFORMATION */
 INSERT INTO "billing_information" (id,id_client,full_name,address,city,state,zip_code) VALUES (1,25,'Kareem Ayers','Ap #574-5262 Parturient Ave','Iquique','Tarapacá','4355 RD');
@@ -710,14 +710,14 @@ INSERT INTO "purchase_state" (id,state_purchase) VALUES (5,'Completed');
 INSERT INTO "purchase_state" (id,state_purchase) VALUES (6,'Returned');
 
 /* PURCHASE PRDUCT */
-INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,"Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o'clock. The dial also features the Armani Exchange logo at 12 o'clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.",0,21);
-INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (2,2,'Casio G-Shock DW-5600HRGRZ-1ER',80.13,'From G-SHOCK, which strives for toughness, comes a Black & Red Series that makes the most of G-SHOCK colors. A bi-color molding process makes it possible to create a band that is black on the outside and red on the inside. The flashes of red from the inside of the band when putting on or taking off the watch are a bold statement of G-SHOCK identity. FREE Exclusive Gorillaz track "Tranz (Sibot Remix)" with purchase.',0,10);
+INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,'Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o'clock. The dial also features the Armani Exchange logo at 12 o'clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.',0,21);
+INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (2,2,'Casio G-Shock DW-5600HRGRZ-1ER',80.13,'From G-SHOCK, which strives for toughness, comes a Black & Red Series that makes the most of G-SHOCK colors. A bi-color molding process makes it possible to create a band that is black on the outside and red on the inside. The flashes of red from the inside of the band when putting on or taking off the watch are a bold statement of G-SHOCK identity. FREE Exclusive Gorillaz track 'Tranz (Sibot Remix)' with purchase.',0,10);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (3,3,'HUGO Jump Watch',255.45,'HUGO Jump 1530028 is a functional and special Gents watch from JUMP collection. Material of the case is Black Ion-plated Steel and the Black dial gives the watch that unique look. 30 metres water resistancy will protect the watch and allows it to be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,38);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (4,4,'Tommy Hilfiger 1791121',262.31,'Stylish and unashamed, Luke by Tommy Hilfiger features a gold PVD plated case and bracelet with blue bezel, and is fitted with a quartz movement with day, date and 24 hour function shown on a silvery white dial, and is water resistant to 5atm.',0,10); 
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (5,5,'STORM 47363/GY',139.88,'STORM 47363/GY is a functional and handsome Gents watch. Case material is Stainless Steel while the dial colour is Grey. In regards to the water resistance, the watch has got a resistancy up to 50 metres. It means it can be submerged in water for periods, so can be used for swimming and fishing. It is not reccomended for high impact water sports.',0,37);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (6,6,'Jack Wills Acland',128.24,'Jack Wills Acland JW003SLBR is a practical and very impressive Gents watch from Acland collection. Material of the case is Alloy, which stands for a high quality of the item and the Silver dial gives the watch that unique look. 30 metres water resistancy will protect the watch and allows it to be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,15);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (7,7,'Accurist Chronograph',139.88,'Accurist London Vintage 7033 is a super special Gents watch. Case material is Stainless Steel while the dial colour is Cream. The features of the watch include (among others) a chronograph and date function. 50 metres water resistancy will protect the watch and allows it to be submerged in water for periods, so can be used for swimming and fishing. It is not reccomended for high impact water sports.',0,21);
-INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (8,8,"Tissot Classic Dream",157.38,"This men's Tissot Classic Dream watch has a stainless steel case with sapphire crystal and is powered by a quartz movement. It is fastened with a brown leather strap and has a white dial with crisp roman numerals. The watch has a date function.",0,42);
+INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (8,8,'Tissot Classic Dream',157.38,'This men's Tissot Classic Dream watch has a stainless steel case with sapphire crystal and is powered by a quartz movement. It is fastened with a brown leather strap and has a white dial with crisp roman numerals. The watch has a date function.',0,42);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (9,9,'Guess W0668G4',177.82,'Polished gold case, sunray champagne dial, brushed and polished gold bracelet.',0,50);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (10,10,'Bulova 96A208',406.87,'Sophisticated design with full exhibition dial and case-back. Stainless steel screw-back case, skeletonized black three-hand dial revealing the intricate workings of the self-winding 21-jewel movement, domed mineral crystal, stainless steel bracelet with push-button deployant clasp, and water resistance to 30 meters. Diameter: 43mm Thickness: 12.15mm',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (101,11,'Smart Turnout Master',112.59,'Smart Turnout Master Watch Lime Embossed Leather Strap STL3/RW/56/LIM is a trendy Unisex watch. Material of the case is PVD rose plating while the dial colour is Off white. 30 metres water resistancy will protect the watch and allows it to be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35);
@@ -725,7 +725,7 @@ INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,st
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (103,13,'LLARSEN 147GWG3-GCAMEL20',207.77,'LLARSEN Oliver 147GWG3-GCAMEL20 is a practical and handsome Gents watch from LW47 collection. Material of the case is Stainless Steel while the dial colour is White. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (104,14,'G-Shock GA-100-1A1ER',66.16,'High-impact mens Casio X-Large G-Shock model in stealth black resin with black detailing, with white hour hand detailing. Features include chronograph, 5 daily alarms, countdown timer, world time from a Japanese Quartz movement with perpetual calendar and date function, LED backlight and digital tachymeter. The watch fastens with a sturdy rubber strap with double tang buckle for extra security. Impressively sized at 55mm and built as tough as possible, with 20 bar water resistance and the signature G-Shock design.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (105,15,'Bulova 98D149',672.06,'From the Precisionist Collection. New Champlain style in grey IP stainless steel with rose gold-tone accents on case and bracelet, 11 diamonds individually hand set on two-tone black/grey dial with calendar feature, curved mineral glass, screw-back case, fold-over buckle closure with safety lock and extender, and water resistance to 300 meters. Powered by Bulova’s proprietary three-prong quartz crystal Precisionist movement with a 262kHz vibrational frequency—eight times greater than standard watches—for unparalleled accuracy. Diameter: 46.5mm Thickness: 14.3mm',0,35);
-INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (106,16,'Citizen CA0080-03E',265.81,"Citizen Red Arrows World Time model with a stainless steel round case. This intelligent time piece features 1/5 second chronograph, world time in 24 cities, 12.24 hour time, screw-back case and movement calibre: B612. It also has date function and is powered by Eco-Drive movement. The round black dial has high-visibility baton hour markers and hands which light up in the dark, red touches and date function. It's 100 meter water resistant and fastens with a quality black with red stitching genuine leather strap.",0,35);
+INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (106,16,'Citizen CA0080-03E',265.81,'Citizen Red Arrows World Time model with a stainless steel round case. This intelligent time piece features 1/5 second chronograph, world time in 24 cities, 12.24 hour time, screw-back case and movement calibre: B612. It also has date function and is powered by Eco-Drive movement. The round black dial has high-visibility baton hour markers and hands which light up in the dark, red touches and date function. It's 100 meter water resistant and fastens with a quality black with red stitching genuine leather strap.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (107,17,'Accurist MB921BX',104.47,'Mens Accurist Diamond watch in PVD gold plating, set around a black rectangular dial with gold baton hour markers.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (108,18,'Jean Paul Gaultier',104.47,'This iconic watch from the ENFANTS TERRIBLES collection by eponymous designer Jean Paul Gaultier features the unmistakeable stripes paired with a soft navy blue silicon strap for a sporty look and comfortable fit. Touches of warm rose gold make this a super trendy stand-out piece from the collection!',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (109,19,'Armani AX2103',113.56,'This stylish mens Armani Exchange watch in stainless steel features a 47mm case and centred on a black dial with silver baton hour markers and date function. The watch is fitted with quartz movement and fastens with a silver stainless steel bracelet.',0,35);
@@ -735,7 +735,7 @@ INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,st
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (113,23,'STORM 47075/B',104.85,'Mens Storm Sotec Lazer watch in stainless steel, centred on a bright blue dial with date function and high-contrast hands.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (114,24,'STORM 47155/B',104.45,'STORM Cyro XL 47155/B is a functional and handsome Gents watch. Case material is Stainless Steel and the Blue dial gives the watch that unique look. The features of the watch include (among others) a date function. This watch is market as water resistant. It means it can withstand slight splashes and rain, but is NOT to be immersed in water. We ship it with an original box and a guarantee from the manufacturer.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (115,25,'Guess W0799G4',275.40,'Polished silver and gold case with crystal detailing, sunray white glitz multi-functional dial, polished silver and gold bracelt with crystals.',0,35);
-INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (116,26,'Accurist MB933S',80.84,"This Men's watch by Accurist is made from PVD gold plated steel and has a 42mm case with a silver dial. The dial features 3 mini dials, chronograph, date function and gold baton hour markers with gold hands. This sought after model is 50m water resistant and powered by a quality quartz movement. It fastens with a gold metal bracelet.",0,35);
+INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (116,26,'Accurist MB933S',80.84,'This Men's watch by Accurist is made from PVD gold plated steel and has a 42mm case with a silver dial. The dial features 3 mini dials, chronograph, date function and gold baton hour markers with gold hands. This sought after model is 50m water resistant and powered by a quality quartz movement. It fastens with a gold metal bracelet.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (117,27,'Swatch GB743',46.43,'The ever popular Swatch Once Again watch for men, proving that simple is always effective. This time piece in monochrome style comes with a water resistant resin case, with a reliable Swiss quartz movement with day / date function embedded into it, and an easy change battery cover. It has a minimal white dial with easy to read numeral hour markers in black, and a date magnification bubble in the acrylic glass. This model fastens with a black plastic strap.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (118,28,'Limit 5484.01',34.67,'Limit 5484.01 is an amazing and attractive Gents watch. Material of the case is PVD rose plating and the Black dial gives the watch that unique look. The features of the watch include (among others) a date function. In regards to the water resistance, the watch has got a resistancy up to 30 metres. It means it can be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35);
 INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,stock,is_enabled) VALUES (119,29,'Bulova 97A138',405.10,'Sophisticated design with full exhibition dial and case-back. Gold-tone stainless steel screw-back case, skeletonized silver white three-hand dial revealing the intricate workings of the self-winding 21-jewel movement, domed mineral crystal, brown leather strap with push-button deployant buckle, and water resistance to 30 meters. Diameter: 43mm Thickness: 12.15mm',0,35);
@@ -743,121 +743,121 @@ INSERT INTO "product" (id_product,id_purchase,name,price,description,discount,st
 
 /* PURCHASE LOG */
 /* WAITING FOR PAYMENT */ 
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (1,1,1,"2019-02-01 03:36:19");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (2,1,2,"2019-02-01 09:48:45");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (3,1,3,"2019-02-01 13:59:24");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (4,1,4,"2019-02-01 04:44:35");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (5,1,5,"2019-02-01 09:32:42");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (6,1,6,"2019-02-01 19:23:38");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (7,1,7,"2019-02-01 06:31:57");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (8,1,8,"2019-02-01 10:40:50");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (9,1,9,"2019-02-01 21:57:46");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (10,1,10,"2019-02-01 04:09:39");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (11,1,11,"2019-02-01 04:54:13");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (12,1,12,"2019-02-01 12:29:43");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (13,1,13,"2019-02-01 00:29:01");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (14,1,14,"2019-02-01 05:28:15");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (15,1,15,"2019-02-01 12:59:15");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (16,1,16,"2019-02-01 15:20:41");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (17,1,17,"2019-02-01 02:22:35");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (18,1,18,"2019-02-01 22:29:00");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (19,1,19,"2019-02-01 06:30:29");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (20,1,20,"2019-02-01 04:45:21");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (21,1,21,"2019-02-01 15:16:12");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (22,1,22,"2019-02-01 21:17:12");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (23,1,23,"2019-02-01 11:49:29");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (24,1,24,"2019-02-01 17:16:32");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (25,1,25,"2019-02-01 04:25:11");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (26,1,26,"2019-02-01 07:30:28");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (27,1,27,"2019-02-01 00:34:15");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (28,1,28,"2019-02-01 10:06:22");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (29,1,29,"2019-02-01 00:54:41");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (30,1,30,"2019-02-01 16:57:25");
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (1,1,1,'2019-02-01 03:36:19');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (2,1,2,'2019-02-01 09:48:45');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (3,1,3,'2019-02-01 13:59:24');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (4,1,4,'2019-02-01 04:44:35');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (5,1,5,'2019-02-01 09:32:42');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (6,1,6,'2019-02-01 19:23:38');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (7,1,7,'2019-02-01 06:31:57');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (8,1,8,'2019-02-01 10:40:50');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (9,1,9,'2019-02-01 21:57:46');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (10,1,10,'2019-02-01 04:09:39');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (11,1,11,'2019-02-01 04:54:13');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (12,1,12,'2019-02-01 12:29:43');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (13,1,13,'2019-02-01 00:29:01');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (14,1,14,'2019-02-01 05:28:15');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (15,1,15,'2019-02-01 12:59:15');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (16,1,16,'2019-02-01 15:20:41');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (17,1,17,'2019-02-01 02:22:35');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (18,1,18,'2019-02-01 22:29:00');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (19,1,19,'2019-02-01 06:30:29');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (20,1,20,'2019-02-01 04:45:21');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (21,1,21,'2019-02-01 15:16:12');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (22,1,22,'2019-02-01 21:17:12');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (23,1,23,'2019-02-01 11:49:29');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (24,1,24,'2019-02-01 17:16:32');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (25,1,25,'2019-02-01 04:25:11');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (26,1,26,'2019-02-01 07:30:28');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (27,1,27,'2019-02-01 00:34:15');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (28,1,28,'2019-02-01 10:06:22');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (29,1,29,'2019-02-01 00:54:41');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (30,1,30,'2019-02-01 16:57:25');
 
 /* WAITING FOR PAYMENT APPROVAL */
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (31,2,1,"2019-02-02 05:01:51");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (32,2,2,"2019-02-02 05:44:33");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (33,2,3,"2019-02-02 22:13:32");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (34,2,4,"2019-02-02 09:11:37");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (35,2,5,"2019-02-02 18:55:18");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (36,2,6,"2019-02-02 11:26:05");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (37,2,7,"2019-02-02 15:23:42");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (38,2,8,"2019-02-02 08:51:43");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (39,2,9,"2019-02-02 19:23:05");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (40,2,10,"2019-02-02 16:27:19");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (41,2,11,"2019-02-02 16:49:58");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (42,2,12,"2019-02-02 00:48:42");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (43,2,13,"2019-02-02 20:12:29");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (44,2,14,"2019-02-02 18:47:15");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (45,2,15,"2019-02-02 12:00:23");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (46,2,16,"2019-02-02 05:11:12");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (47,2,17,"2019-02-02 05:23:18");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (48,2,18,"2019-02-02 22:42:37");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (49,2,19,"2019-02-02 15:48:12");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (50,2,20,"2019-02-02 18:43:26");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (51,2,21,"2019-02-02 19:49:44");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (52,2,22,"2019-02-02 11:32:49");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (53,2,23,"2019-02-02 00:03:21");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (54,2,24,"2019-02-02 14:01:26");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (55,2,25,"2019-02-02 10:18:23");
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (31,2,1,'2019-02-02 05:01:51');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (32,2,2,'2019-02-02 05:44:33');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (33,2,3,'2019-02-02 22:13:32');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (34,2,4,'2019-02-02 09:11:37');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (35,2,5,'2019-02-02 18:55:18');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (36,2,6,'2019-02-02 11:26:05');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (37,2,7,'2019-02-02 15:23:42');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (38,2,8,'2019-02-02 08:51:43');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (39,2,9,'2019-02-02 19:23:05');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (40,2,10,'2019-02-02 16:27:19');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (41,2,11,'2019-02-02 16:49:58');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (42,2,12,'2019-02-02 00:48:42');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (43,2,13,'2019-02-02 20:12:29');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (44,2,14,'2019-02-02 18:47:15');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (45,2,15,'2019-02-02 12:00:23');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (46,2,16,'2019-02-02 05:11:12');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (47,2,17,'2019-02-02 05:23:18');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (48,2,18,'2019-02-02 22:42:37');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (49,2,19,'2019-02-02 15:48:12');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (50,2,20,'2019-02-02 18:43:26');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (51,2,21,'2019-02-02 19:49:44');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (52,2,22,'2019-02-02 11:32:49');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (53,2,23,'2019-02-02 00:03:21');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (54,2,24,'2019-02-02 14:01:26');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (55,2,25,'2019-02-02 10:18:23');
 /* PAID */
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (56,3,1,"2019-02-03 03:12:19");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (57,3,2,"2019-02-03 00:07:29");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (58,3,3,"2019-02-03 18:04:05");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (59,3,4,"2019-02-03 17:32:47");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (60,3,5,"2019-02-03 21:01:22");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (61,3,6,"2019-02-03 15:46:22");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (62,3,7,"2019-02-03 02:28:45");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (63,3,8,"2019-02-03 04:02:46");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (64,3,9,"2019-02-03 02:10:45");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (65,3,10,"2019-02-03 02:15:27");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (66,3,11,"2019-02-03 05:43:03");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (67,3,12,"2019-02-03 02:01:51");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (68,3,13,"2019-02-03 03:09:29");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (69,3,14,"2019-02-03 14:43:44");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (70,3,15,"2019-02-03 16:47:00");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (71,3,16,"2019-02-03 16:39:16");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (72,3,17,"2019-02-03 05:54:39");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (73,3,18,"2019-02-03 01:46:37");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (74,3,19,"2019-02-03 11:13:26");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (75,3,20,"2019-02-03 12:58:51");
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (56,3,1,'2019-02-03 03:12:19');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (57,3,2,'2019-02-03 00:07:29');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (58,3,3,'2019-02-03 18:04:05');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (59,3,4,'2019-02-03 17:32:47');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (60,3,5,'2019-02-03 21:01:22');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (61,3,6,'2019-02-03 15:46:22');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (62,3,7,'2019-02-03 02:28:45');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (63,3,8,'2019-02-03 04:02:46');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (64,3,9,'2019-02-03 02:10:45');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (65,3,10,'2019-02-03 02:15:27');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (66,3,11,'2019-02-03 05:43:03');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (67,3,12,'2019-02-03 02:01:51');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (68,3,13,'2019-02-03 03:09:29');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (69,3,14,'2019-02-03 14:43:44');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (70,3,15,'2019-02-03 16:47:00');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (71,3,16,'2019-02-03 16:39:16');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (72,3,17,'2019-02-03 05:54:39');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (73,3,18,'2019-02-03 01:46:37');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (74,3,19,'2019-02-03 11:13:26');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (75,3,20,'2019-02-03 12:58:51');
 
 
 /* SHIPPED */
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (76,4,1,"2019-02-04 10:47:14");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (77,4,2,"2019-02-04 19:48:59");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (78,4,3,"2019-02-04 06:43:36");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (79,4,4,"2019-02-04 09:49:06");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (80,4,5,"2019-02-04 18:34:11");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (81,4,6,"2019-02-04 10:01:29");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (82,4,7,"2019-02-04 22:46:08");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (83,4,8,"2019-02-04 01:17:00");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (84,4,9,"2019-02-04 10:18:44");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (85,4,10,"2019-02-04 18:08:25");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (86,4,11,"2019-02-04 05:17:03");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (87,4,12,"2019-02-04 19:38:03");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (88,4,13,"2019-02-04 07:52:24");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (89,4,14,"2019-02-04 00:19:55");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (90,4,15,"2019-02-04 13:24:37");
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (76,4,1,'2019-02-04 10:47:14');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (77,4,2,'2019-02-04 19:48:59');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (78,4,3,'2019-02-04 06:43:36');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (79,4,4,'2019-02-04 09:49:06');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (80,4,5,'2019-02-04 18:34:11');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (81,4,6,'2019-02-04 10:01:29');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (82,4,7,'2019-02-04 22:46:08');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (83,4,8,'2019-02-04 01:17:00');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (84,4,9,'2019-02-04 10:18:44');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (85,4,10,'2019-02-04 18:08:25');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (86,4,11,'2019-02-04 05:17:03');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (87,4,12,'2019-02-04 19:38:03');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (88,4,13,'2019-02-04 07:52:24');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (89,4,14,'2019-02-04 00:19:55');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (90,4,15,'2019-02-04 13:24:37');
 
 /* COMPLETED */
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (91,5,1,"2019-02-05 01:51:50");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (92,5,2,"2019-02-05 11:09:02");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (93,5,3,"2019-02-05 19:42:36");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (94,5,4,"2019-02-05 03:38:55");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (95,5,5,"2019-02-05 18:52:40");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (96,5,6,"2019-02-05 21:50:05");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (97,5,7,"2019-02-05 10:21:54");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (98,5,8,"2019-02-05 02:06:59");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (99,5,9,"2019-02-05 16:30:22");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (100,5,10,"2019-02-05 06:59:57");
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (91,5,1,'2019-02-05 01:51:50');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (92,5,2,'2019-02-05 11:09:02');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (93,5,3,'2019-02-05 19:42:36');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (94,5,4,'2019-02-05 03:38:55');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (95,5,5,'2019-02-05 18:52:40');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (96,5,6,'2019-02-05 21:50:05');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (97,5,7,'2019-02-05 10:21:54');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (98,5,8,'2019-02-05 02:06:59');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (99,5,9,'2019-02-05 16:30:22');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (100,5,10,'2019-02-05 06:59:57');
 
 /* RETURNED */
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (1,6,1,"2019-02-06 12:59:04");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (2,6,2,"2019-02-06 16:42:13");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (3,6,3,"2019-02-06 07:28:27");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (4,6,4,"2019-02-06 16:13:30");
-INSERT INTO `purchase_log` (`id`,`id_purchase_state`,`id_puchase`,`date_time`) VALUES (5,6,5,"2019-02-06 08:06:28");
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (1,6,1,'2019-02-06 12:59:04');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (2,6,2,'2019-02-06 16:42:13');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (3,6,3,'2019-02-06 07:28:27');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (4,6,4,'2019-02-06 16:13:30');
+INSERT INTO "purchase_log" (id,"id_purchase_state","id_puchase","date_time") VALUES (5,6,5,'2019-02-06 08:06:28');
 
 
 
