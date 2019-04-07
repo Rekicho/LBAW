@@ -62,6 +62,7 @@ CREATE TABLE "user" (
     username TEXT NOT NULL CONSTRAINT user_username_uk UNIQUE,
     email TEXT NOT NULL CONSTRAINT client_email_uk UNIQUE,
     password TEXT NOT NULL,
+    is_staff_member BOOLEAN DEFAULT FALSE NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
     is_enabled BOOLEAN DEFAULT TRUE NOT NULL
 );
