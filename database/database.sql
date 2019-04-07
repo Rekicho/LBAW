@@ -32,6 +32,8 @@ DROP TRIGGER IF EXISTS ensure_admin ON "user";
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON review;
 DROP TRIGGER IF EXISTS product_search ON product;
+DROP TRIGGER IF EXISTS add_initial_state ON purchase;
+DROP TRIGGER IF EXISTS update_stock ON purchased_product;
 
 -----------------------------------------
 -- Types
@@ -276,19 +278,20 @@ CREATE TRIGGER product_search
     FOR EACH ROW
     EXECUTE PROCEDURE product_search_update();
     
--- CREATE FUNCTION add_initial_state() RETURNS TRIGGER AS
--- $BODY$
--- BEGIN
---     INSERT INTO purchase_log (id_purchase_state, id_purchase, "date_time")
---     VALUES (SELECT id FROM purchase_state WHERE state_purchase = 'Waiting for payment', New.id, New."date_time");
--- END
--- $BODY$ 
--- LANGUAGE plpgsql;
+CREATE FUNCTION add_initial_state() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO purchase_log (id_purchase_state, id_purchase, "date_time")
+    SELECT (SELECT id FROM purchase_state WHERE state_p = 'Waiting for payment') AS id_purchase_state, New.id, New."date_time";
+    RETURN NEW;
+END
+$BODY$ 
+LANGUAGE plpgsql;
 
--- CREATE TRIGGER add_initial_state
---     AFTER INSERT ON purchase
---     FOR EACH ROW
---     EXECUTE PROCEDURE add_initial_state();
+CREATE TRIGGER add_initial_state
+AFTER INSERT ON purchase
+FOR EACH ROW
+EXECUTE PROCEDURE add_initial_state();
 
 
 CREATE FUNCTION update_stock() RETURNS TRIGGER AS

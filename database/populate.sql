@@ -569,6 +569,14 @@ INSERT INTO "billing_information" (id,id_client,full_name,address,city,state,zip
 INSERT INTO "billing_information" (id,id_client,full_name,address,city,state,zip_code) VALUES (99,24,'Davis Craig','P.O. Box 269, 2480 Non, Rd.','Vienna','Wie','9737');
 INSERT INTO "billing_information" (id,id_client,full_name,address,city,state,zip_code) VALUES (100,50,'Slade Mullins','642-2802 Velit. Rd.','Tiltil','RM','878271');
 
+/* PURCHASE STATE */
+INSERT INTO "purchase_state" (id,state_p) VALUES (1,'Waiting for payment');
+INSERT INTO "purchase_state" (id,state_p) VALUES (2,'Waiting for payment approval');
+INSERT INTO "purchase_state" (id,state_p) VALUES (3,'Paid');
+INSERT INTO "purchase_state" (id,state_p) VALUES (4,'Shipped');
+INSERT INTO "purchase_state" (id,state_p) VALUES (5,'Completed');
+INSERT INTO "purchase_state" (id,state_p) VALUES (6,'Returned');
+
 /* PURCHASE */
 INSERT INTO "purchase" (id,id_billing_information,id_client,date_time) VALUES (1,97,16,'2019-01-12 06:22:37');
 INSERT INTO "purchase" (id,id_billing_information,id_client,date_time) VALUES (2,19,36,'2019-01-05 05:28:53');
@@ -670,14 +678,6 @@ INSERT INTO "purchase" (id,id_billing_information,id_client,date_time) VALUES (9
 INSERT INTO "purchase" (id,id_billing_information,id_client,date_time) VALUES (98,38,23,'2019-01-15 10:56:59');
 INSERT INTO "purchase" (id,id_billing_information,id_client,date_time) VALUES (99,76,24,'2019-01-16 14:24:51');
 INSERT INTO "purchase" (id,id_billing_information,id_client,date_time) VALUES (100,42,4,'2019-01-09 06:11:33');
-
-/* PURCHASE STATE */
-INSERT INTO "purchase_state" (id,state_p) VALUES (1,'Waiting for payment');
-INSERT INTO "purchase_state" (id,state_p) VALUES (2,'Waiting for payment approval');
-INSERT INTO "purchase_state" (id,state_p) VALUES (3,'Paid');
-INSERT INTO "purchase_state" (id,state_p) VALUES (4,'Shipped');
-INSERT INTO "purchase_state" (id,state_p) VALUES (5,'Completed');
-INSERT INTO "purchase_state" (id,state_p) VALUES (6,'Returned');
 
 /* PURCHASE PRDUCT */
 INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,'Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o''clock. The dial also features the Armani Exchange logo at 12 o''clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.',0,21);
