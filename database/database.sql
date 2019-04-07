@@ -166,6 +166,31 @@ CREATE TABLE discount (
 -- INDEXES
 -----------------------------------------
 
+ CREATE INDEX product_id_category ON product USING hash (id_category); 
+
+ CREATE INDEX username_user ON "user" USING hash (username); 
+
+ CREATE INDEX email_user ON "user" USING hash (email); 
+
+ CREATE INDEX review_id_product ON review USING hash (id_product); 
+
+ CREATE INDEX billing_information_id_client ON billing_information USING hash (id_client); 
+
+ CREATE INDEX purchased_product_id_purchase ON purchased_product USING hash (id_purchase); 
+
+ CREATE INDEX product_price ON product USING btree (price); 
+
+ CREATE INDEX product_discount ON product USING btree (discount); 
+
+ CREATE INDEX start_discount ON discount USING btree (start); 
+
+ CREATE INDEX end_discount ON discount USING btree (end); 
+
+-----------------------------------------
+-- FULL TEXT SEARCH
+-----------------------------------------
+
+ CREATE INDEX product_search_index ON PRODUCT USING GIST (search)
 
 -----------------------------------------
 -- TRIGGERS and UDFs
@@ -247,6 +272,32 @@ CREATE TRIGGER product_search
     BEFORE INSERT OR UPDATE ON product
     FOR EACH ROW
     EXECUTE PROCEDURE product_search_update()
+    
+CREATE FUNCTION add_initial_state() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO purchase_log (id_purchase_state, id_purchase, "date_time")
+    VALUES (SELECT id FROM purchase_state WHERE state_purchase = 'Waiting for payment', New.id, New."date_time")
+END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_initial_state
+    AFTER INSERT ON purchase
+    FOR EACH ROW
+    EXECUTE PROCEDURE add_initial_state();
+
+
+CREATE FUNCTION update_stock() RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE product SET stock = stock - New.quantity
+    WHERE id_product = New.id_product
+END
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER update_stock
+AFTER INSERT ON purchased_product
+FOR EACH ROW
+EXECUTE PROCEDURE update_stock();
 
 -----------------------------------------
 -- end
