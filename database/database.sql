@@ -296,6 +296,7 @@ $BODY$
 BEGIN
     UPDATE product SET stock = stock - New.quantity
     WHERE id = New.id_product;
+RETURN NULL;
 END
 $BODY$
 LANGUAGE plpgsql;
