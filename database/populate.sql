@@ -861,30 +861,29 @@ INSERT INTO "discount" (id,id_category,start_t,end_t) VALUES (4,4,'2019-12-01 08
 INSERT INTO "discount" (id,id_category,start_t,end_t) VALUES (5,5,'2019-12-01 19:19:18','2019-12-31 02:52:36');
 
 /* REVIEWS */
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (1,13,100,'Fucking great product',5,'2019-02-28 14:48:40');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (2,7,44,'I loved everything about it',5,'2019-02-28 18:46:27');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (3,15,60,'Did not meet my expectations',1,'2019-02-28 10:54:14');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (4,7,86,'Was really wishing for something with a better quality',2,'2019-02-28 19:54:38');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (5,5,25,'Service and product are great, so happy I made this purchase',5,'2019-02-28 18:59:33');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (6,11,34,'Product is what I was expecting but the order came a bit late',3,'2019-02-28 23:55:52');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (7,5,56,'Did not get quite what was advertised in the description',3,'2019-02-28 22:27:04');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (8,6,32,'Good costumer service',3,'2019-02-28 02:47:55');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (9,7,53,'My father really liked the gift',4,'2019-02-28 03:35:19');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (10,9,60,'It got broken in the transportation and they said it was my problem I did not get insurance',1,'2019-02-28 20:31:04');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (11,19,70,'I regret making this purchase, its terrible',1,'2019-02-28 08:10:46');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (12,18,3,'Service could have been better',2,'2019-02-28 16:23:32');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (13,7,48,'Messed up my order and I ended up with the wrong order...',2,'2019-02-28 09:05:03');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (14,9,2,'Really fast service, thank you',5,'2019-02-28 19:46:36');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (15,24,25,'Great experience buying here, will definetly come back again',5,'2019-02-28 13:05:59');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (16,3,25,'Will never come back again, my order got delayed 2 days more than it was supposed to',1,'2019-02-28 13:28:50');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (17,3,39,'Costumer service are very friendly and helpfull, great buying experience.',4,'2019-02-28 16:40:13');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (18,5,6,'Cant wait to shop here again',4,'2019-02-28 13:48:57');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (19,4,89,'Great expereince overall',5,'2019-02-28 19:18:46');
-INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (20,5,32,'My order got lost and I had to wait 3 more days',2,'2019-02-28 07:22:49');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (1,1,16,'Fucking great product',5,'2019-02-28 14:48:40');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (2,2,36,'I loved everything about it',5,'2019-02-28 18:46:27');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (3,3,32,'Did not meet my expectations',1,'2019-02-28 10:54:14');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (4,4,34,'Was really wishing for something with a better quality',2,'2019-02-28 19:54:38');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (5,5,12,'Service and product are great, so happy I made this purchase',5,'2019-02-28 18:59:33');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (6,6,9,'Product is what I was expecting but the order came a bit late',3,'2019-02-28 23:55:52');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (7,7,46,'Did not get quite what was advertised in the description',3,'2019-02-28 22:27:04');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (8,8,11,'Good costumer service',3,'2019-02-28 02:47:55');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (9,9,23,'My father really liked the gift',4,'2019-02-28 03:35:19');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (10,10,43,'It got broken in the transportation and they said it was my problem I did not get insurance',1,'2019-02-28 20:31:04');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (11,101,37,'I regret making this purchase, its terrible',1,'2019-02-28 08:10:46');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (12,102,38,'Service could have been better',2,'2019-02-28 16:23:32');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (13,103,27,'Messed up my order and I ended up with the wrong order...',2,'2019-02-28 09:05:03');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (14,104,26,'Really fast service, thank you',5,'2019-02-28 19:46:36');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (15,105,11,'Great experience buying here, will definetly come back again',5,'2019-02-28 13:05:59');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (16,106,36,'Will never come back again, my order got delayed 2 days more than it was supposed to',1,'2019-02-28 13:28:50');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (17,107,2,'Costumer service are very friendly and helpfull, great buying experience.',4,'2019-02-28 16:40:13');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (18,108,19,'Cant wait to shop here again',4,'2019-02-28 13:48:57');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (19,109,10,'Great expereince overall',5,'2019-02-28 19:18:46');
+INSERT INTO "review" (id,id_product,id_client,comment,rating,"date_time") VALUES (20,110,47,'My order got lost and I had to wait 3 more days',2,'2019-02-28 07:22:49');
 
 /* REPORT */
 INSERT INTO "report" (id,reason,id_review,id_client,"date_time") VALUES (1,'It has a swear word in it',1,32,'2019-02-11 14:53:40');
-
 
 /* REPORT LOG*/
 INSERT INTO "report_log" (report_id,id_staff_member,has_deleted,"date_time") VALUES (1,1,True,'2019-02-13 14:53:40');
