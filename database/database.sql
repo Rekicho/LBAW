@@ -295,7 +295,7 @@ CREATE FUNCTION update_stock() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     UPDATE product SET stock = stock - New.quantity
-    WHERE id_product = New.id_product;
+    WHERE id = New.id_product;
 END
 $BODY$
 LANGUAGE plpgsql;
