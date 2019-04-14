@@ -12,7 +12,6 @@ DROP TABLE IF EXISTS report CASCADE;
 DROP TABLE IF EXISTS report_log CASCADE;
 DROP TABLE IF EXISTS billing_information CASCADE;
 DROP TABLE IF EXISTS purchase CASCADE;
-DROP TABLE IF EXISTS purchase_state CASCADE;
 DROP TABLE IF EXISTS purchased_product CASCADE;
 DROP TABLE IF EXISTS purchase_log CASCADE;
 DROP TABLE IF EXISTS ban CASCADE;
@@ -25,15 +24,17 @@ DROP FUNCTION IF EXISTS ensure_stock() CASCADE;
 DROP FUNCTION IF EXISTS user_review() CASCADE;
 DROP FUNCTION IF EXISTS product_search_update() CASCADE;
 DROP FUNCTION IF EXISTS add_initial_state() CASCADE;
-DROP FUNCTION IF EXISTS update_stock() CASCADE;
-
+DROP FUNCTION IF EXISTS ensure_discount() CASCADE;
+DROP FUNCTION IF EXISTS update_user_status() CASCADE;
 
 DROP TRIGGER IF EXISTS ensure_admin ON "user";
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON review;
 DROP TRIGGER IF EXISTS product_search ON product;
 DROP TRIGGER IF EXISTS add_initial_state ON purchase;
-DROP TRIGGER IF EXISTS update_stock ON purchased_product;
+DROP TRIGGER IF EXISTS ensure_discount ON discount;
+DROP TRIGGER IF EXISTS update_user_status ON ban;
+
 
 -----------------------------------------
 -- Types
@@ -128,11 +129,6 @@ CREATE TABLE purchase (
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
-CREATE TABLE purchase_state (
-    id SERIAL PRIMARY KEY,
-    state_p state_purchase NOT NULL CONSTRAINT state_p_uk UNIQUE
-);
-
 CREATE TABLE purchased_product (
     id_product INTEGER NOT NULL REFERENCES product (id),
     id_purchase INTEGER NOT NULL REFERENCES purchase (id),
@@ -146,8 +142,8 @@ CREATE TABLE purchased_product (
 
 CREATE TABLE purchase_log (
     id SERIAL PRIMARY KEY,
-    id_purchase_state INTEGER NOT NULL REFERENCES purchase_state (id),
     id_purchase INTEGER NOT NULL REFERENCES purchase (id),
+    purchase_state state_purchase NOT NULL,
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
@@ -163,6 +159,7 @@ CREATE TABLE ban (
 CREATE TABLE discount (
     id SERIAL PRIMARY KEY,
     id_category INTEGER REFERENCES Category (id),
+    value INTEGER NOT NULL,
     start_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     end_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
@@ -206,7 +203,7 @@ CREATE TABLE discount (
 CREATE FUNCTION ensure_admin() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF (SELECT COUNT(*) FROM "user" WHERE is_admin = true) = 1
+    IF New.is_admin = false AND (SELECT COUNT(*) FROM "user" WHERE is_admin = true) = 1
     THEN RAISE EXCEPTION 'There must be at least one administrator.';
     END IF;
     RETURN NEW;
@@ -226,6 +223,8 @@ BEGIN
     IF EXISTS (SELECT * FROM product WHERE product.id = New.id_product AND stock < New.quantity)
     THEN RAISE EXCEPTION 'A product must have available stock in order to be bought.';
     END IF;
+    UPDATE product SET stock = stock - New.quantity
+    WHERE id = New.id_product;
     RETURN NEW;
 END
 $BODY$
@@ -281,8 +280,8 @@ CREATE TRIGGER product_search
 CREATE FUNCTION add_initial_state() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    INSERT INTO purchase_log (id_purchase_state, id_purchase, "date_time")
-    SELECT (SELECT id FROM purchase_state WHERE state_p = 'Waiting for payment') AS id_purchase_state, New.id, New."date_time";
+    INSERT INTO purchase_log (id_purchase, purchase_state, "date_time")
+    VALUES (New.id, 'Waiting for payment', New."date_time");
     RETURN NEW;
 END
 $BODY$ 
@@ -293,23 +292,40 @@ AFTER INSERT ON purchase
 FOR EACH ROW
 EXECUTE PROCEDURE add_initial_state();
 
-
-CREATE FUNCTION update_stock() RETURNS TRIGGER AS
+CREATE FUNCTION update_user_status() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    UPDATE product SET stock = stock - New.quantity
-    WHERE id = New.id_product;
-RETURN NULL;
+  IF EXISTS (SELECT * FROM ban WHERE id_client = New.id_client AND end_t > New.start_t)
+  THEN RAISE EXCEPTION 'This user is already banned';
+  ELSE
+  UPDATE "user" SET is_enabled = false
+  WHERE id = New.id_client;
+  END IF;
+  RETURN NULL;
 END
 $BODY$
 LANGUAGE plpgsql;
 
+CREATE TRIGGER update_user_status
+    BEFORE INSERT ON ban
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_user_status();
 
-CREATE TRIGGER update_stock
-AFTER INSERT ON purchased_product
-FOR EACH ROW
-EXECUTE PROCEDURE update_stock();
+CREATE FUNCTION ensure_discount() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+  IF EXISTS (SELECT * FROM discount WHERE id_category = New.id_category AND end_t > New.start_t)
+  THEN RAISE EXCEPTION 'There''s already an active discount on this category';
+  END IF;
+  RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER ensure_discount
+    BEFORE INSERT ON discount
+    FOR EACH ROW
+    EXECUTE PROCEDURE ensure_discount();
 -----------------------------------------
 -- end
 -----------------------------------------
