@@ -1,157 +1,342 @@
-body {
-  background-color: #ffffff;
-  color: #9b4dca;
+/* colors  */
+
+:root {
+  --main-color: #232F3F;
+  --light-grey: #EBECEE;
+  --darker-light-grey: rgba(160, 160, 160, 0.568);
+  --secondary-color: #E99211;
+  --darker-secondary-color: rgba(233, 147, 17, 0.767);
+--light-main-color: #465E7E;
 }
-main > header {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  background-color: #d2afe7;
-  padding: 1em;
-  margin: 1em;
+
+/* theme */
+
+html {
+	min-height: 100%;
+	position: relative;
 }
-main > header h1 {
-  margin: 0;
+
+.bg-primary {
+	background-color: var(--light-grey) !important;
 }
-main > header a.button {
-  margin: 1em;
-  justify-self: center;
+
+.bg-info {
+	background-color: gray !important;
 }
-main > header span {
-  margin: 1em;
-  justify-self: center;
+
+.main-color-bg {
+	background-color: var(--main-color);
 }
-#cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+.sec-color {
+	color: var(--secondary-color);
 }
-#cards article.card {
-  display: flex;
-  flex-direction: column;
-  background-color: #d3edc3;
-  padding: 1em;
-  margin: 1em;
+
+a:hover {
+	text-decoration: none;
 }
-#cards article.card header {
-  display: flex;
-  align-items: center;
+
+/*
+    NAVBARS
+*/
+
+nav .navbar-nav .nav-item .nav-link {
+	color: white;
 }
-#cards article.card header h2 {
-  flex-grow: 1;
+
+nav .navbar-nav .nav-item .nav-link:hover {
+	color: var(--secondary-color);
 }
-#cards article.card header a.delete {
-  display: none;
-  font-size: 2.6rem;
-  margin-top: .5rem;
-  margin-bottom: 2.5rem;
-  line-height: 1.25;
+
+.dept-navbar {
+	border-bottom: 1px var(--light-grey) solid;
+	height: 35px;
 }
-#cards article.card header:hover a.delete {
-  display: inline;
+
+.dept-navbar-item {
+	height: 35px;
+	padding: 6px;
+	margin-right: 30px;
 }
-#cards article.card li {
-  list-style-type: none;
+
+ul.navbar-nav :first-child .dept-navbar-item {
+	padding: 0px;
 }
-#cards article.card li label {
-  display: flex;
-  align-items: baseline;
+
+.dept-navbar-item span {
+	font-size: 14px;
+	color: black;
 }
-#cards article.card li label span {
-  margin-left: .5em;
-  flex-grow: 1;
+
+.dept-navbar-item:hover {
+	border-bottom: 3px var(--secondary-color) solid;
+	text-decoration: none;
 }
-#cards article.card li label a {
-  display: none;
+
+.dept-navbar-item:hover span {
+	color: var(--secondary-color);
 }
-#cards article.card li label:hover a {
-  display: inline;
+
+.form-control:focus {
+	border-color: var(--secondary-color);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
 }
-#cards article.card input:checked + span {
-  text-decoration: var(--primary-color) solid line-through;
+
+/* Theme of overlays of IE and Chrome on input boxes */
+input[type=search]::-ms-clear,
+input[type=search]::-ms-reveal,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	color: var(--secondary-color) !important;
+	background-color: var(--secondary-color) !important;
 }
-#cards article.card ul {
-  margin: 0;
+
+#navbarSupportedContent .form-control {
+	max-width: 200px;
+	margin-right: 10px;
 }
-#cards article.card form {
-  margin: 0;
+
+.cart[data-count]:after {
+	position: absolute;
+	right: 15%;
+	top: 10%;
+	content: attr(data-count);
+	font-size: 75%;
+	border-radius: 50%;
+	line-height: 1em;
+	color: var(--secondary-color);
+	background: var(--light-grey);
+	text-align: center;
+	min-width: 1em;
 }
-#cards article.card input[type=text] {
-  background-color: white;
-  margin: 0;
+
+@media only screen and (max-width: 991px) {
+	.dept-navbar {
+		display: none;
+	}
+
+	nav.nav-bar .collapse .fas.fa-sign-in-alt {
+		padding-left: 0px !important;
+		padding-right: 10px !important;
+	}
+
+	nav.nav-bar .collapse .fa-sign-in-alt:after {
+		padding-left: 10px;
+		content: "Sign-in";
+	}
+
+	nav.nav-bar .collapse .fa-shopping-cart:after {
+		padding-left: 10px;
+		content: "Cart";
+	}
+
+	nav.nav-bar .collapse .cart[data-count]:after {
+		right: 40%;
+		top: 10%;
+	}
 }
-#content label {
-  font-weight: normal;
+
+.secondary-nav-first-item {
+	padding: 0px;
 }
-#content > form {
+
+/*
+    GLOBAL
+*/
+
+
+.single-product-info-container:hover,
+.single-product-block:hover,
+.product-block:hover {
+	border: 0.1px var(--darker-light-grey) solid;
+}
+
+.img-responsive:hover {
+	cursor: pointer;
+}
+
+.nav-icon {
+	color: var(--secondary-color);
+}
+
+li {
+	list-style-type: none;
+	margin: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+/*
+    FOOTER
+*/
+.push-down {
+	position: absolute;
+	bottom: 0;
+}
+
+footer a {
+	color: var(--secondary-color);
+}
+
+footer a:hover {
+	color: var(--darker-secondary-color);
+}
+
+@media only screen and (max-width: 768px) {
+	.footer-ul {
+		position: static;
+		display: block;
+		margin-bottom: 0px !important;
+	}
+
+}
+
+@media only screen and (min-width: 768px) {
+	.wrapper {
+		margin: 0 0 300px 0 !important;
+	}
+}
+
+footer {
+	margin-top: 20px !important;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	min-height: 250px !important;
+	max-height: 500px !important;
+}
+
+.wrapper {
+	margin: 0 0 520px 0;
+	min-height: 100%;
+}
+
+footer .container-fluid {
+	padding-bottom: 20px;
+}
+
+.footer-copyright {
+	padding: 0 !important;
+}
+
+label.quantity {
+	margin-right: 25px;
+}
+
+.product-quantity {
+	width: 30px;
+}
+
+/*
+    BUTTONS
+*/
+.btn-primary, .btn-secondary {
+	background-color: var(--secondary-color) !important;
+	border-color: var(--darker-secondary-color);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+	background-color: var(--darker-secondary-color) !important;
+	border-color: var(--darker-secondary-color);
+}
+
+
+/*
+    Format conditions
+*/
+.max-text-width {
+	max-width: 550px;
+}
+
+.ourteam {
+	clear: both;
+}
+
+@media only screen and (min-width: 991px) {
+	.space-title {
+		margin-top: 40px !important;
+	}
+
+	.mobile-only {
+		display: none !important;
+	}
+
+	.desktop-only {
+		display: initial !important;
+	}
+}
+
+.desktop-only {
+	display: none;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
   margin: 0 auto;
-  padding: 1em;
-  max-width: 20em;
-  border: 1px solid #d2afe7;
-}
-#content > form .error {
-  font-weight: bold;
-  color: #ff3333;
-}
-#content > form input {
   background-color: white;
 }
-@media (max-width: 70em) {
-  #cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  main > header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-  main > header h1 {
-    grid-row-end: span 2;
-  }
+
+.form-signin .checkbox {
+  font-weight: 400;
 }
-@media (max-width: 40em) {
-  #cards {
-    grid-template-columns: 1fr;
-  }
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
-@media (max-width: 25em) {
-  body {
-    margin: 0;
-  }
-  main > header {
-    margin: 0;
-    padding: 0.5em;
-  }
-  main > header span {
-    margin: 0;
-  }
-  #content form {
-    margin: 0;
-    max-width: 25em;
-  }
-  article.card {
-    margin: 0;
-    border-bottom: 1px solid rgba(96, 108, 118, 0.4);
-  }
+.form-signin .form-control:focus {
+  z-index: 2;
 }
-/**
- * Overide milligram colors
- * Some styles might be missing
- **/
-button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
-a.button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
-a.button.button-outline {
-  color: #9b4dca;
+
+.forgot {
+  text-align: right;
+  margin-bottom: 1em;
 }
-a {
-  color: #9b4dca;
+
+.alt {
+  padding-top: 1em;
 }
-input[type=text]:focus,
-input[type=email]:focus,
-input[type=password]:focus {
-  border-color: #9b4dca;
+
+button > a {
+	text-decoration: none;
+	color: white;
+}
+
+.btn-facebook {
+	background-color: rgb(59, 89, 152);
+	color: white;
+}
+
+.btn-google {
+	background-color: rgb(219,68,55);
+	color: white;
+}
+
+.btn-lg {
+	font-size: 1em;
 }
