@@ -1,0 +1,11 @@
+/* colors  */
+
+:root {
+    --main-color: #232F3F;
+    --light-grey: #EBECEE;
+    --darker-light-grey: rgba(160, 160, 160, 0.568);
+    --secondary-color: #E99211;
+    --darker-secondary-color: rgba(233, 147, 17, 0.767);
+  --light-main-color: #465E7E;
+  }
+  

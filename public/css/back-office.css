@@ -1,0 +1,71 @@
+/* Back-office */
+
+@media only screen and (max-width: 991px) {
+    .button-text {
+      display: none;
+    }
+  
+    #products tr > *:nth-child(5) {
+      display: none;
+    }
+  
+  
+    #payments tr > *:nth-child(4) {
+      display: none;
+    }
+    #payments tr > *:nth-child(5) {
+      display: none;
+    }
+  
+    #users tr > *:nth-child(3) {
+      display: none;
+    }
+  
+    #reports tr > *:nth-child(4) {
+      display: none;
+    }
+  
+  
+    #staff tr > *:nth-child(3) {
+      display: none;
+    }
+  }
+  
+  
+  form {
+    padding-bottom: 1em;
+  }
+  
+  
+  
+  /* Navbar */
+  
+  .notification-container {
+    position: relative;
+  }
+  
+  .badge-counter {
+    position: absolute;
+    top: -8px;
+    right: -18px;
+  }
+  
+  nav .navbar-nav .nav-item .nav-link {
+      color: white;
+  }
+  
+  nav .navbar-nav .nav-item .nav-link:hover {
+      color: var(--secondary-color);
+  }
+  
+  nav .user-options .nav-item .nav-link {
+      color:  dodgerblue;
+  }
+  
+  nav .user-options .nav-item .nav-link:hover {
+      color: var(--secondary-color);
+  }
+  
+  body > nav.navbar a.nav-link.active {
+    color: var(--secondary-color) !important;
+  }
