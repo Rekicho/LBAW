@@ -35,7 +35,7 @@
   <body class="bg-primary">
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg navbar-dark sticky-top main-color-bg">
-			<a class="navbar-brand" href="index.html"> <span class="sec-color">KEY</span>VALUE</a>
+			<a class="navbar-brand" href="/"> <span class="sec-color">KEY</span>VALUE</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 			 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 					<button class="btn pl-0 my-2 my-sm-0" type="submit"><i class="fas fa-search nav-icon"></i></button>
 				</form>
-				<a href="signin.html"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
+				<a href="{{ route('login') }}"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
 				<span class="cart fa-stack has-badge" data-count="4">
 					<a href="cart.html"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
 				</span>

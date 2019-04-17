@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
+Route::get('/', 'HomePageController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');
