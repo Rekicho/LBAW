@@ -7,7 +7,7 @@
     <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
    
     <label for="email" class="sr-only">Email address</label>
-    <input type="text" id="email" class="form-control" value="{{ old('email') }}" placeholder="Email address" required autofocus />
+    <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="Email address" required autofocus />
    
     @if ($errors->has('email'))
         <span class="error">
@@ -15,8 +15,8 @@
         </span>
     @endif
 
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required/>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
 
     @if ($errors->has('password'))
         <span class="error">

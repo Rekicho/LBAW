@@ -6,7 +6,7 @@
     <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
 
     <label for="username" class="sr-only">Name</label>
-    <input type="text" id="username" class="form-control" placeholder="Nickname" value="{{ old('username') }}" required autofocus />
+    <input type="text" name="username" id="username" class="form-control" placeholder="Nickname" value="{{ old('username') }}" required autofocus />
 
     @if ($errors->has('name'))
       <span class="error">
@@ -15,7 +15,7 @@
     @endif
 
     <label for="email" class="sr-only">Email address</label>
-    <input type="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="Email address" required/>
+    <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="Email address" required/>
     
     @if ($errors->has('email'))
       <span class="error">
@@ -24,7 +24,7 @@
     @endif
     
     <label for="password" class="sr-only">Password</label>
-    <input type="password" id="password" class="form-control" placeholder="Password" required/>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
     
     @if ($errors->has('password'))
       <span class="error">
@@ -32,8 +32,8 @@
       </span>
     @endif
     
-    <label for="confirmPassword" class="sr-only">Confirm Password</label>
-    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required/>
+    <label for="password_confirmation" class="sr-only">Confirm Password</label>
+    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" required/>
 
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">

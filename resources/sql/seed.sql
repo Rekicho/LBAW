@@ -4,7 +4,7 @@
 
 DROP TABLE IF EXISTS category CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
-DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS wishlist CASCADE;
 DROP TABLE IF EXISTS cart CASCADE;
 DROP TABLE IF EXISTS review CASCADE;
@@ -27,7 +27,7 @@ DROP FUNCTION IF EXISTS add_initial_state() CASCADE;
 DROP FUNCTION IF EXISTS ensure_discount() CASCADE;
 DROP FUNCTION IF EXISTS update_user_status() CASCADE;
 
-DROP TRIGGER IF EXISTS ensure_admin ON "user";
+DROP TRIGGER IF EXISTS ensure_admin ON users;
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON review;
 DROP TRIGGER IF EXISTS product_search ON product;
@@ -63,25 +63,26 @@ CREATE TABLE product (
     search tsvector
 );
 
-CREATE TABLE "user" (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL CONSTRAINT user_username_uk UNIQUE,
     email TEXT NOT NULL CONSTRAINT client_email_uk UNIQUE,
     password TEXT NOT NULL,
     is_staff_member BOOLEAN DEFAULT FALSE NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
-    is_enabled BOOLEAN DEFAULT TRUE NOT NULL
+    is_enabled BOOLEAN DEFAULT TRUE NOT NULL,
+    remember_token VARCHAR
 );
 
 CREATE TABLE wishlist (
     id_product INTEGER NOT NULL REFERENCES product (id),
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     PRIMARY KEY (id_product, id_client)
 );
 
 CREATE TABLE cart (
     id_product INTEGER NOT NULL REFERENCES product (id),
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
     PRIMARY KEY (id_product, id_client)
 );
@@ -89,7 +90,7 @@ CREATE TABLE cart (
 CREATE TABLE review (
     id SERIAL PRIMARY KEY,
     id_product INTEGER NOT NULL REFERENCES product (id),
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     comment TEXT NOT NULL,
     rating INTEGER NOT NULL CONSTRAINT review_rating_ck CHECK (((rating > 0) OR (rating <= 5))),
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
@@ -100,21 +101,21 @@ CREATE TABLE report (
     id SERIAL PRIMARY KEY,
     reason TEXT NOT NULL,
     id_review INTEGER NOT NULL REFERENCES review (id),
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     CONSTRAINT report_review_client_uk UNIQUE(id_review, id_client)
 );
 
 CREATE TABLE report_log (
     report_id INTEGER REFERENCES report (id) PRIMARY KEY,
-    id_staff_member INTEGER NOT NULL REFERENCES "user" (id),
+    id_staff_member INTEGER NOT NULL REFERENCES users (id),
     has_deleted BOOLEAN NOT NULL,
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
 CREATE TABLE billing_information (
     id SERIAL PRIMARY KEY,
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     full_name TEXT NOT NULL,
     address TEXT NOT NULL,
     city TEXT NOT NULL,
@@ -125,7 +126,7 @@ CREATE TABLE billing_information (
 CREATE TABLE purchase (
     id SERIAL PRIMARY KEY,
     id_billing_information INTEGER NOT NULL REFERENCES billing_information (id),
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
@@ -149,8 +150,8 @@ CREATE TABLE purchase_log (
 
 CREATE TABLE ban (
     id SERIAL PRIMARY KEY,
-    id_staff_member INTEGER NOT NULL REFERENCES "user" (id),
-    id_client INTEGER NOT NULL REFERENCES "user" (id),
+    id_staff_member INTEGER NOT NULL REFERENCES users (id),
+    id_client INTEGER NOT NULL REFERENCES users (id),
     start_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     end_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     reason TEXT NOT NULL
@@ -170,9 +171,9 @@ CREATE TABLE discount (
 
  CREATE INDEX product_id_category ON product USING hash (id_category); 
 
- CREATE INDEX username_user ON "user" USING hash (username); 
+ CREATE INDEX username_user ON users USING hash (username); 
 
- CREATE INDEX email_user ON "user" USING hash (email); 
+ CREATE INDEX email_user ON users USING hash (email); 
 
  CREATE INDEX review_id_product ON review USING hash (id_product); 
 
@@ -203,7 +204,7 @@ CREATE TABLE discount (
 CREATE FUNCTION ensure_admin() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF New.is_admin = false AND (SELECT COUNT(*) FROM "user" WHERE is_admin = true) = 1
+    IF New.is_admin = false AND (SELECT COUNT(*) FROM users WHERE is_admin = true) = 1
     THEN RAISE EXCEPTION 'There must be at least one administrator.';
     END IF;
     RETURN NEW;
@@ -212,7 +213,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER ensure_admin
-    BEFORE UPDATE OF is_admin ON "user"
+    BEFORE UPDATE OF is_admin ON users
     FOR EACH ROW
     EXECUTE PROCEDURE ensure_admin();
 
@@ -298,7 +299,7 @@ BEGIN
   IF EXISTS (SELECT * FROM ban WHERE id_client = New.id_client AND end_t > New.start_t)
   THEN RAISE EXCEPTION 'This user is already banned';
   ELSE
-  UPDATE "user" SET is_enabled = false
+  UPDATE users SET is_enabled = false
   WHERE id = New.id_client;
   END IF;
   RETURN NULL;
@@ -335,16 +336,16 @@ CREATE TRIGGER ensure_discount
 -----------------------------------------
 
 /* Category insert */
-INSERT INTO "category" (id,name) VALUES (1,'Watches');
-INSERT INTO "category" (id,name) VALUES (2,'Electronics');
-INSERT INTO "category" (id,name) VALUES (3,'Software.');
-INSERT INTO "category" (id,name) VALUES (4,'Pet Supplies.');
-INSERT INTO "category" (id,name) VALUES (5,'Video Games');
-INSERT INTO "category" (id,name) VALUES (6,'Art');
-INSERT INTO "category" (id,name) VALUES (7,'Home');
-INSERT INTO "category" (id,name) VALUES (8,'Books');
-INSERT INTO "category" (id,name) VALUES (9,'Beauty');
-INSERT INTO "category" (id,name) VALUES (10,'Toys and Games');
+INSERT INTO "category" (name) VALUES ('Watches');
+INSERT INTO "category" (name) VALUES ('Electronics');
+INSERT INTO "category" (name) VALUES ('Software.');
+INSERT INTO "category" (name) VALUES ('Pet Supplies.');
+INSERT INTO "category" (name) VALUES ('Video Games');
+INSERT INTO "category" (name) VALUES ('Art');
+INSERT INTO "category" (name) VALUES ('Home');
+INSERT INTO "category" (name) VALUES ('Books');
+INSERT INTO "category" (name) VALUES ('Beauty');
+INSERT INTO "category" (name) VALUES ('Toys and Games');
 
 /* Product insert */
 /* Watches */
@@ -498,106 +499,106 @@ INSERT INTO "product" (id,id_category,name,price,description,discount,stock,is_e
 */
 
 /* USERS */
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (1,'AdminMaster','inceptos@laoreet.co.uk','parturient',True,True,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (2,'moviecookie','Suspendisse.sagittis@sapien.co.uk','Maecenas',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (3,'termeditor','lacinia.Sed@scelerisquescelerisque.com','est',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (4,'trapezoidroll','tincidunt.pede.ac@Maurisblandit.com','magnis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (5,'surfacingblird','semper.dui@nisiCum.edu','euismod',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (6,'andreev','ante.blandit@pulvinararcu.org','iaculis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (7,'art','magna.sed@orci.com','non',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (8,'belousov','euismod.in.dolor@tortoratrisus.com','magnis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (9,'billing','tempus.eu.ligula@massa.edu','Aliquam',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (10,'bogdanov','erat.eget.tincidunt@ipsumDonec.com','dui.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (11,'buhgalter','Fusce@Vivamus.ca','vulputate',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (12,'ALFREDO','Mauris@commodo.net','in',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (13,'Landon','Mauris.molestie@auctornunc.edu','erat',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (14,'Christopher','commodo@tristiqueneque.ca','augue',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (15,'John','mauris.rhoncus@metusfacilisislorem.com','eu,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (16,'Samuel','magna@tincidunttempusrisus.org','lobortis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (17,'Daniel','nec.tempus@augueeu.net','non',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (18,'Alexander','ullamcorper@ipsumSuspendissesagittis.co.uk','posuere,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (19,'James','scelerisque@lorem.org','molestie',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (20,'Cras','tempor@vehicularisusNulla.com','Ut',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (21,'Jayden,','nascetur.ridiculus.mus@lorem.co.uk','turpis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (22,'Jacob','id.mollis@tinciduntpede.net','bibendum',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (23,'Anthony','sollicitudin.adipiscing.ligula@auctorvitae.co.uk','elementum',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (24,'Joshua','et@feugiat.org','commodo',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (25,'Michael','orci.luctus.et@sollicitudinadipiscing.co.uk','luctus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (26,'Noah','id.nunc@egetmetus.edu','sollicitudin',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (27,'Nicholas','dictum.mi.ac@tristique.com','metus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (28,'Gavin','enim@tinciduntneque.org','mattis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (29,'Proin','risus@rutrum.ca','Cras',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (30,'Logan','pharetra@Vivamussitamet.com','accumsan',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (31,'Larry,','molestie.orci.tincidunt@commodoatlibero.ca','ridiculus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (32,'Justin','dui.Cras@convallis.ca','Nullam',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (33,'Scott','egestas@pede.ca','placerat',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (34,'Brandon','Sed.nulla@egestasAliquamnec.com','Nulla',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (35,'Frank','congue.a.aliquet@urnaconvalliserat.org','ac',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (36,'Benjamin','euismod.et.commodo@egetmollislectus.net','ipsum',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (37,'Gregory','Nullam.enim.Sed@fringillaest.com','id',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (38,'Raymond','eget.tincidunt@facilisis.org','mi.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (39,'Samuel2','ante.dictum@acliberonec.com','pharetra',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (40,'Patrick','ultricies@ametconsectetueradipiscing.ca','tempor',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (41,'Alexander2','nunc.risus@facilisismagnatellus.co.uk','metus.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (42,'Jack,','molestie@consequatdolor.net','posuere',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (43,'Suspendisse','parturient.montes@volutpat.com','Donec',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (44,'Dennis','enim@Phasellusdolor.org','ligula.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (45,'Jerry','Integer.in.magna@inlobortistellus.org','tincidunt',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (46,'Tyler','erat.Vivamus.nisi@felispurusac.edu','Phasellus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (47,'Aaron','ut@dolor.net','mauris',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (48,'Henry','Cras.convallis@necanteMaecenas.com','ligula.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (49,'Jose','feugiat@magnaa.edu','Integer',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (50,'Douglas','nec@elitafeugiat.edu','Nunc',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (51,'Peter,','eu@Etiam.edu','tempor',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (52,'Adam','a.magna.Lorem@pedeultrices.edu','eu,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (53,'Phasellus','nonummy.ut@acmattis.ca','augue.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (54,'Nathan','gravida.sagittis.Duis@loremauctorquis.edu','penatibus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (55,'Aliquam','Curae@aliquetlibero.co.uk','nibh',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (56,'Zachary,','Mauris.molestie@felis.org','interdum.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (57,'interdum','ornare.sagittis.felis@nonloremvitae.org','auctor',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (58,'Walter.','nonummy.ac.feugiat@feugiatnec.net','lorem,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (59,'Kyle','mus@nonenim.ca','quis,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (60,'Harold','lacus.Quisque@velarcuCurabitur.co.uk','in,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (61,'Carl','Vivamus@ullamcorper.com','sem',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (62,'adipiscing','nec@sit.edu','massa.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (63,'Jeremy','Aenean.euismod@sagittislobortis.com','fringilla',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (64,'Gerald','condimentum.Donec@volutpat.ca','lorem',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (65,'Keith','ante.Vivamus.non@duiCum.co.uk','penatibus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (66,'Roger','velit@elit.edu','purus.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (67,'Arthur','lectus@velmauris.com','Duis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (68,'Terry','hendrerit@dolordapibus.co.uk','eu',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (69,'Lawrence','semper.auctor@eratsemper.net','quam,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (70,'Fusce','pede.malesuada.vel@felisDonectempor.org','id',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (71,'Sean','dictum.augue@sedconsequat.org','Sed',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (72,'Mauris','ipsum@facilisis.ca','Quisque',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (73,'primis','nec@euismodacfermentum.com','id,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (74,'sem','nec.ante.blandit@aultricies.edu','Nam',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (75,'Ethan','quis.urna@nondapibusrutrum.co.uk','facilisi.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (76,'tellus','Aliquam@magnaUttincidunt.org','lacus.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (77,'orci','et@mattis.edu','tortor',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (78,'senectus','penatibus.et@Quisque.net','ipsum',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (79,'dictum','Donec@aliquam.com','condimentum',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (80,'malesuada','orci@arcu.com','aliquet',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (81,'Austin','Aliquam.vulputate.ullamcorper@lectus.co.uk','at',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (82,'aliquet,','orci.luctus.et@Aliquam.co.uk','dapibus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (83,'vitae','odio.Nam@ametdiameu.edu','molestie',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (84,'Joe','dolor@odio.net','et',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (85,'habitant','turpis.In.condimentum@diam.org','velit.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (86,'congue.','at.nisi@felis.org','in,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (87,'cursus','litora.torquent.per@leo.edu','rhoncus.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (88,'Cras2','augue.ac@parturient.ca','Phasellus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (89,'Sed','luctus.Curabitur@magna.ca','dictum',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (90,'Jesse','ipsum.ac.mi@Nunc.co.uk','Nulla',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (91,'viverra','at.nisi.Cum@feugiatnecdiam.co.uk','Sed',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (92,'natoque','tellus.eu@purus.org','tempus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (93,'tristique','sodales.nisi@Duisdignissim.net','pharetra.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (94,'Curabitur','Integer.in@nonenimMauris.co.uk','eros',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (95,'aliquet','Curabitur.vel.lectus@consectetueripsumnunc.co.uk','erat.',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (96,'bibendum.','dictum@anteiaculisnec.co.uk','tellus',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (97,'lobortis.','hendrerit.a@eget.org','turpis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (98,'Willie','Aliquam.fringilla.cursus@Quisqueliberolacus.com','turpis',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (99,'consectetuer','in@nec.org','eget,',False,False,True);
-INSERT INTO "user" (id,username,email,password,is_staff_member,is_admin,is_enabled) VALUES (100,'Billy.','Phasellus.ornare@Praesentinterdum.com','gravida.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('AdminMaster','inceptos@laoreet.co.uk','parturient',True,True,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('moviecookie','Suspendisse.sagittis@sapien.co.uk','Maecenas',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('termeditor','lacinia.Sed@scelerisquescelerisque.com','est',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('trapezoidroll','tincidunt.pede.ac@Maurisblandit.com','magnis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('surfacingblird','semper.dui@nisiCum.edu','euismod',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('andreev','ante.blandit@pulvinararcu.org','iaculis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('art','magna.sed@orci.com','non',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('belousov','euismod.in.dolor@tortoratrisus.com','magnis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('billing','tempus.eu.ligula@massa.edu','Aliquam',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('bogdanov','erat.eget.tincidunt@ipsumDonec.com','dui.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('buhgalter','Fusce@Vivamus.ca','vulputate',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('ALFREDO','Mauris@commodo.net','in',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Landon','Mauris.molestie@auctornunc.edu','erat',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Christopher','commodo@tristiqueneque.ca','augue',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('John','mauris.rhoncus@metusfacilisislorem.com','eu,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Samuel','magna@tincidunttempusrisus.org','lobortis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Daniel','nec.tempus@augueeu.net','non',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Alexander','ullamcorper@ipsumSuspendissesagittis.co.uk','posuere,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('James','scelerisque@lorem.org','molestie',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Cras','tempor@vehicularisusNulla.com','Ut',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jayden,','nascetur.ridiculus.mus@lorem.co.uk','turpis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jacob','id.mollis@tinciduntpede.net','bibendum',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Anthony','sollicitudin.adipiscing.ligula@auctorvitae.co.uk','elementum',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Joshua','et@feugiat.org','commodo',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Michael','orci.luctus.et@sollicitudinadipiscing.co.uk','luctus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Noah','id.nunc@egetmetus.edu','sollicitudin',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Nicholas','dictum.mi.ac@tristique.com','metus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Gavin','enim@tinciduntneque.org','mattis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Proin','risus@rutrum.ca','Cras',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Logan','pharetra@Vivamussitamet.com','accumsan',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Larry,','molestie.orci.tincidunt@commodoatlibero.ca','ridiculus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Justin','dui.Cras@convallis.ca','Nullam',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Scott','egestas@pede.ca','placerat',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Brandon','Sed.nulla@egestasAliquamnec.com','Nulla',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Frank','congue.a.aliquet@urnaconvalliserat.org','ac',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Benjamin','euismod.et.commodo@egetmollislectus.net','ipsum',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Gregory','Nullam.enim.Sed@fringillaest.com','id',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Raymond','eget.tincidunt@facilisis.org','mi.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Samuel2','ante.dictum@acliberonec.com','pharetra',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Patrick','ultricies@ametconsectetueradipiscing.ca','tempor',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Alexander2','nunc.risus@facilisismagnatellus.co.uk','metus.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jack,','molestie@consequatdolor.net','posuere',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Suspendisse','parturient.montes@volutpat.com','Donec',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Dennis','enim@Phasellusdolor.org','ligula.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jerry','Integer.in.magna@inlobortistellus.org','tincidunt',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Tyler','erat.Vivamus.nisi@felispurusac.edu','Phasellus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Aaron','ut@dolor.net','mauris',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Henry','Cras.convallis@necanteMaecenas.com','ligula.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jose','feugiat@magnaa.edu','Integer',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Douglas','nec@elitafeugiat.edu','Nunc',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Peter,','eu@Etiam.edu','tempor',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Adam','a.magna.Lorem@pedeultrices.edu','eu,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Phasellus','nonummy.ut@acmattis.ca','augue.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Nathan','gravida.sagittis.Duis@loremauctorquis.edu','penatibus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Aliquam','Curae@aliquetlibero.co.uk','nibh',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Zachary,','Mauris.molestie@felis.org','interdum.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('interdum','ornare.sagittis.felis@nonloremvitae.org','auctor',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Walter.','nonummy.ac.feugiat@feugiatnec.net','lorem,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Kyle','mus@nonenim.ca','quis,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Harold','lacus.Quisque@velarcuCurabitur.co.uk','in,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Carl','Vivamus@ullamcorper.com','sem',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('adipiscing','nec@sit.edu','massa.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jeremy','Aenean.euismod@sagittislobortis.com','fringilla',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Gerald','condimentum.Donec@volutpat.ca','lorem',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Keith','ante.Vivamus.non@duiCum.co.uk','penatibus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Roger','velit@elit.edu','purus.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Arthur','lectus@velmauris.com','Duis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Terry','hendrerit@dolordapibus.co.uk','eu',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Lawrence','semper.auctor@eratsemper.net','quam,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Fusce','pede.malesuada.vel@felisDonectempor.org','id',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Sean','dictum.augue@sedconsequat.org','Sed',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Mauris','ipsum@facilisis.ca','Quisque',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('primis','nec@euismodacfermentum.com','',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('sem','nec.ante.blandit@aultricies.edu','Nam',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Ethan','quis.urna@nondapibusrutrum.co.uk','facilisi.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('tellus','Aliquam@magnaUttincidunt.org','lacus.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('orci','et@mattis.edu','tortor',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('senectus','penatibus.et@Quisque.net','ipsum',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('dictum','Donec@aliquam.com','condimentum',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('malesuada','orci@arcu.com','aliquet',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Austin','Aliquam.vulputate.ullamcorper@lectus.co.uk','at',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('aliquet,','orci.luctus.et@Aliquam.co.uk','dapibus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('vitae','odio.Nam@ametdiameu.edu','molestie',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Joe','dolor@odio.net','et',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('habitant','turpis.In.condimentum@diam.org','velit.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('congue.','at.nisi@felis.org','in,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('cursus','litora.torquent.per@leo.edu','rhoncus.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Cras2','augue.ac@parturient.ca','Phasellus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Sed','luctus.Curabitur@magna.ca','dictum',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Jesse','ipsum.ac.mi@Nunc.co.uk','Nulla',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('viverra','at.nisi.Cum@feugiatnecdiam.co.uk','Sed',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('natoque','tellus.eu@purus.org','tempus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('tristique','sodales.nisi@Duisdignissim.net','pharetra.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Curabitur','Integer.in@nonenimMauris.co.uk','eros',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('aliquet','Curabitur.vel.lectus@consectetueripsumnunc.co.uk','erat.',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('bibendum.','dictum@anteiaculisnec.co.uk','tellus',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('lobortis.','hendrerit.a@eget.org','turpis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Willie','Aliquam.fringilla.cursus@Quisqueliberolacus.com','turpis',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('consectetuer','in@nec.org','eget,',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Billy.','Phasellus.ornare@Praesentinterdum.com','gravida.',False,False,True);
 
 
 /* WHISHLIST */
