@@ -17,6 +17,10 @@ Route::get('/', 'HomePageController@show');
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
 
+Route::get('product/{id}', 'ProductController@show');
+
+
+
 // API
 Route::put('api/cards', 'CardController@create');
 Route::delete('api/cards/{card_id}', 'CardController@delete');
