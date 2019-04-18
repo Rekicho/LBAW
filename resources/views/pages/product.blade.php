@@ -47,35 +47,40 @@
     </div>
     <br style="clear:both">
     <div class="reviews bg-light">
-        <article class="review">
-            <a href="profile.html"><span class="username">António Manuel</span></a>
-            <i class="fas fa-flag" data-toggle="modal" data-target="#reportModal"></i>
-            <div class="float-right product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-            <p>O pato ajudou me a resolver o maior bug com que ja me deparei na minha vida profissional. 526 000 linhas de código feitas inúteis por um "= vs ==".</p>
-            <span class="date">24/04/2019</span>
-        </article>
-
-        <hr>
-
-        <article class="review">
-            <a href="profile.html"><span class="username">Dona Maria</span></a>
-            <i class="fas fa-flag"></i>
-            <div class="float-right product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-            <p>Nunca vi um pato tão sábio, o seu silêncio esclareceu me não só as minhas dúvidas no trabalho como me ajudou a conhecer me a mim mesmo e a encontrar paz interior.</p>
-            <span class="date">24/04/2019</span>
-        </article>
+        @each('partials.review', $reviews, 'review')
     </div>
+    	<!-- MODALS -->
+	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Report</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+
+						<div class="radio">
+							<label><input type="radio" name="optradio" checked>Report User</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="optradio">Report Review</label>
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Reason:</label>
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Send</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
