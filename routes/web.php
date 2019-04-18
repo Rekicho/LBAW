@@ -13,6 +13,10 @@
 
 Route::get('/', 'HomePageController@show');
 
+Route::get('about', 'AboutController@showAbout');
+Route::get('faq', 'AboutController@showFaq');
+Route::get('contact', 'AboutController@showContact');
+
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');

@@ -46,13 +46,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="faq.html">FAQ</a>
+						<a class="nav-link" href="faq">FAQ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="about.html">ABOUT</a>
+						<a class="nav-link" href="about">ABOUT</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">CONTACT</a>
+						<a class="nav-link" href="contact">CONTACT</a>
 					</li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="search.html">
@@ -112,7 +112,7 @@
 			</div>
 		</div>
 		<div class="footer-copyright text-center py-3">© 2019 Copyright:
-			<a href=""> KEYVALUE</a>
+			<a href="/"> KEYVALUE</a>
 		</div>
 	</footer>
   </body>
