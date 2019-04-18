@@ -32,37 +32,8 @@
               </tr>
             </thead>
             <tbody id="staffMemberTable">
-              <tr>
-                <th scope="row">mark</th>
-                <td>Enabled</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDisable">
-                    <i class="fas fa-minus-circle"></i>
-                    <span class="button-text">Disable</span>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">jacob</th>
-                <td>Disabled</td>
-                <td>
-                  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#confirmEnable">
-                    <i class="fas fa-check-circle"></i>
-                    <span class="button-text">Enable</span>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">larry</th>
-                <td>Enabled</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDisable">
-                    <i class="fas fa-minus-circle"></i>
-                    <span class="button-text">Disable</span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+            @each('partials.staffmember', $staff_members, 'staff_member')
+          </tbody>
           </table>
         </div>
         <div class="row">

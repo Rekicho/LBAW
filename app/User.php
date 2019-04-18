@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -35,5 +36,9 @@ class User extends Authenticatable
      */
      public function cards() {
       return $this->hasMany('App\Card');
+    }
+
+    public function staff_members($usersPerPage, $numPage){
+        return DB::table('users')->select('id', 'username', 'is_enabled')->where('is_staff_member', true)->offset($usersPerPage*$numPage)->limit($usersPerPage)->get();
     }
 }
