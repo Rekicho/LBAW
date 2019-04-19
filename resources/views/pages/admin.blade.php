@@ -41,7 +41,7 @@
             <!-- blank column to center pagination var -->
           </div>
           <div class="col">
-            {{ $staff_members->links() }}
+            {{ $staff_members->links("pagination::bootstrap-4") }}
           </div>
           <div class="col">
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addMember">
