@@ -110,7 +110,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
+            <form method="POST">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>
@@ -121,7 +121,7 @@
                 <div class="form-group col-md-6">
                   <label>
                     Password
-                    <input class="form-control" type="text" name="password" placeholder="Password" required />
+                    <input class="form-control" type="password" name="password" placeholder="Password" required />
                   </label>
                 </div>
               </div>

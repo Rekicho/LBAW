@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function show($id)
     {
       $product = DB::table('products')->join('categories', 'products.id_category', '=', 'categories.id')->join('reviews', 'products.id' , '=', 'reviews.id_product')
-      ->select(DB::raw('products.name AS prodname, price, description, discount, stock, categories.name AS catname, COUNT(reviews.id) AS numRatings, AVG(reviews.rating) AS rating'))->where('products.id', $id)->groupBy('products.name', 'products.price', 'products.description', 'products.discount', 'products.stock', 'categories.name')->first();
+      ->select(DB::raw('products.id, products.name AS prodname, price, description, discount, stock, categories.name AS catname, COUNT(reviews.id) AS numRatings, AVG(reviews.rating) AS rating'))->where('products.id', $id)->groupBy('products.id', 'products.name', 'products.price', 'products.description', 'products.discount', 'products.stock', 'categories.name')->first();
 
       $reviews = DB::table('reviews')->join('users', 'reviews.id_client', '=', 'users.id')->select('reviews.id', 'users.username', 'reviews.comment', 'reviews.rating', 'reviews.date_time')->where('id_product', $id)->get();
 

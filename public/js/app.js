@@ -22,6 +22,11 @@ function addEventListeners() {
   let cardCreator = document.querySelector('article.card form.new_card');
   if (cardCreator != null)
     cardCreator.addEventListener('submit', sendCreateCardRequest);
+
+
+  let addStaffMember = document.querySelector('#addMember form');
+  if (addStaffMember != null)
+    addStaffMember.addEventListener('submit', sendCreateStaffMemberRequest);
 }
 
 function encodeForAjax(data) {
@@ -76,6 +81,16 @@ function sendCreateCardRequest(event) {
 
   if (name != '')
     sendAjaxRequest('put', '/api/cards/', {name: name}, cardAddedHandler);
+
+  event.preventDefault();
+}
+
+function sendCreateStaffMemberRequest(event) {
+  let username = this.querySelector('input[name=username]').value;
+  let password = this.querySelector('input[name=password]').value;
+
+  if (username != '' && password != '')
+    sendAjaxRequest('post', '/api/users/', {username: username, password: password}, staffMemberAddedHandler);
 
   event.preventDefault();
 }
@@ -135,6 +150,10 @@ function cardAddedHandler() {
 
   // Focus on adding an item to the new card
   new_card.querySelector('[type=text]').focus();
+}
+
+function staffMemberAddedHandler() {
+  console.log(this.status)
 }
 
 function createCard(card) {

@@ -16,7 +16,8 @@
         <hr>
     </div>
     <div class="img-frame">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg" alt="">
+        <img src={{ asset("img/product$product->id.jpg") }}
+        alt="">
     </div>
     <div class="product-info">
         <div class="product-right-block desktop-only">

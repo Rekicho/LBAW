@@ -30,9 +30,9 @@
   <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
   <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 
-  <script src="admin.js" defer></script>
+  <script type="text/javascript" src={{ asset('js/app.js') }} defer>
 
-  <!-- TODO: move to a different file (mudar para javascipt?)-->
+  // TODO: move to a different file (mudar para javascipt?)
   <script>
     $(document).ready(function () {
       $("#search-member").on("keyup", function () {

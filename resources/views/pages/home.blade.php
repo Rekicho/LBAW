@@ -70,7 +70,8 @@
 
 					@foreach ($topProducts as $topProduct)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-					<a href="product/{{$topProduct->id_product}}"><img src=https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg class="img-responsive imgSizing"></a>
+					<a href="product/{{$topProduct->id_product}}"><img src={{ asset("img/product$topProduct->id_product.jpg") }}
+						class="img-responsive imgSizing"></a>
 						</div>
 					@endforeach
 
