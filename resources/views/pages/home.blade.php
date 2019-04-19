@@ -67,21 +67,13 @@
 				<a href="category.html" class="seemore-block">See more</a>
 				<br style="clear:both" />
 				<div class="row imagetiles">
+
+					@foreach ($topProducts as $topProduct)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg class="img-responsive imgSizing"></a>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://www.spalding.com/dw/image/v2/ABAH_PRD/on/demandware.static/-/Sites-masterCatalog_SPALDING/default/dw95a24138/images/hi-res/Spalding-Digital-Assets_4384.png?sw=555&sh=689&sm=cut
-							 class="img-responsive imgSizing"></a>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://s7d9.scene7.com/is/image/zumiez/cat_max/Nixon-Sentry-SS-All-Gold-Analog-Watch-_218474.jpg
-							 class="img-responsive imgSizing"></a>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://ethos-cdn1.ethoswatches.com/pub/media/catalog/product/cache/749a04adc68de020ef4323397bb5eac7/o/m/omega-de-ville-424-10-40-20-02-003.jpg
-							 class="img-responsive imgSizing"></a>
-					</div>
+					<a href="product/{{$topProduct->id_product}}"><img src=https://images-na.ssl-images-amazon.com/images/I/71XnVF8HL4L._SL1500_.jpg class="img-responsive imgSizing"></a>
+						</div>
+					@endforeach
+
 				</div>
 			</div>
 
