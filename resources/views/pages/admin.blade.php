@@ -41,29 +41,7 @@
             <!-- blank column to center pagination var -->
           </div>
           <div class="col">
-            <nav aria-label="table navigation">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tab-index="-1" aria-disabled="true">
-                    <!-- or aria-label="Previous" if not disabled (check https://getbootstrap.com/docs/4.3/components/pagination/#disabled-and-active-states)-->
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li class="page-item active" aria-current="page">
-                  <a class="page-link" href="#">1</a>
-                  <span class="sr-only">(current)</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            {{ $staff_members->links() }}
           </div>
           <div class="col">
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addMember">

@@ -38,7 +38,9 @@ class User extends Authenticatable
       return $this->hasMany('App\Card');
     }
 
-    public function staff_members($usersPerPage, $numPage){
-        return DB::table('users')->select('id', 'username', 'is_enabled')->where('is_staff_member', true)->offset($usersPerPage*$numPage)->limit($usersPerPage)->get();
+    public function staff_members(){
+       // return DB::table('users')->select('id', 'username', 'is_enabled')->where('is_staff_member', true)->paginate(10);
+     return DB::table('users')->select('id', 'username', 'is_enabled')->paginate(10);
+
     }
 }

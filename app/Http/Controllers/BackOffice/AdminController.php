@@ -14,8 +14,9 @@ class AdminController extends Controller
 
     //   $this->authorize('list', Card::class);
 
-      $staff_members = Auth::user()->staff_members(5, 0);
+      $staff_members = Auth::user()->staff_members();
+      $username = Auth::user()->username;
 
-      return view('pages.admin', ['staff_members' => $staff_members]);
+      return view('pages.admin', ['staff_members' => $staff_members, 'username' => $username]);
     }
 }

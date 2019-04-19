@@ -100,7 +100,7 @@
       </ul>
       <ul class="navbar-nav user-options">
         <li class="nav-item">
-          <a class="nav-link" href="profile.html">Username</a>
+          <a class="nav-link" href="profile.html">{{$username}}</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
