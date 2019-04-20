@@ -36,4 +36,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'username';
+    }
+
+    public function authenticated($request , $user){
+        if($user->is_admin){
+            return redirect()->to('back-office/admin') ;
+        }else if($user->is_staff_member){
+            return redirect()->to('back-office/moderator') ;
+        }
+        else{
+            return redirect()->to('/');
+        }
+    }
 }

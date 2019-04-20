@@ -66,7 +66,7 @@ CREATE TABLE products (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL CONSTRAINT user_username_uk UNIQUE,
-    email TEXT NOT NULL CONSTRAINT client_email_uk UNIQUE,
+    email TEXT CONSTRAINT client_email_uk UNIQUE,
     password TEXT NOT NULL,
     is_staff_member BOOLEAN DEFAULT FALSE NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
@@ -599,6 +599,8 @@ INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) 
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Willie','Aliquam.fringilla.cursus@Quisqueliberolacus.com','turpis',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('consectetuer','in@nec.org','eget,',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Billy.','Phasellus.ornare@Praesentinterdum.com','gravida.',False,False,True);
+INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('admin','$2y$12$m0HQd2AFi/bT9/zyGcScb.tTW6vIHvOnWQPG6dozPcVn0/4synCtu',True,True,True);
+INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('psilva','$2y$12$mOlFqoaBtLkMmPy/sMPATOaNuFIQYbjXHgTKyoU9UHlHJCN8Y3.M2',False,False,True);
 
 
 /* WHISHLIST */

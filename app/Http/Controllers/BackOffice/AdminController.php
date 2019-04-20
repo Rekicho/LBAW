@@ -8,11 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('admin');
+  } 
+
     public function show()
     {
     //   if (!Auth::check()) return redirect('/login');
 
-    //   $this->authorize('list', Card::class);
+     // $this->authorize('show', BackOfficePolicy::class);
 
       $staff_members = Auth::user()->staff_members();
       $username = Auth::user()->username;
