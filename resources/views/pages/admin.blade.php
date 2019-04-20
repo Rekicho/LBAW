@@ -72,7 +72,11 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary">Confirm</button>
+            <form>
+              <input type="hidden" name="id" id="id" value="oi">
+              <input type="hidden" name="is_enabled" value="false">
+            <button class="btn btn-secondary confirm" type="submit" class="btn btn-primary">Confirm</button>
+          </form>
           </div>
         </div>
       </div>

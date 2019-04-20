@@ -33,6 +33,7 @@ Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
 
 Route::post('api/users', 'UserController@create');
+Route::post('api/users/{id}', 'UserController@update');
 
 // Authentication
 

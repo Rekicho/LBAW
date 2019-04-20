@@ -26,6 +26,8 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    
+    // TODO: verificar is_enabled
 
     /**
      * Create a new controller instance.

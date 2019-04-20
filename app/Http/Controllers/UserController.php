@@ -61,4 +61,15 @@ class UserController extends Controller
 
       return $user;
     }
+
+    public function update(Request $request){
+      $user = User::find($id);
+
+      // TODO: $this->authorize('update', $user);
+
+      $user->is_enabled = $request->input('is_enabled') === 'true' ? true : false;
+      $user->save();
+
+      return $user;
+    }
 }
