@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<link href="{{ asset('css/product.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="mt-3 container">
     <div class="product-right-block mobile-only">
@@ -23,11 +28,11 @@
         <div class="product-right-block desktop-only">
             <span class="product-title float-left">{{$product->prodname}}</span>
             <div class="float-right product-rating">
-                <span class="n-ratings mr-1">{{$product->numratings}}</span>
-                @for($i=0; $i<$product->rating; $i++)
+                <span class="n-ratings mr-1">{{$reviewsStats->numratings}}</span>
+                @for($i=0; $i<$reviewsStats->rating; $i++)
                     <i class="fas fa-star"></i>
                 @endfor
-                @for($i=0; $i< 5 - $product->rating; $i++)
+                @for($i=0; $i< 5 - $reviewsStats->rating; $i++)
                 <i class="far fa-star"></i>
                 @endfor
             </div>

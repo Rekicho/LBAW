@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light lightgrey bg-light dept-navbar">
 			<ul class="navbar-nav">

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+<link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <form class="form-signin my-5 text-center" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
