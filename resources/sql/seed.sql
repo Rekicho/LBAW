@@ -429,7 +429,7 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (50,5,'Super Mario Maker 2',44.99,'Super Mario Maker 2, the sequel to Super Mario Maker, launches exclusively for Nintendo Switch this June. Let your imagination run wild with new tools, course parts, and features as you create the Super Mario courses of your dreams.',1,26,True);
 
 /* Art */
-/*
+
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (51,6,'vulputate,',50,'risus. Morbi metus. Vivamus euismod urna. Nullam',0,36,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (52,6,'nunc',6,'fermentum convallis',0,40,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (53,6,'sed,',32,'dolor quam, elementum at, egestas a, scelerisque sed, sapien.',1,5,True);
@@ -440,10 +440,10 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (58,6,'mollis',11,'Donec porttitor tellus non',0,17,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (59,6,'orci,',80,'arcu. Vestibulum',1,50,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (60,6,'morbi',22,'porttitor vulputate, posuere vulputate,',1,19,True);
-*/
+
 
 /* Home */
-/*
+
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (61,7,'Integer',49,'et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu.',1,24,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (62,7,'Etiam',28,'Etiam vestibulum massa rutrum magna. Cras convallis',1,4,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (63,7,'vestibulum,',28,'mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris',1,34,True);
@@ -454,10 +454,10 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (68,7,'lacus.',10,'tempor diam dictum',1,8,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (69,7,'massa.',70,'euismod et, commodo at, libero. Morbi accumsan laoreet',1,48,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (70,7,'vehicula',34,'congue turpis.',1,21,True);
-*/
+
 
 /* Books */
-/*
+
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (71,8,'ut,',72,'in consectetuer ipsum nunc id',1,1,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (72,8,'Quisque',49,'eu metus. In lorem. Donec elementum,',1,17,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (73,8,'lobortis',3,'mauris ipsum porta elit, a feugiat tellus',1,14,True);
@@ -468,10 +468,10 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (78,8,'mus.',60,'arcu',1,50,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (79,8,'vehicula',47,'vitae sodales nisi magna sed dui.',1,7,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (80,8,'ornare,',22,'Morbi metus. Vivamus euismod urna. Nullam lobortis quam',1,43,True);
-*/
+
 
 /* Beauty */
-/*
+
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (81,9,'non,',67,'urna',1,46,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (82,9,'lorem,',97,'venenatis vel, faucibus id, libero. Donec consectetuer mauris id',1,34,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (83,9,'dolor,',77,'eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus',0,36,True);
@@ -482,10 +482,10 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (88,9,'tristique',82,'conubia nostra, per inceptos hymenaeos. Mauris ut',0,26,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (89,9,'Suspendisse',88,'aliquet, sem ut cursus luctus, ipsum leo',1,7,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (90,9,'ut,',27,'metus urna convallis erat,',0,31,True);
-*/
+
 
 /* Toys and Games */
-/*
+
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (91,10,'et',31,'ligula. Aliquam',1,23,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (92,10,'pretium',30,'metus eu erat semper rutrum.',0,6,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (93,10,'dapibus',10,'ornare, elit elit fermentum risus, at fringilla purus mauris a',0,21,True);
@@ -496,7 +496,7 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (98,10,'non',31,'posuere at, velit. Cras lorem',1,1,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (99,10,'ac,',80,'dolor, nonummy ac, feugiat non,',1,36,True);
 INSERT INTO products (id,id_category,name,price,description,discount,stock,is_enabled) VALUES (100,10,'lacus.',89,'sed sem egestas blandit. Nam',1,49,True);
-*/
+
 
 /* USERS */
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('AdminMaster','inceptos@laoreet.co.uk','parturient',True,True,True);
