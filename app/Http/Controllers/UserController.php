@@ -62,7 +62,7 @@ class UserController extends Controller
       return $user;
     }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
       $user = User::find($id);
 
       // TODO: $this->authorize('update', $user);

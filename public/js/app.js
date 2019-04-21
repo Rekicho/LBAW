@@ -1,7 +1,7 @@
 
 $(document).on("click", ".updateMember", function () {
   var staffMemberId = $(this).data('id');
-  $(".modal-footer #id").val( staffMemberId );
+  $(".modal-footer [name=id]").val( staffMemberId );
   // As pointed out in comments, 
   // it is unnecessary to have to manually call the modal.
   // $('#addBookDialog').modal('show');
@@ -136,7 +136,7 @@ function sendCreateStaffMemberRequest(event) {
 function sendUpdateStaffMemberRequest(event) {
   let id = this.querySelector("input[name=id]").value;
   let is_enabled = this.querySelector("input[name=is_enabled]").value;
-
+  
   sendAjaxRequest(
     "post",
     "/api/users/" + id,
@@ -219,6 +219,13 @@ function staffMemberAddedHandler() {
 
 function staffMemberUpdatedHandler() {
   console.log(this.status);
+
+  let staff_member = JSON.parse(this.responseText);
+
+  let row = document.querySelector('[data-id=\'' + staff_member.id + '\']');
+  console.log(row);
+  let newRow = createStaffMemberRow(staff_member);
+  row.parentNode.replaceChild(newRow, row);
 }
 
 function createStaffMemberRow(staff_member) {
@@ -240,7 +247,7 @@ function createStaffMemberRow(staff_member) {
     button.setAttribute("data-target", "#confirmEnable")
 
   let icon = document.createElement("i");
-  icon.classList = staff_member.is_enabled ? "fas fa-minus-circle" : "fas-fa-plus-circle";
+  icon.classList = staff_member.is_enabled ? "fas fa-minus-circle" : "fas fa-plus-circle";
 
   let span = document.createElement("span");
   span.classList="button-text";
