@@ -25,7 +25,7 @@
         <div class="row text-center py-3">
             <div class="col-md-3 d-flex justify-content-center mb-3">
                 <div class="card text-center bg-secondary" style="width: 14rem;">
-                    <img class="card-img-top img-fluid" src="images/201604145.jpg" alt="Bruno Sousa">
+                    <img class="card-img-top img-fluid" src={{ asset("img/201604145.jpg") }} alt="Bruno Sousa">
                     <div class="card-body">
                         <h5 class="card-title">Bruno Sousa</h5>
                     </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-3 d-flex justify-content-center mb-3">
                 <div class="card text-center bg-secondary" style="width: 14rem;">
-                    <img class="card-img-top img-fluid" src="images/201603846.jpg" alt="Pedro Fernandes">
+                    <img class="card-img-top img-fluid" src={{ asset("img/201603846.jpg") }} alt="Pedro Fernandes">
                     <div class="card-body">
                         <h5 class="card-title">Pedro Fernandes</h5>
                     </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-3 d-flex justify-content-center mb-3">
                 <div class="card text-center bg-secondary" style="width: 14rem;">
-                    <img class="card-img-top img-fluid" src="images/201604470.jpg" alt="Pedro Silva">
+                    <img class="card-img-top img-fluid" src={{ asset("img/201604470.jpg") }} alt="Pedro Silva">
                     <div class="card-body">
                         <h5 class="card-title">Pedro Silva</h5>
                     </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-3 d-flex justify-content-center mb-3">
                 <div class="card text-center bg-secondary" style="width: 14rem;">
-                    <img class="card-img-top img-fluid" src="images/201605422.jpg" alt="Simão Silva">
+                    <img class="card-img-top img-fluid" src={{ asset("img/201605422.jpg") }} alt="Simão Silva">
                     <div class="card-body">
                         <h5 class="card-title">Simão Silva</h5>
                     </div>
