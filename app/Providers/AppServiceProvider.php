@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('showRating', function($rating){
+            return "<?php for(\$i=0; \$i<$rating; \$i++)
+            echo (\"<i class='fas fa-star'></i>\");
+        
+            for(\$i=0; \$i< 5 - $rating; \$i++)
+            echo (\"<i class='far fa-star'></i>\"); 
+        ?>";
+        });
     }
 
     /**
