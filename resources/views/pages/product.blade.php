@@ -8,14 +8,15 @@
 @section('content')
 <div class="mt-3 container">
     <div class="product-right-block mobile-only">
-        <span class="product-title float-left">Rubber Duck</span>
+        <span class="product-title float-left">{{$product->prodname}}</span>
         <div class="float-right product-rating">
-            <span class="n-ratings mr-1">629</span>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
+            <span class="n-ratings mr-1">{{$reviewsStats->numratings}}</span>
+            @for($i=0; $i<$reviewsStats->rating; $i++)
+                <i class="fas fa-star"></i>
+            @endfor
+            @for($i=0; $i< 5 - $reviewsStats->rating; $i++)
+                <i class="far fa-star"></i>
+            @endfor
         </div>
         <br style="clear:both">
         <hr>
