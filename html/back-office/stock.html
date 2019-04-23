@@ -444,6 +444,20 @@
           <form>
             <div class="form-row">
               <div class="form-group col-md-6">
+                <label>Select category
+                  <select class="form-control" id="sel-category" name="category" required>
+                    <option hidden disabled selected value>-</option>
+                    <option value="books">Books</option>
+                    <option value="movies">Movies</option>
+                    <option value="games">Games</option>
+                    <option value="clothes">Clothes</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
                 <label>
                   Name
                   <input class="form-control" type="text" name="name" placeholder="Name" required />
