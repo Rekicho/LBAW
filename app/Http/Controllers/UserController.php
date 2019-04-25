@@ -11,37 +11,6 @@ use App\User;
 class UserController extends Controller
 {
     /**
-     * Shows the card for a given id.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-      $card = Card::find($id);
-
-      $this->authorize('show', $card);
-
-      return view('pages.card', ['card' => $card]);
-    }
-
-    /**
-     * Shows all cards.
-     *
-     * @return Response
-     */
-    public function list()
-    {
-      if (!Auth::check()) return redirect('/login');
-
-      $this->authorize('list', Card::class);
-
-      $cards = Auth::user()->cards()->orderBy('id')->get();
-
-      return view('pages.cards', ['cards' => $cards]);
-    }
-
-    /**
      * Creates a new card.
      *
      * @return Card The card created.
