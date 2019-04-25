@@ -10,11 +10,12 @@ class BillingInformation extends Model
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
 
+  protected $table = 'billing_information';
+
   // TODO: funcao pra retornar billing information
   public static function billingInformation($userId){
-    return DB::table('purchased_product')->join('products', 'products.id', '=', 'purchased_product.id_product')
-    ->join('purchase', 'purchase.id', '=', 'purchased_product.id_purchase')
-    ->select('purchased_product.id_product')
-    ->where('products.stock', '>', '0')->whereRaw('DATE_PART(\'day\', now() - purchase.date_time) < 30')->groupby('purchased_product.id_product')->orderByRaw('COUNT(purchased_product.id_product) DESC')->limit(4)->get();
+    return DB::table('billing_information')
+    ->select('id', 'full_name', 'address', 'city', 'state', 'zip_code')
+    ->where('id_client', $userId)->first();
   }
 }

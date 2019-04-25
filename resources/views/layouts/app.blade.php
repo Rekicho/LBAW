@@ -62,7 +62,11 @@
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 					<button class="btn pl-0 my-2 my-sm-0" type="submit"><i class="fas fa-search nav-icon"></i></button>
 				</form>
+				@if(!Auth::check())
 				<a href="{{ route('login') }}"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
+				@else
+				<a href="profile"><i class="fas fa-user p-3 nav-icon"></i></a>
+				@endif
 				<span class="cart fa-stack has-badge" data-count="4">
 					<a href="cart.html"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
 				</span>

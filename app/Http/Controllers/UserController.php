@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\BillingInformation;
 use App\WishList;
+use App\Purchase;
 
 class UserController extends Controller
 {

@@ -499,17 +499,17 @@ INSERT INTO products (id,id_category,name,price,description,discount,stock,is_en
 
 
 /* USERS */
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('AdminMaster','inceptos@laoreet.co.uk','parturient',True,True,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('moviecookie','Suspendisse.sagittis@sapien.co.uk','Maecenas',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('termeditor','lacinia.Sed@scelerisquescelerisque.com','est',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('trapezoidroll','tincidunt.pede.ac@Maurisblandit.com','magnis',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('surfacingblird','semper.dui@nisiCum.edu','euismod',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('andreev','ante.blandit@pulvinararcu.org','iaculis',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('art','magna.sed@orci.com','non',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('belousov','euismod.in.dolor@tortoratrisus.com','magnis',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('billing','tempus.eu.ligula@massa.edu','Aliquam',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('bogdanov','erat.eget.tincidunt@ipsumDonec.com','dui.',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('buhgalter','Fusce@Vivamus.ca','vulputate',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('AdminMaster','inceptos@laoreet.co.uk','$2y$12$RA3WkNFo17IYPHd8/T1ixOEglLC1XYyoTZq2uWLPQNcmQC0pAeoDO',True,True,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('moviecookie','Suspendisse.sagittis@sapien.co.uk','$2y$12$L3NxUR7Dnx7eV9QyHnPjXOk5CT6P6QjGrL0utc3sGSiu0CVDcc5zW',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('termeditor','lacinia.Sed@scelerisquescelerisque.com','$2y$12$.QzLQYJN2VuG5gYmNXm7Mev5NctkrnASk4o1EzVr0Nl67f/8HR.Ne',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('trapezoidroll','tincidunt.pede.ac@Maurisblandit.com','$2y$12$B0nTmLYj1mGeYh57pcPi2eHSHPAckzMl9AyvJRxvAtuPgoE7aXwxG',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('surfacingblird','semper.dui@nisiCum.edu','$2y$12$SgQWpWVBGhyO9c7nl0EETOyX3jf8/4O4tiM1gKkV7EbAimAHwx3RK',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('andreev','ante.blandit@pulvinararcu.org','$2y$12$TKBcTlzFttipRp0IDdXOmO0rGn1TPfLR6ufx2xRFBdwLQNCifY0.K',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('art','magna.sed@orci.com','$2y$12$gs6MJWNfx0wvVIp0n2rVJO82VWqGLKBquDth7MEWGMYVAH2QwVGo2',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('belousov','euismod.in.dolor@tortoratrisus.com','$2y$12$0iBVJ/1KaP0Xr1/7tBmvYuctIzgrvt1Ju1I3ln9r/veK6IUB7Ps0m',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('billing','tempus.eu.ligula@massa.edu','$2y$12$2LX1qSvgTFCFruO5Lv18O.rSsIeyKsD6Dh5hdjPR8Z/J5nZTxGRV2',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('bogdanov','erat.eget.tincidunt@ipsumDonec.com','$2y$12$0qlWBPYaAS80oLRocO86t.lasfcns0UXfuSssDtiJfYTfDh9ZqT.y',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('buhgalter','Fusce@Vivamus.ca','$2y$12$FkTFIaRbdM8OTRjldyhD8egJWVQC/rO19gcmF4wAMsB.V0/Dn2Qpa',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('ALFREDO','Mauris@commodo.net','in',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Landon','Mauris.molestie@auctornunc.edu','erat',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Christopher','commodo@tristiqueneque.ca','augue',False,False,True);
@@ -1053,36 +1053,36 @@ INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,d
 /* PURCHASE LOG */
 /* WAITING FOR PAYMENT */ 
 
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Waiting for payment', '2019-02-01 03:36:19');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (2,'Waiting for payment','2019-02-01 09:48:45');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (3,'Waiting for payment','2019-02-01 13:59:24');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (4,'Waiting for payment','2019-02-01 04:44:35');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (5,'Waiting for payment','2019-02-01 09:32:42');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (6,'Waiting for payment','2019-02-01 19:23:38');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (7,'Waiting for payment','2019-02-01 06:31:57');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (8,'Waiting for payment','2019-02-01 10:40:50');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (9,'Waiting for payment','2019-02-01 21:57:46');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (10,'Waiting for payment','2019-02-01 04:09:39');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (11,'Waiting for payment','2019-02-01 04:54:13');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (12,'Waiting for payment','2019-02-01 12:29:43');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (13,'Waiting for payment','2019-02-01 00:29:01');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (14,'Waiting for payment','2019-02-01 05:28:15');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (15,'Waiting for payment','2019-02-01 12:59:15');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (16,'Waiting for payment','2019-02-01 15:20:41');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (17,'Waiting for payment','2019-02-01 02:22:35');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (18,'Waiting for payment','2019-02-01 22:29:00');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (19,'Waiting for payment','2019-02-01 06:30:29');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (20,'Waiting for payment','2019-02-01 04:45:21');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (21,'Waiting for payment','2019-02-01 15:16:12');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (22,'Waiting for payment','2019-02-01 21:17:12');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (23,'Waiting for payment','2019-02-01 11:49:29');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (24,'Waiting for payment','2019-02-01 17:16:32');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (25,'Waiting for payment','2019-02-01 04:25:11');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (26,'Waiting for payment','2019-02-01 07:30:28');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (27,'Waiting for payment','2019-02-01 00:34:15');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (28,'Waiting for payment','2019-02-01 10:06:22');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (29,'Waiting for payment','2019-02-01 00:54:41');
-INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (30,'Waiting for payment','2019-02-01 16:57:25');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Waiting for payment', '2019-02-01 03:36:19');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (2,'Waiting for payment','2019-02-01 09:48:45');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (3,'Waiting for payment','2019-02-01 13:59:24');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (4,'Waiting for payment','2019-02-01 04:44:35');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (5,'Waiting for payment','2019-02-01 09:32:42');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (6,'Waiting for payment','2019-02-01 19:23:38');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (7,'Waiting for payment','2019-02-01 06:31:57');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (8,'Waiting for payment','2019-02-01 10:40:50');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (9,'Waiting for payment','2019-02-01 21:57:46');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (10,'Waiting for payment','2019-02-01 04:09:39');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (11,'Waiting for payment','2019-02-01 04:54:13');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (12,'Waiting for payment','2019-02-01 12:29:43');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (13,'Waiting for payment','2019-02-01 00:29:01');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (14,'Waiting for payment','2019-02-01 05:28:15');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (15,'Waiting for payment','2019-02-01 12:59:15');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (16,'Waiting for payment','2019-02-01 15:20:41');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (17,'Waiting for payment','2019-02-01 02:22:35');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (18,'Waiting for payment','2019-02-01 22:29:00');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (19,'Waiting for payment','2019-02-01 06:30:29');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (20,'Waiting for payment','2019-02-01 04:45:21');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (21,'Waiting for payment','2019-02-01 15:16:12');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (22,'Waiting for payment','2019-02-01 21:17:12');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (23,'Waiting for payment','2019-02-01 11:49:29');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (24,'Waiting for payment','2019-02-01 17:16:32');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (25,'Waiting for payment','2019-02-01 04:25:11');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (26,'Waiting for payment','2019-02-01 07:30:28');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (27,'Waiting for payment','2019-02-01 00:34:15');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (28,'Waiting for payment','2019-02-01 10:06:22');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (29,'Waiting for payment','2019-02-01 00:54:41');
+-- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (30,'Waiting for payment','2019-02-01 16:57:25');
 
 
 /* WAITING FOR PAYMENT APPROVAL */

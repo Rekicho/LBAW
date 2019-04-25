@@ -36,8 +36,19 @@ class User extends Authenticatable
        return DB::table('users')->select('id', 'username', 'is_enabled')->where('is_staff_member', true)->paginate(10);
     }
 
-    // TODO: query pra retornar purchase history
-    public static function purchaseHistory($id){
-
-    }
+    public static function purchaseHistory($userId){
+        $purchases = DB::table('purchase')
+        ->join('purchase_log', 'purchase.id', '=', 'purchase_log.id_purchase')
+        ->select('purchase_log.id_purchase', 'purchase.date_time AS purchase_date', 'purchase_log.date_time AS log_date', 'purchase_state')
+        ->where('purchase.id_client', $userId)
+        ->groupBy('purchase_log.id_purchase', 'purchase.date_time', 'purchase_log.date_time', 'purchase_state')
+        ->orderBy('purchase.date_time', 'desc')
+        ->get();
+  
+        // foreach ($purchases as $purchase){
+        //   $purchase->products = Purchase::getProductsFromPurchase($purchase->id_purchase);
+        // }
+  
+        return $purchases;
+      }
 }
