@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
+use App\BillingInformation;
+use App\WishList;
 
 class UserController extends Controller
 {
@@ -40,5 +42,14 @@ class UserController extends Controller
       $user->save();
 
       return $user;
+    }
+
+    public function showProfile(){
+      $user = Auth::user();
+      $wishlist = WishList::wishlist($user->id);
+      $billingInfo = BillingInformation::billingInformation($user->id);
+      $purchaseHistory = User::purchaseHistory($user->id);
+
+      return view('pages.profile', ['user' => $user, 'wishlist'=> $wishlist, 'billingInfo' => $billingInfo, 'purchaseHistory' => $purchaseHistory]);
     }
 }

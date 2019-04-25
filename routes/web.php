@@ -24,7 +24,6 @@ Route::post('api/users', 'UserController@create');
 Route::post('api/users/{id}', 'UserController@update');
 
 // Products
-
 Route::get('product/{id}', 'ProductController@show');
 
 // Authentication
@@ -33,6 +32,10 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+// User area
+// TODO: so deixar entrar se logged in
+Route::get('profile', 'UserController@showProfile');
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
