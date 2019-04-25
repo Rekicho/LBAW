@@ -1,5 +1,12 @@
 # lbaw1844 - Online Shop
 
+## Run
+
+```bash
+php artisan db:seed // on first run
+php artisan serve
+```
+
 ## Team members
 
 - Bruno Miguel da Silva Barbosa Sousa, up201604145@fe.up.pt
