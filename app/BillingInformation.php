@@ -12,7 +12,6 @@ class BillingInformation extends Model
 
   protected $table = 'billing_information';
 
-  // TODO: funcao pra retornar billing information
   public static function billingInformation($userId){
     return DB::table('billing_information')
     ->select('id', 'full_name', 'address', 'city', 'state', 'zip_code')

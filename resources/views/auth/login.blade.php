@@ -34,6 +34,12 @@
         </a>
     </div>
 
+    @if ($errors->has('is_enabled'))
+    <span class="error">
+        {{ $errors->first('is_enabled') }}
+    </span>
+    @endif
+
     <button class="btn btn-med btn-primary btn-block" type="submit">
         <i class="fas fa-sign-in-alt"></i> Sign in
     </button>

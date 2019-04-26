@@ -509,7 +509,7 @@ INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) 
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('belousov','euismod.in.dolor@tortoratrisus.com','$2y$12$0iBVJ/1KaP0Xr1/7tBmvYuctIzgrvt1Ju1I3ln9r/veK6IUB7Ps0m',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('billing','tempus.eu.ligula@massa.edu','$2y$12$2LX1qSvgTFCFruO5Lv18O.rSsIeyKsD6Dh5hdjPR8Z/J5nZTxGRV2',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('bogdanov','erat.eget.tincidunt@ipsumDonec.com','$2y$12$0qlWBPYaAS80oLRocO86t.lasfcns0UXfuSssDtiJfYTfDh9ZqT.y',False,False,True);
-INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('buhgalter','Fusce@Vivamus.ca','$2y$12$FkTFIaRbdM8OTRjldyhD8egJWVQC/rO19gcmF4wAMsB.V0/Dn2Qpa',False,False,True);
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('buhgalter','Fusce@Vivamus.ca','$2y$12$FkTFIaRbdM8OTRjldyhD8egJWVQC/rO19gcmF4wAMsB.V0/Dn2Qpa',False,False,False);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('ALFREDO','Mauris@commodo.net','in',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Landon','Mauris.molestie@auctornunc.edu','erat',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Christopher','commodo@tristiqueneque.ca','augue',False,False,True);

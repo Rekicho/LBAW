@@ -1,4 +1,4 @@
-<li class="single-product-info-container">
+<li class="single-product-info-container" data-id={{$product->id}}>
     <a href={{"product$product->id_product"}}><img src={{ asset("img/product$product->id_product.jpg") }} alt=""></a>
     <div class="single-product-info-text">
         <div class="row">
@@ -6,7 +6,7 @@
             <a href="product.html"><span class="title">{{$product->name}}</span></a>
             </div>
             <div class="col-6 state">
-                <a href="profile.html"><i class="fas fa-trash remove"></i></a>
+                <a href="#" class="delete"><i class="fas fa-trash remove"></i></a>
             </div>
         </div>
         <div>

@@ -221,26 +221,6 @@
             <div class="mb-2">
                 <h2><i class="fas fa-edit"></i> Edit Profile</h2>
             </div>
-            <form class="form-edit-profile light-main-color-bg px-3" action="profile.html">
-                <div class="my-3">
-                    <h3>Profile Information</h3>
-                </div>
-                <div class="form-group">
-                    <label for="realName">Real Name</label>
-                    <input type="text" id="realName" class="form-control" placeholder="Real Name" value="Bruno Sousa" />
-                </div>
-                <div class="form-group">
-                    <label for="prof_email">Email address</label>
-                    <input type="email" id="prof_email" class="form-control" placeholder="Email address" value={{$user->email}} />
-                </div>
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" id="prof_city" class="form-control" placeholder="City" value="Paredes" />
-                </div>
-                <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
-                    Edit
-                </button>
-            </form>
             <form class="form-edit-billing light-main-color-bg px-3" id="billingInfo">
                 <div class="my-3">
                     <h3>Shipping & Billing Information</h3>
@@ -294,31 +274,55 @@
                     Edit
                 </button>
             </form>
-            <form class="form-edit-profile light-main-color-bg px-3" action="profile.html">
-                <div class="my-3">
+                <div class="my-3 form-edit-profile light-main-color-bg px-3">
                     <h3>Account Information</h3>
+
+                    <form id="updateEmail">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{$user->email}}" />
+                        </div>
+                        <input type="hidden" name="user_id" id="user_id" class="form-control" value={{$user->id}} />
+                        <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
+                            Edit
+                        </button>
+                    </form>
+    
+                    <form id="updatePassword">
+                        <div class="form-group">
+                            <label for="new_password">New password</label>
+                            <input type="password" name="new_password" id="new_password" class="form-control" placeholder="New password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password_confirmation">Confirm New password</label>
+                            <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Confirm New password" />
+                        </div>
+
+                        @if ($errors->has('password'))
+                        <span class="error">
+                            {{ $errors->first('password') }}
+                        </span>
+                      @endif
+                      
+                        <div class="form-group">
+                            <label for="old_password">Old password</label>
+                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" />
+                        </div>
+
+                        @if ($errors->has('password'))
+                        <span class="error">
+                            {{ $errors->first('password') }}
+                        </span>
+                      @endif
+
+                        <input type="hidden" name="user_id" class="form-control" value={{$user->id}} />
+                   
+                        <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
+                            Edit
+                        </button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" class="form-control" placeholder="Email address" value={{$user->email}} />
                 </div>
-                <div class="form-group">
-                    <label for="newPassword">New password</label>
-                    <input type="password" id="newPassword" class="form-control" placeholder="New password" />
-                </div>
-                <div class="form-group">
-                    <label for="confirmNewPassword">Confirm New password</label>
-                    <input type="password" id="confirmNewPassword" class="form-control" placeholder="Confirm New password" />
-                </div>
-                <div class="form-group">
-                    <label for="oldPassword">Old password</label>
-                    <input type="password" id="oldPassword" class="form-control" placeholder="Old password" />
-                </div>
-                <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
-                    Edit
-                </button>
-            </form>
-        </div>
     </div>
 </div>
 </div>

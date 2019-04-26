@@ -28,6 +28,7 @@ Route::post('api/billingInfo', 'BillingInfoController@create');
 Route::post('api/billingInfo/{id}', 'BillingInfoController@update');
 
 Route::post('api/wishlist', 'WishListController@create');
+Route::delete('api/wishlist/{id}', 'WishListController@delete');
 
 // Products
 Route::get('product/{id}', 'ProductController@show');
@@ -40,8 +41,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 // User area
-// TODO: so deixar entrar se logged in
-Route::get('profile', 'UserController@showProfile');
+Route::get('profile', 'UserController@showProfile')->middleware('auth');;
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');

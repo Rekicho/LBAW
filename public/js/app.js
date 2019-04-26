@@ -7,6 +7,12 @@ $(document).on("click", ".updateMember", function() {
 });
 
 function addEventListeners() {
+
+  let wishlistDeleters = document.querySelectorAll('div.single-product-info-text a.delete');
+  [].forEach.call(wishlistDeleters, function(deleter) {
+    deleter.addEventListener('click', sendDeleteWishListRequest);
+  });
+
   let addStaffMember = document.querySelector("#addMember form");
   if (addStaffMember != null)
     addStaffMember.addEventListener("submit", sendCreateStaffMemberRequest);
@@ -31,6 +37,15 @@ function addEventListeners() {
   if (addToWishlist != null) {
     addToWishlist.addEventListener("submit", sendAddToWishlistRequest);
   }
+
+  let updatePassword = document.querySelector("form#updatePassword");
+  if (updatePassword != null)
+    updatePassword.addEventListener("submit", sendUpdatePasswordRequest);
+
+
+  let updateEmail = document.querySelector("form#updateEmail");
+  if (updateEmail != null)
+    updateEmail.addEventListener("submit", sendUpdateEmailRequest);
 }
 
 function encodeForAjax(data) {
@@ -53,6 +68,60 @@ function sendAjaxRequest(method, url, data, handler) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.addEventListener("load", handler);
   request.send(encodeForAjax(data));
+}
+
+function sendDeleteWishListRequest() {
+  let id = this.closest('li.single-product-info-container').getAttribute('data-id');
+
+  sendAjaxRequest('delete', '/api/wishlist/' + id, null, wishListDeletedHandler);
+}
+
+
+function wishListDeletedHandler(){
+  let product = JSON.parse(this.responseText);
+  let element = document.querySelector('li.single-product-info-container[data-id="' + product.id + '"]');
+  element.remove();
+}
+
+
+function sendUpdateEmailRequest(event) {
+  event.preventDefault();
+
+  let email = this.querySelector("input[name=email]").value;
+  let user_id = this.querySelector("input[name=user_id]").value;
+
+  if (email != "")
+    sendAjaxRequest(
+      "post",
+      "/api/users/" + user_id,
+      {
+        email: email
+      },
+      updatedEmailHandler
+    );
+}
+
+function sendUpdatePasswordRequest(event) {
+  event.preventDefault();
+
+  let old_password = this.querySelector("input[name=old_password]").value;
+  let password = this.querySelector("input[name=new_password]").value;
+  let password_confirmation = this.querySelector("input[name=new_password_confirmation]")
+    .value;
+  let user_id = this.querySelector("input[name=user_id]").value;
+
+  if (old_password != "" && password != "" && password_confirmation != "")
+    sendAjaxRequest(
+      "post",
+      "/api/users/" + user_id,
+      {
+        old_password: old_password,
+        password: password,
+        password_confirmation: password_confirmation
+      },
+      updatedPasswordHandler
+    );
+
 }
 
 function sendAddToWishlistRequest(event) {
@@ -135,6 +204,16 @@ function sendUpdateBillingInformationRequest(event) {
       billingInformationUpdatedHandler
     );
   }
+}
+
+function updatedPasswordHandler() {
+  let response = JSON.parse(this.responseText);
+  console.log(response);
+}
+
+function updatedEmailHandler() {
+  let response = JSON.parse(this.responseText);
+  console.log(response);
 }
 
 function addedToWishlistHandler() {
