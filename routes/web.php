@@ -27,6 +27,8 @@ Route::post('api/users/{id}', 'UserController@update');
 Route::post('api/billingInfo', 'BillingInfoController@create');
 Route::post('api/billingInfo/{id}', 'BillingInfoController@update');
 
+Route::post('api/wishlist', 'WishListController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 

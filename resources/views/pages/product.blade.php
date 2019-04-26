@@ -50,6 +50,12 @@
             <button type="button" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+parseInt($('.product-quantity').val()));">
                 Add to cart
             </button>
+            <form id="addToWishlist">
+                <input name="id_product" value={{$product->id}}>
+            <button type="submit" class="btn btn-primary float-right">
+                Add to wishlist <i class="fas fa-bookmark"></i>
+            </button>
+            </form>
             <span class="price float-right">{{$product->price}}€</span>
             <label class="float-right quantity">
                 <input type="number" class="product-quantity" value="1"> x
