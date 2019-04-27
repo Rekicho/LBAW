@@ -7,10 +7,11 @@ $(document).on("click", ".updateMember", function() {
 });
 
 function addEventListeners() {
-
-  let wishlistDeleters = document.querySelectorAll('div.single-product-info-text a.delete');
+  let wishlistDeleters = document.querySelectorAll(
+    "div.single-product-info-text a.delete"
+  );
   [].forEach.call(wishlistDeleters, function(deleter) {
-    deleter.addEventListener('click', sendDeleteWishListRequest);
+    deleter.addEventListener("click", sendDeleteWishListRequest);
   });
 
   let addStaffMember = document.querySelector("#addMember form");
@@ -25,7 +26,9 @@ function addEventListeners() {
   if (enableStaffMember != null)
     enableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
-  let updateBillingInformation = document.querySelector("form[class*=billingInfo]");
+  let updateBillingInformation = document.querySelector(
+    "form[class*=billingInfo]"
+  );
   if (updateBillingInformation != null) {
     updateBillingInformation.addEventListener(
       "submit",
@@ -33,15 +36,14 @@ function addEventListeners() {
     );
   }
 
-  let addToWishlist = document.querySelector("form#addToWishlist");
-  if (addToWishlist != null) {
-    addToWishlist.addEventListener("submit", sendAddToWishlistRequest);
+  let updateWishlist = document.querySelector("form#updateWishlist");
+  if (updateWishlist != null) {
+    updateWishlist.addEventListener("submit", sendUpdateWishlistRequest);
   }
 
   let updatePassword = document.querySelector("form#updatePassword");
   if (updatePassword != null)
     updatePassword.addEventListener("submit", sendUpdatePasswordRequest);
-
 
   let updateEmail = document.querySelector("form#updateEmail");
   if (updateEmail != null)
@@ -71,18 +73,25 @@ function sendAjaxRequest(method, url, data, handler) {
 }
 
 function sendDeleteWishListRequest() {
-  let id = this.closest('li.single-product-info-container').getAttribute('data-id');
+  let id = this.closest("li.single-product-info-container").getAttribute(
+    "data-id"
+  );
 
-  sendAjaxRequest('delete', '/api/wishlist/' + id, null, wishListDeletedHandler);
+  sendAjaxRequest(
+    "delete",
+    "/api/wishlist/" + id,
+    null,
+    wishListDeletedHandler
+  );
 }
 
-
-function wishListDeletedHandler(){
+function wishListDeletedHandler() {
   let product = JSON.parse(this.responseText);
-  let element = document.querySelector('li.single-product-info-container[data-id="' + product.id + '"]');
+  let element = document.querySelector(
+    'li.single-product-info-container[data-id="' + product.id + '"]'
+  );
   element.remove();
 }
-
 
 function sendUpdateEmailRequest(event) {
   event.preventDefault();
@@ -106,8 +115,9 @@ function sendUpdatePasswordRequest(event) {
 
   let old_password = this.querySelector("input[name=old_password]").value;
   let password = this.querySelector("input[name=new_password]").value;
-  let password_confirmation = this.querySelector("input[name=new_password_confirmation]")
-    .value;
+  let password_confirmation = this.querySelector(
+    "input[name=new_password_confirmation]"
+  ).value;
   let user_id = this.querySelector("input[name=user_id]").value;
 
   if (old_password != "" && password != "" && password_confirmation != "")
@@ -121,29 +131,43 @@ function sendUpdatePasswordRequest(event) {
       },
       updatedPasswordHandler
     );
-
 }
 
-function sendAddToWishlistRequest(event) {
+function sendUpdateWishlistRequest(event) {
+  let id_product = this.querySelector("input[name=id_product]").value;
+  let id = this.querySelector("input[name=id]");
 
-
-  // if() {
-  //   let id = this.closest('li.single-product-info-container').getAttribute('data-id');
   
-  //   sendAjaxRequest('delete', '/api/wishlist/' + id, null, wishListDeletedHandler);
-  // }
-  // else{
-  //   let id_product = this.querySelector("input[name=id_product]").value;
-  
-  //   sendAjaxRequest(
-  //     "post",
-  //     "/api/wishlist/",
-  //     { id_product: id_product },
-  //     addedToWishlistHandler
-  //   );
-  // }
+  if(id === null){
+    sendAjaxRequest(
+      "post",
+      "/api/wishlist/",
+      { id_product: id_product },
+      addedToWishlistHandler
+    );
+  }
+  else{
+    sendAjaxRequest(
+      "delete",
+      "/api/wishlist/" + id.value,
+      null,
+      removedFromWishListHandler
+    );
+  }
 
-  // event.preventDefault();
+  event.preventDefault();
+}
+
+function removedFromWishListHandler(){
+  console.log(this.status);
+
+  let wishlist = JSON.parse(this.responseText);
+
+  let oldForm = document.querySelector('form#updateWishlist');
+  let newForm = getAddToWishListForm(wishlist);
+  oldForm.parentNode.replaceChild(newForm, oldForm);
+
+  
 }
 
 function sendCreateStaffMemberRequest(event) {
@@ -199,7 +223,6 @@ function sendUpdateBillingInformationRequest(event) {
       billingInformationUpdatedHandler
     );
   } else {
-    console.log("oi");
     sendAjaxRequest(
       "post",
       "/api/billingInfo/" + id.value,
@@ -218,21 +241,20 @@ function sendUpdateBillingInformationRequest(event) {
 function updatedPasswordHandler() {
   let response = JSON.parse(this.responseText);
   console.log(response);
-  let form = document.querySelector("form#updatePassword")
+  let form = document.querySelector("form#updatePassword");
   let p = form.querySelector("p.error");
   // TODO: erro de password confirmation
-  if(response['password'] != null){
-    if(p == null){
-     let newError = document.createElement("p");
-     newError.innerHTML = response['password'];
-     newError.className = "error";
+  if (response["password"] != null) {
+    if (p == null) {
+      let newError = document.createElement("p");
+      newError.innerHTML = response["password"];
+      newError.className = "error";
       form.appendChild(newError);
     }
-  }
-  else if(p != null){
+  } else if (p != null) {
     p.parentNode.removeChild(p);
   }
- }
+}
 
 function updatedEmailHandler() {
   let response = JSON.parse(this.responseText);
@@ -242,8 +264,44 @@ function updatedEmailHandler() {
 function addedToWishlistHandler() {
   console.log(this.status);
 
-  let wishlist = this.responseText;
-  console.log(wishlist);
+  let wishlist = JSON.parse(this.responseText);
+
+  let oldForm = document.querySelector('form#updateWishlist');
+  let newForm = getRemoveFromWishListForm(wishlist);
+  oldForm.parentNode.replaceChild(newForm, oldForm);
+
+}
+
+function getRemoveFromWishListForm(wishlist){
+  let form = document.createElement('form');
+  form.setAttribute('id' ,'updateWishlist');
+
+  form.innerHTML = `
+  <br style="clear:both">
+  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id" value=${wishlist.id}>
+  <button type="submit" class="btn btn-primary float-right">
+      Remove from wishlist <i class="fas fa-bookmark"></i>
+  </button>`
+  form.addEventListener("submit", sendUpdateWishlistRequest);
+
+  return form;
+}
+
+function getAddToWishListForm(wishlist){
+  let form = document.createElement('form');
+  form.setAttribute('id' ,'updateWishlist');
+
+  form.innerHTML = `
+  <br style="clear:both">
+  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <button type="submit" class="btn btn-primary float-right">
+      Add to wishlist <i class="fas fa-bookmark"></i>
+  </button>`
+
+  form.addEventListener("submit", sendUpdateWishlistRequest);
+
+  return form;
 }
 
 function staffMemberAddedHandler() {
@@ -272,8 +330,7 @@ function billingInformationUpdatedHandler() {
   let newForm = createBillingInfoForm(billingInfo);
   let form = document.querySelector("form[data-id='" + billingInfo.id + "']");
 
-  if(form === null)
-    form = document.querySelector("form[class*=billingInfo]");
+  if (form === null) form = document.querySelector("form[class*=billingInfo]");
   form.innerHTML = newForm;
 }
 

@@ -24,12 +24,12 @@ class WishListController extends Controller
 
       // $this->authorize('create', $user);
 
-      $wishlist->id_product = $request->input('id_product');
+      $wishlist->id_product = intval($request->input('id_product'));
       $wishlist->id_client = Auth::user()->id;
       
       $wishlist->save();
 
-      return 'ya';
+      return $wishlist;
     }
 
     public function delete(Request $request, $id){

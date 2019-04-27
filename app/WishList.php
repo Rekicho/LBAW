@@ -12,6 +12,14 @@ class WishList extends Model
 
     protected $table = 'wishlists';
 
+    public static function exists($userId, $productId){
+        return DB::table('wishlists')
+        ->select('id', 'id_product', 'id_client')
+        ->where('id_client', $userId)
+        ->where('id_product', $productId)
+        ->first();
+    }
+
     public static function wishlist($userId)
     {
         $noRatings = DB::table('wishlists')

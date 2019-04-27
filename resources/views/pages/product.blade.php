@@ -54,22 +54,20 @@
             <label class="float-right quantity">
                 <input type="number" class="product-quantity" value="1"> x
             </label>
-            <form id="addToWishlist" class="">
+            <form id="updateWishlist">
                 <br style="clear:both">
-                <input class="d-none    " name="id_product" value={{$product->id}}>
-                
-                <button type="submit" class="btn btn-primary float-right">
-                    Add to wishlist <i class="fas fa-bookmark"></i>
-                </button>
-            </form> 
-            <form id="removeFromWishlist" class="d-none">
-                <br style="clear:both">
-                <input class="d-none    " name="id_product" value={{$product->id}}>
-                
+                <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
+            @if($wishlist != null)
+                <input type="hidden" class="d-none    " name="id" value={{$wishlist->id}}>
                 <button type="submit" class="btn btn-primary float-right">
                     Remove from wishlist <i class="fas fa-bookmark"></i>
                 </button>
-            </form> 
+            @else
+                <button type="submit" class="btn btn-primary float-right">
+                    Add to wishlist <i class="fas fa-bookmark"></i>
+                </button>
+            @endif
+        </form> 
         </div>
     </div>
     <br style="clear:both">

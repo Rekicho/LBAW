@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Product;
 use App\Review;
+use App\WishList;
 
 class ProductController extends Controller
 {
@@ -23,8 +24,10 @@ class ProductController extends Controller
       $reviews = Review::getProductReviews($id);
 
       $reviewsStats = Review::getProductReviewsStats($id);
+
+      $wishlist = WishList::exists(Auth::user()->id, $id);
       
-      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats]);
+      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist]);
     }
 
     /**
