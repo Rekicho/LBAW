@@ -125,14 +125,23 @@ function sendUpdatePasswordRequest(event) {
 }
 
 function sendAddToWishlistRequest(event) {
-  let id_product = this.querySelector("input[name=id_product]").value;
-  console.log(id_product);
-  sendAjaxRequest(
-    "post",
-    "/api/wishlist/",
-    { id_product: id_product },
-    addedToWishlistHandler
-  );
+
+
+  if() {
+    let id = this.closest('li.single-product-info-container').getAttribute('data-id');
+  
+    sendAjaxRequest('delete', '/api/wishlist/' + id, null, wishListDeletedHandler);
+  }
+  else{
+    let id_product = this.querySelector("input[name=id_product]").value;
+  
+    sendAjaxRequest(
+      "post",
+      "/api/wishlist/",
+      { id_product: id_product },
+      addedToWishlistHandler
+    );
+  }
 
   event.preventDefault();
 }
