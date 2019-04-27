@@ -49,7 +49,7 @@ class User extends Authenticatable
            ->where('id_purchase', $purchase->id)
            ->get();
 
-           $products =  Purchase::getProductsFromPurchase($purchase->id);
+           $products = Purchase::getProductsFromPurchase($purchase->id);
 
            $sum = 0;
            foreach($products as $product)

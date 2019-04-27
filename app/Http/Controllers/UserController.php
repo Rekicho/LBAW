@@ -58,11 +58,11 @@ class UserController extends Controller
       ]);
       
             if ($validator->fails()) {
-                return response()->json(['errors'=>$validator->errors()->all()]);
+                return response()->json(['errors'=> $validator->errors()->all()]);
             }
 
             if (!Hash::check($old_password, $user->password)) {
-                return response()->json(['password' => 'Old password doesn\'t match']); // Status code here
+                return response()->json(['errors' => ['Old password doesn\'t match']]); // Status code here
             }
 
             $user->password = bcrypt($request->input('password'));

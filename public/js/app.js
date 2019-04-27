@@ -242,17 +242,20 @@ function updatedPasswordHandler() {
   let response = JSON.parse(this.responseText);
   console.log(response);
   let form = document.querySelector("form#updatePassword");
-  let p = form.querySelector("p.error");
-  // TODO: erro de password confirmation
-  if (response["password"] != null) {
-    if (p == null) {
-      let newError = document.createElement("p");
-      newError.innerHTML = response["password"];
+  let span = form.querySelector("span.error");
+
+  if (response["errors"] != null) {
+    if (span == null) {
+      let newError = document.createElement("span");
+      newError.innerHTML = response["errors"][0];
       newError.className = "error";
       form.appendChild(newError);
     }
-  } else if (p != null) {
-    p.parentNode.removeChild(p);
+    else{
+      span.innerHTML = response["errors"][0];
+    }
+  } else if (span != null) {
+    span.innerHTML = "Successfuly changed password.";
   }
 }
 
