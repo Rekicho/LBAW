@@ -218,7 +218,21 @@ function sendUpdateBillingInformationRequest(event) {
 function updatedPasswordHandler() {
   let response = JSON.parse(this.responseText);
   console.log(response);
-}
+  let form = document.querySelector("form#updatePassword")
+  let p = form.querySelector("p.error");
+  // TODO: erro de password confirmation
+  if(response['password'] != null){
+    if(p == null){
+     let newError = document.createElement("p");
+     newError.innerHTML = response['password'];
+     newError.className = "error";
+      form.appendChild(newError);
+    }
+  }
+  else if(p != null){
+    p.parentNode.removeChild(p);
+  }
+ }
 
 function updatedEmailHandler() {
   let response = JSON.parse(this.responseText);

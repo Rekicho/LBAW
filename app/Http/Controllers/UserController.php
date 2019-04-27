@@ -46,21 +46,24 @@ class UserController extends Controller
 
         if ($is_enabled != null) {
             $user->is_enabled = $is_enabled === 'true' ? true : false;
-        } else if ($email != null) {
+        } elseif ($email != null) {
             $this->validate($request, [
               'email' => 'required|string|email|max:255|unique:users',
           ]);
 
             $user->email = $email;
         } else {
+            $validator = \Validator::make($request->all(), [
+          'password' => 'required|string|min:6|confirmed',
+      ]);
+      
+            if ($validator->fails()) {
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            }
 
-          Validator::make($request->all(), [
-            'password' => 'required|string|min:6|confirmed',
-        ])->validate();
-
-          if(!Hash::check($old_password, $user->password)){
-            return response()->json(['password' => 'Old password doesn\'t match']); // Status code here
-          }
+            if (!Hash::check($old_password, $user->password)) {
+                return response()->json(['password' => 'Old password doesn\'t match']); // Status code here
+            }
 
             $user->password = bcrypt($request->input('password'));
         }

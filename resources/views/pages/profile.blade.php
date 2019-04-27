@@ -96,7 +96,7 @@
                     <form id="updateEmail">
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{$user->email}}" />
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{$user->email}}" required/>
                         </div>
                         <input type="hidden" name="user_id" id="user_id" class="form-control" value={{$user->id}} />
                         <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
@@ -107,11 +107,11 @@
                     <form id="updatePassword">
                         <div class="form-group">
                             <label for="new_password">New password</label>
-                            <input type="password" name="new_password" id="new_password" class="form-control" placeholder="New password" />
+                            <input type="password" name="new_password" id="new_password" class="form-control" placeholder="New password" required/>
                         </div>
                         <div class="form-group">
                             <label for="new_password_confirmation">Confirm New password</label>
-                            <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Confirm New password" />
+                            <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Confirm New password" required/>
                         </div>
 
                         @if ($errors->has('password'))
@@ -122,7 +122,7 @@
                       
                         <div class="form-group">
                             <label for="old_password">Old password</label>
-                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" />
+                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" required/>
                         </div>
 
                         @if ($errors->has('password'))
