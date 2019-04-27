@@ -15,6 +15,7 @@ class BillingInformation extends Model
   public static function billingInformation($userId){
     return DB::table('billing_information')
     ->select('id', 'full_name', 'address', 'city', 'state', 'zip_code')
-    ->where('id_client', $userId)->first();
+    ->where('id_client', $userId)
+    ->get();
   }
 }

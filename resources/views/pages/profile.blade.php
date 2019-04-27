@@ -12,23 +12,9 @@
                 <div class="text-center">
                 <b>@ {{$user->username}}</b>
                 </div>
-                @if($billingInfo != null)
-                <div class="text-center">
-                    <i class="fas fa-signature"></i> <?php
-                        $name = explode(" ", $billingInfo->full_name);
-                        $firstName = $name[0];
-                        $lastName = $name[count($name) - 1];
-                        echo($firstName . " " . $lastName);?>
-                </div>
-                @endif
                 @if($user->email != '')
                 <div class="text-center">
                     <i class="far fa-envelope"></i> {{$user->email}}
-                </div>
-                @endif
-                @if($billingInfo != null)
-                <div class="text-center mb-3">
-                    <i class="fas fa-map-marker"></i> {{$billingInfo->city}}
                 </div>
                 @endif
                 <a href="#history" data-toggle="collapse" data-target="#history">
@@ -72,59 +58,38 @@
             <div class="mb-2">
                 <h2><i class="fas fa-edit"></i> Edit Profile</h2>
             </div>
-            <form class="form-edit-billing light-main-color-bg px-3" id="billingInfo">
-                <div class="my-3">
-                    <h3>Shipping & Billing Information</h3>
-                </div>
-
-                @if($billingInfo == null)
+            <div class="my-3">
+                <h3>Shipping & Billing Information</h3>
+                @if(count($billingInfo) == 0)
+                <form class="form-edit-billing light-main-color-bg px-3 billingInfo">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" name="full_name" id="fullName" class="form-control" placeholder="Full Name" />
+                        <input type="text" name="full_name" class="form-control" placeholder="Full Name" />
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" />
+                        <input type="text" name="address" class="form-control" placeholder="Address" />
                     </div>
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input type="text" name="city" id="city" class="form-control" placeholder="City" />
+                        <input type="text" name="city" class="form-control" placeholder="City" />
                     </div>
                     <div class="form-group">
                         <label for="state">State</label>
-                        <input type="text" name="state" id="state" class="form-control" placeholder="State" />
+                        <input type="text" name="state" class="form-control" placeholder="State" />
                     </div>
                     <div class="form-group">
                         <label for="zip">Zip Code</label>
                         <input type="text" name="zip_code" id="zip" class="form-control" placeholder="zip" />
                     </div>
-                @else
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" name="full_name" id="fullName" class="form-control" placeholder="Full Name" value="{{$billingInfo->full_name}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="{{$billingInfo->address}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" name="city" id="city" class="form-control" placeholder="City" value="{{$billingInfo->city}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="state">State</label>
-                        <input type="text" name="state" id="state" class="form-control" placeholder="State" value="{{$billingInfo->state}}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="zip">Zip Code</label>
-                        <input type="text" name="zip_code" id="zip" class="form-control" placeholder="zip" value="{{$billingInfo->zip_code}}" />
-                    </div>
-                    <input type="hidden" name="id" value={{$billingInfo->id}}>
-                @endif
                 <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
                     Edit
                 </button>
             </form>
+                @else
+                @each('partials.billingInfo', $billingInfo, 'billingInfo')
+                @endif
+            </div>
                 <div class="my-3 form-edit-profile light-main-color-bg px-3">
                     <h3>Account Information</h3>
 

@@ -25,7 +25,7 @@ function addEventListeners() {
   if (enableStaffMember != null)
     enableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
-  let updateBillingInformation = document.querySelector("form#billingInfo");
+  let updateBillingInformation = document.querySelector("form[class*=billingInfo]");
   if (updateBillingInformation != null) {
     updateBillingInformation.addEventListener(
       "submit",
@@ -127,23 +127,23 @@ function sendUpdatePasswordRequest(event) {
 function sendAddToWishlistRequest(event) {
 
 
-  if() {
-    let id = this.closest('li.single-product-info-container').getAttribute('data-id');
+  // if() {
+  //   let id = this.closest('li.single-product-info-container').getAttribute('data-id');
   
-    sendAjaxRequest('delete', '/api/wishlist/' + id, null, wishListDeletedHandler);
-  }
-  else{
-    let id_product = this.querySelector("input[name=id_product]").value;
+  //   sendAjaxRequest('delete', '/api/wishlist/' + id, null, wishListDeletedHandler);
+  // }
+  // else{
+  //   let id_product = this.querySelector("input[name=id_product]").value;
   
-    sendAjaxRequest(
-      "post",
-      "/api/wishlist/",
-      { id_product: id_product },
-      addedToWishlistHandler
-    );
-  }
+  //   sendAjaxRequest(
+  //     "post",
+  //     "/api/wishlist/",
+  //     { id_product: id_product },
+  //     addedToWishlistHandler
+  //   );
+  // }
 
-  event.preventDefault();
+  // event.preventDefault();
 }
 
 function sendCreateStaffMemberRequest(event) {
@@ -256,12 +256,15 @@ function billingInformationUpdatedHandler() {
   console.log(this.status);
   let billingInfo = JSON.parse(this.responseText);
   let newForm = createBillingInfoForm(billingInfo);
-  let form = document.querySelector("form#billingInfo");
+  let form = document.querySelector("form[data-id='" + billingInfo.id + "']");
+
+  if(form === null)
+    form = document.querySelector("form[class*=billingInfo]");
   form.innerHTML = newForm;
 }
 
 function createBillingInfoForm(billingInfo) {
-  console.log(billingInfo.full_name);
+  console.log(billingInfo.id);
   return `
   <div class="my-3">
   <h3>Shipping & Billing Information</h3>
@@ -297,7 +300,7 @@ function createBillingInfoForm(billingInfo) {
     billingInfo.zip_code
   }" />
 </div>
-<input type="hidden" name="id" value=${billingInfo.id}}>
+<input type="hidden" name="id" value=${billingInfo.id}>
 <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
 Edit
 </button>`;
