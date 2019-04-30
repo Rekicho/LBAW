@@ -1,6 +1,6 @@
 $(document).on("click", ".updateMember", function() {
   var staffMemberId = $(this).data("id");
-  $(".modal-footer [name=id]").val(staffMemberId);
+  $(".modal-body [name=id]").val(staffMemberId);
   // As pointed out in comments,
   // it is unnecessary to have to manually call the modal.
   // $('#addBookDialog').modal('show');
@@ -104,6 +104,7 @@ function sendUpdateEmailRequest(event) {
       "post",
       "/api/users/" + user_id,
       {
+        type: "updateEmail",
         email: email
       },
       updatedEmailHandler
@@ -125,6 +126,7 @@ function sendUpdatePasswordRequest(event) {
       "post",
       "/api/users/" + user_id,
       {
+        type: "updatePassword",
         old_password: old_password,
         password: password,
         password_confirmation: password_confirmation
@@ -192,7 +194,7 @@ function sendUpdateStaffMemberRequest(event) {
   sendAjaxRequest(
     "post",
     "/api/users/" + id,
-    { is_enabled: is_enabled },
+    { type: "updateMember", is_enabled: is_enabled },
     staffMemberUpdatedHandler
   );
 
@@ -242,26 +244,78 @@ function updatedPasswordHandler() {
   let response = JSON.parse(this.responseText);
   console.log(response);
   let form = document.querySelector("form#updatePassword");
-  let span = form.querySelector("span.error");
+  let span = form.querySelector("span.message");
 
   if (response["errors"] != null) {
+    let newError = document.createElement("span");
+    newError.classList.add("message");
+    newError.classList.add("error");
+    newError.classList.remove("success");
+
     if (span == null) {
-      let newError = document.createElement("span");
       newError.innerHTML = response["errors"][0];
-      newError.className = "error";
+
+      form.appendChild(newError);
+    }
+    else{
+      span.classList.add("error");
+      span.classList.remove("success");
+      span.innerHTML = response["errors"][0];
+    }
+  } else if (span != null) {
+    span.classList.remove("error");
+    span.classList.add("success");
+    span.innerHTML = "Successfuly changed password.";
+  }
+}
+
+function staffMemberAddedHandler() {
+  console.log(this.status);
+  let response = JSON.parse(this.responseText);
+
+  let message = document.querySelector('#addMember .modal-body .message');
+
+  if(response['errors']!=null){
+    message.classList.add('error');
+    message.classList.remove('success');
+    message.innerHTML = response['errors'][0];
+    return;
+  }
+  message.classList.add('success');
+  message.classList.remove('error');
+  let feedbackMsg = "Staff member added with success";
+  message.innerHTML = feedbackMsg;
+
+  let newRow = createStaffMemberRow(response);
+  let table = document.getElementById("staffMemberTable");
+  table.appendChild(newRow);
+}
+
+function updatedEmailHandler() {
+  let response = JSON.parse(this.responseText);
+  console.log(response);
+
+  let form = document.querySelector("form#updateEmail");
+  let span = form.querySelector("span.message");
+
+  if (response["errors"] != null) {
+    let newError = document.createElement("span");
+    newError.classList.add("message");
+    newError.classList.add("error");
+    newError.classList.remove("success");
+    if (span == null) {
+      newError.innerHTML = response["errors"][0];
+
       form.appendChild(newError);
     }
     else{
       span.innerHTML = response["errors"][0];
     }
   } else if (span != null) {
-    span.innerHTML = "Successfuly changed password.";
+    newError.classList.remove("error");
+    newError.classList.add("success");
+    span.innerHTML = "Successfuly changed email.";
   }
-}
-
-function updatedEmailHandler() {
-  let response = JSON.parse(this.responseText);
-  console.log(response);
 }
 
 function addedToWishlistHandler() {
@@ -307,24 +361,19 @@ function getAddToWishListForm(wishlist){
   return form;
 }
 
-function staffMemberAddedHandler() {
-  console.log(this.status);
-  let staff_member = JSON.parse(this.responseText);
 
-  let newRow = createStaffMemberRow(staff_member);
-  let table = document.getElementById("staffMemberTable");
-  table.appendChild(newRow);
-}
 
 function staffMemberUpdatedHandler() {
   console.log(this.status);
 
   let staff_member = JSON.parse(this.responseText);
-
   let row = document.querySelector("[data-id='" + staff_member.id + "']");
-  console.log(row);
   let newRow = createStaffMemberRow(staff_member);
   row.parentNode.replaceChild(newRow, row);
+
+  $('#confirmEnable').modal('hide')
+  $('#confirmDisable').modal('hide')
+
 }
 
 function billingInformationUpdatedHandler() {
@@ -404,7 +453,7 @@ function createStaffMemberRow(staff_member) {
 
   let span = document.createElement("span");
   span.classList = "button-text";
-  span.innerHTML = staff_member.is_enabled ? "Disable" : "Enable";
+  span.innerHTML = staff_member.is_enabled ? " Disable" : " Enable";
 
   button.appendChild(icon);
   button.appendChild(span);

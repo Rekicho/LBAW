@@ -43,15 +43,21 @@
             <div id="history" class="collapse show">
                 <h2><i class="fas fa-history"></i> Purchase history</h2>
                 <div id="accordion">
-                    @if($purchaseHistory != null)
+                    @if(count($purchaseHistory) != 0)
                     @each('partials.purchase', $purchaseHistory, 'purchase')
+                    @else
+                    No purchases found!
                     @endif
                 </div>
             </div>
             <div id="wishlist" class="collapse">
                 <h2><i class="fas fa-star"></i> Wish List</h2>
                 <ul>
+                    @if(count($wishlist) != 0)
                     @each('partials.productCard', $wishlist, 'product')
+                    @else
+                    No products found!
+                    @endif
             </ul>
         </div>
         <div id="edit" class="collapse">
@@ -98,12 +104,16 @@
                             <label for="email">Email address</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{$user->email}}" required/>
                         </div>
+
+                        <span class="message">
+                        </span>
+
                         <input type="hidden" name="user_id" id="user_id" class="form-control" value={{$user->id}} />
                         <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
                             Edit
                         </button>
                     </form>
-    
+                        <hr>
                     <form id="updatePassword">
                         <div class="form-group">
                             <label for="new_password">New password</label>
@@ -113,23 +123,14 @@
                             <label for="new_password_confirmation">Confirm New password</label>
                             <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Confirm New password" required/>
                         </div>
-
-                        @if ($errors->has('password'))
-                        <span class="error">
-                            {{ $errors->first('password') }}
-                        </span>
-                      @endif
                       
                         <div class="form-group">
                             <label for="old_password">Old password</label>
                             <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" required/>
                         </div>
 
-                        @if ($errors->has('password'))
-                        <span class="error">
-                            {{ $errors->first('password') }}
+                        <span class="message">
                         </span>
-                      @endif
 
                         <input type="hidden" name="user_id" class="form-control" value={{$user->id}} />
                    

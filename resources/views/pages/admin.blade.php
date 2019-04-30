@@ -67,16 +67,16 @@
           </div>
           <div class="modal-body">
             Are you sure?
+            <form id="confirmDisableForm">
+                <input type="hidden" name="id" class="id">
+                <input type="hidden" name="is_enabled" value="false">
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <form>
-              <input type="hidden" name="id" class="id">
-              <input type="hidden" name="is_enabled" value="false">
-            <button class="btn btn-secondary confirm" type="submit" class="btn btn-primary">Confirm</button>
-          </form>
+            <button class="btn btn-secondary confirm" type="submit" form="confirmDisableForm" class="btn btn-primary">Confirm</button>
           </div>
         </div>
       </div>
@@ -93,16 +93,16 @@
           </div>
           <div class="modal-body">
             Are you sure?
+            <form id="confirmEnableForm">
+                <input type="hidden" name="id">
+                <input type="hidden" name="is_enabled" value="true">
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <form>
-              <input type="hidden" name="id">
-              <input type="hidden" name="is_enabled" value="true">
-            <button class="btn btn-secondary confirm" type="submit" class="btn btn-primary">Confirm</button>
-          </form>
+            <button class="btn btn-secondary confirm" type="submit" form="confirmEnableForm" class="btn btn-primary">Confirm</button>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST">
+            <form method="POST" id="addStaffMemberForm">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>
@@ -133,17 +133,16 @@
                   </label>
                 </div>
               </div>
-
-              <button type="submit" class="btn btn-med btn-primary">
-                <i class="fas fa-plus-circle"></i> Add
-              </button>
             </form>
+            <span class='message'></span>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="submit" form="addStaffMemberForm" class="btn btn-med btn-primary">
+              Add
+            </button>
           </div>
         </div>
       </div>

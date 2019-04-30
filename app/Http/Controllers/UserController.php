@@ -26,6 +26,15 @@ class UserController extends Controller
 
         // $this->authorize('create', $user);
 
+        $validator = \Validator::make($request->all(), [
+            'username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:6'
+        ]);
+        
+              if ($validator->fails()) {
+                  return response()->json(['errors'=> $validator->errors()->all()]);
+              }
+
         $user->username = $request->input('username');
         $user->password = bcrypt($request->input('password'));
         $user->is_staff_member = true;
@@ -39,34 +48,48 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $is_enabled = $request->input('is_enabled');
-        $old_password = $request->input('old_password');
+
+        $type = $request->input('type');
+
+                // TODO: $this->authorize('update', $user);
+
+    if($type == 'updateEmail'){
         $email = $request->input('email');
-        // TODO: $this->authorize('update', $user);
 
-        if ($is_enabled != null) {
-            $user->is_enabled = $is_enabled === 'true' ? true : false;
-        } elseif ($email != null) {
-            $this->validate($request, [
-              'email' => 'required|string|email|max:255|unique:users',
-          ]);
+        $validator = \Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
 
-            $user->email = $email;
-        } else {
-            $validator = \Validator::make($request->all(), [
-          'password' => 'required|string|min:6|confirmed',
-      ]);
-      
-            if ($validator->fails()) {
-                return response()->json(['errors'=> $validator->errors()->all()]);
-            }
-
-            if (!Hash::check($old_password, $user->password)) {
-                return response()->json(['errors' => ['Old password doesn\'t match']]); // Status code here
-            }
-
-            $user->password = bcrypt($request->input('password'));
+        if ($validator->fails()) {
+            return response()->json(['errors'=> $validator->errors()->all()]);
         }
+
+        $user->email = $email;
+    }
+else if($type == 'updatePassword'){
+    $old_password = $request->input('old_password');
+
+    $validator = \Validator::make($request->all(), [
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+    
+          if ($validator->fails()) {
+              return response()->json(['errors'=> $validator->errors()->all()]);
+          }
+
+          if (!Hash::check($old_password, $user->password)) {
+              return response()->json(['errors' => ['Old password doesn\'t match']]); // Status code here
+          }
+
+          $user->password = bcrypt($request->input('password'));
+
+}
+else{
+    $is_enabled = $request->input('is_enabled');
+    $user->is_enabled = $is_enabled === 'true' ? true : false;
+
+}
+
 
         $user->save();
 

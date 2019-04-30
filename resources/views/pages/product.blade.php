@@ -72,7 +72,11 @@
     </div>
     <br style="clear:both">
     <div class="reviews bg-light">
+        @if(count($reviews) != 0)
         @each('partials.review', $reviews, 'review')
+        @else
+        <div style="text-align: center">No reviews found!</div>
+        @endif
     </div>
     	<!-- MODALS -->
 	<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

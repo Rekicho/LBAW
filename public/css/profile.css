@@ -185,6 +185,18 @@ h2 {
 /*
 	FORMS
 */
+
+.form-edit-profile span.error, .form-edit-billing span.error {
+	color: rgb(216, 104, 104);
+}
+
+.form-edit-profile span.success, .form-edit-billing span.success {
+	color: rgb(82, 206, 82);
+}
+
+form {
+	overflow: auto;
+}
 .form-edit-profile,
 .form-edit-billing {
 	padding: 10px;

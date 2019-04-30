@@ -36,7 +36,13 @@ form {
   padding-bottom: 1em;
 }
   
-  
+span.success {
+  color: green;
+}
+
+span.error {
+  color: red;
+}
   
 /* Navbar */
 
