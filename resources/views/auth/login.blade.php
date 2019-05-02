@@ -29,7 +29,7 @@
     @endif
     
     <div class="forgot">
-        <a href="#">
+        <a href="password/reset">
             Forgot password?
         </a>
     </div>
