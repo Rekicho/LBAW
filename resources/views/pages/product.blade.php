@@ -11,12 +11,6 @@
         <span class="product-title float-left">{{$product->prodname}}</span>
         <div class="float-right product-rating">
             <span class="n-ratings mr-1">{{$reviewsStats->numratings}}</span>
-            {{-- @for($i=0; $i<$reviewsStats->rating; $i++)
-                <i class="fas fa-star"></i>
-            @endfor
-            @for($i=0; $i< 5 - $reviewsStats->rating; $i++)
-                <i class="far fa-star"></i>
-            @endfor --}}
             @showRating($reviewsStats->rating)
         </div>
         <br style="clear:both">
@@ -31,12 +25,6 @@
             <span class="product-title float-left">{{$product->prodname}}</span>
             <div class="float-right product-rating">
                 <span class="n-ratings mr-1">{{$reviewsStats->numratings}}</span>
-                {{-- @for($i=0; $i<$reviewsStats->rating; $i++)
-                    <i class="fas fa-star"></i>
-                @endfor
-                @for($i=0; $i< 5 - $reviewsStats->rating; $i++)
-                <i class="far fa-star"></i>
-                @endfor --}}
 
                 @showRating($reviewsStats->rating)
 
@@ -47,13 +35,24 @@
     <p class="p-3 mb-0">{{$product->description}}</p>
         <div class="p-3">
             <button type="button" class="btn btn-secondary float-left">Review</button>
-            <button type="button" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+parseInt($('.product-quantity').val()));">
-                Add to cart
-            </button>
+
+            <form id="updateCart">
+                <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
+            @if($cart != null)
+                <input type="hidden" class="d-none    " name="id" value={{$cart->id}}>
+                <button type="submit" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))-parseInt($('.product-quantity').val()));">
+                    Remove from cart
+                </button>
+            @else
             <span class="price float-right">{{$product->price}}€</span>
             <label class="float-right quantity">
-                <input type="number" class="product-quantity" value="1"> x
+                <input type="number" name="quantity" class="product-quantity" value="1"> x
             </label>
+            <button type="submit" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+parseInt($('.product-quantity').val()));">
+                Add to cart
+                </button>
+            @endif
+        </form> 
             <form id="updateWishlist">
                 <br style="clear:both">
                 <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>

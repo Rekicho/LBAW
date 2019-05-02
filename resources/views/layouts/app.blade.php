@@ -68,7 +68,7 @@
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
 				@endif
 				<span class="cart fa-stack has-badge" data-count="4">
-					<a href="cart.html"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
+					<a href="cart"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
 				</span>
 			</div>
 		</nav>

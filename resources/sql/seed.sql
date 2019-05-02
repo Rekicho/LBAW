@@ -81,10 +81,10 @@ CREATE TABLE wishlists (
 );
 
 CREATE TABLE carts (
+    id SERIAL PRIMARY KEY,
     id_product INTEGER NOT NULL REFERENCES products (id),
     id_client INTEGER NOT NULL REFERENCES users (id),
-    quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
-    PRIMARY KEY (id_product, id_client)
+    quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0)
 );
 
 CREATE TABLE reviews (

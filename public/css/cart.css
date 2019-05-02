@@ -1,0 +1,54 @@
+.oldprice {
+	text-decoration: line-through;
+	font-weight: normal;
+}
+
+.br-mobile {
+	display: none;
+}
+
+.offline-pay, .paypal {
+	text-align: center;
+}
+
+.paypal-icon {
+	color: white;
+}
+
+.paypal .btn-primary {
+	background-color: rgb(22, 155, 215) !important;
+}
+
+@media only screen and (max-width: 991px) {
+	.total {
+		text-align: center;
+	}
+
+	.br-mobile {
+		display: inline;
+	}
+
+	.offline-pay,
+	.paypal {
+		padding-top: 10px;
+	}
+}
+
+.remove {
+	color: red;
+}
+
+.state {
+	text-align: right;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.checkout-btn {
+	float: right;
+	position: relative;
+	bottom: 20px;
+	right: 20px;
+}

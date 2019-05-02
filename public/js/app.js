@@ -41,6 +41,11 @@ function addEventListeners() {
     updateWishlist.addEventListener("submit", sendUpdateWishlistRequest);
   }
 
+  let updateCart = document.querySelector("form#updateCart");
+  if (updateCart != null) {
+    updateCart.addEventListener("submit", sendUpdateCartRequest);
+  }
+
   let updatePassword = document.querySelector("form#updatePassword");
   if (updatePassword != null)
     updatePassword.addEventListener("submit", sendUpdatePasswordRequest);
@@ -160,6 +165,32 @@ function sendUpdateWishlistRequest(event) {
   event.preventDefault();
 }
 
+function sendUpdateCartRequest(event) {
+  let id_product = this.querySelector("input[name=id_product]").value;
+  let id = this.querySelector("input[name=id]");
+  let quantity = this.querySelector("input[name=quantity]").value;
+
+  
+  if(id === null){
+    sendAjaxRequest(
+      "post",
+      "/api/cart/",
+      { id_product: id_product, quantity: quantity },
+      addedToCartHandler
+    );
+  }
+  else{
+    sendAjaxRequest(
+      "delete",
+      "/api/cart/" + id.value,
+      null,
+      removedFromCartHandler
+    );
+  }
+
+  event.preventDefault();
+}
+
 function removedFromWishListHandler(){
   console.log(this.status);
 
@@ -168,8 +199,16 @@ function removedFromWishListHandler(){
   let oldForm = document.querySelector('form#updateWishlist');
   let newForm = getAddToWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
+}
 
-  
+function removedFromCartHandler(){
+  console.log(this.status);
+
+  let cart = JSON.parse(this.responseText);
+
+  let oldForm = document.querySelector('form#updateCart');
+  let newForm = getAddToCartForm(cart);
+  oldForm.parentNode.replaceChild(newForm, oldForm);
 }
 
 function sendCreateStaffMemberRequest(event) {
@@ -329,6 +368,17 @@ function addedToWishlistHandler() {
 
 }
 
+function addedToCartHandler() {
+  console.log(this.status);
+
+  let cart = JSON.parse(this.responseText);
+
+  let oldForm = document.querySelector('form#updateCart');
+  let newForm = getRemoveFromCartForm(cart);
+  oldForm.parentNode.replaceChild(newForm, oldForm);
+}
+
+
 function getRemoveFromWishListForm(wishlist){
   let form = document.createElement('form');
   form.setAttribute('id' ,'updateWishlist');
@@ -341,6 +391,21 @@ function getRemoveFromWishListForm(wishlist){
       Remove from wishlist <i class="fas fa-bookmark"></i>
   </button>`
   form.addEventListener("submit", sendUpdateWishlistRequest);
+
+  return form;
+}
+
+function getRemoveFromCartForm(cart){
+  let form = document.createElement('form');
+  form.setAttribute('id' ,'updateCart');
+
+  form.innerHTML = `
+  <input type="hidden" class="d-none    " name="id_product" value=${cart.id_product}>
+  <input type="hidden" class="d-none    " name="id" value=${cart.id}>
+  <button type="submit" class="btn btn-primary float-right">
+      Remove from cart
+  </button>`
+  form.addEventListener("submit", sendUpdateCartRequest);
 
   return form;
 }
@@ -361,7 +426,20 @@ function getAddToWishListForm(wishlist){
   return form;
 }
 
+function getAddToCartForm(cart){
+  let form = document.createElement('form');
+  form.setAttribute('id' ,'updateCart');
 
+  form.innerHTML = `
+  <input type="hidden" class="d-none    " name="id_product" value=${cart.id_product}>
+  <button type="submit" class="btn btn-primary float-right">
+      Add to cart
+  </button>`
+
+  form.addEventListener("submit", sendUpdateCartRequest);
+
+  return form;
+}
 
 function staffMemberUpdatedHandler() {
   console.log(this.status);

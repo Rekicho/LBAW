@@ -30,6 +30,10 @@ Route::post('api/billingInfo/{id}', 'BillingInfoController@update');
 Route::post('api/wishlist', 'WishListController@create');
 Route::delete('api/wishlist/{id}', 'WishListController@delete');
 
+Route::post('api/cart', 'CartController@create');
+Route::post('api/cart/{id}', 'CartController@update');
+Route::delete('api/cart/{id}', 'CartController@delete');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 
@@ -39,6 +43,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // User area
 Route::get('profile', 'UserController@showProfile')->middleware('auth');
+Route::get('cart', 'CartController@show');
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
