@@ -68,7 +68,7 @@
           <a class="nav-link active" href="/back-office/admin">Administration</a>
         </li>
         <li class="nav-item mr-lg-2">
-          <a class="nav-link" href="moderator.html">
+          <a class="nav-link" href="/back-office/moderator">
             <span class="notification-container">
               Moderating
               <span class="badge badge-danger badge-counter rounded-lg">9</span>
@@ -77,7 +77,7 @@
           </a>
         </li>
         <li class="nav-item mr-lg-2">
-          <a class="nav-link" href="stock.html">
+          <a class="nav-link" href="/back-office/stock">
             <span class="notification-container">
               Stock
               <span class="badge badge-danger badge-counter rounded-lg d-none">0</span>
@@ -86,7 +86,7 @@
           </a>
         </li>
         <li class="nav-item mr-lg-2">
-          <a class="nav-link" href="accounting.html">
+          <a class="nav-link" href="/back-office/accounting">
             <span class="notification-container">
               Accounting
               <span class="badge badge-danger badge-counter rounded-lg">3</span>
@@ -97,7 +97,7 @@
       </ul>
       <ul class="navbar-nav user-options">
         <li class="nav-item">
-          <a class="nav-link" href="profile.html">{{$username}}</a>
+          <a class="nav-link" href="/back-office/profile">{{$username}}</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i></a>

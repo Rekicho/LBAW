@@ -49,13 +49,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="faq">FAQ</a>
+						<a class="nav-link" href="/faq">FAQ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="about">ABOUT</a>
+						<a class="nav-link" href="/about">ABOUT</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact">CONTACT</a>
+						<a class="nav-link" href="/contact">CONTACT</a>
 					</li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="search.html">
@@ -68,7 +68,7 @@
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
 				@endif
 				<span class="cart fa-stack has-badge" data-count="4">
-					<a href="cart.html"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
+					<a href="/cart"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
 				</span>
 			</div>
 		</nav>
