@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use App\Product;
+use App\Category;
 
 class HomePageController extends Controller
 {
@@ -16,7 +17,9 @@ class HomePageController extends Controller
 
         $topProducts =  Product::topProducts();
 
-        return view('pages.home', ['topProducts' => $topProducts]);
+        $footerCategories = Category::getFooterCategories();
+
+        return view('pages.home', ['topProducts' => $topProducts, 'categories' => $footerCategories]);
 
     }
 }

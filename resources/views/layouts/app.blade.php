@@ -49,13 +49,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="faq">FAQ</a>
+						<a class="nav-link" href="/faq">FAQ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="about">ABOUT</a>
+						<a class="nav-link" href="/about">ABOUT</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact">CONTACT</a>
+						<a class="nav-link" href="/contact">CONTACT</a>
 					</li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="search.html">
@@ -68,7 +68,7 @@
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
 				@endif
 				<span class="cart fa-stack has-badge" data-count="4">
-					<a href="cart.html"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
+					<a href="/cart"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
 				</span>
 			</div>
 		</nav>
@@ -86,34 +86,20 @@
 				<div class="col-md-3 mb-md-0 mb-3 footer-ul">
 					<h5 class="text-uppercase">Categories</h5>
 					<ul class="list-unstyled">
+						@for($i = 0; $i < 4; $i++)
 						<li>
-							<a href="category.html">Balls</a>
+							<a href="category/{{$categories[$i]->id}}">{{$categories[$i]->name}}</a>
 						</li>
-						<li>
-							<a href="category.html">Watches</a>
-						</li>
-						<li>
-							<a href="category.html">Beauty products</a>
-						</li>
-						<li>
-							<a href="category.html">Video Games</a>
-						</li>
+						@endfor
 					</ul>
 				</div>
 				<div class="col-md-3 mb-md-0 mb-3 position-relative">
 					<ul class="list-unstyled push-down footer-ul">
-						<li>
-							<a href="category.html">Board Games</a>
-						</li>
-						<li>
-							<a href="category.html">Unsold Curry merchandise</a>
-						</li>
-						<li>
-							<a href="category.html">Computers</a>
-						</li>
-						<li>
-							<a href="category.html">Mugs</a>
-						</li>
+							@for($i = 4; $i < 8; $i++)
+							<li>
+								<a href="category/{{$categories[$i]->id}}">{{$categories[$i]->name}}</a>
+							</li>
+							@endfor
 					</ul>
 				</div>
 			</div>

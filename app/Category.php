@@ -30,4 +30,11 @@ class Category extends Model
         ->union($noRatings)
         ->paginate(5);
     }
+
+    public static function getFooterCategories(){
+        return DB::table('categories')
+        ->select('id', 'name')
+        ->limit(8)
+        ->get();
+    }
 }

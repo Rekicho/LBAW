@@ -11,7 +11,8 @@ class CategoryController extends Controller
     public function show($id){
         $products = Category::getProductsFromCategory($id);
         $category = Category::find($id);
-        
-        return view('pages.category', ['category' => $category, 'products' => $products]);
+        $footerCategories = Category::getFooterCategories();
+
+        return view('pages.category', ['category' => $category, 'products' => $products, 'categories' => $footerCategories]);
     }
 }

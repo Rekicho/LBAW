@@ -12,6 +12,7 @@ use App\User;
 use App\BillingInformation;
 use App\WishList;
 use App\Purchase;
+use App\Category;
 
 class UserController extends Controller
 {
@@ -102,7 +103,8 @@ else{
         $wishlist = WishList::wishlist($user->id);
         $billingInfo = BillingInformation::billingInformation($user->id);
         $purchaseHistory = User::purchaseHistory($user->id);
+        $footerCategories = Category::getFooterCategories();
 
-        return view('pages.profile', ['user' => $user, 'wishlist'=> $wishlist, 'billingInfo' => $billingInfo, 'purchaseHistory' => $purchaseHistory]);
+        return view('pages.profile', ['user' => $user, 'wishlist'=> $wishlist, 'billingInfo' => $billingInfo, 'purchaseHistory' => $purchaseHistory, 'categories' => $footerCategories]);
     }
 }

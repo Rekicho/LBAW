@@ -6,18 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Category;
 
 class AboutController extends Controller
 {
     public function showAbout(){
-        return View::make('pages/about');
+        $footerCategories = Category::getFooterCategories();
+        return view('pages.about', ['categories' => $footerCategories]);
     }
 
     public function showFaq(){
-        return View::make('pages/faq');
+        $footerCategories = Category::getFooterCategories();
+        return view('pages.faq', ['categories' => $footerCategories]);
     }
 
     public function showContact(){
-        return View::make('pages/contact');
+        $footerCategories = Category::getFooterCategories();
+        return view('pages.contact', ['categories' => $footerCategories]);
     }
 }

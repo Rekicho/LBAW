@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Review;
 use App\WishList;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,9 @@ class ProductController extends Controller
 
       $wishlist = WishList::exists(Auth::user()->id, $id);
       
-      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist]);
+      $footerCategories = Category::getFooterCategories();
+
+      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'categories' => $footerCategories]);
     }
 
     /**
