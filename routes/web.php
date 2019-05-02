@@ -32,6 +32,7 @@ Route::delete('api/wishlist/{id}', 'WishListController@delete');
 
 // Products
 Route::get('product/{id}', 'ProductController@show');
+Route::get('category/{id}', 'CategoryController@show');
 
 // Authentication
 Auth::routes();
