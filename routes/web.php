@@ -34,14 +34,11 @@ Route::delete('api/wishlist/{id}', 'WishListController@delete');
 Route::get('product/{id}', 'ProductController@show');
 
 // Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
+Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
 
 // User area
-Route::get('profile', 'UserController@showProfile')->middleware('auth');;
+Route::get('profile', 'UserController@showProfile')->middleware('auth');
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
