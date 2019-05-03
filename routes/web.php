@@ -30,6 +30,9 @@ Route::post('api/billingInfo/{id}', 'BillingInfoController@update');
 Route::post('api/wishlist', 'WishListController@create');
 Route::delete('api/wishlist/{id}', 'WishListController@delete');
 
+Route::put('api/reviews', 'ReviewController@create');
+Route::post('api/reviews/{id}', 'ReviewController@update');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 
