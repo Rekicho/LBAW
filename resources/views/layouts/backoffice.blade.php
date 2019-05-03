@@ -30,6 +30,8 @@
   <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
   <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 
+  @yield('script')
+
   <script type="text/javascript" src={{ asset('js/app.js') }} defer>
 
   // TODO: move to a different file (mudar para javascipt?)
@@ -65,10 +67,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item mr-lg-3">
-          <a class="nav-link active" href="/back-office/admin">Administration</a>
+          <a class="nav-link {{ Request::is('back-office/admin') ? 'active' : '' }}" href="/back-office/admin">Administration</a>
         </li>
         <li class="nav-item mr-lg-2">
-          <a class="nav-link" href="/back-office/moderator">
+          <a class="nav-link {{ Request::is('back-office/moderator') ? 'active' : '' }}" href="/back-office/moderator">
             <span class="notification-container">
               Moderating
               <span class="badge badge-danger badge-counter rounded-lg">9</span>
@@ -77,7 +79,7 @@
           </a>
         </li>
         <li class="nav-item mr-lg-2">
-          <a class="nav-link" href="/back-office/stock">
+          <a class="nav-link {{ Request::is('back-office/stock') ? 'active' : '' }}" href="/back-office/stock">
             <span class="notification-container">
               Stock
               <span class="badge badge-danger badge-counter rounded-lg d-none">0</span>
@@ -86,7 +88,7 @@
           </a>
         </li>
         <li class="nav-item mr-lg-2">
-          <a class="nav-link" href="/back-office/accounting">
+          <a class="nav-link {{ Request::is('back-office/accounting') ? 'active' : '' }}" href="/back-office/accounting">
             <span class="notification-container">
               Accounting
               <span class="badge badge-danger badge-counter rounded-lg">3</span>

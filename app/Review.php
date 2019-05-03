@@ -17,4 +17,10 @@ class Review extends Model
     public static function getProductReviewsStats($id){
         return DB::table('reviews')->select(DB::raw('COUNT(id) as numRatings, AVG(rating) AS rating'))->where('id_product', $id)->first();
     }
+
+    public static function reviews(){
+        return Review::join('products', 'products.id', 'reviews.id_product')
+        ->join('users', 'users.id', 'reviews.id_client')
+        ->paginate(10);
+    }
 }
