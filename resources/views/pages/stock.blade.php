@@ -1,7 +1,7 @@
 @extends('layouts.backoffice')
 
 @section('script')
-    <script src="{{'assets/stock.js'}}"></script>
+    <script src="{{ asset('js/stock.js') }}"></script>
 @endsection
 
 @section('content')
@@ -243,7 +243,7 @@
                   <select class="form-control" id="sel-category" name="category" required>
                     <option hidden disabled selected value>-</option>
                     @foreach ($categories as $category)
-                    <option value="{{$category->name}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                   </select>
                 </label>
@@ -260,7 +260,7 @@
               <div class="form-group col-md-6">
                 <label>
                   Reference
-                  <input class="form-control" type="text" name="reference" placeholder="Reference" required />
+                  <input class="form-control" type="text" name="reference" placeholder="Reference" />
                 </label>
               </div>
             </div>
@@ -279,16 +279,16 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">€</div>
                     </div>
-                    <input class="form-control" type="number" name="price" placeholder="Price" required />
+                    <input class="form-control" type="number" name="price" placeholder="Price" step="0.01" required />
                   </div>
                 </label>
               </div>
             </div>
 
-            <img id="product-image" src="images.jpeg" class="img-fluid rounded mx-auto d-block" alt="product image" />
+            {{-- <img id="product-image" src="images.jpeg" class="img-fluid rounded mx-auto d-block" alt="product image" /> --}}
 
             <div class="custom-file mb-4">
-              <input type="file" class="custom-file-input" id="productImage" required />
+              <input type="file" class="custom-file-input" name="image" id="productImage" required />
               <label class="custom-file-label" for="productImage">Choose file</label>
             </div>
 

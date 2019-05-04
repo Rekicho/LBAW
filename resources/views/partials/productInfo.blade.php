@@ -1,5 +1,5 @@
 <tr>
-    <th scope="row"><a href="/product{{$product->id}}">{{$product->id}}</a></th>
+    <th scope="row"><a href="/product/{{$product->id}}">{{$product->id}}</a></th>
     <td>{{$product->stock}}</td>
     <td>{{$product->price}}</td>
     <td>

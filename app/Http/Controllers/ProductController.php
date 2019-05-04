@@ -39,10 +39,18 @@ class ProductController extends Controller
     {
       $product = new Product();
 
-      $this->authorize('create', $product);
+      //$this->authorize('create', $product);
 
-    //   $product->name = $request->input('name');
-    //   $product->user_id = Auth::user()->id;
+      // $request->file('image')->store('public/img');
+
+      $product->name = $request->input('name');
+      $product->description = "ya"; //($request->input('description');
+      $product->is_enabled = true;
+      $product->id_category = $request->input('category');
+      $product->price = $request->input('price');
+      $product->discount = 0;
+      $product->stock = $request->input('stock');
+
       $product->save();
 
       return $product;

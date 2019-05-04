@@ -48,6 +48,10 @@ function addEventListeners() {
   let updateEmail = document.querySelector("form#updateEmail");
   if (updateEmail != null)
     updateEmail.addEventListener("submit", sendUpdateEmailRequest);
+
+    let addProduct = document.querySelector("#addProduct form");
+    if (addProduct != null)
+      addProduct.addEventListener("submit", sendAddProductRequest);
 }
 
 function encodeForAjax(data) {
@@ -70,6 +74,32 @@ function sendAjaxRequest(method, url, data, handler) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.addEventListener("load", handler);
   request.send(encodeForAjax(data));
+}
+
+function sendAddProductRequest(event){
+  event.preventDefault();
+
+  let formData = new FormData(this);
+  console.log(this);
+  let data = {}
+  for (var [key, value] of formData.entries()) { 
+    data[key] = value;
+    console.log(key, value);
+  }
+
+  sendAjaxRequest(
+    "put",
+    "/api/products/",
+    data,
+    productAddedHandler
+  );
+}
+
+function productAddedHandler(){
+
+  let product = JSON.parse(this.responseText);
+
+  console.log(product);
 }
 
 function sendDeleteWishListRequest() {
