@@ -105,4 +105,11 @@ else{
 
         return view('pages.profile', ['user' => $user, 'wishlist'=> $wishlist, 'billingInfo' => $billingInfo, 'purchaseHistory' => $purchaseHistory]);
     }
+
+    public function showStaffProfile()
+    {
+        $username = Auth::user()->username;
+
+        return view('pages.staff_profile', ['username' => $username]);
+    }
 }
