@@ -43,3 +43,4 @@ Route::get('profile', 'UserController@showProfile')->middleware('auth');
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
 Route::get('back-office/moderator', 'BackOffice\ModeratorController@show');
+Route::get('back-office/stock', 'BackOffice\StockController@show');
