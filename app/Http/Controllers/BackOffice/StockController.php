@@ -18,10 +18,10 @@ class StockController extends Controller
 
     public function show()
     {
-        $username = Auth::user()->username;
+        $user = Auth::user();
         $products = Product::products();
         $categories = Category::categories();
 
-        return view('pages.stock', ['username' => $username, 'products' => $products, 'categories' => $categories]);
+        return view('pages.stock', ['user' => $user, 'products' => $products, 'categories' => $categories]);
     }
 }

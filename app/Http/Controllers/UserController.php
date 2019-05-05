@@ -31,9 +31,9 @@ class UserController extends Controller
             'password' => 'required|string|min:6'
         ]);
         
-              if ($validator->fails()) {
-                  return response()->json(['errors'=> $validator->errors()->all()]);
-              }
+        if ($validator->fails()) {
+            return response()->json(['errors'=> $validator->errors()->all()]);
+        }
 
         $user->username = $request->input('username');
         $user->password = bcrypt($request->input('password'));
@@ -51,44 +51,56 @@ class UserController extends Controller
 
         $type = $request->input('type');
 
-                // TODO: $this->authorize('update', $user);
+        // TODO: $this->authorize('update', $user);
 
-    if($type == 'updateEmail'){
-        $email = $request->input('email');
+        if ($type == 'updateEmail') {
+            $email = $request->input('email');
 
-        $validator = \Validator::make($request->all(), [
+            $validator = \Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors'=> $validator->errors()->all()]);
-        }
+            if ($validator->fails()) {
+                return response()->json(['errors'=> $validator->errors()->all()]);
+            }
 
-        $user->email = $email;
-    }
-else if($type == 'updatePassword'){
-    $old_password = $request->input('old_password');
+            $user->email = $email;
+        } elseif ($type == 'updatePassword') {
+            $old_password = $request->input('old_password');
 
-    $validator = \Validator::make($request->all(), [
+            $validator = \Validator::make($request->all(), [
         'password' => 'required|string|min:6|confirmed',
     ]);
     
-          if ($validator->fails()) {
-              return response()->json(['errors'=> $validator->errors()->all()]);
-          }
+            if ($validator->fails()) {
+                return response()->json(['errors'=> $validator->errors()->all()]);
+            }
 
-          if (!Hash::check($old_password, $user->password)) {
-              return response()->json(['errors' => ['Old password doesn\'t match']]); // Status code here
-          }
+            if (!Hash::check($old_password, $user->password)) {
+                return response()->json(['errors' => ['Old password doesn\'t match']]); // Status code here
+            }
 
-          $user->password = bcrypt($request->input('password'));
+            $user->password = bcrypt($request->input('password'));
+        } elseif ($type == "updateStaffPassword") {
+            $old_password = $request->input('old_password');
 
-}
-else{
-    $is_enabled = $request->input('is_enabled');
-    $user->is_enabled = $is_enabled === 'true' ? true : false;
+            $validator = \Validator::make($request->all(), [
+        'password' => 'required|string|min:6|',
+    ]);
+    
+            if ($validator->fails()) {
+                return response()->json(['errors'=> $validator->errors()->all()]);
+            }
 
-}
+            if (!Hash::check($old_password, $user->password)) {
+                return response()->json(['errors' => ['Old password doesn\'t match']]); // Status code here
+            }
+
+            $user->password = bcrypt($request->input('password'));
+        } else {
+            $is_enabled = $request->input('is_enabled');
+            $user->is_enabled = $is_enabled === 'true' ? true : false;
+        }
 
 
         $user->save();
@@ -108,8 +120,8 @@ else{
 
     public function showStaffProfile()
     {
-        $username = Auth::user()->username;
+        $user = Auth::user();
 
-        return view('pages.staff_profile', ['username' => $username]);
+        return view('pages.staff_profile', ['user' => $user]);
     }
 }

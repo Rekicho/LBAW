@@ -19,11 +19,11 @@ class ModeratorController extends Controller
 
     public function show()
     {
-        $username = Auth::user()->username;
+        $user = Auth::user();
         $clients = User::clients();
         $reports = Report::reports();
         $reviews = Review::reviews();
 
-        return view('pages.moderator', ['username' => $username, 'clients' => $clients, 'reviews' => $reviews]);
+        return view('pages.moderator', ['user' => $user, 'clients' => $clients, 'reviews' => $reviews]);
     }
 }
