@@ -128,7 +128,7 @@
   </div>
 
   <!-- Modals -->
-  <div class="modal fade" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="confirmDisableLabel"
+  <div class="modal fade confirmDisableUser" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="confirmDisableLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -139,20 +139,30 @@
           </button>
         </div>
         <div class="modal-body">
-          Are you sure?
+          <form id="confirmDisableForm">
+              <div class="form-group">
+                  <label for="reason">Reason </label>
+                  <textarea id="reason" rows="3" cols="30" name="reason"></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="end_t">End date </label>
+                  <input type="date" id="end_t" name="end_t">
+              </div>
+              <input type="hidden" name="id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmDisableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="modal fade" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="confirmEnableLabel"
+  <div class="modal fade confirmEnableUser" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="confirmEnableLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -164,12 +174,16 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="confirmEnableForm">
+              <input type="hidden" name="id">
+              <input type="hidden" name="is_enabled" value="true">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmEnableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>

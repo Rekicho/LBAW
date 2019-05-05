@@ -1,9 +1,7 @@
 $(document).on("click", ".updateMember", function() {
-  var staffMemberId = $(this).data("id");
-  $(".modal-body [name=id]").val(staffMemberId);
-  // As pointed out in comments,
-  // it is unnecessary to have to manually call the modal.
-  // $('#addBookDialog').modal('show');
+  var userId = $(this).data("id");
+  console.log(userId)
+  $(".modal-body [name=id]").val(userId);
 });
 
 function addEventListeners() {
@@ -18,11 +16,11 @@ function addEventListeners() {
   if (addStaffMember != null)
     addStaffMember.addEventListener("submit", sendCreateStaffMemberRequest);
 
-  let disableStaffMember = document.querySelector("#confirmDisable form");
+  let disableStaffMember = document.querySelector(".confirmDisable form");
   if (disableStaffMember != null)
     disableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
-  let enableStaffMember = document.querySelector("#confirmEnable form");
+  let enableStaffMember = document.querySelector(".confirmEnable form");
   if (enableStaffMember != null)
     enableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
@@ -48,6 +46,14 @@ function addEventListeners() {
   let updateEmail = document.querySelector("form#updateEmail");
   if (updateEmail != null)
     updateEmail.addEventListener("submit", sendUpdateEmailRequest);
+
+  let disableUser = document.querySelector(".confirmDisableUser form");
+  if (disableUser != null)
+    disableUser.addEventListener("submit", sendDisableUserRequest);
+
+  let enableUser = document.querySelector(".confirmEnableUser form");
+  if (enableUser != null)
+    enableUser.addEventListener("submit", sendEnableUserRequest);
 }
 
 function encodeForAjax(data) {
@@ -139,16 +145,14 @@ function sendUpdateWishlistRequest(event) {
   let id_product = this.querySelector("input[name=id_product]").value;
   let id = this.querySelector("input[name=id]");
 
-  
-  if(id === null){
+  if (id === null) {
     sendAjaxRequest(
       "post",
       "/api/wishlist/",
       { id_product: id_product },
       addedToWishlistHandler
     );
-  }
-  else{
+  } else {
     sendAjaxRequest(
       "delete",
       "/api/wishlist/" + id.value,
@@ -160,16 +164,14 @@ function sendUpdateWishlistRequest(event) {
   event.preventDefault();
 }
 
-function removedFromWishListHandler(){
+function removedFromWishListHandler() {
   console.log(this.status);
 
   let wishlist = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateWishlist');
+  let oldForm = document.querySelector("form#updateWishlist");
   let newForm = getAddToWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-
-  
 }
 
 function sendCreateStaffMemberRequest(event) {
@@ -199,6 +201,47 @@ function sendUpdateStaffMemberRequest(event) {
   );
 
   event.preventDefault();
+}
+
+function sendEnableUserRequest(event) {
+  let id = this.querySelector("input[name=id]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/users/" + id,
+    { type: "updateUser"},
+    userUpdatedHandler
+  );
+
+  event.preventDefault();
+}
+
+function sendDisableUserRequest(event) {
+  event.preventDefault();
+
+  let id_client = this.querySelector("input[name=id]").value;
+  let end_t = this.querySelector("input[name=end_t]").value;
+  let reason = this.querySelector("textarea[name=reason]").value;
+
+  console.log({ id_client: id_client, end_t: end_t, reason: reason})
+
+  sendAjaxRequest(
+    "post",
+    "/api/bans/",
+    { id_client: id_client, end_t: end_t, reason: reason},
+    userUpdatedHandler
+  );
+}
+
+function userUpdatedHandler(){
+  let user = JSON.parse(this.responseText);
+
+  let row = document.querySelector("[data-id='" + user.id + "']");
+  let newRow = createUserRow(staff_member);
+  row.parentNode.replaceChild(newRow, row);
+
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
 }
 
 function sendUpdateBillingInformationRequest(event) {
@@ -256,8 +299,7 @@ function updatedPasswordHandler() {
       newError.innerHTML = response["errors"][0];
 
       form.appendChild(newError);
-    }
-    else{
+    } else {
       span.classList.add("error");
       span.classList.remove("success");
       span.innerHTML = response["errors"][0];
@@ -273,20 +315,20 @@ function staffMemberAddedHandler() {
   console.log(this.status);
   let response = JSON.parse(this.responseText);
 
-  let message = document.querySelector('#addMember .modal-body .message');
+  let message = document.querySelector("#addMember .modal-body .message");
 
-  if(response['errors']!=null){
-    message.classList.add('error');
-    message.classList.remove('success');
-    message.innerHTML = response['errors'][0];
+  if (response["errors"] != null) {
+    message.classList.add("error");
+    message.classList.remove("success");
+    message.innerHTML = response["errors"][0];
     return;
   }
-  message.classList.add('success');
-  message.classList.remove('error');
+  message.classList.add("success");
+  message.classList.remove("error");
   let feedbackMsg = "Staff member added with success";
   message.innerHTML = feedbackMsg;
 
-  let newRow = createStaffMemberRow(response);
+  let newRow = createUserRow(response);
   let table = document.getElementById("staffMemberTable");
   table.appendChild(newRow);
 }
@@ -307,8 +349,7 @@ function updatedEmailHandler() {
       newError.innerHTML = response["errors"][0];
 
       form.appendChild(newError);
-    }
-    else{
+    } else {
       span.innerHTML = response["errors"][0];
     }
   } else if (span != null) {
@@ -323,57 +364,57 @@ function addedToWishlistHandler() {
 
   let wishlist = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateWishlist');
+  let oldForm = document.querySelector("form#updateWishlist");
   let newForm = getRemoveFromWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-
 }
 
-function getRemoveFromWishListForm(wishlist){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateWishlist');
+function getRemoveFromWishListForm(wishlist) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
   <br style="clear:both">
-  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    wishlist.id_product
+  }>
   <input type="hidden" class="d-none    " name="id" value=${wishlist.id}>
   <button type="submit" class="btn btn-primary float-right">
       Remove from wishlist <i class="fas fa-bookmark"></i>
-  </button>`
+  </button>`;
   form.addEventListener("submit", sendUpdateWishlistRequest);
 
   return form;
 }
 
-function getAddToWishListForm(wishlist){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateWishlist');
+function getAddToWishListForm(wishlist) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
   <br style="clear:both">
-  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    wishlist.id_product
+  }>
   <button type="submit" class="btn btn-primary float-right">
       Add to wishlist <i class="fas fa-bookmark"></i>
-  </button>`
+  </button>`;
 
   form.addEventListener("submit", sendUpdateWishlistRequest);
 
   return form;
 }
-
-
 
 function staffMemberUpdatedHandler() {
   console.log(this.status);
 
   let staff_member = JSON.parse(this.responseText);
   let row = document.querySelector("[data-id='" + staff_member.id + "']");
-  let newRow = createStaffMemberRow(staff_member);
+  let newRow = createUserRow(staff_member);
   row.parentNode.replaceChild(newRow, row);
 
-  $('#confirmEnable').modal('hide')
-  $('#confirmDisable').modal('hide')
-
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
 }
 
 function billingInformationUpdatedHandler() {
@@ -429,37 +470,37 @@ Edit
 </button>`;
 }
 
-function createStaffMemberRow(staff_member) {
-  let new_staff_member = document.createElement("tr");
-  new_staff_member.setAttribute("data-id", staff_member.id);
+function createUserRow(user) {
+  let new_user = document.createElement("tr");
+  new_user.setAttribute("data-id", user.id);
 
-  let is_enabled = staff_member.is_enabled ? "Enabled" : "Disabled";
+  let is_enabled = user.is_enabled ? "Enabled" : "Disabled";
 
   let button = document.createElement("button");
   button.setAttribute("type", "button");
   button.classList = "btn btn-sm updateMember ";
-  button.classList += staff_member.is_enabled ? "btn-danger" : "btn-success";
-  button.setAttribute("data-id", staff_member.id);
+  button.classList += user.is_enabled ? "btn-danger" : "btn-success";
+  button.setAttribute("data-id", user.id);
   button.setAttribute("data-toggle", "modal");
 
-  if (staff_member.is_enabled)
+  if (user.is_enabled)
     button.setAttribute("data-target", "#confirmDisable");
   else button.setAttribute("data-target", "#confirmEnable");
 
   let icon = document.createElement("i");
-  icon.classList = staff_member.is_enabled
+  icon.classList = user.is_enabled
     ? "fas fa-minus-circle"
     : "fas fa-plus-circle";
 
   let span = document.createElement("span");
   span.classList = "button-text";
-  span.innerHTML = staff_member.is_enabled ? " Disable" : " Enable";
+  span.innerHTML = user.is_enabled ? " Disable" : " Enable";
 
   button.appendChild(icon);
   button.appendChild(span);
   let header = document.createElement("th");
   header.setAttribute("scope", "row");
-  header.innerHTML = staff_member.username;
+  header.innerHTML = user.username;
 
   let enabled = document.createElement("td");
   enabled.innerHTML = is_enabled;
@@ -467,11 +508,11 @@ function createStaffMemberRow(staff_member) {
   let newCell = document.createElement("td");
   newCell.appendChild(button);
 
-  new_staff_member.appendChild(header);
-  new_staff_member.appendChild(enabled);
-  new_staff_member.appendChild(newCell);
+  new_user.appendChild(header);
+  new_user.appendChild(enabled);
+  new_user.appendChild(newCell);
 
-  return new_staff_member;
+  return new_user;
 }
 
 addEventListeners();
