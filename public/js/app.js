@@ -62,6 +62,14 @@ function addEventListeners() {
   let updateStock = document.querySelector("form#updateStockForm");
   if (updateStock != null)
   updateStock.addEventListener("submit", sendUpdateStockRequest);
+
+  let disableProduct = document.querySelector("form#confirmDisableForm");
+  if (disableProduct != null)
+    disableProduct.addEventListener("submit", sendUpdateProductRequest);
+
+  let enableProduct = document.querySelector("form#confirmEnableForm");
+  if (enableProduct != null)
+    enableProduct.addEventListener("submit", sendUpdateProductRequest);
 }
 
 function encodeForAjax(data) {
@@ -251,6 +259,20 @@ function sendUpdateStaffMemberRequest(event) {
   event.preventDefault();
 }
 
+function sendUpdateProductRequest(event) {
+  let id = this.querySelector("input[name=id]").value;
+  let is_enabled = this.querySelector("input[name=is_enabled]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/products/" + id,
+    { type: "updateProduct", is_enabled: is_enabled },
+    productUpdatedHandler
+  );
+
+  event.preventDefault();
+}
+
 function sendUpdateBillingInformationRequest(event) {
   event.preventDefault();
 
@@ -432,6 +454,19 @@ function staffMemberUpdatedHandler() {
   $("#confirmDisable").modal("hide");
 }
 
+function productUpdatedHandler() {
+  console.log(this.status);
+
+  let product = JSON.parse(this.responseText);
+  let row = document.querySelector("[data-id='" + product.id + "']");
+  let newRow = createProductRow(product);
+  row.parentNode.replaceChild(newRow, row);
+
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
+}
+
+
 function billingInformationUpdatedHandler() {
   console.log(this.status);
   let billingInfo = JSON.parse(this.responseText);
@@ -528,6 +563,95 @@ function createStaffMemberRow(staff_member) {
   new_staff_member.appendChild(newCell);
 
   return new_staff_member;
+}
+
+function createProductRow(product) {
+  let new_product = document.createElement("tr");
+  new_product.setAttribute("data-id", product.id);
+
+  let is_enabled = product.is_enabled ? "Enabled" : "Disabled";
+
+  let button = document.createElement("button");
+  button.setAttribute("type", "button");
+  button.classList = "btn btn-sm updateProduct ";
+  button.classList += product.is_enabled ? "btn-danger" : "btn-success";
+  button.setAttribute("data-id", product.id);
+  button.setAttribute("data-toggle", "modal");
+
+  if (product.is_enabled)
+    button.setAttribute("data-target", "#confirmDisable");
+  else button.setAttribute("data-target", "#confirmEnable");
+
+  let icon = document.createElement("i");
+  icon.classList = product.is_enabled
+    ? "fas fa-minus-circle"
+    : "fas fa-plus-circle";
+
+  let span = document.createElement("span");
+  span.classList = "button-text";
+  span.innerHTML = product.is_enabled ? " Disable" : " Enable";
+
+  button.appendChild(icon);
+  button.appendChild(span);
+
+  let stockButton = document.createElement("button");
+  stockButton.setAttribute("type", "submit");
+  stockButton.classList = "btn btn-primary btn-sm updateProduct ";
+  stockButton.setAttribute("data-id", product.id);
+  stockButton.setAttribute("data-toggle", "modal");
+  stockButton.setAttribute("data-target", "#updateStockModal");
+
+  let stockIcon = document.createElement("i");
+  stockIcon.classList = "fas fa-wrench";
+
+  let stockSpan = document.createElement("span");
+  stockSpan.classList = "button-text";
+  stockSpan.innerHTML = "Update stock";
+
+  stockButton.appendChild(stockIcon);
+  stockButton.appendChild(stockSpan);
+
+  let priceButton = document.createElement("button");
+  priceButton.setAttribute("type", "submit");
+  priceButton.classList = "btn btn-primary btn-sm updateProduct ";
+  priceButton.setAttribute("data-id", product.id);
+  priceButton.setAttribute("data-toggle", "modal");
+  priceButton.setAttribute("data-target", "#updatePriceModal");
+
+  let priceIcon = document.createElement("i");
+  priceIcon.classList = "fas fa-euro-sign";
+
+  let priceSpan = document.createElement("span");
+  priceSpan.classList = "button-text";
+  priceSpan.innerHTML = "Update price";
+
+  priceButton.appendChild(priceIcon);
+  priceButton.appendChild(priceSpan);
+
+  let header = document.createElement("th");
+  header.setAttribute("scope", "row");
+  header.innerHTML = `<a href="/product/${product.id}">${product.id}</a>`
+
+  let stock = document.createElement("td");
+  stock.innerHTML = product.stock;
+  let price = document.createElement("td");
+  price.innerHTML = product.price;
+
+  let enabled = document.createElement("td");
+  enabled.innerHTML = is_enabled;
+
+  let newCell = document.createElement("td");
+  newCell.appendChild(button);
+  newCell.appendChild(stockButton);
+  newCell.appendChild(priceButton);
+
+  new_product.appendChild(header);
+  new_product.appendChild(stock);
+  new_product.appendChild(price);
+  new_product.appendChild(enabled);
+  new_product.appendChild(newCell);
+
+  return new_product;
 }
 
 addEventListeners();

@@ -68,7 +68,8 @@ class ProductController extends Controller
         $product->price = $request->input('price');
       }
       else{
-
+        $is_enabled = $request->input('is_enabled');
+        $product->is_enabled = $is_enabled === 'true' ? true : false;
       }
 
 

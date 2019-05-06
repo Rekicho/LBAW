@@ -131,12 +131,16 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="confirmDisableForm">
+            <input type="hidden" name="id" class="id">
+            <input type="hidden" name="is_enabled" value="false">
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmDisableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
@@ -154,12 +158,16 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="confirmEnableForm">
+            <input type="hidden" name="id" class="id">
+            <input type="hidden" name="is_enabled" value="true">
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmEnableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
