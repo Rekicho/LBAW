@@ -55,4 +55,25 @@ class ProductController extends Controller
 
       return $product;
     }
+
+    public function update(Request $request, $id){
+      $product = Product::find($id);
+
+      $type = $request->input('type');
+
+      if($type === "stock"){
+        $product->stock = $request->input('stock');
+      }
+      else if($type === "price"){
+        $product->price = $request->input('price');
+      }
+      else{
+
+      }
+
+
+      $product->save();
+
+      return $product;
+    }
 }

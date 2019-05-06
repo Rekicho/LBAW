@@ -1,9 +1,11 @@
 $(document).on("click", ".updateMember", function() {
   var staffMemberId = $(this).data("id");
   $(".modal-body [name=id]").val(staffMemberId);
-  // As pointed out in comments,
-  // it is unnecessary to have to manually call the modal.
-  // $('#addBookDialog').modal('show');
+});
+
+$(document).on("click", ".updateProduct", function() {
+  var productId = $(this).data("id");
+  $(".modal-body [name=id]").val(productId);
 });
 
 function addEventListeners() {
@@ -49,9 +51,17 @@ function addEventListeners() {
   if (updateEmail != null)
     updateEmail.addEventListener("submit", sendUpdateEmailRequest);
 
-    let addProduct = document.querySelector("#addProduct form");
-    if (addProduct != null)
-      addProduct.addEventListener("submit", sendAddProductRequest);
+  let addProduct = document.querySelector("#addProduct form");
+  if (addProduct != null)
+    addProduct.addEventListener("submit", sendAddProductRequest);
+
+  let updatePrice = document.querySelector("form#updatePriceForm");
+  if (updatePrice != null)
+  updatePrice.addEventListener("submit", sendUpdatePriceRequest);
+
+  let updateStock = document.querySelector("form#updateStockForm");
+  if (updateStock != null)
+  updateStock.addEventListener("submit", sendUpdateStockRequest);
 }
 
 function encodeForAjax(data) {
@@ -76,27 +86,41 @@ function sendAjaxRequest(method, url, data, handler) {
   request.send(encodeForAjax(data));
 }
 
-function sendAddProductRequest(event){
+function sendAddProductRequest(event) {
   event.preventDefault();
 
   let formData = new FormData(this);
   console.log(this);
-  let data = {}
-  for (var [key, value] of formData.entries()) { 
+  let data = {};
+  for (var [key, value] of formData.entries()) {
     data[key] = value;
     console.log(key, value);
   }
 
-  sendAjaxRequest(
-    "put",
-    "/api/products/",
-    data,
-    productAddedHandler
-  );
+  sendAjaxRequest("put", "/api/products/", data, productAddedHandler);
 }
 
-function productAddedHandler(){
+function sendUpdatePriceRequest(event){
+  event.preventDefault();
 
+  let id = this.querySelector("input[name=id]").value;
+  console.log(id);
+  let price = this.querySelector("input[name=price]").value; 
+
+  sendAjaxRequest("post", "/api/products/" + id, {type: "price", price: price}, priceUpdatedHandler);
+}
+
+function sendUpdateStockRequest(event){
+  event.preventDefault();
+
+  let id = this.querySelector("input[name=id]").value;
+  console.log(id);
+  let stock = this.querySelector("input[name=stock]").value; 
+
+  sendAjaxRequest("post", "/api/products/" + id, {type: "stock", stock: stock}, stockUpdatedHandler);
+}
+
+function productAddedHandler() {
   let product = JSON.parse(this.responseText);
 
   console.log(product);
@@ -169,16 +193,14 @@ function sendUpdateWishlistRequest(event) {
   let id_product = this.querySelector("input[name=id_product]").value;
   let id = this.querySelector("input[name=id]");
 
-  
-  if(id === null){
+  if (id === null) {
     sendAjaxRequest(
       "post",
       "/api/wishlist/",
       { id_product: id_product },
       addedToWishlistHandler
     );
-  }
-  else{
+  } else {
     sendAjaxRequest(
       "delete",
       "/api/wishlist/" + id.value,
@@ -190,16 +212,14 @@ function sendUpdateWishlistRequest(event) {
   event.preventDefault();
 }
 
-function removedFromWishListHandler(){
+function removedFromWishListHandler() {
   console.log(this.status);
 
   let wishlist = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateWishlist');
+  let oldForm = document.querySelector("form#updateWishlist");
   let newForm = getAddToWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-
-  
 }
 
 function sendCreateStaffMemberRequest(event) {
@@ -286,8 +306,7 @@ function updatedPasswordHandler() {
       newError.innerHTML = response["errors"][0];
 
       form.appendChild(newError);
-    }
-    else{
+    } else {
       span.classList.add("error");
       span.classList.remove("success");
       span.innerHTML = response["errors"][0];
@@ -303,16 +322,16 @@ function staffMemberAddedHandler() {
   console.log(this.status);
   let response = JSON.parse(this.responseText);
 
-  let message = document.querySelector('#addMember .modal-body .message');
+  let message = document.querySelector("#addMember .modal-body .message");
 
-  if(response['errors']!=null){
-    message.classList.add('error');
-    message.classList.remove('success');
-    message.innerHTML = response['errors'][0];
+  if (response["errors"] != null) {
+    message.classList.add("error");
+    message.classList.remove("success");
+    message.innerHTML = response["errors"][0];
     return;
   }
-  message.classList.add('success');
-  message.classList.remove('error');
+  message.classList.add("success");
+  message.classList.remove("error");
   let feedbackMsg = "Staff member added with success";
   message.innerHTML = feedbackMsg;
 
@@ -337,8 +356,7 @@ function updatedEmailHandler() {
       newError.innerHTML = response["errors"][0];
 
       form.appendChild(newError);
-    }
-    else{
+    } else {
       span.innerHTML = response["errors"][0];
     }
   } else if (span != null) {
@@ -353,45 +371,54 @@ function addedToWishlistHandler() {
 
   let wishlist = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateWishlist');
+  let oldForm = document.querySelector("form#updateWishlist");
   let newForm = getRemoveFromWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-
 }
 
-function getRemoveFromWishListForm(wishlist){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateWishlist');
+function getRemoveFromWishListForm(wishlist) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
   <br style="clear:both">
-  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    wishlist.id_product
+  }>
   <input type="hidden" class="d-none    " name="id" value=${wishlist.id}>
   <button type="submit" class="btn btn-primary float-right">
       Remove from wishlist <i class="fas fa-bookmark"></i>
-  </button>`
+  </button>`;
   form.addEventListener("submit", sendUpdateWishlistRequest);
 
   return form;
 }
 
-function getAddToWishListForm(wishlist){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateWishlist');
+function getAddToWishListForm(wishlist) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
   <br style="clear:both">
-  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    wishlist.id_product
+  }>
   <button type="submit" class="btn btn-primary float-right">
       Add to wishlist <i class="fas fa-bookmark"></i>
-  </button>`
+  </button>`;
 
   form.addEventListener("submit", sendUpdateWishlistRequest);
 
   return form;
 }
 
+function stockUpdatedHandler(){
 
+}
+
+function priceUpdatedHandler(){
+
+}
 
 function staffMemberUpdatedHandler() {
   console.log(this.status);
@@ -401,9 +428,8 @@ function staffMemberUpdatedHandler() {
   let newRow = createStaffMemberRow(staff_member);
   row.parentNode.replaceChild(newRow, row);
 
-  $('#confirmEnable').modal('hide')
-  $('#confirmDisable').modal('hide')
-
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
 }
 
 function billingInformationUpdatedHandler() {

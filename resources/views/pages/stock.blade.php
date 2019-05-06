@@ -176,20 +176,21 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="updateStockForm">
             <div class="form-group">
               <label>
                 Stock
                 <input class="form-control" type="number" name="stock" placeholder="Stock" />
               </label>
             </div>
+            <input type="hidden" name="id"/>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="updateStockForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
@@ -206,20 +207,21 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="updatePriceForm">
             <div class="form-group">
               <label>
                 New price
                 <input class="form-control" type="Number" name="price" placeholder="Price" />
               </label>
             </div>
+            <input type="hidden" name="id"/>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="updatePriceForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>

@@ -31,6 +31,7 @@ Route::post('api/wishlist', 'WishListController@create');
 Route::delete('api/wishlist/{id}', 'WishListController@delete');
 
 Route::put('api/products', 'ProductController@create');
+Route::post('api/products/{id}', 'ProductController@update');
 
 // Products
 Route::get('product/{id}', 'ProductController@show');

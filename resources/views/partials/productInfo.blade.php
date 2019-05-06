@@ -10,16 +10,24 @@
         @endif
     </td>
     <td>
-      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDisable">
-        <i class="fas fa-minus-circle"></i>
-        <span class="button-text">Disable</span>
+        @if($product->is_enabled)
+    <button type="button" class="btn btn-danger btn-sm updateProduct" data-id={{$product->id}} data-toggle="modal" data-target="#confirmDisable">
+            <i class="fas fa-minus-circle"></i>
+            <span class="button-text">Disable</span>
+          </button>
+    @else
+    <button type="button" class="btn btn-success btn-sm updateProduct"  data-id={{$product->id}} data-toggle="modal" data-target="#confirmEnable">
+        <i class="fas fa-plus-circle"></i>
+        <span class="button-text">Enable</span>
       </button>
-      <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal"
+    @endif
+
+      <button type="submit" class="btn btn-primary btn-sm updateProduct"  data-id={{$product->id}} data-toggle="modal"
         data-target="#updateStockModal">
         <i class="fas fa-wrench"></i>
         <span class="button-text">Update stock</span>
       </button>
-      <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal"
+      <button type="submit" class="btn btn-primary btn-sm updateProduct"  data-id={{$product->id}} data-toggle="modal"
         data-target="#updatePriceModal">
         <i class="fas fa-euro-sign"></i>
         <span class="button-text">Update price</span>
