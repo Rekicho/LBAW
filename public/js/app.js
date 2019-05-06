@@ -70,6 +70,10 @@ function addEventListeners() {
   let enableProduct = document.querySelector("form#confirmEnableForm");
   if (enableProduct != null)
     enableProduct.addEventListener("submit", sendUpdateProductRequest);
+
+    let addCategory = document.querySelector("#addCategory form");
+    if (addCategory != null)
+      addCategory.addEventListener("submit", sendAddCategoryRequest);
 }
 
 function encodeForAjax(data) {
@@ -108,6 +112,14 @@ function sendAddProductRequest(event) {
   sendAjaxRequest("put", "/api/products/", data, productAddedHandler);
 }
 
+function sendAddCategoryRequest(event) {
+  event.preventDefault();
+
+  let name = this.querySelector("input[name=name]").value;
+
+  sendAjaxRequest("put", "/api/categories/", {name: name}, categoryAddedHandler);
+}
+
 function sendUpdatePriceRequest(event){
   event.preventDefault();
 
@@ -132,6 +144,12 @@ function productAddedHandler() {
   let product = JSON.parse(this.responseText);
 
   console.log(product);
+}
+
+function categoryAddedHandler() {
+  let category = JSON.parse(this.responseText);
+
+  console.log(category);
 }
 
 function sendDeleteWishListRequest() {

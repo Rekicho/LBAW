@@ -33,6 +33,8 @@ Route::delete('api/wishlist/{id}', 'WishListController@delete');
 Route::put('api/products', 'ProductController@create');
 Route::post('api/products/{id}', 'ProductController@update');
 
+Route::put('api/categories', 'CategoryController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 
