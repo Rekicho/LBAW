@@ -85,6 +85,9 @@
                 <th scope="col">
                   <a href="#">Products <i class="fas fa-sort"></i></a>
                 </th>
+                <th scope="col">
+                  <a href="#">Actions <i class="fas fa-sort"></i></a>
+                </th>
               </tr>
             </thead>
             <tbody id="categoriesTable">
@@ -92,6 +95,12 @@
                     <tr>
                         <th scope="row"><a href="/category/{{$category->id}}">{{$category->name}}</a></th>
                         <td>{{$category->num_products}}</td>
+                        <td>
+                          <button type="button" class="btn btn-primary btn-sm updateCategory" data-id={{$category->id}} data-toggle="modal" data-target="#addDiscountModal">
+                            <i class="fas fa-tags"></i>
+                            <span class="button-text">Add discount</span>
+                          </button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -234,6 +243,45 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="addDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addDiscountLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDiscountModal">Add discount</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="addDiscountForm">
+          <div class="form-group">
+            <label>
+              Discount
+              <input class="form-control" type="Number" name="value" placeholder="Value" />
+            </label>
+            <label>
+              Start date
+              <input class="form-control" type="date" name="start" placeholder="Start" />
+            </label>
+            <label>
+              End date
+              <input class="form-control" type="date" name="end" placeholder="End" />
+            </label>
+          </div>
+          <input type="hidden" name="id"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" form="addDiscountForm" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
     aria-hidden="true">

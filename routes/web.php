@@ -35,6 +35,8 @@ Route::post('api/products/{id}', 'ProductController@update');
 
 Route::put('api/categories', 'CategoryController@create');
 
+Route::put('api/discounts', 'DiscountController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 

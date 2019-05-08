@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS purchase CASCADE;
 DROP TABLE IF EXISTS purchased_product CASCADE;
 DROP TABLE IF EXISTS purchase_log CASCADE;
 DROP TABLE IF EXISTS ban CASCADE;
-DROP TABLE IF EXISTS discount CASCADE;
+DROP TABLE IF EXISTS discounts CASCADE;
 
 DROP TYPE IF EXISTS state_purchase;
 
@@ -32,8 +32,18 @@ DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
 DROP TRIGGER IF EXISTS user_review ON reviews;
 DROP TRIGGER IF EXISTS product_search ON products;
 DROP TRIGGER IF EXISTS add_initial_state ON purchase;
-DROP TRIGGER IF EXISTS ensure_discount ON discount;
+DROP TRIGGER IF EXISTS ensure_discount ON discounts;
 DROP TRIGGER IF EXISTS update_user_status ON ban;
+
+DROP INDEX IF EXISTS product_id_category;
+DROP INDEX IF EXISTS username_user;
+DROP INDEX IF EXISTS email_user;
+DROP INDEX IF EXISTS billing_information_id_client;
+DROP INDEX IF EXISTS product_price;
+DROP INDEX IF EXISTS product_discount;
+DROP INDEX IF EXISTS start_discount;
+DROP INDEX IF EXISTS end_discount;
+
 
 
 -----------------------------------------
@@ -157,7 +167,7 @@ CREATE TABLE ban (
     reason TEXT NOT NULL
 );
 
-CREATE TABLE discount (
+CREATE TABLE discounts (
     id SERIAL PRIMARY KEY,
     id_category INTEGER REFERENCES categories (id),
     value INTEGER NOT NULL,
@@ -185,9 +195,9 @@ CREATE TABLE discount (
 
  CREATE INDEX product_discount ON products USING btree (discount); 
 
- CREATE INDEX start_discount ON discount USING btree (start_t); 
+ CREATE INDEX start_discount ON discounts USING btree (start_t); 
 
- CREATE INDEX end_discount ON discount USING btree (end_t); 
+ CREATE INDEX end_discount ON discounts USING btree (end_t); 
 
 -----------------------------------------
 -- FULL TEXT SEARCH
@@ -315,7 +325,7 @@ CREATE TRIGGER update_user_status
 CREATE FUNCTION ensure_discount() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-  IF EXISTS (SELECT * FROM discount WHERE id_category = New.id_category AND end_t > New.start_t)
+  IF EXISTS (SELECT * FROM discounts WHERE id_category = New.id_category AND end_t > New.start_t)
   THEN RAISE EXCEPTION 'There''s already an active discount on this category';
   END IF;
   RETURN NULL;
@@ -1194,11 +1204,11 @@ INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (19
 INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (20,1,49,'2019-12-25 23:35:38','2019-12-21 22:42:18','Inappropriate review');
 
 /* DISCOUNT */
-INSERT INTO "discount" (id,id_category,value,start_t,end_t) VALUES (1,1,20,'2019-12-01 17:59:35','2019-12-31 06:27:23');
-INSERT INTO "discount" (id,id_category,value,start_t,end_t) VALUES (2,2,50,'2019-12-01 13:19:46','2019-12-31 03:30:23');
-INSERT INTO "discount" (id,id_category,value,start_t,end_t) VALUES (3,3,75,'2019-12-01 09:19:55','2019-12-31 08:06:19');
-INSERT INTO "discount" (id,id_category,value,start_t,end_t) VALUES (4,4,10,'2019-12-01 08:42:09','2019-12-31 12:45:04');
-INSERT INTO "discount" (id,id_category,value,start_t,end_t) VALUES (5,5,60,'2019-12-01 19:19:18','2019-12-31 02:52:36');
+INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (1,20,'2019-12-01 17:59:35','2019-12-31 06:27:23');
+INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (2,50,'2019-12-01 13:19:46','2019-12-31 03:30:23');
+INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (3,75,'2019-12-01 09:19:55','2019-12-31 08:06:19');
+INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (4,10,'2019-12-01 08:42:09','2019-12-31 12:45:04');
+INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (5,60,'2019-12-01 19:19:18','2019-12-31 02:52:36');
 
 /* REVIEWS */
 INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (1,1,16,'Fucking great product',5,'2019-04-19 14:48:40');
