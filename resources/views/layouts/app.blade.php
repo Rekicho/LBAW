@@ -58,8 +58,8 @@
 						<a class="nav-link" href="/contact">CONTACT</a>
 					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0" action="search.html">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<form class="form-inline my-2 my-lg-0" action="/search">
+					<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
 					<button class="btn pl-0 my-2 my-sm-0" type="submit"><i class="fas fa-search nav-icon"></i></button>
 				</form>
 				@if(!Auth::check())

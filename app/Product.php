@@ -7,8 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
+  use FullTextSearch;
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
+
+  protected $searchable = ['search'];
 
   public static function topProducts(){
     return DB::table('purchased_product')->join('products', 'products.id', '=', 'purchased_product.id_product')
