@@ -43,7 +43,10 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // User area
 Route::get('profile', 'UserController@showProfile')->middleware('auth');
-Route::get('cart', 'CartController@show');
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('cart', 'CartController@show');
+});
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Cart;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
    public function show(){
         $user = Auth::user();

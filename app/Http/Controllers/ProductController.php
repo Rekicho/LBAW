@@ -9,7 +9,7 @@ use App\Product;
 use App\Review;
 use App\WishList;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * Shows the card for a given id.

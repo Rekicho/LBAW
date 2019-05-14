@@ -11,7 +11,7 @@ use App\BillingInformation;
 use App\WishList;
 use App\Purchase;
 
-class WishListController extends Controller
+class WishListController extends BaseController
 {
     /**
      * Creates a new card.
