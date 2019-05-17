@@ -42,3 +42,7 @@ Route::get('profile', 'UserController@showProfile')->middleware('auth');
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
+
+// Facebook login
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
