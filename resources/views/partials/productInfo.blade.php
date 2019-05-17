@@ -32,5 +32,10 @@
         <i class="fas fa-euro-sign"></i>
         <span class="button-text">Update price</span>
       </button>
+      <button type="submit" class="btn btn-primary btn-sm updateProduct"  data-id={{$product->id}} data-toggle="modal"
+        data-target="#addProductDiscountModal">
+        <i class="fas fa-tags"></i>
+        <span class="button-text">Add discount</span>
+      </button>
     </td>
   </tr>

@@ -6,6 +6,7 @@ $(document).on("click", ".updateMember", function() {
 $(document).on("click", ".updateProduct", function() {
   var productId = $(this).data("id");
   $(".modal-body [name=id]").val(productId);
+  $("#addProductDiscountForm [name=id]").val(productId);
 });
 
 $(document).on("click", ".updateCategory", function() {
@@ -83,6 +84,10 @@ function addEventListeners() {
   let addCategoryDiscount = document.querySelector("form#addDiscountForm");
   if (addCategoryDiscount != null)
     addCategoryDiscount.addEventListener("submit", sendAddCategoryDiscountRequest);
+
+    let addProductDiscount = document.querySelector("form#addProductDiscountForm");
+  if (addProductDiscount != null)
+    addProductDiscount.addEventListener("submit", sendAddProductDiscountRequest);
 }
 
 function encodeForAjax(data) {
@@ -330,7 +335,24 @@ function sendAddCategoryDiscountRequest(event) {
     categoryDiscountAddedHandler
   );
 
-}                                                                               
+}    
+
+function sendAddProductDiscountRequest(event) {
+  event.preventDefault();                                                                               
+
+  let id = this.querySelector("input[name=id]").value;
+  // let start = this.querySelector("input[name=start]").value;
+  // let end = this.querySelector("input[name=end]").value;
+  let value = this.querySelector("input[name=value]").value / 100;
+
+  sendAjaxRequest(
+    "post",
+    "/api/products/" + id,
+    { type: "discount", discount: value },
+    productUpdatedHandler
+  );
+
+}      
 
 function categoryDiscountAddedHandler(){
   let discount = JSON.parse(this.responseText);
@@ -523,6 +545,8 @@ function productUpdatedHandler() {
 
   $("#confirmEnable").modal("hide");
   $("#confirmDisable").modal("hide");
+  $("#addProductDiscountModal").modal("hide");
+
 }
 
 function billingInformationUpdatedHandler() {
@@ -685,6 +709,23 @@ function createProductRow(product) {
   priceButton.appendChild(priceIcon);
   priceButton.appendChild(priceSpan);
 
+  let discountButton = document.createElement("button");
+  discountButton.setAttribute("type", "submit");
+  discountButton.classList = "btn btn-primary btn-sm updateProduct ";
+  discountButton.setAttribute("data-id", product.id);
+  discountButton.setAttribute("data-toggle", "modal");
+  discountButton.setAttribute("data-target", "#addProductDiscountModal");
+
+  let discountIcon = document.createElement("i");
+  discountIcon.classList = "fas fa-tags";
+
+  let discountSpan = document.createElement("span");
+  discountSpan.classList = "button-text";
+  discountSpan.innerHTML = "Add discount";
+
+  discountButton.appendChild(discountIcon);
+  discountButton.appendChild(discountSpan);
+
   let header = document.createElement("th");
   header.setAttribute("scope", "row");
   header.innerHTML = `<a href="/product/${product.id}">${product.id}</a>`;
@@ -701,6 +742,7 @@ function createProductRow(product) {
   newCell.appendChild(button);
   newCell.appendChild(stockButton);
   newCell.appendChild(priceButton);
+  newCell.appendChild(discountButton);
 
   new_product.appendChild(header);
   new_product.appendChild(stock);

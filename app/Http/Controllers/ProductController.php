@@ -67,6 +67,9 @@ class ProductController extends Controller
       else if($type === "price"){
         $product->price = $request->input('price');
       }
+      else if($type === "discount"){
+        $product->discount = $request->input('discount');
+      }
       else{
         $is_enabled = $request->input('is_enabled');
         $product->is_enabled = $is_enabled === 'true' ? true : false;

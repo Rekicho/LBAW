@@ -283,6 +283,45 @@
   </div>
 </div>
 
+<div class="modal fade" id="addProductDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addProductDiscountLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="addProductDiscountModal">Add discount</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="addProductDiscountForm">
+        <div class="form-group">
+          <label>
+            Discount
+            <input class="form-control" type="Number" name="value" placeholder="Value" />
+          </label>
+          {{-- <label>
+            Start date
+            <input class="form-control" type="date" name="start" placeholder="Start" />
+          </label>
+          <label>
+            End date
+            <input class="form-control" type="date" name="end" placeholder="End" />
+          </label> --}}
+        </div>
+        <input type="hidden" name="id"/>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        Close
+      </button>
+      <button type="submit" form="addProductDiscountForm" class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+</div>
+
   <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
