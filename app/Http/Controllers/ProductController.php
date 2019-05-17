@@ -9,6 +9,8 @@ use App\Product;
 use App\Review;
 use App\WishList;
 
+use App\Notifications\ProductOnSale;
+
 class ProductController extends Controller
 {
     /**
@@ -68,7 +70,12 @@ class ProductController extends Controller
         $product->price = $request->input('price');
       }
       else if($type === "discount"){
+        $prevDiscount = $product->discount;
         $product->discount = $request->input('discount');
+
+        $users = Wishlist::usersWishlisted($product->id);
+
+        Notification::send($users, new ProductOnSale($product));
       }
       else{
         $is_enabled = $request->input('is_enabled');
