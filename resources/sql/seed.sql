@@ -35,6 +35,18 @@ DROP TRIGGER IF EXISTS add_initial_state ON purchase;
 DROP TRIGGER IF EXISTS ensure_discount ON discount;
 DROP TRIGGER IF EXISTS update_user_status ON ban;
 
+DROP INDEX IF EXISTS product_id_category;
+DROP INDEX IF EXISTS username_user;
+DROP INDEX IF EXISTS email_user;
+DROP INDEX IF EXISTS review_id_product;
+DROP INDEX IF EXISTS product_id_category;
+DROP INDEX IF EXISTS billing_information_id_client;
+DROP INDEX IF EXISTS product_discount;
+DROP INDEX IF EXISTS end_discount;
+DROP INDEX IF EXISTS start_discount;
+DROP INDEX IF EXISTS purchased_product_id_purchase;
+DROP INDEX IF EXISTS product_price;
+
 
 -----------------------------------------
 -- Types

@@ -134,22 +134,14 @@
 					<span class="product-block-title">Beauty best sellers</span>
 					<a href="category.html" class="seemore-block">See more</a>
 					<br style="clear:both" />
+
 					<div class="row imagetiles">
+						@foreach ($featuredCategoryProducts as $product)
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-							<a href="product.html"><img src=https://ybskin.com/media/catalog/product/y/o/youngblood_lips_lipstick_casablanca_lg1_1.jpg
-								 class="img-responsive imgSizing"></a>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-							<a href="product.html"><img src=http://cdn.shopify.com/s/files/1/0023/9648/7716/products/12d6aeacb2d66c1734d1f1ec0633aa79_1024x1024.jpg?v=1544059212
-								 class="img-responsive imgSizing"></a>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-							<a href="product.html"><img src=https://scontent.fopo1-1.fna.fbcdn.net/v/t1.0-9/13177472_10204777009384826_2295654131383211125_n.jpg?_nc_cat=105&_nc_ht=scontent.fopo1-1.fna&oh=c1ea48d863b5ef171334b479a8d11d58&oe=5D0A18EB
-								 class="img-responsive imgSizing"></a>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-							<a href="product.html"><img src=https://www.sephora.com/productimages/sku/s1925965-main-hero.jpg class="img-responsive imgSizing"></a>
-						</div>
+						<a href="product/{{$product->id_product}}"><img src={{ asset("img/product$product->id_product.jpg") }}
+							class="img-responsive imgSizing"></a>
+							</div>
+						@endforeach
 					</div>
 				</div>
 

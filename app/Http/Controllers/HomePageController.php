@@ -19,7 +19,9 @@ class HomePageController extends Controller
 
         $footerCategories = Category::getFooterCategories();
 
-        return view('pages.home', ['topProducts' => $topProducts, 'categories' => $footerCategories]);
+        $featured = Product::topProductsFromCategory(rand(1, 4));
+
+        return view('pages.home', ['topProducts' => $topProducts, 'featuredCategoryProducts' => $featured, 'categories' => $footerCategories]);
 
     }
 }
