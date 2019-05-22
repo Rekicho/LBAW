@@ -21,7 +21,8 @@ class WishList extends Model
     }
 
     public static function usersWishlisted($product_id){
-        return User::join('wishlists', 'users.id', 'wishlists.client_id')
+        return User::join('wishlists', 'users.id', 'wishlists.id_client')
+        ->selectRaw('users.id, users.username, users.email, users.is_staff_member, users.is_admin, users.is_enabled')
         ->where('wishlists.id_product', $product_id)
         ->get();
     }

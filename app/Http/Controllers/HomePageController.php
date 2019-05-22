@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use App\Product;
 
-class HomePageController extends Controller
+class HomePageController extends BaseController
 {
     public function show(){
 

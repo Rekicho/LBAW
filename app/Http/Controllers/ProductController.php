@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 use App\Product;
 use App\Review;
 use App\WishList;
+use App\User;
 
 use App\Notifications\ProductOnSale;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * Shows the card for a given id.
@@ -76,6 +78,8 @@ class ProductController extends Controller
         $users = Wishlist::usersWishlisted($product->id);
 
         Notification::send($users, new ProductOnSale($product));
+
+        return $users;
       }
       else{
         $is_enabled = $request->input('is_enabled');
