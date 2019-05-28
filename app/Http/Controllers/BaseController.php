@@ -15,11 +15,11 @@ class BaseController extends Controller
 			$user = Auth::user();
 
 			if(Auth::check())
-				$cartQuantity = count(Cart::getProductsFromCart($user->id));
+				$cartProducts = Cart::getProductsFromCart($user->id);
 	
-			else $cartQuantity = -1;
+			else $cartProducts = [];
 	
-			view()->share('cartQuantity', $cartQuantity);
+			view()->share('cartProducts', $cartProducts);
 
 			return $next($request);
 		});

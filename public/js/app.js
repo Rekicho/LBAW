@@ -8,10 +8,17 @@ $(document).on("click", ".updateMember", function() {
 
 function addEventListeners() {
   let wishlistDeleters = document.querySelectorAll(
-    "div.single-product-info-text a.delete"
+    "#wishlist div.single-product-info-text a.delete"
   );
   [].forEach.call(wishlistDeleters, function(deleter) {
     deleter.addEventListener("click", sendDeleteWishListRequest);
+  });
+
+  let productCartsDeleters = document.querySelectorAll(
+    ":not(#wishlist) div.single-product-info-text a.delete"
+  );
+  [].forEach.call(productCartsDeleters, function(deleter) {
+    deleter.addEventListener("click", sendDeleteCartProductRequest);
   });
 
   let addStaffMember = document.querySelector("#addMember form");
@@ -96,6 +103,36 @@ function wishListDeletedHandler() {
     'li.single-product-info-container[data-id="' + product.id + '"]'
   );
   element.remove();
+}
+
+function sendDeleteCartProductRequest() {
+	let id = this.closest("li.single-product-info-container").getAttribute(
+		"data-id"
+	);
+
+	sendAjaxRequest(
+		"delete",
+		"/api/cart/" + id,
+		null,
+		productCartDeleteHandler
+	);
+}
+
+function productCartDeleteHandler() {
+	let product = JSON.parse(this.responseText);
+	let elements = document.querySelectorAll(
+		'li.single-product-info-container[data-id="' + product.id + '"]'
+	);
+
+	[].forEach.call(elements, function(element) {
+		element.remove();
+	});
+
+	let cart = document.querySelector(
+		'.cart'
+	);
+
+	cart.setAttribute('data-count', parseInt(cart.getAttribute('data-count')) - parseInt(product.quantity));
 }
 
 function sendUpdateEmailRequest(event) {
@@ -192,8 +229,6 @@ function sendUpdateCartRequest(event) {
 }
 
 function removedFromWishListHandler(){
-  console.log(this.status);
-
   let wishlist = JSON.parse(this.responseText);
 
   let oldForm = document.querySelector('form#updateWishlist');
@@ -202,8 +237,6 @@ function removedFromWishListHandler(){
 }
 
 function removedFromCartHandler(){
-  console.log(this.status);
-
   let cart = JSON.parse(this.responseText);
 
   let oldForm = document.querySelector('form#updateCart');
@@ -281,7 +314,6 @@ function sendUpdateBillingInformationRequest(event) {
 
 function updatedPasswordHandler() {
   let response = JSON.parse(this.responseText);
-  console.log(response);
   let form = document.querySelector("form#updatePassword");
   let span = form.querySelector("span.message");
 
@@ -309,7 +341,6 @@ function updatedPasswordHandler() {
 }
 
 function staffMemberAddedHandler() {
-  console.log(this.status);
   let response = JSON.parse(this.responseText);
 
   let message = document.querySelector('#addMember .modal-body .message');
@@ -332,7 +363,6 @@ function staffMemberAddedHandler() {
 
 function updatedEmailHandler() {
   let response = JSON.parse(this.responseText);
-  console.log(response);
 
   let form = document.querySelector("form#updateEmail");
   let span = form.querySelector("span.message");
@@ -358,8 +388,6 @@ function updatedEmailHandler() {
 }
 
 function addedToWishlistHandler() {
-  console.log(this.status);
-
   let wishlist = JSON.parse(this.responseText);
 
   let oldForm = document.querySelector('form#updateWishlist');
@@ -369,13 +397,14 @@ function addedToWishlistHandler() {
 }
 
 function addedToCartHandler() {
-  console.log(this.status);
-
   let cart = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateCart');
-  let newForm = getRemoveFromCartForm(cart);
-  oldForm.parentNode.replaceChild(newForm, oldForm);
+  updateCartnewProduct(cart);
+
+//   let oldForm = document.querySelector('form#updateCart');
+//   let newForm = getRemoveFromCartForm(cart);
+
+//   oldForm.parentNode.replaceChild(newForm, oldForm);
 }
 
 
@@ -395,20 +424,20 @@ function getRemoveFromWishListForm(wishlist){
   return form;
 }
 
-function getRemoveFromCartForm(cart){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateCart');
+// function getRemoveFromCartForm(cart){
+//   let form = document.createElement('form');
+//   form.setAttribute('id' ,'updateCart');
 
-  form.innerHTML = `
-  <input type="hidden" class="d-none    " name="id_product" value=${cart.id_product}>
-  <input type="hidden" class="d-none    " name="id" value=${cart.id}>
-  <button type="submit" class="btn btn-primary float-right">
-      Remove from cart
-  </button>`
-  form.addEventListener("submit", sendUpdateCartRequest);
+//   form.innerHTML = `
+//   <input type="hidden" class="d-none    " name="id_product" value=${cart.id_product}>
+//   <input type="hidden" class="d-none    " name="id" value=${cart.id}>
+//   <button type="submit" class="btn btn-primary float-right">
+//       Remove from cart
+//   </button>`
+//   form.addEventListener("submit", sendUpdateCartRequest);
 
-  return form;
-}
+//   return form;
+// }
 
 function getAddToWishListForm(wishlist){
   let form = document.createElement('form');
@@ -442,8 +471,6 @@ function getAddToCartForm(cart){
 }
 
 function staffMemberUpdatedHandler() {
-  console.log(this.status);
-
   let staff_member = JSON.parse(this.responseText);
   let row = document.querySelector("[data-id='" + staff_member.id + "']");
   let newRow = createStaffMemberRow(staff_member);
@@ -455,7 +482,6 @@ function staffMemberUpdatedHandler() {
 }
 
 function billingInformationUpdatedHandler() {
-  console.log(this.status);
   let billingInfo = JSON.parse(this.responseText);
   let newForm = createBillingInfoForm(billingInfo);
   let form = document.querySelector("form[data-id='" + billingInfo.id + "']");
@@ -465,7 +491,6 @@ function billingInformationUpdatedHandler() {
 }
 
 function createBillingInfoForm(billingInfo) {
-  console.log(billingInfo.id);
   return `
   <div class="my-3">
   <h3>Shipping & Billing Information</h3>
@@ -550,6 +575,47 @@ function createStaffMemberRow(staff_member) {
   new_staff_member.appendChild(newCell);
 
   return new_staff_member;
+}
+
+function updateCartnewProduct(cart) {
+	let cartList = document.querySelector(".cart ul");
+	let newProduct = document.createElement("li");
+	let productName = document.querySelector(".product-title").textContent;
+	let productPrice = document.querySelector("#updateCart .price").textContent;
+	let productRating = document.querySelectorAll(".product-info .product-rating .fas fa-star").length;
+
+	newProduct.classList.add("single-product-info-container");
+	newProduct.setAttribute("data-id",cart.id);
+
+	newProduct.innerHTML = 
+	`
+	<a href="/product/${cart.id_product}"> <img src="/img/product${cart.id_product}.jpg" alt=''></a>
+	<div class='single-product-info-text'>
+		<div class='row'>
+    		<div class='col-6'>
+			<a href="/product/${cart.id_product}"><span class='title'>${productName}</span></a>
+			</div>
+			<div class='col-6 state'>
+                <a href='#' class='delete'><i class='fas fa-trash remove'></i></a>
+			</div>
+			<div>
+	`
+
+	for(let i = 0; i < productRating; i++)
+		newProduct.innerHTML += "<i class='fas fa-star'></i>";
+
+	for(let i = productRating - 1; i < 5; i++)
+		newProduct.innerHTML += "<i class='far fa-star'></i>";
+
+	newProduct.innerHTML +=
+	`       </div>
+			<span class='oldprice'></span>
+			<span class='price float-right'>${productPrice}</span>
+	`;
+
+	newProduct.querySelector("a.delete").addEventListener("click", sendDeleteCartProductRequest);
+
+	cartList.appendChild(newProduct);
 }
 
 addEventListeners();

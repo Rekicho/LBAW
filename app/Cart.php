@@ -21,7 +21,7 @@ class Cart extends Model
     public static function getProductsFromCart($userId){
         $noRatings = DB::table('carts')
         ->join('products', 'products.id', '=', 'carts.id_product')
-        ->selectRaw('carts.id_product, products.name, products.price, products.discount, 0')
+        ->selectRaw('carts.id AS id_context, carts.id_product, products.name, products.price, products.discount, 0')
         ->where('carts.id_client', $userId)
         ->whereNotIn('carts.id_product', function ($q) {
             $q->select('reviews.id_product')->from('reviews');
@@ -30,9 +30,9 @@ class Cart extends Model
             return DB::table('carts')
         ->join('products', 'products.id', '=', 'carts.id_product')
         ->join('reviews', 'carts.id_product', '=', 'reviews.id_product')
-        ->selectRaw('carts.id_product, products.name, products.price, products.discount, AVG(reviews.rating) AS rating')
+        ->selectRaw('carts.id AS id_context, carts.id_product, products.name, products.price, products.discount, AVG(reviews.rating) AS rating')
         ->where('carts.id_client', $userId)
-        ->groupBy('carts.id_product', 'products.name', 'products.price', 'products.discount')
+        ->groupBy('id_context', 'carts.id_product', 'products.name', 'products.price', 'products.discount')
         ->union($noRatings)
         ->get();
     }

@@ -52,3 +52,37 @@
 	bottom: 20px;
 	right: 20px;
 }
+
+
+.single-product-info-container {
+	background-color: white;
+	width: 95%;
+	min-height: 125px;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+.single-product-info-text {
+	padding-left: 110px;
+}
+
+.single-product-info-container img {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	float: left;
+}
+
+.single-product-info-text .title,
+.single-product-info-text .price {
+	font-weight: bold;
+}
+
+.single-product-info-text .oldprice {
+	text-decoration: line-through;
+	padding-right: 5px;
+}
+
+.single-product-info-text .oldprice:empty {
+	padding-right: 0;
+}
