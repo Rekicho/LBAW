@@ -48,6 +48,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if($exception instanceof QueryException){
+            return response()->view('errors.product_not_found', ['errorInfo' => $exception->errorInfo], 500);
+        }
+
         return parent::render($request, $exception);
     }
 }
