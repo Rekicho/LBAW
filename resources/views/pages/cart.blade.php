@@ -13,8 +13,8 @@
 <div class="row mt-5 ml-3">
 <div class="col-md-12">
     <h2>Total: <br class="br-mobile d-flex" />
-        <span class="oldprice">414,95€</span>
-        <span class="price">24,14€</span>
+        {{-- <span class="oldprice">414,95€</span> --}}
+        <span class="price">{{ $total }}€</span>
     </h2>
     <br style="clear:both">
     <button type="button" class="btn btn-primary checkout-btn" onclick="location.href='checkout1.html'" ><i

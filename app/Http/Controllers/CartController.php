@@ -11,9 +11,10 @@ class CartController extends BaseController
 {
    public function show(){
         $user = Auth::user();
-        $products = Cart::getProductsFromCart($user->id);
+		$products = Cart::getProductsFromCart($user->id);
+		$total = Cart::getCartTotal($products);
 
-        return view('pages.cart', ['products' => $products]);
+        return view('pages.cart', ['products' => $products, 'total' => $total]);
    }
 
    public function create(Request $request)
