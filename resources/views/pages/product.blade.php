@@ -38,12 +38,6 @@
 
             <form id="updateCart">
                 <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
-            @if($cart != null)
-                <input type="hidden" class="d-none    " name="id" value={{$cart->id}}>
-                <button type="submit" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))-1);">
-                    Remove from cart
-                </button>
-            @else
             <span class="price float-right">{{$product->price}}€</span>
             <label class="float-right quantity">
                 <input type="number" name="quantity" class="product-quantity" value="1"> x
@@ -51,7 +45,6 @@
             <button type="submit" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+1);">
                 Add to cart
                 </button>
-            @endif
         </form> 
             <form id="updateWishlist">
                 <br style="clear:both">

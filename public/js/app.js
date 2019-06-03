@@ -132,7 +132,7 @@ function productCartDeleteHandler() {
 		'.cart'
 	);
 
-	cart.setAttribute('data-count', parseInt(cart.getAttribute('data-count')) - parseInt(product.quantity));
+	cart.setAttribute('data-count', parseInt(cart.getAttribute('data-count')) - 1);
 }
 
 function sendUpdateEmailRequest(event) {
@@ -400,11 +400,6 @@ function addedToCartHandler() {
   let cart = JSON.parse(this.responseText);
 
   updateCartnewProduct(cart);
-
-//   let oldForm = document.querySelector('form#updateCart');
-//   let newForm = getRemoveFromCartForm(cart);
-
-//   oldForm.parentNode.replaceChild(newForm, oldForm);
 }
 
 
@@ -582,7 +577,7 @@ function updateCartnewProduct(cart) {
 	let newProduct = document.createElement("li");
 	let productName = document.querySelector(".product-title").textContent;
 	let productPrice = document.querySelector("#updateCart .price").textContent;
-	let productRating = document.querySelectorAll(".product-info .product-rating .fas fa-star").length;
+	let productRating = document.querySelectorAll(".product-info .product-rating .fas,fa-star").length;
 
 	newProduct.classList.add("single-product-info-container");
 	newProduct.setAttribute("data-id",cart.id);
@@ -604,13 +599,13 @@ function updateCartnewProduct(cart) {
 	for(let i = 0; i < productRating; i++)
 		newProduct.innerHTML += "<i class='fas fa-star'></i>";
 
-	for(let i = productRating - 1; i < 5; i++)
+	for(let i = productRating; i < 5; i++)
 		newProduct.innerHTML += "<i class='far fa-star'></i>";
 
 	newProduct.innerHTML +=
 	`       </div>
 			<span class='oldprice'></span>
-			<span class='price float-right'>${productPrice}</span>
+			<span class='price float-right'>${cart.quantity}x ${productPrice}</span>
 	`;
 
 	newProduct.querySelector("a.delete").addEventListener("click", sendDeleteCartProductRequest);
