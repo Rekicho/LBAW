@@ -10,16 +10,14 @@
     <ul>
         @each('partials/productCard', $products, 'product')
 </ul>
-<div class="row mt-5 ml-3">
-<div class="col-md-12">
-    <h2>Total: <br class="br-mobile d-flex" />
-        {{-- <span class="oldprice">414,95€</span> --}}
-        <span class="price">{{ $total }}€</span>
-    </h2>
-    <br style="clear:both">
-    <button type="button" class="btn btn-primary checkout-btn" onclick="location.href='checkout1.html'" ><i
-        class="fas fa-money-bill"></i> Checkout</button>
-    </div>
+<div class="final row mt-5 ml-3">
+	<div class="col-md-6 total">
+		<h2>Total: <span class="price">{{ $total }}€</span> </h2>
+	</div>
+    <div class="col-md-6 checkout">
+		<button type="button" class="btn btn-primary checkout-btn" onclick="location.href='checkout1.html'" ><i
+		class="fas fa-money-bill"></i> Checkout</button>
+	</div>
 </div>
 
 </div>

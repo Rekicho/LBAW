@@ -12,7 +12,6 @@
         <div>
             @showRating($product->rating)
 		</div>
-        {{-- <span class='oldprice'></span> --}}
         <span class='price float-right'>
 			@if(@isset($product->quantity))
 			{{$product->quantity}} x 

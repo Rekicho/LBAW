@@ -1,3 +1,7 @@
+$('.cart .dropdown-menu').click(function(e) {
+	e.stopPropagation();
+});
+
 $(document).on("click", ".updateMember", function() {
   var staffMemberId = $(this).data("id");
   $(".modal-body [name=id]").val(staffMemberId);
