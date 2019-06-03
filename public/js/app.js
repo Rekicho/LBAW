@@ -63,7 +63,15 @@ function addEventListeners() {
 
   let updateEmail = document.querySelector("form#updateEmail");
   if (updateEmail != null)
-    updateEmail.addEventListener("submit", sendUpdateEmailRequest);
+	updateEmail.addEventListener("submit", sendUpdateEmailRequest);
+
+  let proceed = document.querySelector(".proceed");
+  if (proceed != null)
+	proceed.addEventListener("click", proceedToPayment);
+	
+	let goBack = document.querySelector(".go-back");
+	if (goBack != null)
+		goBack.addEventListener("click", goBackToBilling);
 }
 
 function encodeForAjax(data) {
@@ -280,12 +288,12 @@ function sendUpdateStaffMemberRequest(event) {
 function sendUpdateBillingInformationRequest(event) {
   event.preventDefault();
 
-  let id = this.querySelector("input[name=id]");
-  let full_name = this.querySelector("input[name=full_name]").value;
-  let city = this.querySelector("input[name=city]").value;
-  let address = this.querySelector("input[name=address]").value;
-  let state = this.querySelector("input[name=state]").value;
-  let zip_code = this.querySelector("input[name=zip_code]").value;
+  let id = document.querySelector("input[name=id]");
+  let full_name = document.querySelector("input[name=full_name]").value;
+  let city = document.querySelector("input[name=city]").value;
+  let address = document.querySelector("input[name=address]").value;
+  let state = document.querySelector("input[name=state]").value;
+  let zip_code = document.querySelector("input[name=zip_code]").value;
 
   if (id === null) {
     sendAjaxRequest(
@@ -485,16 +493,18 @@ function billingInformationUpdatedHandler() {
   let newForm = createBillingInfoForm(billingInfo);
   let form = document.querySelector("form[data-id='" + billingInfo.id + "']");
 
-  if (form === null) form = document.querySelector("form[class*=billingInfo]");
+  if (form === null) {
+	if(window.location.pathname.split("/").pop() === "checkout")
+		return;
+
+	form = document.querySelector("form[class*=billingInfo]");
+  }
+
   form.innerHTML = newForm;
 }
 
 function createBillingInfoForm(billingInfo) {
-  return `
-  <div class="my-3">
-  <h3>Shipping & Billing Information</h3>
-</div>
-
+  let form = `
   <div class="form-group">
   <label for="fullName">Full Name</label>
   <input type="text" name="full_name" id="fullName" class="form-control" placeholder="Full Name" value="${
@@ -529,6 +539,15 @@ function createBillingInfoForm(billingInfo) {
 <button class="btn btn-lg btn-primary my-2 float-right" type="submit">
 Edit
 </button>`;
+
+  if(window.location.pathname.split("/").pop() === "checkout")
+  	return form;
+
+return `
+<div class="my-3">
+  <h3>Shipping & Billing Information</h3>
+</div>
+` + form;
 }
 
 function createStaffMemberRow(staff_member) {
@@ -615,6 +634,39 @@ function updateCartnewProduct(cart) {
 	newProduct.querySelector("a.delete").addEventListener("click", sendDeleteCartProductRequest);
 
 	cartList.appendChild(newProduct);
+}
+
+function proceedToPayment() {
+	let full_name = document.querySelector("input[name=full_name]");
+	let city = document.querySelector("input[name=city]");
+	let address = document.querySelector("input[name=address]");
+	let state = document.querySelector("input[name=state]");
+	let zip_code = document.querySelector("input[name=zip_code]");
+
+	if(full_name == null || city == null || address == null || state == null || zip_code == null)
+		return;
+
+	var event;
+
+	if (document.createEvent) {
+		event = document.createEvent("HTMLEvents");
+		event.initEvent("event", true, true);
+	} else {
+		event = document.createEventObject();
+		event.eventType = "event";
+	}
+
+	event.eventName = "event";
+
+	sendUpdateBillingInformationRequest(event);
+
+	document.querySelector(".billing").classList.add("d-none");
+	document.querySelector(".payment").classList.remove("d-none");
+}
+
+function goBackToBilling() {
+	document.querySelector(".billing").classList.remove("d-none");
+	document.querySelector(".payment").classList.add("d-none");
 }
 
 addEventListeners();
