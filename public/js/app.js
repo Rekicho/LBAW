@@ -88,6 +88,10 @@ function addEventListeners() {
     let addProductDiscount = document.querySelector("form#addProductDiscountForm");
   if (addProductDiscount != null)
     addProductDiscount.addEventListener("submit", sendAddProductDiscountRequest);
+
+    let confirmPurchasePayment = document.querySelector("form#confirmPurchasePaymentForm");
+    if (confirmPurchasePayment != null)
+    confirmPurchasePayment.addEventListener("submit", sendConfirmPurchasePaymentRequest);
 }
 
 function encodeForAjax(data) {
@@ -353,6 +357,31 @@ function sendAddProductDiscountRequest(event) {
   );
 
 }      
+
+function sendConfirmPurchasePaymentRequest(event) {
+  event.preventDefault();                                                                               
+
+  let id = this.querySelector("input[name=id_purchase]").value;
+
+  sendAjaxRequest(
+    "put",
+    "/api/purchases/" + id,
+    {state: "Paid"},
+    purchasePaymentConfirmedHandler
+  );
+
+}     
+ 
+function purchasePaymentConfirmedHandler(){
+  let response = JSON.parse(this.responseText);
+
+  let table = document.getElementById("paymentsTable");
+  let row = table.querySelector("tr#purchase-" + response.id_purchase);
+
+  // TODO: mensagem a avisar que pagamento foi confirmado
+
+  table.removeChild(row);
+}
 
 function categoryDiscountAddedHandler(){
   let discount = JSON.parse(this.responseText);

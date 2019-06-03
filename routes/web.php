@@ -37,6 +37,8 @@ Route::put('api/categories', 'CategoryController@create');
 
 Route::put('api/discounts', 'DiscountController@create');
 
+Route::put('api/purchases/{id}', 'PurchaseLogController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 
@@ -51,3 +53,4 @@ Route::get('profile', 'UserController@showProfile')->middleware('auth');
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
 Route::get('back-office/moderator', 'BackOffice\ModeratorController@show');
 Route::get('back-office/stock', 'BackOffice\StockController@show');
+Route::get('back-office/accounting', 'BackOffice\AccountingController@show');
