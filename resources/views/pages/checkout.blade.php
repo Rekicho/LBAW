@@ -52,27 +52,12 @@
 				</div>
 				<div class="narrow">
 					<ul>
-						<li style="clear:both">
-							<a class="name-item float-left" href="product.html">Bola</a>
-							<span class="price-item float-right">6,54€</span>
-						</li>
-						<li style="clear:both">
-							<a class="name-item float-left" href="product.html">Bola</a>
-							<span class="price-item float-right">6,54€</span>
-						</li>
-						<li style="clear:both">
-							<a class="name-item float-left" href="product.html">Bola</a>
-							<span class="price-item float-right">6,54€</span>
-						</li>
-						<li style="clear:both">
-							<a class="name-item float-left" href="product.html">Bola</a>
-							<span class="price-item float-right">6,54€</span>
-						</li>
+						@each('partials/checkoutProductCard', $products, 'product')
 					</ul>
 					<hr style="clear:both">
 					<div>
 						<span class="float-left"> <b>Total</b> </span>
-						<span class="price-item float-right">19,62€</span>
+						<span class="price-item float-right">{{ $total }}€</span>
 					</div>
 				</div>
 				<br style="clear:both">
@@ -81,12 +66,12 @@
 					<i class="fas fa-money-bill"></i> Pay
 					Offline
 				</button>
-				<button type="button" class="btn btn-primary float-right m-1" style="background-color:rgb(22, 155, 215) !important">
+				{{-- <button type="button" class="btn btn-primary float-right m-1" style="background-color:rgb(22, 155, 215) !important">
 					<i class="fab fa-paypal paypal-icon"></i> Pay with PayPal
-				</button>
+				</button> --}}
 			</form>
 			<div class="container">
-					<button class="btn btn-lg btn-primary proceed go-back">
+					<button class="btn btn-sm btn-primary proceed go-back">
 							<i class="far fa-file-alt p-3 nav-icon"></i> Go back to Billing & Shipping Information
 					</button>
 			</div>
@@ -104,7 +89,7 @@
 						<p>We will contact you by email with instructions to proceed with your payment.</p>
 					</div>
 					<div class="modal-footer">
-						<a href="profile.html"> <button type="button" class="btn btn-primary">Proceed with offline payment</button></a>
+						<a href="/profile"> <button type="button" class="btn btn-primary">Proceed with offline payment</button></a>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 					</div>
 				</div>
