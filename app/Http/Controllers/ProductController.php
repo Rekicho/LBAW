@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 use App\Product;
 use App\Review;
@@ -19,15 +20,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-      $product = Product::getProductInfo($id);
+        try {
+            $product = Product::getProductInfo($id);
+        } catch (QueryException $e) {
+            return view('errors.product_not_found', ['error' => 'Product not found!']);
+        }
       
-      $reviews = Review::getProductReviews($id);
+        $reviews = Review::getProductReviews($id);
 
-      $reviewsStats = Review::getProductReviewsStats($id);
+        $reviewsStats = Review::getProductReviewsStats($id);
 
-      $wishlist = WishList::exists(Auth::user()->id, $id);
+        $wishlist = WishList::exists(Auth::user()->id, $id);
       
-      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist]);
+        return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist]);
     }
 
     /**
@@ -37,14 +42,14 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-      $product = new Product();
+        $product = new Product();
 
-      $this->authorize('create', $product);
+        $this->authorize('create', $product);
 
-    //   $product->name = $request->input('name');
-    //   $product->user_id = Auth::user()->id;
-      $product->save();
+        //   $product->name = $request->input('name');
+        //   $product->user_id = Auth::user()->id;
+        $product->save();
 
-      return $product;
+        return $product;
     }
 }
