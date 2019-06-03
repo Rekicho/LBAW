@@ -46,6 +46,7 @@ Route::get('profile', 'UserController@showProfile')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('cart', 'CartController@show');
+	Route::get('checkout', 'CheckoutController@show');
 });
 
 // Back-office

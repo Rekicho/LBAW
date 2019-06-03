@@ -15,7 +15,7 @@
 		<h2>Total: <span class="price">{{ $total }}€</span> </h2>
 	</div>
     <div class="col-md-6 checkout">
-		<button type="button" class="btn btn-primary checkout-btn" onclick="location.href='checkout1.html'" ><i
+		<button type="button" class="btn btn-primary checkout-btn" onclick="location.href='/checkout'" ><i
 		class="fas fa-money-bill"></i> Checkout</button>
 	</div>
 </div>
