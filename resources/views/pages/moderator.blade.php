@@ -30,99 +30,15 @@
   <div class="container">
     <div class="tab-content" id="tasksContent">
       <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-user" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table id="products" class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Username <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Status <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="usersTable">
-              @each('partials.user', $clients, 'user')
-            </tbody>
-          </table>
-        </div>
-        <nav aria-label="table navigation">
-          {{ $clients->links("pagination::bootstrap-4") }}
-        </nav>
+
       </div>
 
       <div class="tab-pane fade" id="reports" role="tabpanel" aria-labelledby="reports-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-report" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Review <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">OP <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Status <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="reportsTable">
-              {{-- @each('partials.report', $reports, 'report') --}}
-            </tbody>
-          </table>
-        </div>
-
-        <nav aria-label="table navigation">
-          {{-- {{ $reports->links("pagination::bootstrap-4") }} --}}
-        </nav>
+        
       </div>
       {{-- TODO: varias paginations, mesmo link --}}
       <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-review" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Product <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">OP <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Rating <i class="fas fa-sort"></i></a>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="reviewsTable">
-              @each('partials.reviewInfo', $reviews, 'review')
-            </tbody>
-          </table>
-        </div>
-        <nav aria-label="table navigation">
-          {{ $reviews->links("pagination::bootstrap-4") }}
-        </nav>
+        
       </div>
     </div>
   </div>

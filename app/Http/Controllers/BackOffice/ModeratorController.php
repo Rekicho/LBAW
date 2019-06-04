@@ -26,4 +26,21 @@ class ModeratorController extends Controller
 
         return view('pages.moderator', ['username' => $username, 'clients' => $clients, 'reviews' => $reviews]);
     }
+
+    public function getModeratorType($type)
+    {
+        if ($type == 'users') {
+            $clients = User::clients();
+            $view = view('pages.moderatorUsersAjax', ['clients' => $clients]);
+        } else if ($type == 'reports') {
+            $reports = Report::reports();
+            $view = view('pages.moderatorReportsAjax', ['reports' => $reports]);
+        } else {
+            $reviews = Review::reviews();
+            $view = view('pages.moderatorReviewsAjax', ['reviews' => $reviews]);
+        }
+
+        echo $view;
+        exit;
+    }
 }
