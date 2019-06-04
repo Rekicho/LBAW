@@ -42,7 +42,7 @@ trait FullTextSearch
      */
     public function scopeSearch($query, $term)
     {
-        return $query->selectRaw('id AS id_product, name, price, discount')->whereRaw('search @@ to_tsquery(\'english\', ?)', [$term])
+        return $query->selectRaw('id AS id_product, name, price, discount, id_category')->whereRaw('search @@ to_tsquery(\'english\', ?)', [$term])
             ->orderByRaw('ts_rank(search, to_tsquery(\'english\', ?)) DESC', [$term]);
     }
 }

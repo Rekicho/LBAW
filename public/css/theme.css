@@ -262,3 +262,59 @@ label.quantity {
 .desktop-only {
 	display: none;
 }
+
+.single-product-info-container {
+	background-color: white;
+	width: 100%;
+	min-height: 125px;
+	margin: 10px 0px;
+	padding: 10px;
+}
+
+.single-product-info-text {
+	padding-left: 110px;
+}
+
+.single-product-info-container img {
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	float: left;
+}
+
+.single-product-info-text .title,
+.single-product-info-text .price {
+	font-weight: bold;
+}
+
+.single-product-info-text .oldprice {
+	text-decoration: line-through;
+	padding-right: 5px;
+}
+
+.single-product-info-text .oldprice:empty {
+	padding-right: 0;
+}
+
+.remove {
+	color: red;
+}
+
+.oldprice {
+	text-decoration: line-through;
+	font-weight: normal;
+}
+
+@media only screen and (max-width: 991px) {
+	.dept-navbar {
+		display: none;
+	}
+}
+
+.cart .show {
+	background-color: var(--light-grey) !important;
+}
+
+.state {
+	text-align: right;
+}

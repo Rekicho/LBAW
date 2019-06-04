@@ -44,12 +44,10 @@
 
 <div class="search-result-bar bg-light">
     <span class="result-count">
-        1-16 of over {{count($products)}} results for <span class="sec-color font-weight-bold">{{$query}}</span>
+        1-16 of {{count($products)}} results for <span class="sec-color font-weight-bold">{{$query}}</span>
     </span>
     <div class="filter-container">
-        <span class="circle mr-2 pr-1"><i class="fas fa-times px-1"></i>Nike</span>
-        <span class="circle pr-1"><i class="fas fa-times px-1"></i>Sports</span>
-        <span class="cart fa-stack has-badge" data-count="2" data-toggle="modal" data-target="#exampleModal">
+        <span class="cart fa-stack has-badge" data-count="0" data-toggle="modal" data-target="#exampleModal">
             <i class="fas fa-filter filter-icon fa-stack-1x nav-icon"></i>
         </span>
     </div>
@@ -77,50 +75,20 @@
             </button>
         </div>
         <div class="modal-body">
+			<form id="filter" action="/search">
+				<input type="hidden" name="search" value={{$query}}>
+				<label for="categoryPicker">Category: </label>
+				<select class="form-control" id="categoryPicker" name="category" form="filter">
+					<option selected disabled value>Category</option>
+					@foreach ($categories as $category)
+					<option value="{{$category->id}}">{{$category->name}}</option>
+					@endforeach
 
-            <!-- Sorting clause -->
-            <div class="filter-clause">
-                <div class="dropdown float-left filter-btn">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">
-                        Sort by
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Price: highest first</a>
-                        <a class="dropdown-item" href="#">Price: lowest first</a>
-                        <a class="dropdown-item" href="#">Highest ranking</a>
-                    </div>
-                </div>
-            </div>
-            <br clear="both" />
-            <hr />
-
-            <!-- IF IT IS ON STOCK -->
-            <div class="filter-clause">
-                <div class="form-check">
-                    <label class="form-check-label fs20 d-inline-block w-50" for="defaultCheck1">
-                        In Stock
-                    </label>
-                    <input class="form-check-input d-inline-block" type="checkbox" value="" id="defaultCheck1">
-                </div>
-            </div>
-            <hr />
-
-            <!-- Look for a brand only -->
-            <div class="filter-clause">
-                <div class="form-group">
-                    <label for="formGroupExampleInput" class="fs20">By Brand</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Brand">
-                </div>
-            </div>
-
-
-            <!-- Other clauses -->
-
+				</select>
+			</form>
         </div> <!-- end of modal-body -->
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Apply filter</button>
+            <button type="role" form="filter" class="btn btn-primary">Apply filter</button>
         </div>
     </div>
 </div>
