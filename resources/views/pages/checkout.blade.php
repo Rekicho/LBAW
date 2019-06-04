@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<div class="billing">
+	<div id="billing" class="billing">
 		<div class="container mb-5">
 			<h1 class="mt-3 mb-3 text-center"><i class="far fa-file-alt p-3 nav-icon"></i>Update Shipping & Billing Information</h1>
 			@if(count($billingInfo) == 0)
@@ -44,7 +44,7 @@
 			</button>
 		</div>
 	</div>
-	<div class="container payment mb-5 d-none">
+	<div id="payment" class="container payment mb-5 d-none">
 			<h1 class="mt-3 mb-3 text-center"><i class="fas fa-credit-card p-3 nav-icon"></i>Payment</h1>
 			<form class="form-edit-billing light-main-color-bg px-3 checkout-theme checkout3" action="#">
 				<div class="my-3 text-center">

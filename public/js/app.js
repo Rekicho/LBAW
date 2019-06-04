@@ -665,11 +665,19 @@ function proceedToPayment() {
 
 	document.querySelector(".billing").classList.add("d-none");
 	document.querySelector(".payment").classList.remove("d-none");
+
+	var url = location.href;
+	location.href = "#payment";
+	history.replaceState(null,null,url);
 }
 
 function goBackToBilling() {
 	document.querySelector(".billing").classList.remove("d-none");
 	document.querySelector(".payment").classList.add("d-none");
+
+	var url = location.href;
+	location.href = "#billing";
+	history.replaceState(null,null,url);
 }
 
 addEventListeners();
