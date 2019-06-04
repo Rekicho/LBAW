@@ -89,7 +89,7 @@
 						<p>We will contact you by email with instructions to proceed with your payment.</p>
 					</div>
 					<div class="modal-footer">
-						<a href="/profile"> <button type="button" class="btn btn-primary">Proceed with offline payment</button></a>
+						<a href="/buy"> <button type="button" class="btn btn-primary">Proceed with offline payment</button></a>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 					</div>
 				</div>

@@ -646,6 +646,9 @@ function proceedToPayment() {
 	if(full_name == null || city == null || address == null || state == null || zip_code == null)
 		return;
 
+	if(full_name.valute == "" || city.value == "" || address.value == "" || state.value == "" || zip_code.value == "")
+		return;
+
 	var event;
 
 	if (document.createEvent) {

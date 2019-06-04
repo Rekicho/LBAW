@@ -347,3 +347,7 @@ label.quantity {
 .cart .show {
 	background-color: var(--light-grey) !important;
 }
+
+.state {
+	text-align: right;
+}
