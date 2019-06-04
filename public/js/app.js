@@ -474,4 +474,33 @@ function createStaffMemberRow(staff_member) {
   return new_staff_member;
 }
 
+function getVals() {
+	var parent = this.parentNode;
+	var slides = parent.getElementsByTagName("input");
+	  var slide1 = parseFloat( slides[2].value );
+	  var slide2 = parseFloat( slides[3].value );
+
+	if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+	
+	var display1 = parent.getElementsByClassName("above")[0];
+	var display2 = parent.getElementsByClassName("below")[0];
+
+	display1.value = slide1;
+	display2.value = slide2;
+  }
+  
+window.onload = function() {
+	var sliderSections = document.getElementsByClassName("range-slider");
+	if (sliderSections == null)
+		return;
+	for( var x = 0; x < sliderSections.length; x++ ) {
+		var sliders = sliderSections[x].getElementsByTagName("input");
+		for( var y = 0; y < sliders.length; y++ ) {
+			if( sliders[y].type ==="range" ) {
+				sliders[y].oninput = getVals;
+			}
+		}
+	}
+}
+
 addEventListeners();

@@ -21,12 +21,21 @@ class SearchController extends Controller
     {   
 		$search = Input::get('search');
 		$category = Input::get('category');
-		$price = Input::get('price');
+		$above = Input::get('above');
+		$below = Input::get('below');
+
+		$match = array();
 
 		if($category != "")
-			$products = Product::search($search)->where('id_category',$category)->paginate(16);
+			array_push($match,['id_category', '=', $category]);
+
+		if($above != "")
+			array_push($match,['price', '>=', $above]);
+
+		if($below != "")
+			array_push($match,['price', '<=', $below]);
 		
-		else $products = Product::search($search)->paginate(16);
+		$products = Product::search($search)->where($match)->paginate(16);
 
 		$categories = Category::getAllCategories();
 

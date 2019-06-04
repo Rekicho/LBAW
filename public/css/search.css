@@ -142,3 +142,8 @@ a>.title {
 .form-check {
 	padding: 0;
 }
+
+.priceType {
+	width: 25%;
+	height: 100%;
+}
