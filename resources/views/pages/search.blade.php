@@ -80,12 +80,11 @@
 				<label for="categoryPicker">Category: </label>
 				<select class="form-control" id="categoryPicker" name="category" form="filter">
 					<option selected value>Category</option>
-
 					@foreach ($categories as $category)
 					<option value="{{$category->id}}">{{$category->name}}</option>
 					@endforeach
-
 				</select>
+				<br>
 				<section class="range-slider">
 						<input type="text" name="above" class="above" value="0">€ - 
 						<input type="text" name="below" class="below" value="1000">€
@@ -93,6 +92,12 @@
 						<input value="0" min="0" max="1000" step="1" type="range">
 						<input value="1000" min="0" max="1000" step="1" type="range">
 				</section>
+				<label for="orderPicker">Order by: </label>
+				<select class="form-control" id="orderPicker" name="order" form="filter">
+						<option selected value>Order by</option>
+						<option value="ASC">Price: Lowest to Highest</option>
+						<option value="DESC">Price: Highest to Lowest</option>
+				</select>
 			</form>
         </div> <!-- end of modal-body -->
         <div class="modal-footer">

@@ -23,6 +23,7 @@ class SearchController extends Controller
 		$category = Input::get('category');
 		$above = Input::get('above');
 		$below = Input::get('below');
+		$order = Input::get('order');
 
 		$match = array();
 
@@ -34,8 +35,14 @@ class SearchController extends Controller
 
 		if($below != "")
 			array_push($match,['price', '<=', $below]);
-		
-		$products = Product::search($search)->where($match)->paginate(16);
+
+		if($order == "DESC")		
+			$products = Product::search($search)->where($match)->orderByRaw("price DESC")->paginate(16);
+
+		else if($order == "ASC")
+			$products = Product::search($search)->where($match)->orderByRaw("price ASC")->paginate(16);
+
+		else $products = Product::search($search)->where($match)->paginate(16);
 
 		$categories = Category::getAllCategories();
 
