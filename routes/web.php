@@ -43,6 +43,8 @@ Route::put('api/categories', 'CategoryController@create');
 
 Route::put('api/discounts', 'DiscountController@create');
 
+Route::put('api/purchases/{id}', 'PurchaseLogController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 
@@ -68,3 +70,4 @@ Route::get('back-office/stock', 'BackOffice\StockController@show');
 
 Route::get('back-office/profile', 'UserController@showStaffProfile');
 Route::get('search/', 'SearchController@show');
+Route::get('back-office/accounting', 'BackOffice\AccountingController@show');
