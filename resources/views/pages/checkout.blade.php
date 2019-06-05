@@ -6,7 +6,7 @@
 
 @section('content')
 	<div id="billing" class="billing">
-		<div class="container mb-5">
+		<div class="container mb-5 billing-form">
 			<h1 class="mt-3 mb-3 text-center"><i class="far fa-file-alt p-3 nav-icon"></i>Update Shipping & Billing Information</h1>
 			@if(count($billingInfo) == 0)
 			<form class="form-edit-billing light-main-color-bg px-3 billingInfo">

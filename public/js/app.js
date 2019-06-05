@@ -72,6 +72,10 @@ function addEventListeners() {
 	let goBack = document.querySelector(".go-back");
 	if (goBack != null)
 		goBack.addEventListener("click", goBackToBilling);
+
+	let checkout_btn = document.querySelector(".checkout-btn");
+	if (checkout_btn != null)
+		checkout_btn.addEventListener("click", verifyCheckout);
 }
 
 function encodeForAjax(data) {
@@ -493,6 +497,12 @@ function billingInformationUpdatedHandler() {
   let newForm = createBillingInfoForm(billingInfo);
   let form = document.querySelector("form[data-id='" + billingInfo.id + "']");
 
+  if(window.location.pathname.split("/").pop() === "checkout") {
+	  document.querySelector(".billing-form").innerHTML += `<div class="alert alert-success" role="alert">
+	  Shipping & Billing information updated
+	</div>`;
+  }
+
   if (form === null) {
 	if(window.location.pathname.split("/").pop() === "checkout")
 		return;
@@ -643,11 +653,21 @@ function proceedToPayment() {
 	let state = document.querySelector("input[name=state]");
 	let zip_code = document.querySelector("input[name=zip_code]");
 
-	if(full_name == null || city == null || address == null || state == null || zip_code == null)
-		return;
+	if(full_name == null || city == null || address == null || state == null || zip_code == null) {
+		document.querySelector(".billing-form").innerHTML += `<div class="alert alert-danger" role="alert">
+		Shipping & Billing information needed to checkout
+		</div>`;
 
-	if(full_name.valute == "" || city.value == "" || address.value == "" || state.value == "" || zip_code.value == "")
 		return;
+	}
+
+	if(full_name.valute == "" || city.value == "" || address.value == "" || state.value == "" || zip_code.value == "") {
+		document.querySelector(".billing-form").innerHTML += `<div class="alert alert-danger" role="alert">
+		Shipping & Billing information needed to checkout
+		</div>`;
+
+		return;
+	}
 
 	var event;
 
@@ -678,6 +698,16 @@ function goBackToBilling() {
 	var url = location.href;
 	location.href = "#billing";
 	history.replaceState(null,null,url);
+}
+
+function verifyCheckout(event){
+	if(document.querySelector(".cart").getAttribute("data-count") == 0) {
+		document.querySelector(".final").parentNode.innerHTML += `<div class="alert alert-danger" role="alert">
+		Can't checkout an empty cart
+		</div>`;
+		
+		event.preventDefault();
+	}
 }
 
 addEventListeners();

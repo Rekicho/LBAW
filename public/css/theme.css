@@ -214,10 +214,11 @@ footer .container-fluid {
 
 label.quantity {
 	margin-right: 25px;
+	margin-bottom: 0px;
 }
 
 .product-quantity {
-	width: 30px;
+	width: 50px;
 }
 
 /*
