@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS purchased_product CASCADE;
 DROP TABLE IF EXISTS purchase_log CASCADE;
 DROP TABLE IF EXISTS ban CASCADE;
 DROP TABLE IF EXISTS discount CASCADE;
+DROP TABLE IF EXISTS help CASCADE;
 
 DROP TYPE IF EXISTS state_purchase;
 
@@ -163,6 +164,12 @@ CREATE TABLE discount (
     value INTEGER NOT NULL,
     start_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     end_t TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+
+CREATE TABLE help (
+    id SERIAL PRIMARY KEY,
+    description TEXT NOT NULL,
+    help_text TEXT NOT NULL
 );
 
 -----------------------------------------
@@ -1227,3 +1234,14 @@ INSERT INTO reports (id,reason,id_review,id_client,"date_time") VALUES (1,'It ha
 
 /* REPORT LOG*/
 INSERT INTO "report_log" (report_id,id_staff_member,has_deleted,"date_time") VALUES (1,1,True,'2019-02-13 14:53:40');
+
+/* HELP */
+INSERT INTO "help" (description,help_text) VALUES (
+    'Conditions to Register',
+    '<b>Username and Email</b><br>
+        Must be unique<br>
+        Can not have more than 255 charaters<br>
+    <hr>
+    <b>Password</b><br>
+        Must have at least 6 charaters'
+)

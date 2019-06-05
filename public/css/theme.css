@@ -262,3 +262,15 @@ label.quantity {
 .desktop-only {
 	display: none;
 }
+
+.help-icon {
+	color: var(--main-color);
+	height: 24px;
+	width: 24px;
+	font-size: 24px;
+	float: right;
+}
+
+.help-icon:hover {
+	cursor: pointer;
+}
