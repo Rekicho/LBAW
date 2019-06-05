@@ -28,13 +28,13 @@ class ModeratorController extends Controller
     {
         if ($type == 'users') {
             $clients = User::clients();
-            $view = view('pages.moderatorUsersAjax', ['clients' => $clients]);
+            $view = view('pages.moderatorUsers', ['clients' => $clients]);
         } else if ($type == 'reports') {
             $reports = Report::reports();
-            $view = view('pages.moderatorReportsAjax', ['reports' => $reports]);
+            $view = view('pages.moderatorReports', ['reports' => $reports]);
         } else {
             $reviews = Review::reviews();
-            $view = view('pages.moderatorReviewsAjax', ['reviews' => $reviews]);
+            $view = view('pages.moderatorReviews', ['reviews' => $reviews]);
         }
 
         echo $view;

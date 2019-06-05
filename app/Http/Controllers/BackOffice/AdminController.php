@@ -21,8 +21,8 @@ class AdminController extends Controller
      // $this->authorize('show', BackOfficePolicy::class);
 
       $staff_members = Auth::user()->staff_members();
-      $user = Auth::user();
+      $username = Auth::user()->username;
 
-      return view('pages.admin', ['staff_members' => $staff_members, 'user' => $user]);
+      return view('pages.admin', ['staff_members' => $staff_members, 'username' => $username]);
     }
 }
