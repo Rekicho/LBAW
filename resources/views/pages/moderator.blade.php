@@ -30,15 +30,15 @@
   <div class="container">
     <div class="tab-content" id="tasksContent">
       <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-
+        <!-- Filled with ajax call -->
       </div>
 
       <div class="tab-pane fade" id="reports" role="tabpanel" aria-labelledby="reports-tab">
-        
+        <!-- Filled with ajax call -->
       </div>
       {{-- TODO: varias paginations, mesmo link --}}
       <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-        
+        <!-- Filled with ajax call -->
       </div>
     </div>
   </div>
