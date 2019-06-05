@@ -11,6 +11,7 @@ use App\Product;
 use App\Review;
 use App\WishList;
 use App\User;
+use App\Cart;
 use App\Category;
 
 use App\Notifications\ProductOnSale;

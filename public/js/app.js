@@ -428,6 +428,9 @@ function removedFromCartHandler(){
   let oldForm = document.querySelector('form#updateCart');
   let newForm = getAddToCartForm(cart);
   oldForm.parentNode.replaceChild(newForm, oldForm);
+
+}
+
 // TODO
 function addedReviewHandler() {
   console.log(this.status);
@@ -811,13 +814,11 @@ function billingInformationUpdatedHandler() {
   }
 
   if (form === null) {
-	if(window.location.pathname.split("/").pop() === "checkout")
-		return;
-
 	form = document.querySelector("form[class*=billingInfo]");
   }
-
+  
   form.innerHTML = newForm;
+  addEventListeners();
 }
 
 function createBillingInfoForm(billingInfo) {
@@ -1012,9 +1013,9 @@ function verifyCheckout(event){
 		document.querySelector(".final").parentNode.innerHTML += `<div class="alert alert-danger" role="alert">
 		Can't checkout an empty cart
 		</div>`;
-		
-		event.preventDefault();
 	}
+	
+	else location.href='/checkout';
 }
 
 function createProductRow(product) {
