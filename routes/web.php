@@ -71,3 +71,7 @@ Route::get('back-office/stock', 'BackOffice\StockController@show');
 Route::get('back-office/profile', 'UserController@showStaffProfile');
 Route::get('search/', 'SearchController@show');
 Route::get('back-office/accounting', 'BackOffice\AccountingController@show');
+
+// Facebook login
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
