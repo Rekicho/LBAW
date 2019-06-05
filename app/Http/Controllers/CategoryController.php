@@ -22,7 +22,7 @@ class CategoryController extends BaseController
         }
 
         $footerCategories = Category::getFooterCategories();
-        $products = Category::getProductsFromCategory($id);
+        $products = Category::getProductsFromCategory($id, 5);
 
         return view('pages.category', ['category' => $category, 'products' => $products, 'categories' => $footerCategories]);
     }
