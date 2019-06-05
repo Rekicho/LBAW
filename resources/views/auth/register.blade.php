@@ -7,6 +7,10 @@
 @section('content')
 <form class="form-signin my-5 text-center" method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
+
+    <i class="fas fa-question-circle help-icon"  data-toggle="modal" data-target="#exampleModal"></i>   
+
+
     <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
 
     <label for="username" class="sr-only">Name</label>
@@ -53,4 +57,23 @@
 				Already have an account? <a href="{{ route('login') }}">Sign in!</a>
 			</div>
 </form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> {{ $text->description }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {!! $text->help_text !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+            </div>
+            </div>
+        </div>
+    </div>
 @endsection

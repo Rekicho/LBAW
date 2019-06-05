@@ -352,3 +352,15 @@ label.quantity {
 .state {
 	text-align: right;
 }
+
+.help-icon {
+	color: var(--main-color);
+	height: 24px;
+	width: 24px;
+	font-size: 24px;
+	float: right;
+}
+
+.help-icon:hover {
+	cursor: pointer;
+}
