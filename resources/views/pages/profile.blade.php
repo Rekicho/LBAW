@@ -104,8 +104,8 @@
                     <h3>Account Information</h3>
 
                     <form id="updateEmail">
-                        <div class="form-group">
-                            <label for="email">Email address</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="email">Email address</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{$user->email}}" required/>
                         </div>
 
@@ -119,17 +119,17 @@
                     </form>
                         <hr>
                     <form id="updatePassword">
-                        <div class="form-group">
-                            <label for="new_password">New password</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="new_password">New password</label>
                             <input type="password" name="new_password" id="new_password" class="form-control" placeholder="New password" required/>
                         </div>
-                        <div class="form-group">
-                            <label for="new_password_confirmation">Confirm New password</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="new_password_confirmation">Confirm New password</label>
                             <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Confirm New password" required/>
                         </div>
                       
-                        <div class="form-group">
-                            <label for="old_password">Old password</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="old_password">Old password</label>
                             <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" required/>
                         </div>
 

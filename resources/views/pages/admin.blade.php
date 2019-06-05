@@ -126,14 +126,14 @@
           <div class="modal-body">
             <form method="POST" id="addStaffMemberForm">
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label>
+                <div class="form-group required col-md-6">
+                  <label class="control-label">
                     Username
                     <input class="form-control" type="text" name="username" placeholder="Username" required />
                   </label>
                 </div>
-                <div class="form-group col-md-6">
-                  <label>
+                <div class="form-group required col-md-6">
+                  <label class="control-label">
                     Password
                     <input class="form-control" type="password" name="password" placeholder="Password" required />
                   </label>
