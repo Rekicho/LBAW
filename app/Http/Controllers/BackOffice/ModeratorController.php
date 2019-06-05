@@ -10,18 +10,17 @@ use App\User;
 use App\Review;
 use App\Report;
 
-class ModeratorController extends Controller
+class ModeratorController extends BaseBOController
 {
     public function __construct()
-    {
+    {    parent::__construct();
+
         $this->middleware('staffmember');
     }
 
     public function show()
     {
-        $username = Auth::user()->username;
-
-        return view('pages.moderator', ['username' => $username]);
+        return view('pages.moderator');
     }
 
     public function getModeratorType($type)

@@ -72,7 +72,7 @@ Route::get('back-office/moderator', 'BackOffice\ModeratorController@show');
 Route::get('back-office/stock/ajax/{type}', 'BackOffice\StockController@getStockType')->where('type', 'products|categories');
 Route::get('back-office/stock', 'BackOffice\StockController@show');
 
-Route::get('back-office/profile', 'UserController@showStaffProfile');
+Route::get('back-office/profile', 'BackOffice\BaseBOController@showStaffProfile');
 Route::get('search/', 'SearchController@show');
 Route::get('back-office/accounting', 'BackOffice\AccountingController@show');
 

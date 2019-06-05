@@ -14,7 +14,7 @@
                 <input type="password" name="new_password" class="form-control" id="new_password" placeholder="Enter new password" required />
               </div>
             </div>
-            <input type="hidden" name="user_id" value="{{$user->id}}" required />
+            <input type="hidden" name="user_id" value="{{$user->id}}" />
             <button type="submit" class="btn btn-lg btn-primary">
               <span class="glyphicon glyphicon-earphone pull-left"><i class="fas fa-save"></i></span>
               Save

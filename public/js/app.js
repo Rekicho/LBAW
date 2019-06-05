@@ -129,10 +129,13 @@ function addEventListeners() {
   if (enableUser != null)
     enableUser.addEventListener("submit", sendEnableUserRequest);
 
-    let confirmPurchasePayment = document.querySelector("form#confirmPurchasePaymentForm");
-    if (confirmPurchasePayment != null)
-    confirmPurchasePayment.addEventListener("submit", sendConfirmPurchasePaymentRequest);
-
+    let confirmPurchasePayment = document.querySelectorAll("form.confirmPurchasePaymentForm");
+    if (confirmPurchasePayment != null){
+      for(let i = 0; i < confirmPurchasePayment.length; i++){
+        confirmPurchasePayment[i].addEventListener("submit", sendConfirmPurchasePaymentRequest);
+      }
+    }
+    
   let addReview = document.querySelector("form#addReview");
   if (addReview != null)
     addReview.addEventListener("submit", sendAddReviewRequest);

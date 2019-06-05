@@ -119,11 +119,4 @@ class UserController extends BaseController
 
         return view('pages.profile', ['user' => $user, 'wishlist'=> $wishlist, 'billingInfo' => $billingInfo, 'purchaseHistory' => $purchaseHistory, 'categories' => $footerCategories]);
     }
-
-    public function showStaffProfile()
-    {
-        $user = Auth::user();
-
-        return view('pages.staff_profile', ['user' => $user]);
-    }
 }

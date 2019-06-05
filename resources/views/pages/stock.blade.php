@@ -145,12 +145,12 @@
     </div>
   </div>
 
-  <div class="modal fade" id="addDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addDiscountLabel"
+  <div class="modal fade" id="addDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addDiscountModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addDiscountModal">Add discount</h5>
+        <h5 class="modal-title" id="addDiscountModalLabel">Add discount</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -164,11 +164,11 @@
             </label>
             <label>
               Start date
-              <input class="form-control" type="date" name="start" placeholder="Start" />
+              <input class="form-control" type="date" name="start" />
             </label>
             <label>
               End date
-              <input class="form-control" type="date" name="end" placeholder="End" />
+              <input class="form-control" type="date" name="end" />
             </label>
           </div>
           <input type="hidden" name="id"/>
@@ -184,12 +184,12 @@
   </div>
 </div>
 
-<div class="modal fade" id="addProductDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addProductDiscountLabel"
+<div class="modal fade" id="addProductDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addProductDiscountModalLabel"
 aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="addProductDiscountModal">Add discount</h5>
+      <h5 class="modal-title" id="addProductDiscountModalLabel">Add discount</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -265,21 +265,21 @@ aria-hidden="true">
 
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>
+                <label for="stock">
                   Stock
-                  <input class="form-control" type="number" name="stock" placeholder="Stock" required />
+                  <input class="form-control" id="stock" type="number" name="stock" placeholder="Stock" required />
                 </label>
               </div>
               <div class="form-group col-md-6">
-                <label>
+                <label for="price">
                   Price
-                  <div class="input-group">
+                </label>
+                  <div  class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text">€</div>
                     </div>
-                    <input class="form-control" type="number" name="price" placeholder="Price" step="0.01" required />
+                    <input id="price" class="form-control" type="number" name="price" placeholder="Price" step="0.01" required />
                   </div>
-                </label>
               </div>
             </div>
 
