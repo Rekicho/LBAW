@@ -99,7 +99,7 @@
       </ul>
       <ul class="navbar-nav user-options">
         <li class="nav-item">
-          <a class="nav-link" href="/back-office/profile">{{$user->username}}</a>
+          <a class="nav-link" href="/back-office/profile">{{$username}}</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
