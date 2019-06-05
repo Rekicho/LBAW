@@ -47,12 +47,9 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">
 				<i class="fas fa-sign-in-alt"></i> Sign up
 			</button>
-			<button class="btn btn-lg btn-facebook btn-block" type="submit">
-				<i class="fab fa-facebook-square"></i> Sign up with Facebook
-			</button>
-			<button class="btn btn-lg btn-google btn-block" type="submit">
-				<i class="fab fa-google"></i> Sign up with Google
-			</button>
+            <a href="{{ url('login/facebook') }}" class="btn btn-med btn-facebook btn-block">
+                <i class="fab fa-facebook-square"></i> Sign in with Facebook
+            </a>
 			<div class="alt">
 				Already have an account? <a href="{{ route('login') }}">Sign in!</a>
 			</div>

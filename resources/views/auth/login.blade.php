@@ -47,9 +47,6 @@
     <a href="{{ url('login/facebook') }}" class="btn btn-med btn-facebook btn-block">
         <i class="fab fa-facebook-square"></i> Sign in with Facebook
     </a>
-    <button class="btn btn-med btn-google btn-block" type="submit">
-        <i class="fab fa-google"></i> Sign in with Google
-    </button>
     <div class="alt">
         Don't have an account? <a href="{{ route('register') }}">Sign up!</a>
     </div>
