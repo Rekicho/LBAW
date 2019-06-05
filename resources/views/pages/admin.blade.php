@@ -32,7 +32,7 @@
               </tr>
             </thead>
             <tbody id="staffMemberTable">
-            @each('partials.staffmember', $staff_members, 'staff_member')
+            @each('partials.user', $staff_members, 'user')
           </tbody>
           </table>
         </div>
