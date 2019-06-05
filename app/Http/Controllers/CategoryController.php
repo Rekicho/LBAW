@@ -8,7 +8,8 @@ use App\Category;
 
 class CategoryController extends BaseController
 {
-    public function show($id){
+    public function show($id)
+    {
         $products = Category::getProductsFromCategory($id);
         $category = Category::find($id);
         $footerCategories = Category::getFooterCategories();
@@ -16,13 +17,13 @@ class CategoryController extends BaseController
         return view('pages.category', ['category' => $category, 'products' => $products, 'categories' => $footerCategories]);
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         $category = new Category();
         $category->name = $request->input('name');
 
 
         $category->save();
-
-    }
         return $category;
+    }
 }

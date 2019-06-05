@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Cart;
 use Illuminate\Support\Facades\View;
 
-{
-	public function __construct()
-class BaseController extends Controller
-	{
+
+class BaseController extends Controller {
+		public function __construct()
+		{
 		$this->middleware(function ($request, $next) {
 			$user = Auth::user();
             $notifications = [];

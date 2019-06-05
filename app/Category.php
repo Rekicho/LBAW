@@ -12,7 +12,8 @@ class Category extends Model
     protected $table = 'categories';
     
     // TODO: union e pagination = rip
-    public static function getProductsFromCategory($id){
+    public static function getProductsFromCategory($id)
+    {
         $noRatings = DB::table('categories')
         ->join('products', 'products.id_category', '=', 'categories.id')
         ->selectRaw('categories.id, categories.name, products.id AS id_product, products.name, products.price, products.discount, 0')
@@ -21,7 +22,7 @@ class Category extends Model
             $q->select('reviews.id_product')->from('reviews');
         });
 
-            return DB::table('categories')
+        return DB::table('categories')
         ->join('products', 'products.id_category', '=', 'categories.id')
         ->join('reviews', 'products.id', '=', 'reviews.id_product')
         ->selectRaw('categories.id, categories.name, products.id AS id_product, products.name, products.price, products.discount, AVG(reviews.rating) AS rating')
@@ -31,23 +32,24 @@ class Category extends Model
         ->paginate(5);
     }
 
-    public static function getFooterCategories(){
+    public static function getFooterCategories()
+    {
         return DB::table('categories')
         ->select('id', 'name')
         ->limit(8)
         ->get();
     }
-}
 
-	public static function getAllCategories(){
-		return DB::table('categories')->select('id', 'name')->get();
-	  }
-    public static function categories(){
-
-         $categories = Category::paginate(10);
-         foreach($categories as $category){
-         }
-             $category->num_products = Product::getNumProductsFromCategory($category->id)["num_products"];
-         return $categories;
-
+    public static function getAllCategories()
+    {
+        return DB::table('categories')->select('id', 'name')->get();
     }
+    public static function categories()
+    {
+        $categories = Category::paginate(10);
+        foreach ($categories as $category) {
+        }
+        $category->num_products = Product::getNumProductsFromCategory($category->id)["num_products"];
+        return $categories;
+    }
+}
