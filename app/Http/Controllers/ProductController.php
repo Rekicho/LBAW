@@ -27,6 +27,10 @@ class ProductController extends BaseController
     {
         try {
             $product = Product::getProductInfo($id);
+
+            if($product == null){
+              return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
+          }
         } catch (QueryException $e) {
             return view('errors.page_not_found', ['error' => 'Product not found!']);
         }
