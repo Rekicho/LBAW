@@ -9,7 +9,7 @@ use App\Product;
 use App\Review;
 use App\WishList;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * Shows the card for a given id.
@@ -27,7 +27,9 @@ class ProductController extends Controller
 
       $wishlist = WishList::exists(Auth::user()->id, $id);
       
-      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist]);
+      $cart = WishList::exists(Auth::user()->id, $id);
+
+      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart]);
     }
 
     /**

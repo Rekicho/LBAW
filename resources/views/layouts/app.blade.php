@@ -66,10 +66,19 @@
 				<a href="{{ route('login') }}"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
 				@else
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
-				@endif
-				<span class="cart fa-stack has-badge" data-count="4">
-					<a href="/cart"><i class="fa fa-shopping-cart fa-stack-1x nav-icon"></i></a>
+				<span class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
+					<a class="fa fa-shopping-cart fa-stack-1x nav-icon dropdown-toggle desktop-only" id="cartDropdown" href="#" data-toggle="dropdown"></a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
+						<ul> @each('partials/productCard', $cartProducts, 'product') </ul>
+						<div class="container">
+							<div class="row justify-content-center">
+								<a class="fa fa-shopping-cart nav-icon" href="/cart"> Cart</a>
+							</div>
+						</div>
+					</div>
+					<a class="fa fa-shopping-cart fa-stack-1x nav-icon mobile-only" href="/cart"></a>
 				</span>
+				@endif
 			</div>
 		</nav>
     <section id="content">

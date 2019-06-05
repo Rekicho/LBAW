@@ -1,0 +1,203 @@
+body {
+	color: black;
+}
+
+#edit h2 {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+	#edit h2 {
+		border-radius: 0px;
+	}
+}
+
+.bg-primary {
+	background-color: var(--light-grey) !important;
+}
+
+.bg-info {
+	background-color: gray !important;
+}
+
+.main-color-bg {
+	background-color: var(--main-color);
+	color: gray;
+}
+
+.light-main-color-bg {
+	background-color: var(--light-main-color);
+	color: white;
+}
+
+.light-main-color-bg a {
+	color: var(--secondary-color);
+	text-decoration: none;
+}
+
+img {
+	float: center;
+}
+
+.fas,
+.far {
+	color: var(--secondary-color);
+}
+
+h2 {
+	color: white;
+	background-color: var(--main-color);
+}
+
+#edit input {
+	color: black;
+}
+
+#edit input:focus {
+	color: black;
+}
+
+.received {
+	font-weight: bold;
+}
+
+.received .fas {
+	color: black;
+}
+
+/*
+	FORMS
+*/
+
+.form-edit-profile span.error, .form-edit-billing span.error {
+	color: rgb(216, 104, 104);
+}
+
+.form-edit-profile span.success, .form-edit-billing span.success {
+	color: rgb(82, 206, 82);
+}
+
+form {
+	overflow: auto;
+}
+.form-edit-profile,
+.form-edit-billing {
+	padding: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 10px !important;
+}
+
+.form-edit-profile :not(.form-control),
+.form-edit-billing :not(.form-control) {
+	color: white;
+}
+
+.btn-lg {
+	font-size: 1em;
+}
+
+.card-body {
+	padding: 0px;
+}
+
+#accordion span {
+	color: black;
+}
+
+#accordion span:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.cart-info {
+	color:black;
+}
+
+.step-by-step {
+	display: block;
+}
+
+.deactivate {
+	color: grey;
+}
+
+hr {
+	margin: 5px;
+}
+
+.container-profile .collapse {
+	margin-bottom: 10px;
+}
+
+.checkout-theme {
+    background-color: white;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: var(--darker-light-grey) 0.5px solid;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 20px !important;
+}
+
+.checkout-theme * {
+    color: black !important;
+}
+
+.ship-opt {
+    padding: 30px;
+    background-color: var(--light-grey);
+    font-size: 16px;
+    border-radius: 5px;
+    border: var(--darker-light-grey) 0.5px solid;
+    margin: 10px;
+}
+
+.ship-opt:hover {
+    border-color: grey;
+}
+
+@media only screen and (min-width: 991px) {
+	.ship-container {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+	.checkout3 {
+        padding-bottom: 100px !important;
+    }
+}
+
+.ship-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-item:hover {
+    text-decoration: underline;
+}
+
+.narrow {
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.btn-primary, .btn-primary i {
+    color: white !important;
+}
+
+.billing .container {
+	text-align: center;
+}
+
+.payment .container {
+	text-align: center;
+}
+
+.payment .container button {
+	margin-top: 50px;
+}

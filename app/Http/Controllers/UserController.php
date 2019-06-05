@@ -13,7 +13,7 @@ use App\BillingInformation;
 use App\WishList;
 use App\Purchase;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * Creates a new card.
