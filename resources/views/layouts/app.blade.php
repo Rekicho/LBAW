@@ -68,9 +68,7 @@
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
 
 				<div class="dropdown">
-					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-bell fa-stack-1x nav-icon"></i>
-					</a>
+					<a class="dropdown-toggle fas fa-bell fa-stack-1x nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 						
 						@foreach($notifications as $notification)
@@ -91,8 +89,8 @@
 					</div>
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon mobile-only" href="/cart"></a>
 				</span>
+				@endif
 			</div>
-			@endif
 		</nav>
     <section id="content">
         @yield('content')

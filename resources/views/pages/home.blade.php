@@ -49,7 +49,6 @@
 
 			<div class="product-block">
 				<span class="product-block-title">Top Products</span>
-				<a href="category.html" class="seemore-block">See more</a>
 				<br style="clear:both" />
 				<div class="row imagetiles">
 
@@ -69,14 +68,14 @@
 					<br style="clear:both" />
 					<div class="imagetiles">
 						<div class="productSize">
-							<a href="category.html"><img src="http://www.drawingforall.net/wp-content/uploads/2018/01/4-how-to-draw-a-closed-book.jpg"
+							<a href="category/8"><img src="http://www.drawingforall.net/wp-content/uploads/2018/01/4-how-to-draw-a-closed-book.jpg"
 								 class="img-responsive imgSizing"></a>
 						</div>
 					</div>
 					<p class="description mt-4">
 						Books are a uniquely portable magic. Checkout the best stories we have for you!
 					</p>
-					<a href="category.html" class="seemore-ind">See more</a>
+					<a href="category/8" class="seemore-ind">See more</a>
 				</div>
 
 				<div class="single-product-block">
@@ -84,14 +83,14 @@
 					<br style="clear:both" />
 					<div class="imagetiles">
 						<div class="productSize">
-							<a href="category.html"> <img src="https://comps.canstockphoto.com/personal-pc-hand-draw-clip-art-vector_csp8551936.jpg"
+							<a href="category/3"> <img src="https://comps.canstockphoto.com/personal-pc-hand-draw-clip-art-vector_csp8551936.jpg"
 								 class="img-responsive imgSizing"> </a>
 						</div>
 					</div>
 					<p class="description mt-4">
 						Want to flex on console plebs? Find the best PC gear here!
 					</p>
-					<a href="category.html" class="seemore-ind">See more</a>
+					<a href="category/3" class="seemore-ind">See more</a>
 				</div>
 
 
@@ -100,20 +99,20 @@
 					<br style="clear:both" />
 					<div class="imagetiles">
 						<div class="productSize">
-							<a href="category.html"><img src="https://www.cuinsight.com/wp-content/uploads/2017/09/bigstock-193075030.jpg"
+							<a href="category/9"><img src="https://www.cuinsight.com/wp-content/uploads/2017/09/bigstock-193075030.jpg"
 								 class="img-responsive imgSizing" style="width:100%;"></a>
 						</div>
 					</div>
 					<p class="description mt-4">
 						Want to go back to the best time in your life? Try some of our vintage items!
 					</p>
-					<a href="category.html" class="seemore-ind">See more</a>
+					<a href="category/9" class="seemore-ind">See more</a>
 				</div>
 			</div>
 
 			<div class="product-block">
 					<span class="product-block-title">{{$featuredCategory->name}} best sellers</span>
-					<a href="category.html" class="seemore-block">See more</a>
+					<a href="category/2" class="seemore-block">See more</a>
 					<br style="clear:both" />
 
 					<div class="row imagetiles">
@@ -128,7 +127,7 @@
 
 			<div class="product-block">
 				<span class="product-block-title">Watches</span>
-				<a href="category.html" class="seemore-block">See more</a>
+				<a href="category/1" class="seemore-block">See more</a>
 				<br style="clear:both" />
 				<div class="row imagetiles">
 					@foreach($watches as $product)
