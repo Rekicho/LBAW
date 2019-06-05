@@ -16,12 +16,25 @@ class StockController extends Controller
         $this->middleware('staffmember');
     }
 
+    public function getStockType($type)
+    {
+        if ($type == 'products') {
+            $products = Product::products();
+            $view = view('pages.stockProducts', ['products' => $products]);
+        } else {
+            $categories = Category::categories();
+            $view = view('pages.stockCategories', ['categories' => $categories]);
+        }
+
+        echo $view;
+        exit;
+    }
+
     public function show()
     {
-        $user = Auth::user();
-        $products = Product::products();
+        $username = Auth::user()->username;
         $categories = Category::categories();
 
-        return view('pages.stock', ['user' => $user, 'products' => $products, 'categories' => $categories]);
+        return view('pages.stock', ['username' => $username, 'categories' => $categories]);
     }
 }

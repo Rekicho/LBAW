@@ -1,7 +1,7 @@
 @extends('layouts.backoffice')
 
 @section('script')
-    <script src="{{'assets/stock.js'}}"></script>
+    <script src="{{ asset('js/stock.js') }}"></script>
 @endsection
 
 @section('content')
@@ -19,101 +19,11 @@
   <div class="container">
     <div class="tab-content" id="tasksContent">
       <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-product" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover products">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Ref. No. <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Stock <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Price (€) <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Status <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="productsTable">
-                @each('partials.productInfo', $products, 'product')
-            </tbody>
-          </table>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <!-- blank column to center pagination var -->
-          </div>
-          <div class="col">
-            <nav aria-label="table navigation">
-                {{ $products->links("pagination::bootstrap-4") }}
-            </nav>
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addProduct">
-              <i class="fas fa-plus-circle"></i>
-              <span class="button-text">Add product</span>
-            </button>
-          </div>
-        </div>
+        <!--Filled with ajax call-->
       </div>
 
       <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-product" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Name <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Products <i class="fas fa-sort"></i></a>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="categoriesTable">
-                @foreach($categories as $category)
-                    <tr>
-                        <th scope="row"><a href="/category/{{$category->id}}">{{$category->name}}</a></th>
-                        <td>{{$category->num_products}}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-          </table>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <!-- blank column to center pagination var -->
-          </div>
-          <div class="col">
-            <nav aria-label="table navigation">
-                {{ $products->links("pagination::bootstrap-4") }}
-            </nav>
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addCategory">
-              <i class="fas fa-plus-circle"></i>
-              <span class="button-text">Add category</span>
-            </button>
-          </div>
-        </div>
+        <!--Filled with ajax call-->
       </div>
     </div>
   </div>
@@ -131,12 +41,16 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="confirmDisableForm">
+            <input type="hidden" name="id" class="id">
+            <input type="hidden" name="is_enabled" value="false">
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmDisableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
@@ -154,12 +68,16 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="confirmEnableForm">
+            <input type="hidden" name="id" class="id">
+            <input type="hidden" name="is_enabled" value="true">
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmEnableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
@@ -176,20 +94,21 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="updateStockForm">
             <div class="form-group">
               <label>
                 Stock
                 <input class="form-control" type="number" name="stock" placeholder="Stock" />
               </label>
             </div>
+            <input type="hidden" name="id"/>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="updateStockForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
@@ -206,24 +125,103 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="updatePriceForm">
             <div class="form-group">
               <label>
                 New price
                 <input class="form-control" type="Number" name="price" placeholder="Price" />
               </label>
             </div>
+            <input type="hidden" name="id"/>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="updatePriceForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="addDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addDiscountLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDiscountModal">Add discount</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="addDiscountForm">
+          <div class="form-group">
+            <label>
+              Discount
+              <input class="form-control" type="Number" name="value" placeholder="Value" />
+            </label>
+            <label>
+              Start date
+              <input class="form-control" type="date" name="start" placeholder="Start" />
+            </label>
+            <label>
+              End date
+              <input class="form-control" type="date" name="end" placeholder="End" />
+            </label>
+          </div>
+          <input type="hidden" name="id"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="submit" form="addDiscountForm" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addProductDiscountModal" tabindex="-1" role="dialog" aria-labelledby="addProductDiscountLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="addProductDiscountModal">Add discount</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="addProductDiscountForm">
+        <div class="form-group">
+          <label>
+            Discount
+            <input class="form-control" type="Number" name="value" placeholder="Value" />
+          </label>
+          {{-- <label>
+            Start date
+            <input class="form-control" type="date" name="start" placeholder="Start" />
+          </label>
+          <label>
+            End date
+            <input class="form-control" type="date" name="end" placeholder="End" />
+          </label> --}}
+        </div>
+        <input type="hidden" name="id"/>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        Close
+      </button>
+      <button type="submit" form="addProductDiscountForm" class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+</div>
 
   <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
     aria-hidden="true">
@@ -243,7 +241,7 @@
                   <select class="form-control" id="sel-category" name="category" required>
                     <option hidden disabled selected value>-</option>
                     @foreach ($categories as $category)
-                    <option value="{{$category->name}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                   </select>
                 </label>
@@ -260,7 +258,7 @@
               <div class="form-group col-md-6">
                 <label>
                   Reference
-                  <input class="form-control" type="text" name="reference" placeholder="Reference" required />
+                  <input class="form-control" type="text" name="reference" placeholder="Reference" />
                 </label>
               </div>
             </div>
@@ -279,16 +277,16 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">€</div>
                     </div>
-                    <input class="form-control" type="number" name="price" placeholder="Price" required />
+                    <input class="form-control" type="number" name="price" placeholder="Price" step="0.01" required />
                   </div>
                 </label>
               </div>
             </div>
 
-            <img id="product-image" src="images.jpeg" class="img-fluid rounded mx-auto d-block" alt="product image" />
+            {{-- <img id="product-image" src="images.jpeg" class="img-fluid rounded mx-auto d-block" alt="product image" /> --}}
 
             <div class="custom-file mb-4">
-              <input type="file" class="custom-file-input" id="productImage" required />
+              <input type="file" class="custom-file-input" name="image" id="productImage" required />
               <label class="custom-file-label" for="productImage">Choose file</label>
             </div>
 

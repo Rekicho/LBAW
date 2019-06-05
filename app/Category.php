@@ -8,6 +8,9 @@ use App\Product;
 
 class Category extends Model
 {
+
+    public $timestamps  = false;
+
     public static function categories(){
          $categories = Category::paginate(10);
 

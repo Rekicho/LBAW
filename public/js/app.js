@@ -5,9 +5,17 @@ $('.cart .dropdown-menu').click(function(e) {
 $(document).on("click", ".updateMember", function() {
   var staffMemberId = $(this).data("id");
   $(".modal-body [name=id]").val(staffMemberId);
-  // As pointed out in comments,
-  // it is unnecessary to have to manually call the modal.
-  // $('#addBookDialog').modal('show');
+});
+
+$(document).on("click", ".updateProduct", function() {
+  var productId = $(this).data("id");
+  $(".modal-body [name=id]").val(productId);
+  $("#addProductDiscountForm [name=id]").val(productId);
+});
+
+$(document).on("click", ".updateCategory", function() {
+  var categoryId = $(this).data("id");
+  $("#addDiscountForm [name=id]").val(categoryId);
 });
 
 function addEventListeners() {
@@ -80,6 +88,38 @@ function addEventListeners() {
 	let checkout_btn = document.querySelector(".checkout-btn");
 	if (checkout_btn != null)
 		checkout_btn.addEventListener("click", verifyCheckout);
+
+  let addProduct = document.querySelector("#addProduct form");
+  if (addProduct != null)
+    addProduct.addEventListener("submit", sendAddProductRequest);
+
+  let updatePrice = document.querySelector("form#updatePriceForm");
+  if (updatePrice != null)
+    updatePrice.addEventListener("submit", sendUpdatePriceRequest);
+
+  let updateStock = document.querySelector("form#updateStockForm");
+  if (updateStock != null)
+    updateStock.addEventListener("submit", sendUpdateStockRequest);
+
+  let disableProduct = document.querySelector("form#confirmDisableForm");
+  if (disableProduct != null)
+    disableProduct.addEventListener("submit", sendUpdateProductRequest);
+
+  let enableProduct = document.querySelector("form#confirmEnableForm");
+  if (enableProduct != null)
+    enableProduct.addEventListener("submit", sendUpdateProductRequest);
+
+  let addCategory = document.querySelector("#addCategory form");
+  if (addCategory != null)
+    addCategory.addEventListener("submit", sendAddCategoryRequest);
+
+  let addCategoryDiscount = document.querySelector("form#addDiscountForm");
+  if (addCategoryDiscount != null)
+    addCategoryDiscount.addEventListener("submit", sendAddCategoryDiscountRequest);
+
+    let addProductDiscount = document.querySelector("form#addProductDiscountForm");
+  if (addProductDiscount != null)
+    addProductDiscount.addEventListener("submit", sendAddProductDiscountRequest);
 }
 
 function encodeForAjax(data) {
@@ -102,6 +142,75 @@ function sendAjaxRequest(method, url, data, handler) {
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   request.addEventListener("load", handler);
   request.send(encodeForAjax(data));
+}
+
+function sendAddProductRequest(event) {
+  event.preventDefault();
+
+  let formData = new FormData(this);
+  console.log(this);
+  let data = {};
+  for (var [key, value] of formData.entries()) {
+    data[key] = value;
+    console.log(key, value);
+  }
+
+  sendAjaxRequest("put", "/api/products/", data, productAddedHandler);
+}
+
+function sendAddCategoryRequest(event) {
+  event.preventDefault();
+
+  let name = this.querySelector("input[name=name]").value;
+
+  sendAjaxRequest(
+    "put",
+    "/api/categories/",
+    { name: name },
+    categoryAddedHandler
+  );
+}
+
+function sendUpdatePriceRequest(event) {
+  event.preventDefault();
+
+  let id = this.querySelector("input[name=id]").value;
+  console.log(id);
+  let price = this.querySelector("input[name=price]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/products/" + id,
+    { type: "price", price: price },
+    priceUpdatedHandler
+  );
+}
+
+function sendUpdateStockRequest(event) {
+  event.preventDefault();
+
+  let id = this.querySelector("input[name=id]").value;
+  console.log(id);
+  let stock = this.querySelector("input[name=stock]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/products/" + id,
+    { type: "stock", stock: stock },
+    stockUpdatedHandler
+  );
+}
+
+function productAddedHandler() {
+  let product = JSON.parse(this.responseText);
+
+  console.log(product);
+}
+
+function categoryAddedHandler() {
+  let category = JSON.parse(this.responseText);
+
+  console.log(category);
 }
 
 function sendDeleteWishListRequest() {
@@ -225,16 +334,14 @@ function sendUpdateWishlistRequest(event) {
   let id_product = this.querySelector("input[name=id_product]").value;
   let id = this.querySelector("input[name=id]");
 
-  
-  if(id === null){
+  if (id === null) {
     sendAjaxRequest(
       "post",
       "/api/wishlist/",
       { id_product: id_product },
       addedToWishlistHandler
     );
-  }
-  else{
+  } else {
     sendAjaxRequest(
       "delete",
       "/api/wishlist/" + id.value,
@@ -275,7 +382,7 @@ function sendUpdateCartRequest(event) {
 function removedFromWishListHandler(){
   let wishlist = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateWishlist');
+  let oldForm = document.querySelector("form#updateWishlist");
   let newForm = getAddToWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
 }
@@ -315,6 +422,58 @@ function sendUpdateStaffMemberRequest(event) {
   );
 
   event.preventDefault();
+}
+
+function sendUpdateProductRequest(event) {
+  let id = this.querySelector("input[name=id]").value;
+  let is_enabled = this.querySelector("input[name=is_enabled]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/products/" + id,
+    { type: "updateProduct", is_enabled: is_enabled },
+    productUpdatedHandler
+  );
+
+  event.preventDefault();
+}
+
+function sendAddCategoryDiscountRequest(event) {
+  event.preventDefault();                                                                               
+
+  let id = this.querySelector("input[name=id]").value;
+  let start = this.querySelector("input[name=start]").value;
+  let end = this.querySelector("input[name=end]").value;
+  let value = this.querySelector("input[name=value]").value;
+
+  sendAjaxRequest(
+    "put",
+    "/api/discounts/",
+    { id_category: id, start: start, end: end, value: value },
+    categoryDiscountAddedHandler
+  );
+
+}    
+
+function sendAddProductDiscountRequest(event) {
+  event.preventDefault();                                                                               
+
+  let id = this.querySelector("input[name=id]").value;
+  // let start = this.querySelector("input[name=start]").value;
+  // let end = this.querySelector("input[name=end]").value;
+  let value = this.querySelector("input[name=value]").value / 100;
+
+  sendAjaxRequest(
+    "post",
+    "/api/products/" + id,
+    { type: "discount", discount: value },
+    productUpdatedHandler
+  );
+
+}      
+
+function categoryDiscountAddedHandler(){
+  let discount = JSON.parse(this.responseText);
 }
 
 function sendUpdateBillingInformationRequest(event) {
@@ -371,8 +530,7 @@ function updatedPasswordHandler() {
       newError.innerHTML = response["errors"][0];
 
       form.appendChild(newError);
-    }
-    else{
+    } else {
       span.classList.add("error");
       span.classList.remove("success");
       span.innerHTML = response["errors"][0];
@@ -387,16 +545,16 @@ function updatedPasswordHandler() {
 function staffMemberAddedHandler() {
   let response = JSON.parse(this.responseText);
 
-  let message = document.querySelector('#addMember .modal-body .message');
+  let message = document.querySelector("#addMember .modal-body .message");
 
-  if(response['errors']!=null){
-    message.classList.add('error');
-    message.classList.remove('success');
-    message.innerHTML = response['errors'][0];
+  if (response["errors"] != null) {
+    message.classList.add("error");
+    message.classList.remove("success");
+    message.innerHTML = response["errors"][0];
     return;
   }
-  message.classList.add('success');
-  message.classList.remove('error');
+  message.classList.add("success");
+  message.classList.remove("error");
   let feedbackMsg = "Staff member added with success";
   message.innerHTML = feedbackMsg;
 
@@ -420,8 +578,7 @@ function updatedEmailHandler() {
       newError.innerHTML = response["errors"][0];
 
       form.appendChild(newError);
-    }
-    else{
+    } else {
       span.innerHTML = response["errors"][0];
     }
   } else if (span != null) {
@@ -434,10 +591,9 @@ function updatedEmailHandler() {
 function addedToWishlistHandler() {
   let wishlist = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateWishlist');
+  let oldForm = document.querySelector("form#updateWishlist");
   let newForm = getRemoveFromWishListForm(wishlist);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-
 }
 
 function addedToCartHandler() {
@@ -453,11 +609,13 @@ function getRemoveFromWishListForm(wishlist){
 
   form.innerHTML = `
   <br style="clear:both">
-  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    wishlist.id_product
+  }>
   <input type="hidden" class="d-none    " name="id" value=${wishlist.id}>
   <button type="submit" class="btn btn-primary float-right">
       Remove from wishlist <i class="fas fa-bookmark"></i>
-  </button>`
+  </button>`;
   form.addEventListener("submit", sendUpdateWishlistRequest);
 
   return form;
@@ -484,10 +642,12 @@ function getAddToWishListForm(wishlist){
 
   form.innerHTML = `
   <br style="clear:both">
-  <input type="hidden" class="d-none    " name="id_product" value=${wishlist.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    wishlist.id_product
+  }>
   <button type="submit" class="btn btn-primary float-right">
       Add to wishlist <i class="fas fa-bookmark"></i>
-  </button>`
+  </button>`;
 
   form.addEventListener("submit", sendUpdateWishlistRequest);
 
@@ -515,8 +675,21 @@ function staffMemberUpdatedHandler() {
   let newRow = createStaffMemberRow(staff_member);
   row.parentNode.replaceChild(newRow, row);
 
-  $('#confirmEnable').modal('hide')
-  $('#confirmDisable').modal('hide')
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
+}
+
+function productUpdatedHandler() {
+  console.log(this.status);
+
+  let product = JSON.parse(this.responseText);
+  let row = document.querySelector("[data-id='" + product.id + "']");
+  let newRow = createProductRow(product);
+  row.parentNode.replaceChild(newRow, row);
+
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
+  $("#addProductDiscountModal").modal("hide");
 
 }
 
@@ -736,6 +909,112 @@ function verifyCheckout(event){
 		
 		event.preventDefault();
 	}
+}
+
+function createProductRow(product) {
+  let new_product = document.createElement("tr");
+  new_product.setAttribute("data-id", product.id);
+
+  let is_enabled = product.is_enabled ? "Enabled" : "Disabled";
+
+  let button = document.createElement("button");
+  button.setAttribute("type", "button");
+  button.classList = "btn btn-sm updateProduct ";
+  button.classList += product.is_enabled ? "btn-danger" : "btn-success";
+  button.setAttribute("data-id", product.id);
+  button.setAttribute("data-toggle", "modal");
+
+  if (product.is_enabled) button.setAttribute("data-target", "#confirmDisable");
+  else button.setAttribute("data-target", "#confirmEnable");
+
+  let icon = document.createElement("i");
+  icon.classList = product.is_enabled
+    ? "fas fa-minus-circle"
+    : "fas fa-plus-circle";
+
+  let span = document.createElement("span");
+  span.classList = "button-text";
+  span.innerHTML = product.is_enabled ? " Disable" : " Enable";
+
+  button.appendChild(icon);
+  button.appendChild(span);
+
+  let stockButton = document.createElement("button");
+  stockButton.setAttribute("type", "submit");
+  stockButton.classList = "btn btn-primary btn-sm updateProduct ";
+  stockButton.setAttribute("data-id", product.id);
+  stockButton.setAttribute("data-toggle", "modal");
+  stockButton.setAttribute("data-target", "#updateStockModal");
+
+  let stockIcon = document.createElement("i");
+  stockIcon.classList = "fas fa-wrench";
+
+  let stockSpan = document.createElement("span");
+  stockSpan.classList = "button-text";
+  stockSpan.innerHTML = "Update stock";
+
+  stockButton.appendChild(stockIcon);
+  stockButton.appendChild(stockSpan);
+
+  let priceButton = document.createElement("button");
+  priceButton.setAttribute("type", "submit");
+  priceButton.classList = "btn btn-primary btn-sm updateProduct ";
+  priceButton.setAttribute("data-id", product.id);
+  priceButton.setAttribute("data-toggle", "modal");
+  priceButton.setAttribute("data-target", "#updatePriceModal");
+
+  let priceIcon = document.createElement("i");
+  priceIcon.classList = "fas fa-euro-sign";
+
+  let priceSpan = document.createElement("span");
+  priceSpan.classList = "button-text";
+  priceSpan.innerHTML = "Update price";
+
+  priceButton.appendChild(priceIcon);
+  priceButton.appendChild(priceSpan);
+
+  let discountButton = document.createElement("button");
+  discountButton.setAttribute("type", "submit");
+  discountButton.classList = "btn btn-primary btn-sm updateProduct ";
+  discountButton.setAttribute("data-id", product.id);
+  discountButton.setAttribute("data-toggle", "modal");
+  discountButton.setAttribute("data-target", "#addProductDiscountModal");
+
+  let discountIcon = document.createElement("i");
+  discountIcon.classList = "fas fa-tags";
+
+  let discountSpan = document.createElement("span");
+  discountSpan.classList = "button-text";
+  discountSpan.innerHTML = "Add discount";
+
+  discountButton.appendChild(discountIcon);
+  discountButton.appendChild(discountSpan);
+
+  let header = document.createElement("th");
+  header.setAttribute("scope", "row");
+  header.innerHTML = `<a href="/product/${product.id}">${product.id}</a>`;
+
+  let stock = document.createElement("td");
+  stock.innerHTML = product.stock;
+  let price = document.createElement("td");
+  price.innerHTML = product.price;
+
+  let enabled = document.createElement("td");
+  enabled.innerHTML = is_enabled;
+
+  let newCell = document.createElement("td");
+  newCell.appendChild(button);
+  newCell.appendChild(stockButton);
+  newCell.appendChild(priceButton);
+  newCell.appendChild(discountButton);
+
+  new_product.appendChild(header);
+  new_product.appendChild(stock);
+  new_product.appendChild(price);
+  new_product.appendChild(enabled);
+  new_product.appendChild(newCell);
+
+  return new_product;
 }
 
 addEventListeners();

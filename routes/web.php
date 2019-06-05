@@ -34,6 +34,13 @@ Route::post('api/cart', 'CartController@create');
 Route::post('api/cart/{id}', 'CartController@update');
 Route::delete('api/cart/{id}', 'CartController@delete');
 
+Route::put('api/products', 'ProductController@create');
+Route::post('api/products/{id}', 'ProductController@update');
+
+Route::put('api/categories', 'CategoryController@create');
+
+Route::put('api/discounts', 'DiscountController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 
@@ -53,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
 Route::get('back-office/moderator', 'BackOffice\ModeratorController@show');
+Route::get('back-office/stock/ajax/{type}', 'BackOffice\StockController@getStockType')->where('type', 'products|categories');
 Route::get('back-office/stock', 'BackOffice\StockController@show');
 
 Route::get('back-office/profile', 'UserController@showStaffProfile');
