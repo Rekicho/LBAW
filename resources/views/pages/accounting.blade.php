@@ -2,8 +2,9 @@
 
 @section('css')
 <link href="{{ asset('css/accounting.css') }}" rel="stylesheet">
-
 @endsection
+
+@section('title', 'Accounting')
 
 @section('script')
     <script src="{{asset('js/accounting.js')}}"></script>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $product->prodname)
+
 @section('css')
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 <link href="{{ asset('css/product.css') }}" rel="stylesheet">

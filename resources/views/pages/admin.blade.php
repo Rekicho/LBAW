@@ -4,6 +4,8 @@
     <script src="{{asset('js/admin.js')}}"></script>
 @endsection
 
+@section('title', 'Administration')
+
 @section('content')
 
 <ul class="nav nav-tabs mb-3" id="tasks" role="tablist">

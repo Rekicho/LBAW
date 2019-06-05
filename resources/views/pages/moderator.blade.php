@@ -4,6 +4,8 @@
     <script src="{{asset('js/moderator.js')}}"></script>
 @endsection
 
+@section('title', 'Moderating')
+
 @section('content')
 <div class="alert alert-primary alert-dismissible fade show" role="alert">
     You have a new report

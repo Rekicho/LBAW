@@ -4,6 +4,9 @@
 <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Cart')
+
+
 @section('content')
 <div class="container mb-5">
     <h1 class="mt-3 mb-3 text-center"><i class="fas fa-shopping-cart p-3 nav-icon"></i>Cart</h1>

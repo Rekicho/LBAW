@@ -4,6 +4,9 @@
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'FAQ')
+
+
 @section('content')
 
 <div class="container">

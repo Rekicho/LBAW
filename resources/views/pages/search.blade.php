@@ -5,6 +5,8 @@
 <link href="{{ asset('css/search.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Search')
+
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light lightgrey dept-navbar">
     <ul class="navbar-nav">

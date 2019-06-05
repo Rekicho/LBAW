@@ -1,5 +1,7 @@
 @extends('layouts.backoffice')
 
+@section('title', 'Staff profile')
+
 @section('content')
 <div class="change-password">
         <h4>Change password</h4>

@@ -4,6 +4,8 @@
 <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Checkout')
+
 @section('content')
 	<div id="billing" class="billing">
 		<div class="container mb-5 billing-form">

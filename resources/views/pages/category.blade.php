@@ -4,6 +4,8 @@
 <link href="{{ asset('css/search.css')}}" rel="stylesheet">
 @endsection
 
+@section('title', $category->name)
+
 @section('content')
 <div class="container">
 

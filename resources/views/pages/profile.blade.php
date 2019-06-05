@@ -4,6 +4,8 @@
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Profile')
+
 @section('content')
 <div class="container-profile m-md-5 px-0">
     <div class="row">
