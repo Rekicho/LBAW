@@ -23,7 +23,7 @@ class AccountingController extends BaseBOController
 
      // $this->authorize('show', BackOfficePolicy::class);
 
-      $payments = Purchase::getProductsWaitingForConfirmation();
+	  $payments = Purchase::getProductsWaitingForConfirmation();
 
       return view('pages.accounting', ['payments' => $payments]);
     }

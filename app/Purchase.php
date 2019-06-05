@@ -57,7 +57,7 @@ class Purchase extends Model
         foreach ($purchases as $purchase) {
             $last_log = PurchaseLog::where('id_purchase', $purchase->id)->orderByRaw('date_time DESC')->first();
 
-            if (strcmp($last_log->purchase_state, "Waiting for payment approval") == 0) {
+            if (strcmp($last_log->purchase_state, "Waiting for payment approval") == 0 || strcmp($last_log->purchase_state, "Waiting for payment") == 0) {
                 array_push($logs, $last_log);
             }
         }

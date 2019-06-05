@@ -571,11 +571,27 @@ function sendConfirmPurchasePaymentRequest(event) {
   event.preventDefault();                                                                               
 
   let id = this.querySelector("input[name=id_purchase]").value;
+  let state = this.querySelector("input[name=id_purchase]").getAttribute("data-state");
+  if(state == "Waiting for payment") {
+	sendAjaxRequest(
+		"put",
+		"/api/purchases/" + id,
+		{state: "Waiting for payment approval"},
+		null
+	);
+  }
 
   sendAjaxRequest(
     "put",
     "/api/purchases/" + id,
     {state: "Paid"},
+    null
+  );
+
+  sendAjaxRequest(
+    "put",
+    "/api/purchases/" + id,
+    {state: "Shipped"},
     purchasePaymentConfirmedHandler
   );
 

@@ -54,7 +54,7 @@
                     <td>{{$payment->id_purchase}}</td>
                     <td>
                         <form class="confirmPurchasePaymentForm">
-                        <input type="hidden" name="id_purchase" value="{{$payment->id_purchase}}">
+                        <input type="hidden" data-state="{{$payment->purchase_state}}" name="id_purchase" value="{{$payment->id_purchase}}">
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="fas fa-check-circle"></i>
                         </button>
