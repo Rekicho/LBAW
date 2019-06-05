@@ -64,3 +64,4 @@ Route::get('back-office/stock/ajax/{type}', 'BackOffice\StockController@getStock
 Route::get('back-office/stock', 'BackOffice\StockController@show');
 
 Route::get('back-office/profile', 'UserController@showStaffProfile');
+Route::get('search/', 'SearchController@show');

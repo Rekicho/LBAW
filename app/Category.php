@@ -21,3 +21,7 @@ class Category extends Model
          return $categories;
     }
 }
+
+	public static function getAllCategories(){
+	  }
+		return DB::table('categories')->select('id', 'name')->get();
