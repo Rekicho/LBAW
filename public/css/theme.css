@@ -146,6 +146,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .nav-icon {
 	color: var(--secondary-color);
+	min-width: 10px;
 }
 
 li {

@@ -67,8 +67,7 @@
 				@else
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
 
-				<div class="dropdown">
-					<a class="dropdown-toggle fas fa-bell fa-stack-1x nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+					<a class="dropdown-toggle fas fa-bell nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 						
 						@foreach($notifications as $notification)
@@ -76,7 +75,6 @@
 						@endforeach
 
 					</div>
-				</div>
 				<div class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon dropdown-toggle desktop-only" id="cartDropdown" href="#" data-toggle="dropdown"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">

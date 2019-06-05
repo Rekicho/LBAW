@@ -42,8 +42,8 @@
                 <div class="card-body">
                     <p>After adding all products to your cart, you can checkout to get your products.</p>
                     <p>You will need to be logged in to checkout.</p>
-                    <p>Click the cart button on top of every page and proceed to checkout.</p>
-                    <p>After that you will be redirected to a page to choose your payment method.</p>
+                    <p>Click the cart button on top of every page, go to the cart page and then proceed to checkout.</p>
+                    <p>After that you will be redirected to a page to input your shipiing & billing information and choose your payment method.</p>
                 </div>
             </div>
         </div>
@@ -58,11 +58,9 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
-                    <p class="max-text-width">You can pay using you paypal account or opt for offline payment, where we will give
-                        you eitheir our bank
-                        account information so you can transfer the money.</p>
-                    <p class="max-text-width">After that you will have to contact us so we can confirm your payment to ship your
-                        product.</p>
+                    <p class="max-text-width">When you checkout your cart, we will contact you by email about our 
+						account information so you can transfer money needed for your purchase.</p>
+                    <p class="max-text-width">After that you will have to answer that email with a transfer confirmation.</p>
                 </div>
             </div>
         </div>
@@ -83,8 +81,7 @@
                     <p class="max-text-width">We try to be as quick as possible, but the time also depends on our parteners that
                         ship the product.</p>
                     <p class="max-text-width">You can see the shipping state and an estimative on how long it will take to reach you
-                        on your purchase
-                        states.</p>
+                        on your purchase states.</p>
                 </div>
             </div>
         </div>
