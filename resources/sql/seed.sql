@@ -357,8 +357,8 @@ CREATE TRIGGER ensure_discount
 /* Category insert */
 INSERT INTO categories (name) VALUES ('Watches');
 INSERT INTO categories (name) VALUES ('Electronics');
-INSERT INTO categories (name) VALUES ('Software.');
-INSERT INTO categories (name) VALUES ('Pet Supplies.');
+INSERT INTO categories (name) VALUES ('Software');
+INSERT INTO categories (name) VALUES ('Pet Supplies');
 INSERT INTO categories (name) VALUES ('Video Games');
 INSERT INTO categories (name) VALUES ('Art');
 INSERT INTO categories (name) VALUES ('Home');

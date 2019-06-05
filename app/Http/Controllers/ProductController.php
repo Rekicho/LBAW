@@ -28,9 +28,9 @@ class ProductController extends BaseController
         try {
             $product = Product::getProductInfo($id);
 
-            if($product == null){
-              return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
-          }
+            if ($product == null) {
+                return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
+            }
         } catch (QueryException $e) {
             return view('errors.page_not_found', ['error' => 'Product not found!']);
         }
@@ -39,13 +39,15 @@ class ProductController extends BaseController
 
         $reviewsStats = Review::getProductReviewsStats($id);
 
-	  if(Auth::user())
-		  $wishlist = WishList::exists(Auth::user()->id, $id);
-		  
-	  else $wishlist = array();
+        if (Auth::user()) {
+            $wishlist = WishList::exists(Auth::user()->id, $id);
+            $cart = Cart::exists(Auth::user()->id, $id);
+        } else {
+            $wishlist = array();
+            $cart = array();
+        }
       
-      $cart = WishList::exists(Auth::user()->id, $id);
-      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart]);
+        return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart]);
     }
 
     /**
@@ -57,52 +59,50 @@ class ProductController extends BaseController
     {
         $product = new Product();
 
-      //$this->authorize('create', $product);
+        //$this->authorize('create', $product);
 
-      // $request->file('image')->store('public/img');
+        // $request->file('image')->store('public/img');
 
-      $product->name = $request->input('name');
-      $product->description = "ya"; //($request->input('description');
-      $product->is_enabled = true;
-      $product->id_category = $request->input('category');
-      $product->price = $request->input('price');
-      $product->discount = 0;
-      $product->stock = $request->input('stock');
+        $product->name = $request->input('name');
+        $product->description = "ya"; //($request->input('description');
+        $product->is_enabled = true;
+        $product->id_category = $request->input('category');
+        $product->price = $request->input('price');
+        $product->discount = 0;
+        $product->stock = $request->input('stock');
 
-      $product->save();
+        $product->save();
 
         return $product;
     }
 
-    public function update(Request $request, $id){
-      $product = Product::find($id);
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
 
-      $type = $request->input('type');
+        $type = $request->input('type');
 
-      if($type === "stock"){
-        $product->stock = $request->input('stock');
-      }
-      else if($type === "price"){
-        $product->price = $request->input('price');
-      }
-      else if($type === "discount"){
-        $prevDiscount = $product->discount;
-        $product->discount = $request->input('discount');
+        if ($type === "stock") {
+            $product->stock = $request->input('stock');
+        } elseif ($type === "price") {
+            $product->price = $request->input('price');
+        } elseif ($type === "discount") {
+            $prevDiscount = $product->discount;
+            $product->discount = $request->input('discount');
 
-        $users = Wishlist::usersWishlisted($product->id);
+            $users = Wishlist::usersWishlisted($product->id);
 
-        Notification::send($users, new ProductOnSale($product));
+            Notification::send($users, new ProductOnSale($product));
 
-        return $users;
-      }
-      else{
-        $is_enabled = $request->input('is_enabled');
-        $product->is_enabled = $is_enabled === 'true' ? true : false;
-      }
+            return $users;
+        } else {
+            $is_enabled = $request->input('is_enabled');
+            $product->is_enabled = $is_enabled === 'true' ? true : false;
+        }
 
 
-      $product->save();
+        $product->save();
 
-      return $product;
+        return $product;
     }
 }

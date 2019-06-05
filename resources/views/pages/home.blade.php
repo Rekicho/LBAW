@@ -7,34 +7,15 @@
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light lightgrey bg-light dept-navbar">
 			<ul class="navbar-nav">
+				@foreach($topCategories as $category)
 				<li class="nav-item">
-					<a href="category.html" class="dept-navbar-item">
-						<span>
-							Books
-						</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="category.html" class="dept-navbar-item">
-						<span>
-							Movies
-						</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="category.html" class="dept-navbar-item">
-						<span>
-							Games
-						</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="category.html" class="dept-navbar-item">
-						<span>
-							Clothes
-						</span>
-					</a>
-				</li>
+				<a href="/category/{{$category->id}}" class="dept-navbar-item">
+							<span>
+								{{$category->name}}
+							</span>
+						</a>
+					</li>
+				@endforeach
 			</ul>
 		</nav>
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -131,7 +112,7 @@
 			</div>
 
 			<div class="product-block">
-					<span class="product-block-title">Beauty best sellers</span>
+					<span class="product-block-title">{{$featuredCategory->name}} best sellers</span>
 					<a href="category.html" class="seemore-block">See more</a>
 					<br style="clear:both" />
 
@@ -150,22 +131,12 @@
 				<a href="category.html" class="seemore-block">See more</a>
 				<br style="clear:both" />
 				<div class="row imagetiles">
+					@foreach($watches as $product)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://n.nordstrommedia.com/ImageGallery/store/product/Zoom/4/_101387464.jpg?h=365&w=240&dpr=2&quality=45&fit=fill&fm=jpg
-							 class="img-responsive imgSizing"></a>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://ethos-cdn1.ethoswatches.com/pub/media/catalog/product/cache/749a04adc68de020ef4323397bb5eac7/d/a/daniel-wellington-classic-dw00100277.jpg
-							 class="img-responsive imgSizing">></a>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=http://cdn.shopify.com/s/files/1/0194/3447/products/Learner_L_plate_sticker_grande.png?v=1443425587
-							 class="img-responsive imgSizing">></a>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product.html"><img src=https://ethos-cdn1.ethoswatches.com/pub/media/catalog/product/cache/749a04adc68de020ef4323397bb5eac7/o/m/omega-de-ville-424-10-40-20-02-003.jpg
-							 class="img-responsive imgSizing">></a>
-					</div>
+							<a href="product/{{$product->id_product}}"><img src={{ asset("img/product$product->id_product.jpg") }}
+								class="img-responsive imgSizing"></a>
+						</div>
+					@endforeach
 				</div>
 			</div>
 
