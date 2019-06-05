@@ -25,7 +25,10 @@ class ProductController extends Controller
 
       $reviewsStats = Review::getProductReviewsStats($id);
 
-      $wishlist = WishList::exists(Auth::user()->id, $id);
+	  if(Auth::user())
+		  $wishlist = WishList::exists(Auth::user()->id, $id);
+		  
+	  else $wishlist = array();
       
       return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist]);
     }
