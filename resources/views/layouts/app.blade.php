@@ -66,6 +66,19 @@
 				<a href="{{ route('login') }}"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
 				@else
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
+
+				<div class="dropdown">
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-bell fa-stack-1x nav-icon"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+						
+						@foreach($notifications as $notification)
+					<div class="dropdown-item" href="#">A product on your wishlist is on sale! <a href="/product/{{$notification->data["product_id"]}}">Check it out</a></div>
+						@endforeach
+
+					</div>
+				</div>
 				<span class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon dropdown-toggle desktop-only" id="cartDropdown" href="#" data-toggle="dropdown"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
@@ -80,6 +93,7 @@
 				</span>
 				@endif
 			</div>
+			@endif
 		</nav>
     <section id="content">
         @yield('content')

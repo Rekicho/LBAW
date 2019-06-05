@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Category;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
     public function show($id){
         $products = Category::getProductsFromCategory($id);

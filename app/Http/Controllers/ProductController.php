@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Database\QueryException;
 
 use App\Product;
 use App\Review;
 use App\WishList;
+use App\User;
 use App\Category;
+
+use App\Notifications\ProductOnSale;
 
 class ProductController extends BaseController
 {
@@ -78,7 +82,14 @@ class ProductController extends BaseController
         $product->price = $request->input('price');
       }
       else if($type === "discount"){
+        $prevDiscount = $product->discount;
         $product->discount = $request->input('discount');
+
+        $users = Wishlist::usersWishlisted($product->id);
+
+        Notification::send($users, new ProductOnSale($product));
+
+        return $users;
       }
       else{
         $is_enabled = $request->input('is_enabled');
