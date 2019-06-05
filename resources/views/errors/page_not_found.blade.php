@@ -6,7 +6,6 @@
 
 @section('content')
     
-    <p>Ooops! That product does not exist!</p>
     <p>{{$error}} </p>
 
     <a href="{{ url()->previous() }}">Click here to go back.</a>

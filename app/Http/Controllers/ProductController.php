@@ -28,7 +28,7 @@ class ProductController extends BaseController
         try {
             $product = Product::getProductInfo($id);
         } catch (QueryException $e) {
-            return view('errors.product_not_found', ['error' => 'Product not found!']);
+            return view('errors.page_not_found', ['error' => 'Product not found!']);
         }
       
         $reviews = Review::getProductReviews($id);

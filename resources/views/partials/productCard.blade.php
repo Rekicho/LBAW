@@ -9,9 +9,11 @@
             <div class='col-6'>
             <a href={{"/product/$product->id_product"}}><span class='title'>{{$product->name}}</span></a>
             </div>
+            @if(isset($product->id_context))
             <div class='col-6 state'>
                 <a href='#' class='delete'><i class='fas fa-trash remove'></i></a>
             </div>
+            @endif
         </div>
         <div>
             @showRating($product->rating)

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Product;
 use App\Category;
 
-class SearchController extends Controller
+class SearchController extends BaseController
 {
     /**
      * Shows the card for a given id.
