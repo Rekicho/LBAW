@@ -132,6 +132,10 @@ function addEventListeners() {
     let confirmPurchasePayment = document.querySelector("form#confirmPurchasePaymentForm");
     if (confirmPurchasePayment != null)
     confirmPurchasePayment.addEventListener("submit", sendConfirmPurchasePaymentRequest);
+
+  let addReview = document.querySelector("form#addReview");
+  if (addReview != null)
+    addReview.addEventListener("submit", sendAddReviewRequest);
 }
 
 function encodeForAjax(data) {
@@ -294,6 +298,25 @@ function sendUpdateEmailRequest(event) {
     );
 }
 
+function sendAddReviewRequest(event) {
+  event.preventDefault();
+
+  let id_product = this.querySelector("input[name=id_product]").value;
+  let comment = this.querySelector("input[name=comment]").value;
+  let rating = this.querySelector("input[name=rating]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/reviews/",
+    {
+      id_product: id_product,
+      comment: comment,
+      rating: rating,
+    },
+    addedReviewHandler
+  );
+}
+
 function sendUpdatePasswordRequest(event) {
   event.preventDefault();
 
@@ -405,6 +428,11 @@ function removedFromCartHandler(){
   let oldForm = document.querySelector('form#updateCart');
   let newForm = getAddToCartForm(cart);
   oldForm.parentNode.replaceChild(newForm, oldForm);
+// TODO
+function addedReviewHandler() {
+  console.log(this.status);
+
+  let review = JSON.parse(this.responseText);
 }
 
 function sendCreateStaffMemberRequest(event) {
