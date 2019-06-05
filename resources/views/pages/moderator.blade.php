@@ -30,105 +30,21 @@
   <div class="container">
     <div class="tab-content" id="tasksContent">
       <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-user" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table id="products" class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Username <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Status <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="usersTable">
-              @each('partials.user', $clients, 'user')
-            </tbody>
-          </table>
-        </div>
-        <nav aria-label="table navigation">
-          {{ $clients->links("pagination::bootstrap-4") }}
-        </nav>
+        <!-- Filled with ajax call -->
       </div>
 
       <div class="tab-pane fade" id="reports" role="tabpanel" aria-labelledby="reports-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-report" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Review <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">OP <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Status <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="reportsTable">
-              {{-- @each('partials.report', $reports, 'report') --}}
-            </tbody>
-          </table>
-        </div>
-
-        <nav aria-label="table navigation">
-          {{-- {{ $reports->links("pagination::bootstrap-4") }} --}}
-        </nav>
+        <!-- Filled with ajax call -->
       </div>
       {{-- TODO: varias paginations, mesmo link --}}
       <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-          </div>
-          <input class="form-control" id="search-review" type="text" placeholder="Search..." />
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">
-                  <a href="#">Product <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">OP <i class="fas fa-sort"></i></a>
-                </th>
-                <th scope="col">
-                  <a href="#">Rating <i class="fas fa-sort"></i></a>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="reviewsTable">
-              @each('partials.reviewInfo', $reviews, 'review')
-            </tbody>
-          </table>
-        </div>
-        <nav aria-label="table navigation">
-          {{ $reviews->links("pagination::bootstrap-4") }}
-        </nav>
+        <!-- Filled with ajax call -->
       </div>
     </div>
   </div>
 
   <!-- Modals -->
-  <div class="modal fade" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="confirmDisableLabel"
+  <div class="modal fade confirmDisableUser" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="confirmDisableLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -139,20 +55,30 @@
           </button>
         </div>
         <div class="modal-body">
-          Are you sure?
+          <form id="confirmDisableForm">
+              <div class="form-group">
+                  <label for="reason">Reason </label>
+                  <textarea id="reason" rows="3" cols="30" name="reason"></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="end_t">End date </label>
+                  <input type="date" id="end_t" name="end_t">
+              </div>
+              <input type="hidden" name="id">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmDisableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="modal fade" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="confirmEnableLabel"
+  <div class="modal fade confirmEnableUser" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="confirmEnableLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -164,12 +90,16 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="confirmEnableForm">
+              <input type="hidden" name="id">
+              <input type="hidden" name="is_enabled" value="true">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="confirmEnableForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>

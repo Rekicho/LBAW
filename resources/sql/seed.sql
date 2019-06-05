@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS billing_information CASCADE;
 DROP TABLE IF EXISTS purchase CASCADE;
 DROP TABLE IF EXISTS purchased_product CASCADE;
 DROP TABLE IF EXISTS purchase_log CASCADE;
-DROP TABLE IF EXISTS ban CASCADE;
+DROP TABLE IF EXISTS bans CASCADE;
 DROP TABLE IF EXISTS discount CASCADE;
 DROP TABLE IF EXISTS help CASCADE;
 
@@ -159,7 +159,7 @@ CREATE TABLE purchase_log (
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
-CREATE TABLE ban (
+CREATE TABLE bans (
     id SERIAL PRIMARY KEY,
     id_staff_member INTEGER NOT NULL REFERENCES users (id),
     id_client INTEGER NOT NULL REFERENCES users (id),
@@ -313,7 +313,7 @@ EXECUTE PROCEDURE add_initial_state();
 CREATE FUNCTION update_user_status() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-  IF EXISTS (SELECT * FROM ban WHERE id_client = New.id_client AND end_t > New.start_t)
+  IF EXISTS (SELECT * FROM bans WHERE id_client = New.id_client AND end_t > New.start_t)
   THEN RAISE EXCEPTION 'This user is already banned';
   ELSE
   UPDATE users SET is_enabled = false
@@ -325,7 +325,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER update_user_status
-    BEFORE INSERT ON ban
+    BEFORE INSERT ON bans
     FOR EACH ROW
     EXECUTE PROCEDURE update_user_status();
 
@@ -1189,26 +1189,26 @@ INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (5,'R
 
 
 /* BAN */
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (1,1,32,'2019-12-24 06:26:17','2019-12-09 17:35:27','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (2,1,42,'2019-12-30 21:16:04','2019-12-18 04:17:21','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (3,1,37,'2019-12-21 07:16:53','2019-12-08 09:00:02','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (4,1,29,'2019-12-30 19:46:40','2019-12-14 21:41:35','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (5,1,36,'2019-12-08 08:19:36','2019-12-26 00:19:31','Inappropriate review.');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (6,1,22,'2019-12-15 08:03:58','2019-12-19 12:58:42','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (7,1,42,'2019-12-25 02:52:05','2019-12-12 20:25:37','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (8,1,21,'2019-12-14 01:52:30','2019-12-20 17:50:29','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (9,1,35,'2019-12-24 06:12:07','2019-12-31 00:00:10','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (10,1,45,'2019-12-17 06:24:24','2019-12-01 02:30:07','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (11,1,34,'2019-12-20 02:41:04','2019-12-20 09:58:28','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (12,1,39,'2019-12-01 20:15:30','2019-12-21 08:28:04','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (13,1,20,'2019-12-07 22:39:32','2019-12-26 08:53:32','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (14,1,33,'2019-12-02 09:15:44','2019-12-23 21:43:48','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (15,1,10,'2019-12-27 18:20:29','2019-12-28 18:57:43','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (16,1,34,'2019-12-28 02:30:12','2019-12-04 09:50:30','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (17,1,13,'2019-12-10 02:14:49','2019-12-11 13:37:31','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (18,1,28,'2019-12-27 12:31:01','2019-12-21 02:23:07','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (19,1,11,'2019-12-06 05:23:31','2019-12-19 01:05:15','Inappropriate review');
-INSERT INTO "ban" (id,id_staff_member,id_client,start_t,end_t,reason) VALUES (20,1,49,'2019-12-25 23:35:38','2019-12-21 22:42:18','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,32,'2019-12-24 06:26:17','2019-12-09 17:35:27','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,42,'2019-12-30 21:16:04','2019-12-18 04:17:21','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,37,'2019-12-21 07:16:53','2019-12-08 09:00:02','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,29,'2019-12-30 19:46:40','2019-12-14 21:41:35','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,36,'2019-12-08 08:19:36','2019-12-26 00:19:31','Inappropriate review.');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,22,'2019-12-15 08:03:58','2019-12-19 12:58:42','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,42,'2019-12-25 02:52:05','2019-12-12 20:25:37','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,21,'2019-12-14 01:52:30','2019-12-20 17:50:29','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,35,'2019-12-24 06:12:07','2019-12-31 00:00:10','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,45,'2019-12-17 06:24:24','2019-12-01 02:30:07','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,34,'2019-12-20 02:41:04','2019-12-20 09:58:28','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,39,'2019-12-01 20:15:30','2019-12-21 08:28:04','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,20,'2019-12-07 22:39:32','2019-12-26 08:53:32','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,33,'2019-12-02 09:15:44','2019-12-23 21:43:48','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,10,'2019-12-27 18:20:29','2019-12-28 18:57:43','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,34,'2019-12-28 02:30:12','2019-12-04 09:50:30','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,13,'2019-12-10 02:14:49','2019-12-11 13:37:31','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,28,'2019-12-27 12:31:01','2019-12-21 02:23:07','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,11,'2019-12-06 05:23:31','2019-12-19 01:05:15','Inappropriate review');
+INSERT INTO bans (id_staff_member,id_client,start_t,end_t,reason) VALUES (1,49,'2019-12-25 23:35:38','2019-12-21 22:42:18','Inappropriate review');
 
 /* DISCOUNT */
 INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (1,20,'2019-12-01 17:59:35','2019-12-31 06:27:23');

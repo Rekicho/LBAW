@@ -37,11 +37,11 @@ function addEventListeners() {
   if (addStaffMember != null)
     addStaffMember.addEventListener("submit", sendCreateStaffMemberRequest);
 
-  let disableStaffMember = document.querySelector("#confirmDisable form");
+  let disableStaffMember = document.querySelector(".confirmDisable form");
   if (disableStaffMember != null)
     disableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
-  let enableStaffMember = document.querySelector("#confirmEnable form");
+  let enableStaffMember = document.querySelector(".confirmEnable form");
   if (enableStaffMember != null)
     enableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
@@ -120,6 +120,14 @@ function addEventListeners() {
     let addProductDiscount = document.querySelector("form#addProductDiscountForm");
   if (addProductDiscount != null)
     addProductDiscount.addEventListener("submit", sendAddProductDiscountRequest);
+
+  let disableUser = document.querySelector(".confirmDisableUser form");
+  if (disableUser != null)
+    disableUser.addEventListener("submit", sendDisableUserRequest);
+
+  let enableUser = document.querySelector(".confirmEnableUser form");
+  if (enableUser != null)
+    enableUser.addEventListener("submit", sendEnableUserRequest);
 }
 
 function encodeForAjax(data) {
@@ -424,6 +432,47 @@ function sendUpdateStaffMemberRequest(event) {
   event.preventDefault();
 }
 
+function sendEnableUserRequest(event) {
+  let id = this.querySelector("input[name=id]").value;
+
+  sendAjaxRequest(
+    "post",
+    "/api/users/" + id,
+    { type: "updateUser"},
+    userUpdatedHandler
+  );
+
+  event.preventDefault();
+}
+
+function sendDisableUserRequest(event) {
+  event.preventDefault();
+
+  let id_client = this.querySelector("input[name=id]").value;
+  let end_t = this.querySelector("input[name=end_t]").value;
+  let reason = this.querySelector("textarea[name=reason]").value;
+
+  console.log({ id_client: id_client, end_t: end_t, reason: reason})
+
+  sendAjaxRequest(
+    "post",
+    "/api/bans/",
+    { id_client: id_client, end_t: end_t, reason: reason},
+    userUpdatedHandler
+  );
+}
+
+function userUpdatedHandler(){
+  let user = JSON.parse(this.responseText);
+
+  let row = document.querySelector("[data-id='" + user.id + "']");
+  let newRow = createUserRow(staff_member);
+  row.parentNode.replaceChild(newRow, row);
+
+  $("#confirmEnable").modal("hide");
+  $("#confirmDisable").modal("hide");
+}
+
 function sendUpdateProductRequest(event) {
   let id = this.querySelector("input[name=id]").value;
   let is_enabled = this.querySelector("input[name=is_enabled]").value;
@@ -558,7 +607,7 @@ function staffMemberAddedHandler() {
   let feedbackMsg = "Staff member added with success";
   message.innerHTML = feedbackMsg;
 
-  let newRow = createStaffMemberRow(response);
+  let newRow = createUserRow(response);
   let table = document.getElementById("staffMemberTable");
   table.appendChild(newRow);
 }
@@ -672,7 +721,7 @@ function getAddToCartForm(cart){
 function staffMemberUpdatedHandler() {
   let staff_member = JSON.parse(this.responseText);
   let row = document.querySelector("[data-id='" + staff_member.id + "']");
-  let newRow = createStaffMemberRow(staff_member);
+  let newRow = createUserRow(staff_member);
   row.parentNode.replaceChild(newRow, row);
 
   $("#confirmEnable").modal("hide");
@@ -761,37 +810,37 @@ return `
 ` + form;
 }
 
-function createStaffMemberRow(staff_member) {
-  let new_staff_member = document.createElement("tr");
-  new_staff_member.setAttribute("data-id", staff_member.id);
+function createUserRow(user) {
+  let new_user = document.createElement("tr");
+  new_user.setAttribute("data-id", user.id);
 
-  let is_enabled = staff_member.is_enabled ? "Enabled" : "Disabled";
+  let is_enabled = user.is_enabled ? "Enabled" : "Disabled";
 
   let button = document.createElement("button");
   button.setAttribute("type", "button");
   button.classList = "btn btn-sm updateMember ";
-  button.classList += staff_member.is_enabled ? "btn-danger" : "btn-success";
-  button.setAttribute("data-id", staff_member.id);
+  button.classList += user.is_enabled ? "btn-danger" : "btn-success";
+  button.setAttribute("data-id", user.id);
   button.setAttribute("data-toggle", "modal");
 
-  if (staff_member.is_enabled)
+  if (user.is_enabled)
     button.setAttribute("data-target", "#confirmDisable");
   else button.setAttribute("data-target", "#confirmEnable");
 
   let icon = document.createElement("i");
-  icon.classList = staff_member.is_enabled
+  icon.classList = user.is_enabled
     ? "fas fa-minus-circle"
     : "fas fa-plus-circle";
 
   let span = document.createElement("span");
   span.classList = "button-text";
-  span.innerHTML = staff_member.is_enabled ? " Disable" : " Enable";
+  span.innerHTML = user.is_enabled ? " Disable" : " Enable";
 
   button.appendChild(icon);
   button.appendChild(span);
   let header = document.createElement("th");
   header.setAttribute("scope", "row");
-  header.innerHTML = staff_member.username;
+  header.innerHTML = user.username;
 
   let enabled = document.createElement("td");
   enabled.innerHTML = is_enabled;
@@ -799,11 +848,11 @@ function createStaffMemberRow(staff_member) {
   let newCell = document.createElement("td");
   newCell.appendChild(button);
 
-  new_staff_member.appendChild(header);
-  new_staff_member.appendChild(enabled);
-  new_staff_member.appendChild(newCell);
+  new_user.appendChild(header);
+  new_user.appendChild(enabled);
+  new_user.appendChild(newCell);
 
-  return new_staff_member;
+  return new_user;
 }
 
 function updateCartnewProduct(cart) {

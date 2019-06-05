@@ -67,10 +67,13 @@ class LoginController extends Controller
                 // Increment the failed login attempts and redirect back to the
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
+
+                $ban = Ban::getLastBan($user);
+
                 return redirect()
                     ->back()
                     ->withInput($request->only($this->username(), 'remember'))
-                    ->withErrors(['is_enabled' => 'You must be enabled to login.']);
+                    ->withErrors(['is_enabled' => 'You must be enabled to login.', 'reason' => $ban->reason]);
             }
         }
     

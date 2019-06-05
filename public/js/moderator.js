@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $(window).on("resize", function(e) {
+$(document).ready(function () {
+  $(window).on("resize", function (e) {
     checkScreenSize();
   });
 
@@ -14,21 +14,21 @@ $(document).ready(function() {
   function checkScreenSize() {
     let newWindowWidth = $(window).width();
     if (!isModalEnabled && newWindowWidth < MAX_WIDTH) {
-      usersTableLines.forEach(function(line) {
+      usersTableLines.forEach(function (line) {
         line.setAttribute("data-toggle", "modal");
         line.setAttribute("data-target", "#userActionsModal");
       });
-      reportsTableLines.forEach(function(line) {
+      reportsTableLines.forEach(function (line) {
         line.setAttribute("data-toggle", "modal");
         line.setAttribute("data-target", "#reportActionsModal");
       });
       isModalEnabled = true;
     } else if (isModalEnabled && newWindowWidth >= MAX_WIDTH) {
-      usersTableLines.forEach(function(line) {
+      usersTableLines.forEach(function (line) {
         line.removeAttribute("data-toggle");
         line.removeAttribute("data-target");
       });
-      reportsTableLines.forEach(function(line) {
+      reportsTableLines.forEach(function (line) {
         line.removeAttribute("data-toggle");
         line.removeAttribute("data-target");
       });
@@ -36,11 +36,69 @@ $(document).ready(function() {
     }
   }
 
-  $("#search-user").on("keyup", function() {
-    var value = $(this)
+  function getPaginationSelectedPage(url) {
+    let chunks = url.split('?');
+    let querystr = chunks[1].split('&');
+    let pg = 1;
+    for (i in querystr) {
+      let qs = querystr[i].split('=');
+      if (qs[0] == 'page') {
+        pg = qs[1];
+        break;
+      }
+    }
+    return pg;
+  }
+
+  $('#users').on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    let pg = getPaginationSelectedPage($(this).attr('href'));
+
+    $.ajax({
+      url: '/back-office/moderator/ajax/users',
+      data: { page: pg },
+      success: function (data) {
+        $('#users').html(data);
+      }
+    });
+  });
+
+  $('#reports').on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    let pg = getPaginationSelectedPage($(this).attr('href'));
+
+    $.ajax({
+      url: '/back-office/moderator/ajax/reports',
+      data: { page: pg },
+      success: function (data) {
+        $('#reports').html(data);
+      }
+    });
+  });
+
+  $('#reviews').on('click', '.pagination a', function (e) {
+    e.preventDefault();
+    let pg = getPaginationSelectedPage($(this).attr('href'));
+
+    $.ajax({
+      url: '/back-office/moderator/ajax/reviews',
+      data: { page: pg },
+      success: function (data) {
+        $('#reviews').html(data);
+      }
+    });
+  });
+
+  $('#users').load('/back-office/moderator/ajax/users?page=1');
+  $('#reports').load('/back-office/moderator/ajax/reports?page=1');
+  $('#reviews').load('/back-office/moderator/ajax/reviews?page=1');
+
+  $("#search-user").on("keyup", function () {
+    console.log(1)
+    let value = $(this)
       .val()
       .toLowerCase();
-    $("#usersTable tr").filter(function() {
+    $("#usersTable tr").filter(function () {
       $(this).toggle(
         $(this)
           .text()
@@ -50,11 +108,11 @@ $(document).ready(function() {
     });
   });
 
-  $("#search-report").on("keyup", function() {
-    var value = $(this)
+  $("#search-report").on("keyup", function () {
+    let value = $(this)
       .val()
       .toLowerCase();
-    $("#reportsTable tr").filter(function() {
+    $("#reportsTable tr").filter(function () {
       $(this).toggle(
         $(this)
           .text()
@@ -64,11 +122,11 @@ $(document).ready(function() {
     });
   });
 
-  $("#search-review").on("keyup", function() {
-    var value = $(this)
+  $("#search-review").on("keyup", function () {
+    let value = $(this)
       .val()
       .toLowerCase();
-    $("#reviewsTable tr").filter(function() {
+    $("#reviewsTable tr").filter(function () {
       $(this).toggle(
         $(this)
           .text()
