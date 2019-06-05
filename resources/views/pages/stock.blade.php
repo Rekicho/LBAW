@@ -238,8 +238,8 @@ aria-hidden="true">
         <div class="modal-body">
           <form>
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Select category
+              <div class="form-group required col-md-6">
+                <label class="control-label">Select category
                   <select class="form-control" id="sel-category" name="category" required>
                     <option hidden disabled selected value>-</option>
                     @foreach ($categories as $category)
@@ -251,8 +251,8 @@ aria-hidden="true">
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>
+              <div class="form-group required col-md-6">
+                <label class="control-label">
                   Name
                   <input class="form-control" type="text" name="name" placeholder="Name" required />
                 </label>
@@ -266,17 +266,17 @@ aria-hidden="true">
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="stock">
+              <div class="required form-group col-md-6">
+                <label class="control-label" for="stock">
                   Stock
                   <input class="form-control" id="stock" type="number" name="stock" placeholder="Stock" required />
                 </label>
               </div>
-              <div class="form-group col-md-6">
-                <label for="price">
+              <div class="form-group required col-md-6">
+                <label class="control-label" for="price">
                   Price
                 </label>
-                  <div  class="input-group">
+                  <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text">€</div>
                     </div>
@@ -287,9 +287,9 @@ aria-hidden="true">
 
             {{-- <img id="product-image" src="images.jpeg" class="img-fluid rounded mx-auto d-block" alt="product image" /> --}}
 
-            <div class="custom-file mb-4">
+            <div class="custom-file required mb-4">
               <input type="file" class="custom-file-input" name="image" id="productImage" required />
-              <label class="custom-file-label" for="productImage">Choose file</label>
+              <label class="custom-file-label control-label" for="productImage">Choose file</label>
             </div>
 
             <button type="submit" class="btn btn-med btn-primary">

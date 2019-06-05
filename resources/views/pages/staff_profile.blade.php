@@ -7,12 +7,12 @@
         <h4>Change password</h4>
         <form>
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="old_password">Password (old)</label>
+              <div class="form-group required col-md-6">
+                <label class="control-label" for="old_password">Password (old)</label>
                 <input type="password" name="old_password" class="form-control" id="old_password" placeholder="Enter old password" required />
               </div>
-              <div class="form-group col-md-6">
-                <label for="new_password">Password (new)</label>
+              <div class="form-group required col-md-6">
+                <label class="control-label" for="new_password">Password (new)</label>
                 <input type="password" name="new_password" class="form-control" id="new_password" placeholder="Enter new password" required />
               </div>
             </div>
