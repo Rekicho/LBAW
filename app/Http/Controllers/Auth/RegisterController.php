@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Help;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class RegisterController extends BaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +37,8 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {        
+        parent::__construct();
         $this->middleware('guest');
     }
 
