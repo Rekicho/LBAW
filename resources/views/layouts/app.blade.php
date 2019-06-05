@@ -95,34 +95,20 @@
 				<div class="col-md-3 mb-md-0 mb-3 footer-ul">
 					<h5 class="text-uppercase">Categories</h5>
 					<ul class="list-unstyled">
+						@for($i = 0; $i < 4; $i++)
 						<li>
-							<a href="category.html">Balls</a>
+							<a href="category/{{$categories[$i]->id}}">{{$categories[$i]->name}}</a>
 						</li>
-						<li>
-							<a href="category.html">Watches</a>
-						</li>
-						<li>
-							<a href="category.html">Beauty products</a>
-						</li>
-						<li>
-							<a href="category.html">Video Games</a>
-						</li>
+						@endfor
 					</ul>
 				</div>
 				<div class="col-md-3 mb-md-0 mb-3 position-relative">
 					<ul class="list-unstyled push-down footer-ul">
-						<li>
-							<a href="category.html">Board Games</a>
-						</li>
-						<li>
-							<a href="category.html">Unsold Curry merchandise</a>
-						</li>
-						<li>
-							<a href="category.html">Computers</a>
-						</li>
-						<li>
-							<a href="category.html">Mugs</a>
-						</li>
+							@for($i = 4; $i < 8; $i++)
+							<li>
+								<a href="category/{{$categories[$i]->id}}">{{$categories[$i]->name}}</a>
+							</li>
+							@endfor
 					</ul>
 				</div>
 			</div>

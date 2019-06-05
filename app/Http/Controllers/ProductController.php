@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use App\Product;
 use App\Review;
 use App\WishList;
+use App\Category;
 
 class ProductController extends BaseController
 {
@@ -36,7 +37,6 @@ class ProductController extends BaseController
 	  else $wishlist = array();
       
       $cart = WishList::exists(Auth::user()->id, $id);
-
       return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart]);
     }
 

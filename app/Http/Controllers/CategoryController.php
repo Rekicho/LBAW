@@ -8,13 +8,21 @@ use App\Category;
 
 class CategoryController extends Controller
 {
+    public function show($id){
+        $products = Category::getProductsFromCategory($id);
+        $category = Category::find($id);
+        $footerCategories = Category::getFooterCategories();
+
+        return view('pages.category', ['category' => $category, 'products' => $products, 'categories' => $footerCategories]);
+    }
+
     public function create(Request $request){
         $category = new Category();
-
         $category->name = $request->input('name');
+
 
         $category->save();
 
-        return $category;
     }
+        return $category;
 }
