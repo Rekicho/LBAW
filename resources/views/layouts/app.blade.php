@@ -74,7 +74,7 @@
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 						
 						@foreach($notifications as $notification)
-					<div class="dropdown-item" href="#">A product on your wishlist is on sale! <a href="/product/{{$notification->data["product_id"]}}">Check it out</a></div>
+							<div class="dropdown-item" href="#">A product on your wishlist is on sale! <a href="/product/{{$notification->data["product_id"]}}">Check it out</a></div>
 						@endforeach
 
 					</div>
@@ -91,7 +91,6 @@
 					</div>
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon mobile-only" href="/cart"></a>
 				</span>
-				@endif
 			</div>
 			@endif
 		</nav>
@@ -111,7 +110,7 @@
 					<ul class="list-unstyled">
 						@for($i = 0; $i < 4; $i++)
 						<li>
-							<a href="category/{{$categories[$i]->id}}">{{$categories[$i]->name}}</a>
+							<a href="/category/{{$footerCategories[$i]->id}}">{{$footerCategories[$i]->name}}</a>
 						</li>
 						@endfor
 					</ul>
@@ -120,7 +119,7 @@
 					<ul class="list-unstyled push-down footer-ul">
 							@for($i = 4; $i < 8; $i++)
 							<li>
-								<a href="category/{{$categories[$i]->id}}">{{$categories[$i]->name}}</a>
+								<a href="/category/{{$footerCategories[$i]->id}}">{{$footerCategories[$i]->name}}</a>
 							</li>
 							@endfor
 					</ul>

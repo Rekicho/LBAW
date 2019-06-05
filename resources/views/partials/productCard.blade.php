@@ -1,4 +1,8 @@
-<li class='single-product-info-container' data-id='{{$product->id_context}}'>
+@if(isset($product->id_context))
+    <li class='single-product-info-container' data-id='{{$product->id_context}}'>
+@else
+    <li class='single-product-info-container'>
+@endif
     <a href={{"/product/$product->id_product"}}><img src={{ asset("img/product$product->id_product.jpg") }} alt=''></a>
     <div class='single-product-info-text'>
         <div class='row'>
