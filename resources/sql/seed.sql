@@ -44,6 +44,8 @@ DROP INDEX IF EXISTS product_price;
 DROP INDEX IF EXISTS product_discount;
 DROP INDEX IF EXISTS start_discount;
 DROP INDEX IF EXISTS end_discount;
+DROP INDEX IF EXISTS review_id_product;
+DROP INDEX IF EXISTS purchased_product_id_purchase;
 
 
 

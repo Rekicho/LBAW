@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 use App\Product;
 use App\Review;
@@ -19,11 +20,15 @@ class ProductController extends BaseController
      */
     public function show($id)
     {
-      $product = Product::getProductInfo($id);
+        try {
+            $product = Product::getProductInfo($id);
+        } catch (QueryException $e) {
+            return view('errors.product_not_found', ['error' => 'Product not found!']);
+        }
       
-      $reviews = Review::getProductReviews($id);
+        $reviews = Review::getProductReviews($id);
 
-      $reviewsStats = Review::getProductReviewsStats($id);
+        $reviewsStats = Review::getProductReviewsStats($id);
 
 	  if(Auth::user())
 		  $wishlist = WishList::exists(Auth::user()->id, $id);
@@ -42,7 +47,7 @@ class ProductController extends BaseController
      */
     public function create(Request $request)
     {
-      $product = new Product();
+        $product = new Product();
 
       //$this->authorize('create', $product);
 
@@ -58,7 +63,7 @@ class ProductController extends BaseController
 
       $product->save();
 
-      return $product;
+        return $product;
     }
 
     public function update(Request $request, $id){
