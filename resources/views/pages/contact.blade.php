@@ -10,7 +10,7 @@
     <h1 class="my-3 space-title">Contact Us</h1>
     <div class="row pb-3">
         <div class="col-md-8">
-            <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=est%C3%A1dio%20do%20drag%C3%A3o&t=k&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+            <iframe src="https://maps.google.com/maps?q=est%C3%A1dio%20do%20drag%C3%A3o&t=k&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
         </div>
         <!-- Contact Details Column -->
         <div class="col-md-4">

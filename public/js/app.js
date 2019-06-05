@@ -305,6 +305,15 @@ function sendAddReviewRequest(event) {
   let comment = this.querySelector("input[name=comment]").value;
   let rating = this.querySelector("input[name=rating]").value;
 
+  if(comment.length < 50){
+    let span = document.createElement("span");
+    span.className+=" error";
+    span.innerHTML = "Your comment must have at least 50 characters."
+    this.appendChild(span);
+    
+    return;
+  }
+
   sendAjaxRequest(
     "post",
     "/api/reviews/",
@@ -428,7 +437,6 @@ function removedFromCartHandler(){
   let oldForm = document.querySelector('form#updateCart');
   let newForm = getAddToCartForm(cart);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-
 }
 
 // TODO

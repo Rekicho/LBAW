@@ -1,10 +1,14 @@
 @extends('layouts.backoffice')
 
+@section('script')
+    <script src="{{asset('js/admin.js')}}"></script>
+@endsection
+
 @section('content')
 
 <ul class="nav nav-tabs mb-3" id="tasks" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="staff-tab" data-toggle="tab" href="#staff" role="tab" aria-controls="products"
+      <a class="nav-link active" id="staff-tab" data-toggle="tab" href="#staff" role="tab"
         aria-selected="true">Staff Members</a>
     </li>
   </ul>
@@ -76,7 +80,7 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button class="btn btn-secondary confirm" type="submit" form="confirmDisableForm" class="btn btn-primary">Confirm</button>
+            <button class="btn btn-secondary confirm" type="submit" form="confirmDisableForm">Confirm</button>
           </div>
         </div>
       </div>
@@ -102,7 +106,7 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button class="btn btn-secondary confirm" type="submit" form="confirmEnableForm" class="btn btn-primary">Confirm</button>
+            <button class="btn btn-secondary confirm" type="submit" form="confirmEnableForm">Confirm</button>
           </div>
         </div>
       </div>

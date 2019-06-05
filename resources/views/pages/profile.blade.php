@@ -52,13 +52,15 @@
             </div>
             <div id="wishlist" class="collapse">
                 <h2><i class="fas fa-star"></i> Wish List</h2>
-                <ul>
+                
                     @if(count($wishlist) != 0)
+                    <ul>
                     @each('partials.productCard', $wishlist, 'product')
+                    </ul>
                     @else
                     No products found!
                     @endif
-            </ul>
+         
         </div>
         <div id="edit" class="collapse">
             <div class="mb-2">
@@ -141,8 +143,6 @@
                 </div>
                 </div>
     </div>
-</div>
-</div>
 </div>
 </div>
 @endsection

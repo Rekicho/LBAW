@@ -30,11 +30,11 @@
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	 crossorigin="anonymous"></script>
    
-    <script type="text/javascript">
+    <script>
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
-    <script type="text/javascript" src={{ asset('js/app.js') }} defer>
+    <script src={{ asset('js/app.js') }} defer>
 </script>
   </head>
   <body class="bg-primary">
@@ -77,7 +77,7 @@
 
 					</div>
 				</div>
-				<span class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
+				<div class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon dropdown-toggle desktop-only" id="cartDropdown" href="#" data-toggle="dropdown"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
 						<ul> @each('partials/productCard', $cartProducts, 'product') </ul>
@@ -88,13 +88,14 @@
 						</div>
 					</div>
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon mobile-only" href="/cart"></a>
-				</span>
-				@endif
-			</div>
+				</div>
+			@endif
+		</div>
 		</nav>
-    <section id="content">
+    <div id="content">
         @yield('content')
-    </section>
+		</div>
+	</div>
     <footer class="page-footer font-small blue p-4 main-color-bg text-light">
 		<div class="container-fluid text-center text-md-left">
 			<div class="row">

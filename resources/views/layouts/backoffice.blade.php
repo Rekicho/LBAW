@@ -32,26 +32,7 @@
 
   @yield('script')
 
-  <script type="text/javascript" src={{ asset('js/app.js') }} defer>
-
-  // TODO: move to a different file (mudar para javascipt?)
-  <script>
-    $(document).ready(function () {
-      $("#search-member").on("keyup", function () {
-        var value = $(this)
-          .val()
-          .toLowerCase();
-        $("#staffMemberTable tr").filter(function () {
-          $(this).toggle(
-            $(this)
-              .text()
-              .toLowerCase()
-              .indexOf(value) > -1
-          );
-        });
-      });
-    });
-  </script>
+  <script src={{ asset('js/app.js') }} defer></script>
 </head>
 
 <body class="bg-primary">

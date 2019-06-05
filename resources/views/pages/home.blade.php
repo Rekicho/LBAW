@@ -54,7 +54,7 @@
 
 					@foreach ($topProducts as $topProduct)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-					<a href="product/{{$topProduct->id_product}}"><img src={{ asset("img/product$topProduct->id_product.jpg") }}
+					<a href="product/{{$topProduct->id_product}}"><img alt="{{$topProduct->name}}" src={{ asset("img/product$topProduct->id_product.jpg") }}
 						class="img-responsive imgSizing"></a>
 						</div>
 					@endforeach
@@ -118,7 +118,7 @@
 					<div class="row imagetiles">
 						@foreach ($featuredCategoryProducts as $product)
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product/{{$product->id_product}}"><img src={{ asset("img/product$product->id_product.jpg") }}
+						<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("img/product$product->id_product.jpg") }}
 							class="img-responsive imgSizing"></a>
 							</div>
 						@endforeach
@@ -132,7 +132,7 @@
 				<div class="row imagetiles">
 					@foreach($watches as $product)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-							<a href="product/{{$product->id_product}}"><img src={{ asset("img/product$product->id_product.jpg") }}
+					<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("img/product$product->id_product.jpg") }}
 								class="img-responsive imgSizing"></a>
 						</div>
 					@endforeach

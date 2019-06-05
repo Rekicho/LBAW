@@ -13,6 +13,7 @@ use App\WishList;
 use App\User;
 use App\Cart;
 use App\Category;
+use App\Cart;
 
 use App\Notifications\ProductOnSale;
 
@@ -63,6 +64,16 @@ class ProductController extends BaseController
         //$this->authorize('create', $product);
 
         // $request->file('image')->store('public/img');
+
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required|string|max:255|unique:products',
+            'description' => 'required|string|min:100',
+            'category' => 'required'
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['errors'=> $validator->errors()->all()]);
+        }
 
         $product->name = $request->input('name');
         $product->description = "ya"; //($request->input('description');

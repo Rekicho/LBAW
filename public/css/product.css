@@ -57,7 +57,7 @@ a > .username {
 	clear: both;
 }
 
-article.review {
+div.review {
 	position: relative;
 }
 
@@ -66,13 +66,13 @@ article.review {
 	font-weight: bold;
 }
 
-article.review p {
+div.review p {
 	margin-top: 10px;
 	padding-bottom: 30px;
 	margin-bottom: 0;
 }
 
-article.review .date {
+div.review .date {
 	position: absolute;
 	right: 0;
 	bottom: 0px;

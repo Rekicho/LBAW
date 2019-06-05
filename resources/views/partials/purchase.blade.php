@@ -1,7 +1,7 @@
 <div class="card">
 <div class="card-header" id="heading{{$purchase->id}}">
-        <h5 class="mb-0">
-            <button class="btn btn-link w-100 p-0" data-toggle="collapse" data-target="#collapse{{$purchase->id}}" aria-expanded="true"
+        <div class="mb-0">
+            <div role="button" class="btn btn-link w-100 p-0" data-toggle="collapse" data-target="#collapse{{$purchase->id}}" aria-expanded="true"
              aria-controls="collapse{{$purchase->id}}">
                 <div class="cart-info">
                 <span class="float-left">Date: {{$purchase->date_time}}</span>
@@ -50,10 +50,10 @@
                         <div class="float-left step-by-step mt-3 deactivate">
                             <i class="fas fa-circle pay-complt deactivate"></i>Completed
                     @endif
+                        </div>
                 </div>
-                </div>
-            </button>
-        </h5>
+            </div>
+        </div>
     </div>
 
     <div id="collapse{{$purchase->id}}" class="collapse" aria-labelledby="heading{{$purchase->id}}" data-parent="#accordion">

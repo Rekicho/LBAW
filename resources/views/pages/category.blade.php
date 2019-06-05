@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<div class="container">
 
 <div class="search-result-bar bg-light">
     <span class="result-count">
@@ -22,9 +23,9 @@
     <ul>
         @each('partials.productCard', $products, 'product')
 </ul>
-<div aria-label="table navigation">
+<nav aria-label="table navigation">
     {{ $products->links("pagination::bootstrap-4") }}
-</div>
+</nav>
 </div>
 <!-- PAGE TURNER -->
 
@@ -58,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <br clear="both" />
+            <br style="clear:both" />
             <hr />
 
             <!-- IF IT IS ON STOCK -->
@@ -92,10 +93,5 @@
 </div>
 </div>
 
-<div class="container">
 </div> <!-- container -->
-</div>
-<!--wrapper-->
-
-
 @endsection

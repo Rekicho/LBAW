@@ -9,7 +9,7 @@
         </div>
         {{-- {{$product->date}} --}}
         <div>
-            <a href="/product{{$product->id_product}}"><button type="button" class="btn btn-secondary">Review</button></a>
+            <a role="button" class="btn btn-secondary" href="/product/{{$product->id_product}}">Review</a>
         </div>
         <span class="price float-right">{{$product->quantity}} x {{$product->price}}€</span>
     </div>
