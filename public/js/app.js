@@ -63,7 +63,11 @@ function addEventListeners() {
 
   let updateEmail = document.querySelector("form#updateEmail");
   if (updateEmail != null)
-	updateEmail.addEventListener("submit", sendUpdateEmailRequest);
+    updateEmail.addEventListener("submit", sendUpdateEmailRequest);
+
+    let updateStaffPassword = document.querySelector("div.change-password form");
+    if (updateStaffPassword != null)
+    updateStaffPassword.addEventListener("submit", sendUpdateStaffPasswordRequest);
 
   let proceed = document.querySelector(".proceed");
   if (proceed != null)
@@ -191,6 +195,30 @@ function sendUpdatePasswordRequest(event) {
       },
       updatedPasswordHandler
     );
+}
+
+function sendUpdateStaffPasswordRequest(event) {
+  event.preventDefault();
+
+  let old_password = this.querySelector("input[name=old_password]").value;
+  let password = this.querySelector("input[name=new_password]").value;
+  let user_id = this.querySelector("input[name=user_id]").value;
+
+  if (old_password != "" && password != "")
+    sendAjaxRequest(
+      "post",
+      "/api/users/" + user_id,
+      {
+        type: "updateStaffPassword",
+        old_password: old_password,
+        password: password,
+      },
+      updatedStaffPasswordHandler
+    );
+}
+
+function updatedStaffPasswordHandler(){
+  let user = JSON.parse(this.responseText);
 }
 
 function sendUpdateWishlistRequest(event) {

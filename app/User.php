@@ -36,6 +36,10 @@ class User extends Authenticatable
        return DB::table('users')->select('id', 'username', 'is_enabled')->where('is_staff_member', true)->paginate(10);
     }
 
+    public static function clients(){
+        return User::where('is_staff_member', false)->paginate(10);
+    }
+
     public static function purchaseHistory($userId){
 
         $purchases = DB::table('purchase')

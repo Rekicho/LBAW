@@ -49,13 +49,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="faq">FAQ</a>
+						<a class="nav-link" href="/faq">FAQ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="about">ABOUT</a>
+						<a class="nav-link" href="/about">ABOUT</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact">CONTACT</a>
+						<a class="nav-link" href="/contact">CONTACT</a>
 					</li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="search.html">

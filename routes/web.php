@@ -52,3 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Back-office
 Route::get('back-office/admin', 'BackOffice\AdminController@show');
+Route::get('back-office/moderator', 'BackOffice\ModeratorController@show');
+Route::get('back-office/stock', 'BackOffice\StockController@show');
+
+Route::get('back-office/profile', 'UserController@showStaffProfile');

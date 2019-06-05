@@ -21,4 +21,13 @@ class Product extends Model
     return DB::table('products')->join('categories', 'products.id_category', '=', 'categories.id')
     ->select(DB::raw('products.id, products.name AS prodname, price, description, discount, stock, categories.name AS catname'))->where('products.id', $id)->groupBy('products.id', 'products.name', 'products.price', 'products.description', 'products.discount', 'products.stock', 'categories.name')->first();
   }
+
+  public static function products(){
+    return Product::paginate(10);
+  }
+
+  public static function getNumProductsFromCategory($id){
+    return Product::selectRaw('COUNT(*) as num_products')
+    ->where('id_category', $id)->first();
+  }
 }
