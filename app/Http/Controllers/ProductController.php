@@ -13,7 +13,6 @@ use App\WishList;
 use App\User;
 use App\Cart;
 use App\Category;
-use App\Cart;
 
 use App\Notifications\ProductOnSale;
 
