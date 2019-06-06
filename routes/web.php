@@ -36,7 +36,7 @@ Route::post('api/cart', 'CartController@create');
 Route::post('api/cart/{id}', 'CartController@update');
 Route::delete('api/cart/{id}', 'CartController@delete');
 
-Route::put('api/products', 'ProductController@create');
+Route::post('api/products', 'ProductController@create');
 Route::post('api/products/{id}', 'ProductController@update');
 
 Route::put('api/categories', 'CategoryController@create');

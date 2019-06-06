@@ -30,8 +30,6 @@ class ProductController extends BaseController
     {
       try {
           $product = Product::getProductInfo($id);
-          $product->price = round($product->price * ((100 - Product::getDiscount($id)) / 100),2);
-
           if ($product == null) {
               return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
           }
@@ -39,7 +37,9 @@ class ProductController extends BaseController
           Log::error("User tried to access nonexistant product", ['id' => $id]);
           return view('errors.page_not_found', ['error' => 'Product not found!']);
       }
-    
+      
+      $product->price = round($product->price * ((100 - Product::getDiscount($id)) / 100),2);
+
       $reviews = Review::getProductReviews($id);
 
       $reviewsStats = Review::getProductReviewsStats($id);
@@ -69,20 +69,24 @@ class ProductController extends BaseController
 
         //$this->authorize('create', $product);
 
-        // $request->file('image')->store('public/img');
-
         $validator = \Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:products',
             'description' => 'required|string|min:100',
-            'category' => 'required'
+            'category' => 'required',
+            'image' => 'required|image|mimes:png|max:2048',
         ]);
         
         if ($validator->fails()) {
             return response()->json(['errors'=> $validator->errors()->all()]);
         }
 
+        $image_name = 'product' . strval(Product::orderBy('id', 'desc')->first()->id + 1) . '.png';
+        $path = $request->file('image')->storeAs(
+            '/public/img', $image_name
+        );
+
         $product->name = $request->input('name');
-        $product->description = "ya"; //($request->input('description');
+        $product->description = $request->input('description');
         $product->is_enabled = true;
         $product->id_category = $request->input('category');
         $product->price = $request->input('price');

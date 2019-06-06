@@ -1,5 +1,5 @@
-$('.cart .dropdown-menu').click(function(e) {
-	e.stopPropagation();
+$(".cart .dropdown-menu").click(function(e) {
+  e.stopPropagation();
 });
 
 $(document).on("click", ".updateMember", function() {
@@ -73,25 +73,43 @@ function addEventListeners() {
   if (updateEmail != null)
     updateEmail.addEventListener("submit", sendUpdateEmailRequest);
 
-    let updateStaffPassword = document.querySelector("div.change-password form");
-    if (updateStaffPassword != null)
-    updateStaffPassword.addEventListener("submit", sendUpdateStaffPasswordRequest);
+  let updateStaffPassword = document.querySelector("div.change-password form");
+  if (updateStaffPassword != null)
+    updateStaffPassword.addEventListener(
+      "submit",
+      sendUpdateStaffPasswordRequest
+    );
 
   let proceed = document.querySelector(".proceed");
-  if (proceed != null)
-	proceed.addEventListener("click", proceedToPayment);
-	
-	let goBack = document.querySelector(".go-back");
-	if (goBack != null)
-		goBack.addEventListener("click", goBackToBilling);
+  if (proceed != null) proceed.addEventListener("click", proceedToPayment);
 
-	let checkout_btn = document.querySelector(".checkout-btn");
-	if (checkout_btn != null)
-		checkout_btn.addEventListener("click", verifyCheckout);
+  let goBack = document.querySelector(".go-back");
+  if (goBack != null) goBack.addEventListener("click", goBackToBilling);
 
-  let addProduct = document.querySelector("#addProduct form");
-  if (addProduct != null)
-    addProduct.addEventListener("submit", sendAddProductRequest);
+  let checkout_btn = document.querySelector(".checkout-btn");
+  if (checkout_btn != null)
+    checkout_btn.addEventListener("click", verifyCheckout);
+
+    $("#addProduct form").submit(function(e) {
+      e.preventDefault();    
+      var formData = new FormData(this);
+
+      $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+      $.ajax({
+          url: "/api/products/",
+          type: 'POST',
+          data: formData,
+          success: productAddedHandler,
+          header: {"X-CSRF-TOKEN" :  document.querySelector('meta[name="csrf-token"]').content}, 
+          cache: false,
+          contentType: false,
+          processData: false
+      });
+  });
 
   let updatePrice = document.querySelector("form#updatePriceForm");
   if (updatePrice != null)
@@ -115,11 +133,19 @@ function addEventListeners() {
 
   let addCategoryDiscount = document.querySelector("form#addDiscountForm");
   if (addCategoryDiscount != null)
-    addCategoryDiscount.addEventListener("submit", sendAddCategoryDiscountRequest);
+    addCategoryDiscount.addEventListener(
+      "submit",
+      sendAddCategoryDiscountRequest
+    );
 
-    let addProductDiscount = document.querySelector("form#addProductDiscountForm");
+  let addProductDiscount = document.querySelector(
+    "form#addProductDiscountForm"
+  );
   if (addProductDiscount != null)
-    addProductDiscount.addEventListener("submit", sendAddProductDiscountRequest);
+    addProductDiscount.addEventListener(
+      "submit",
+      sendAddProductDiscountRequest
+    );
 
   let disableUser = document.querySelector(".confirmDisableUser form");
   if (disableUser != null)
@@ -129,24 +155,31 @@ function addEventListeners() {
   if (enableUser != null)
     enableUser.addEventListener("submit", sendEnableUserRequest);
 
-    let confirmPurchasePayment = document.querySelectorAll("form.confirmPurchasePaymentForm");
-    if (confirmPurchasePayment != null){
-      for(let i = 0; i < confirmPurchasePayment.length; i++){
-        confirmPurchasePayment[i].addEventListener("submit", sendConfirmPurchasePaymentRequest);
-      }
+  let confirmPurchasePayment = document.querySelectorAll(
+    "form.confirmPurchasePaymentForm"
+  );
+  if (confirmPurchasePayment != null) {
+    for (let i = 0; i < confirmPurchasePayment.length; i++) {
+      confirmPurchasePayment[i].addEventListener(
+        "submit",
+        sendConfirmPurchasePaymentRequest
+      );
     }
+  }
 
   let received = document.querySelectorAll(".received");
   [].forEach.call(received, function(receivedInstance) {
     receivedInstance.addEventListener("click", confirmReception);
   });
-    
+
   let addReview = document.querySelector("form#addReview");
   if (addReview != null)
     addReview.addEventListener("submit", sendAddReviewRequest);
 
-  let updateReviewRating = document.querySelectorAll('form#addReview div.review-rating i.fa-star');
-  if(updateReviewRating != null){
+  let updateReviewRating = document.querySelectorAll(
+    "form#addReview div.review-rating i.fa-star"
+  );
+  if (updateReviewRating != null) {
     updateReviewRating.forEach(element => {
       element.addEventListener("click", updateReviewOfRating);
     });
@@ -154,32 +187,38 @@ function addEventListeners() {
 }
 
 // Reset review modal
-$('#reviewModal').on('hidden.bs.modal', function () {
-  $(this).find('form').trigger('reset');
-  let stars = document.querySelectorAll('form#addReview div.review-rating i.fa-star');
+$("#reviewModal").on("hidden.bs.modal", function() {
+  $(this)
+    .find("form")
+    .trigger("reset");
+  let stars = document.querySelectorAll(
+    "form#addReview div.review-rating i.fa-star"
+  );
   stars.forEach(element => {
     element.classList.remove("fas");
     element.classList.add("far");
   });
-})
+});
 
-function updateReviewOfRating(event){
+function updateReviewOfRating(event) {
   console.log(this);
 
-  let stars = document.querySelectorAll('form#addReview div.review-rating i.fa-star');
+  let stars = document.querySelectorAll(
+    "form#addReview div.review-rating i.fa-star"
+  );
   let chosenRating = this.getAttribute("data-rating");
   stars.forEach(element => {
-    if(element.getAttribute("data-rating") <= chosenRating){
+    if (element.getAttribute("data-rating") <= chosenRating) {
       element.classList.remove("far");
       element.classList.add("fas");
-    }else{
+    } else {
       element.classList.remove("fas");
       element.classList.add("far");
     }
   });
 
   let value = document.querySelector('form#addReview input[name="rating"]');
-  value.setAttribute("value",chosenRating);
+  value.setAttribute("value", chosenRating);
 }
 
 function encodeForAjax(data) {
@@ -191,7 +230,13 @@ function encodeForAjax(data) {
     .join("&");
 }
 
-function sendAjaxRequest(method, url, data, handler) {
+function sendAjaxRequest(
+  method,
+  url,
+  data,
+  handler,
+  type = "application/x-www-form-urlencoded"
+) {
   let request = new XMLHttpRequest();
 
   request.open(method, url, true);
@@ -199,7 +244,7 @@ function sendAjaxRequest(method, url, data, handler) {
     "X-CSRF-TOKEN",
     document.querySelector('meta[name="csrf-token"]').content
   );
-  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.setRequestHeader("Content-Type", type);
   request.addEventListener("load", handler);
   request.send(encodeForAjax(data));
 }
@@ -215,7 +260,13 @@ function sendAddProductRequest(event) {
     console.log(key, value);
   }
 
-  sendAjaxRequest("put", "/api/products/", data, productAddedHandler);
+  sendAjaxRequest(
+    "put",
+    "/api/products/",
+    data,
+    productAddedHandler,
+    "multipart/form-data"
+  );
 }
 
 function sendAddCategoryRequest(event) {
@@ -295,33 +346,29 @@ function wishListDeletedHandler() {
 }
 
 function sendDeleteCartProductRequest() {
-	let id = this.closest("li.single-product-info-container").getAttribute(
-		"data-id"
-	);
+  let id = this.closest("li.single-product-info-container").getAttribute(
+    "data-id"
+  );
 
-	sendAjaxRequest(
-		"delete",
-		"/api/cart/" + id,
-		null,
-		productCartDeleteHandler
-	);
+  sendAjaxRequest("delete", "/api/cart/" + id, null, productCartDeleteHandler);
 }
 
 function productCartDeleteHandler() {
-	let product = JSON.parse(this.responseText);
-	let elements = document.querySelectorAll(
-		'li.single-product-info-container[data-id="' + product.id + '"]'
-	);
+  let product = JSON.parse(this.responseText);
+  let elements = document.querySelectorAll(
+    'li.single-product-info-container[data-id="' + product.id + '"]'
+  );
 
-	[].forEach.call(elements, function(element) {
-		element.remove();
-	});
+  [].forEach.call(elements, function(element) {
+    element.remove();
+  });
 
-	let cart = document.querySelector(
-		'.cart'
-	);
+  let cart = document.querySelector(".cart");
 
-	cart.setAttribute('data-count', parseInt(cart.getAttribute('data-count')) - 1);
+  cart.setAttribute(
+    "data-count",
+    parseInt(cart.getAttribute("data-count")) - 1
+  );
 }
 
 function sendUpdateEmailRequest(event) {
@@ -349,12 +396,12 @@ function sendAddReviewRequest(event) {
   let comment = this.querySelector("textarea#comment").value;
   let rating = this.querySelector("input[name=rating]").value;
 
-  if(comment.length < 50){
+  if (comment.length < 50) {
     let span = document.createElement("span");
-    span.className+=" error";
-    span.innerHTML = "Your comment must have at least 50 characters."
+    span.className += " error";
+    span.innerHTML = "Your comment must have at least 50 characters.";
     this.appendChild(span);
-    
+
     return;
   }
 
@@ -364,7 +411,7 @@ function sendAddReviewRequest(event) {
     {
       id_product: id_product,
       comment: comment,
-      rating: rating,
+      rating: rating
     },
     addedReviewHandler
   );
@@ -408,13 +455,13 @@ function sendUpdateStaffPasswordRequest(event) {
       {
         type: "updateStaffPassword",
         old_password: old_password,
-        password: password,
+        password: password
       },
       updatedStaffPasswordHandler
     );
 }
 
-function updatedStaffPasswordHandler(){
+function updatedStaffPasswordHandler() {
   let user = JSON.parse(this.responseText);
 }
 
@@ -446,16 +493,14 @@ function sendUpdateCartRequest(event) {
   let id = this.querySelector("input[name=id]");
   let quantity = this.querySelector("input[name=quantity]").value;
 
-  
-  if(id === null){
+  if (id === null) {
     sendAjaxRequest(
       "post",
       "/api/cart/",
       { id_product: id_product, quantity: quantity },
       addedToCartHandler
     );
-  }
-  else{
+  } else {
     sendAjaxRequest(
       "delete",
       "/api/cart/" + id.value,
@@ -467,7 +512,7 @@ function sendUpdateCartRequest(event) {
   event.preventDefault();
 }
 
-function removedFromWishListHandler(){
+function removedFromWishListHandler() {
   let wishlist = JSON.parse(this.responseText);
 
   let oldForm = document.querySelector("form#updateWishlist");
@@ -475,10 +520,10 @@ function removedFromWishListHandler(){
   oldForm.parentNode.replaceChild(newForm, oldForm);
 }
 
-function removedFromCartHandler(){
+function removedFromCartHandler() {
   let cart = JSON.parse(this.responseText);
 
-  let oldForm = document.querySelector('form#updateCart');
+  let oldForm = document.querySelector("form#updateCart");
   let newForm = getAddToCartForm(cart);
   oldForm.parentNode.replaceChild(newForm, oldForm);
 }
@@ -487,61 +532,60 @@ function addedReviewHandler() {
   console.log(this.status);
   $("#reviewModal").modal("hide");
 
-  console.log(this.responseText );
+  console.log(this.responseText);
 
   let review = JSON.parse(this.responseText);
   let newReview = createNewReview(review);
 
-  let allReviewsContainer = document.querySelector(".reviews"); 
+  let allReviewsContainer = document.querySelector(".reviews");
   console.log(allReviewsContainer);
-  allReviewsContainer.insertBefore(newReview,allReviewsContainer.firstChild);
+  allReviewsContainer.insertBefore(newReview, allReviewsContainer.firstChild);
 
   let reviewButton = document.querySelector(".reviewBtn");
   reviewButton.disabled = true;
 
-  let numRatings = document.querySelectorAll('span.n-ratings');
-  
+  let numRatings = document.querySelectorAll("span.n-ratings");
+
   numRatings.forEach(element => {
     element.innerHTML = review.reviewsStats.numratings;
   });
-  
-  
-  let productRating = document.querySelectorAll(".product-right-block .product-rating");
+
+  let productRating = document.querySelectorAll(
+    ".product-right-block .product-rating"
+  );
   console.log("o meu novo rating é " + review.reviewsStats.rating);
   productRating.forEach(element => {
     let stars = element.querySelectorAll(".fa-star");
     console.log(stars);
-    for(let i = 0; i < stars.length; i++){
+    for (let i = 0; i < stars.length; i++) {
       stars[i].classList.remove("fas");
-      if(i+1 <= review.reviewsStats.rating){
+      if (i + 1 <= review.reviewsStats.rating) {
         stars[i].classList.add("fas");
-      }else{
+      } else {
         stars[i].classList.add("far");
       }
     }
   });
 }
 
-function createNewReview(review){
+function createNewReview(review) {
   let rating = "";
 
-
-  for(let i = 1 ; i <= 5 ; i++){
-    if(i <= review.rating)
-      rating += `<i class="fas fa-star"></i>`;
-    else
-      rating += `<i class="far fa-star"></i>`;
+  for (let i = 1; i <= 5; i++) {
+    if (i <= review.rating) rating += `<i class="fas fa-star"></i>`;
+    else rating += `<i class="far fa-star"></i>`;
   }
   let article = document.createElement("div");
   article.classList.add("review");
-  article.innerHTML = 
-  `<a href="profile.html"><span class="username">${review.username}</span></a>
+  article.innerHTML = `<a href="profile.html"><span class="username">${
+    review.username
+  }</span></a>
   <i class="fas fa-flag" data-toggle="modal" data-target="#reportModal"></i>
   <div class="float-right product-rating">
       ${rating}
   </div>
   <p>${review.comment}</p>
-  <span class="date">${(review.date_time).date_time}</span>`;
+  <span class="date">${review.date_time.date_time}</span>`;
 
   return article;
 }
@@ -581,7 +625,7 @@ function sendEnableUserRequest(event) {
   sendAjaxRequest(
     "post",
     "/api/users/" + id,
-    { type: "updateUser"},
+    { type: "updateUser" },
     userUpdatedHandler
   );
 
@@ -595,17 +639,17 @@ function sendDisableUserRequest(event) {
   let end_t = this.querySelector("input[name=end_t]").value;
   let reason = this.querySelector("textarea[name=reason]").value;
 
-  console.log({ id_client: id_client, end_t: end_t, reason: reason})
+  console.log({ id_client: id_client, end_t: end_t, reason: reason });
 
   sendAjaxRequest(
     "post",
     "/api/bans/",
-    { id_client: id_client, end_t: end_t, reason: reason},
+    { id_client: id_client, end_t: end_t, reason: reason },
     userUpdatedHandler
   );
 }
 
-function userUpdatedHandler(){
+function userUpdatedHandler() {
   let user = JSON.parse(this.responseText);
 
   let row = document.querySelector("[data-id='" + user.id + "']");
@@ -631,7 +675,7 @@ function sendUpdateProductRequest(event) {
 }
 
 function sendAddCategoryDiscountRequest(event) {
-  event.preventDefault();                                                                               
+  event.preventDefault();
 
   let id = this.querySelector("input[name=id]").value;
   let start = this.querySelector("input[name=start]").value;
@@ -644,11 +688,10 @@ function sendAddCategoryDiscountRequest(event) {
     { id_category: id, start: start, end: end, value: value },
     categoryDiscountAddedHandler
   );
-
-}    
+}
 
 function sendAddProductDiscountRequest(event) {
-  event.preventDefault();                                                                               
+  event.preventDefault();
 
   let id = this.querySelector("input[name=id]").value;
   // let start = this.querySelector("input[name=start]").value;
@@ -661,40 +704,35 @@ function sendAddProductDiscountRequest(event) {
     { type: "discount", discount: value },
     productUpdatedHandler
   );
-
-}      
+}
 
 function sendConfirmPurchasePaymentRequest(event) {
-  event.preventDefault();                                                                               
+  event.preventDefault();
 
   let id = this.querySelector("input[name=id_purchase]").value;
-  let state = this.querySelector("input[name=id_purchase]").getAttribute("data-state");
-  if(state == "Waiting for payment") {
-	sendAjaxRequest(
-		"put",
-		"/api/purchases/" + id,
-		{state: "Waiting for payment approval"},
-		null
-	);
+  let state = this.querySelector("input[name=id_purchase]").getAttribute(
+    "data-state"
+  );
+  if (state == "Waiting for payment") {
+    sendAjaxRequest(
+      "put",
+      "/api/purchases/" + id,
+      { state: "Waiting for payment approval" },
+      null
+    );
   }
 
-  sendAjaxRequest(
-    "put",
-    "/api/purchases/" + id,
-    {state: "Paid"},
-    null
-  );
+  sendAjaxRequest("put", "/api/purchases/" + id, { state: "Paid" }, null);
 
   sendAjaxRequest(
     "put",
     "/api/purchases/" + id,
-    {state: "Shipped"},
+    { state: "Shipped" },
     purchasePaymentConfirmedHandler
   );
+}
 
-}     
- 
-function purchasePaymentConfirmedHandler(){
+function purchasePaymentConfirmedHandler() {
   let response = JSON.parse(this.responseText);
 
   let table = document.getElementById("paymentsTable");
@@ -705,7 +743,7 @@ function purchasePaymentConfirmedHandler(){
   table.removeChild(row);
 }
 
-function categoryDiscountAddedHandler(){
+function categoryDiscountAddedHandler() {
   let discount = JSON.parse(this.responseText);
 }
 
@@ -835,10 +873,9 @@ function addedToCartHandler() {
   updateCartnewProduct(cart);
 }
 
-
-function getRemoveFromWishListForm(wishlist){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateWishlist');
+function getRemoveFromWishListForm(wishlist) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
   <br style="clear:both">
@@ -869,9 +906,9 @@ function getRemoveFromWishListForm(wishlist){
 //   return form;
 // }
 
-function getAddToWishListForm(wishlist){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateWishlist');
+function getAddToWishListForm(wishlist) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
   <br style="clear:both">
@@ -887,15 +924,17 @@ function getAddToWishListForm(wishlist){
   return form;
 }
 
-function getAddToCartForm(cart){
-  let form = document.createElement('form');
-  form.setAttribute('id' ,'updateCart');
+function getAddToCartForm(cart) {
+  let form = document.createElement("form");
+  form.setAttribute("id", "updateCart");
 
   form.innerHTML = `
-  <input type="hidden" class="d-none    " name="id_product" value=${cart.id_product}>
+  <input type="hidden" class="d-none    " name="id_product" value=${
+    cart.id_product
+  }>
   <button type="submit" class="btn btn-primary float-right">
       Add to cart
-  </button>`
+  </button>`;
 
   form.addEventListener("submit", sendUpdateCartRequest);
 
@@ -923,7 +962,6 @@ function productUpdatedHandler() {
   $("#confirmEnable").modal("hide");
   $("#confirmDisable").modal("hide");
   $("#addProductDiscountModal").modal("hide");
-
 }
 
 function billingInformationUpdatedHandler() {
@@ -931,16 +969,18 @@ function billingInformationUpdatedHandler() {
   let newForm = createBillingInfoForm(billingInfo);
   let form = document.querySelector("form[data-id='" + billingInfo.id + "']");
 
-  if(window.location.pathname.split("/").pop() === "checkout") {
-	  document.querySelector(".billing-form").innerHTML += `<div class="alert alert-success" role="alert">
+  if (window.location.pathname.split("/").pop() === "checkout") {
+    document.querySelector(
+      ".billing-form"
+    ).innerHTML += `<div class="alert alert-success" role="alert">
 	  Shipping & Billing information updated
 	</div>`;
   }
 
   if (form === null) {
-	form = document.querySelector("form[class*=billingInfo]");
+    form = document.querySelector("form[class*=billingInfo]");
   }
-  
+
   form.innerHTML = newForm;
   addEventListeners();
 }
@@ -982,14 +1022,15 @@ function createBillingInfoForm(billingInfo) {
 Edit
 </button>`;
 
-  if(window.location.pathname.split("/").pop() === "checkout")
-  	return form;
+  if (window.location.pathname.split("/").pop() === "checkout") return form;
 
-return `
+  return (
+    `
 <div class="my-3">
   <h3>Shipping & Billing Information</h3>
 </div>
-` + form;
+` + form
+  );
 }
 
 function createUserRow(user) {
@@ -1005,8 +1046,7 @@ function createUserRow(user) {
   button.setAttribute("data-id", user.id);
   button.setAttribute("data-toggle", "modal");
 
-  if (user.is_enabled)
-    button.setAttribute("data-target", "#confirmDisable");
+  if (user.is_enabled) button.setAttribute("data-target", "#confirmDisable");
   else button.setAttribute("data-target", "#confirmEnable");
 
   let icon = document.createElement("i");
@@ -1038,108 +1078,130 @@ function createUserRow(user) {
 }
 
 function updateCartnewProduct(cart) {
-	let cartList = document.querySelector(".cart ul");
-	let newProduct = document.createElement("li");
-	let productName = document.querySelector(".product-title").textContent;
-	let productPrice = document.querySelector("#updateCart .price").textContent;
-	let productRating = document.querySelectorAll(".product-info .product-rating .fas,fa-star").length;
+  let cartList = document.querySelector(".cart ul");
+  let newProduct = document.createElement("li");
+  let productName = document.querySelector(".product-title").textContent;
+  let productPrice = document.querySelector("#updateCart .price").textContent;
+  let productRating = document.querySelectorAll(
+    ".product-info .product-rating .fas,fa-star"
+  ).length;
 
-	newProduct.classList.add("single-product-info-container");
-	newProduct.setAttribute("data-id",cart.id);
+  newProduct.classList.add("single-product-info-container");
+  newProduct.setAttribute("data-id", cart.id);
 
-	newProduct.innerHTML = 
-	`
-	<a href="/product/${cart.id_product}"> <img src="/img/product${cart.id_product}.jpg" alt=''></a>
+  newProduct.innerHTML = `
+	<a href="/product/${cart.id_product}"> <img src="storage/img/product${
+    cart.id_product
+  }.png" alt=''></a>
 	<div class='single-product-info-text'>
 		<div class='row'>
     		<div class='col-6'>
-			<a href="/product/${cart.id_product}"><span class='title'>${productName}</span></a>
+			<a href="/product/${
+        cart.id_product
+      }"><span class='title'>${productName}</span></a>
 			</div>
 			<div class='col-6 state'>
                 <a href='#' class='delete'><i class='fas fa-trash remove'></i></a>
 			</div>
 			<div>
-	`
+	`;
 
-	for(let i = 0; i < productRating; i++)
-		newProduct.innerHTML += "<i class='fas fa-star'></i>";
+  for (let i = 0; i < productRating; i++)
+    newProduct.innerHTML += "<i class='fas fa-star'></i>";
 
-	for(let i = productRating; i < 5; i++)
-		newProduct.innerHTML += "<i class='far fa-star'></i>";
+  for (let i = productRating; i < 5; i++)
+    newProduct.innerHTML += "<i class='far fa-star'></i>";
 
-	newProduct.innerHTML +=
-	`       </div>
+  newProduct.innerHTML += `       </div>
 			<span class='oldprice'></span>
 			<span class='price float-right'>${cart.quantity}x ${productPrice}</span>
 	`;
 
-	newProduct.querySelector("a.delete").addEventListener("click", sendDeleteCartProductRequest);
+  newProduct
+    .querySelector("a.delete")
+    .addEventListener("click", sendDeleteCartProductRequest);
 
-	cartList.appendChild(newProduct);
+  cartList.appendChild(newProduct);
 }
 
 function proceedToPayment() {
-	let full_name = document.querySelector("input[name=full_name]");
-	let city = document.querySelector("input[name=city]");
-	let address = document.querySelector("input[name=address]");
-	let state = document.querySelector("input[name=state]");
-	let zip_code = document.querySelector("input[name=zip_code]");
+  let full_name = document.querySelector("input[name=full_name]");
+  let city = document.querySelector("input[name=city]");
+  let address = document.querySelector("input[name=address]");
+  let state = document.querySelector("input[name=state]");
+  let zip_code = document.querySelector("input[name=zip_code]");
 
-	if(full_name == null || city == null || address == null || state == null || zip_code == null) {
-		document.querySelector(".billing-form").innerHTML += `<div class="alert alert-danger" role="alert">
+  if (
+    full_name == null ||
+    city == null ||
+    address == null ||
+    state == null ||
+    zip_code == null
+  ) {
+    document.querySelector(
+      ".billing-form"
+    ).innerHTML += `<div class="alert alert-danger" role="alert">
 		Shipping & Billing information needed to checkout
 		</div>`;
 
-		return;
-	}
+    return;
+  }
 
-	if(full_name.valute == "" || city.value == "" || address.value == "" || state.value == "" || zip_code.value == "") {
-		document.querySelector(".billing-form").innerHTML += `<div class="alert alert-danger" role="alert">
+  if (
+    full_name.valute == "" ||
+    city.value == "" ||
+    address.value == "" ||
+    state.value == "" ||
+    zip_code.value == ""
+  ) {
+    document.querySelector(
+      ".billing-form"
+    ).innerHTML += `<div class="alert alert-danger" role="alert">
 		Shipping & Billing information needed to checkout
 		</div>`;
 
-		return;
-	}
+    return;
+  }
 
-	var event;
+  var event;
 
-	if (document.createEvent) {
-		event = document.createEvent("HTMLEvents");
-		event.initEvent("event", true, true);
-	} else {
-		event = document.createEventObject();
-		event.eventType = "event";
-	}
+  if (document.createEvent) {
+    event = document.createEvent("HTMLEvents");
+    event.initEvent("event", true, true);
+  } else {
+    event = document.createEventObject();
+    event.eventType = "event";
+  }
 
-	event.eventName = "event";
+  event.eventName = "event";
 
-	sendUpdateBillingInformationRequest(event);
+  sendUpdateBillingInformationRequest(event);
 
-	document.querySelector(".billing").classList.add("d-none");
-	document.querySelector(".payment").classList.remove("d-none");
+  document.querySelector(".billing").classList.add("d-none");
+  document.querySelector(".payment").classList.remove("d-none");
 
-	var url = location.href;
-	location.href = "#payment";
-	history.replaceState(null,null,url);
+  var url = location.href;
+  location.href = "#payment";
+  history.replaceState(null, null, url);
 }
 
 function goBackToBilling() {
-	document.querySelector(".billing").classList.remove("d-none");
-	document.querySelector(".payment").classList.add("d-none");
+  document.querySelector(".billing").classList.remove("d-none");
+  document.querySelector(".payment").classList.add("d-none");
 
-	var url = location.href;
-	location.href = "#billing";
-	history.replaceState(null,null,url);
+  var url = location.href;
+  location.href = "#billing";
+  history.replaceState(null, null, url);
 }
 
-function verifyCheckout(event){
-	if(document.querySelector(".cart").getAttribute("data-count") == 0) {
-		document.querySelector(".final").parentNode.innerHTML += `<div class="alert alert-danger" role="alert">
+function verifyCheckout(event) {
+  if (document.querySelector(".cart").getAttribute("data-count") == 0) {
+    document.querySelector(
+      ".final"
+    ).parentNode.innerHTML += `<div class="alert alert-danger" role="alert">
 		Can't checkout an empty cart
 		</div>`;
-	}
-	
-	else location.href='/checkout';
+  } else location.href = "/checkout";
 }
 
 function createProductRow(product) {
@@ -1249,66 +1311,69 @@ function createProductRow(product) {
 }
 
 function confirmReception(event) {
-	event.preventDefault();
-	let id = this.getAttribute("data-id");
+  event.preventDefault();
+  let id = this.getAttribute("data-id");
 
-	sendAjaxRequest(
-		"put",
-		"/api/purchases/" + id,
-		{state: "Completed"},
-		purchaseCompleted
-	);
+  sendAjaxRequest(
+    "put",
+    "/api/purchases/" + id,
+    { state: "Completed" },
+    purchaseCompleted
+  );
 }
 
 function purchaseCompleted() {
-	let response = JSON.parse(this.responseText);
-	let purchase = document.querySelector("#heading" + response["id_purchase"]);
+  let response = JSON.parse(this.responseText);
+  let purchase = document.querySelector("#heading" + response["id_purchase"]);
 
-	purchase.children[0].removeChild(purchase.querySelector(".received-div"));
+  purchase.children[0].removeChild(purchase.querySelector(".received-div"));
 
-	let complete = purchase.querySelector(".deactivate");
+  let complete = purchase.querySelector(".deactivate");
 
-	complete.classList.remove("deactivate");
-	complete.children[0].classList.remove("deactivate");
+  complete.classList.remove("deactivate");
+  complete.children[0].classList.remove("deactivate");
 
-	let today = new Date();
-	let month = '' + (today.getMonth() + 1);
-    let day = '' + today.getDate();
-	let year = today.getFullYear();
-	
-	if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+  let today = new Date();
+  let month = "" + (today.getMonth() + 1);
+  let day = "" + today.getDate();
+  let year = today.getFullYear();
 
-	complete.innerHTML += ": " + [year, month, day].join('-');
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  complete.innerHTML += ": " + [year, month, day].join("-");
 }
 
 function getVals() {
-	var parent = this.parentNode;
-	var slides = parent.getElementsByTagName("input");
-	  var slide1 = parseFloat( slides[2].value );
-	  var slide2 = parseFloat( slides[3].value );
+  var parent = this.parentNode;
+  var slides = parent.getElementsByTagName("input");
+  var slide1 = parseFloat(slides[2].value);
+  var slide2 = parseFloat(slides[3].value);
 
-	if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
-	
-	var display1 = parent.getElementsByClassName("above")[0];
-	var display2 = parent.getElementsByClassName("below")[0];
-
-	display1.value = slide1;
-	display2.value = slide2;
+  if (slide1 > slide2) {
+    var tmp = slide2;
+    slide2 = slide1;
+    slide1 = tmp;
   }
-  
-window.onload = function() {
-	var sliderSections = document.getElementsByClassName("range-slider");
-	if (sliderSections == null)
-		return;
-	for( var x = 0; x < sliderSections.length; x++ ) {
-		var sliders = sliderSections[x].getElementsByTagName("input");
-		for( var y = 0; y < sliders.length; y++ ) {
-			if( sliders[y].type ==="range" ) {
-				sliders[y].oninput = getVals;
-			}
-		}
-	}
+
+  var display1 = parent.getElementsByClassName("above")[0];
+  var display2 = parent.getElementsByClassName("below")[0];
+
+  display1.value = slide1;
+  display2.value = slide2;
 }
+
+window.onload = function() {
+  var sliderSections = document.getElementsByClassName("range-slider");
+  if (sliderSections == null) return;
+  for (var x = 0; x < sliderSections.length; x++) {
+    var sliders = sliderSections[x].getElementsByTagName("input");
+    for (var y = 0; y < sliders.length; y++) {
+      if (sliders[y].type === "range") {
+        sliders[y].oninput = getVals;
+      }
+    }
+  }
+};
 
 addEventListeners();
