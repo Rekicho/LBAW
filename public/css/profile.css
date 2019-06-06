@@ -146,6 +146,8 @@ h2 {
 #history .state,
 #wishlist .state {
 	text-align: right;
+	position: absolute;
+	right: 30px;
 }
 
 #wishlist .single-product-info-text .oldprice {
