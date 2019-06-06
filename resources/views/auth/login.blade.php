@@ -47,12 +47,12 @@
     <button class="btn btn-med btn-primary btn-block" type="submit">
         <i class="fas fa-sign-in-alt"></i> Sign in
     </button>
-</form>
     <a href="{{ url('login/facebook') }}" class="btn btn-med btn-facebook btn-block">
         <i class="fab fa-facebook-square"></i> Sign in with Facebook
     </a>
     <div class="alt">
         Don't have an account? <a href="{{ route('register') }}">Sign up!</a>
     </div>
+</form>
 </div>
 @endsection
