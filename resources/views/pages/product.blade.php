@@ -25,7 +25,7 @@
         <hr>
     </div>
     <div class="img-frame">
-        <img src={{ asset("img/product$product->id.png") }}
+        <img src={{ asset("storage/img/product$product->id.png") }}
         alt="">
     </div>
     <div class="product-info">

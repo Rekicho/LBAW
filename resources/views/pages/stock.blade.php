@@ -236,41 +236,42 @@ aria-hidden="true">
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="post" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group required col-md-6">
-                <label class="control-label">Select category
+                <label for="sel-category" class="control-label">Select category                </label>
+              </label>
                   <select class="form-control" id="sel-category" name="category" required>
                     <option hidden disabled selected value>-</option>
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                   </select>
+              </div>
+
+              <div class="form-group required col-md-6">
+                <label for="name" class="control-label">
+                  Name
                 </label>
+                  <input id="name" class="form-control" type="text" name="name" placeholder="Name" required />
               </div>
             </div>
 
             <div class="form-row">
-              <div class="form-group required col-md-6">
-                <label class="control-label">
-                  Name
-                  <input class="form-control" type="text" name="name" placeholder="Name" required />
+              <div class="form-group required col-md-12">
+                <label for="description" class="control-label">
+                  Description
                 </label>
-              </div>
-              <div class="form-group col-md-6">
-                <label>
-                  Reference
-                  <input class="form-control" type="text" name="reference" placeholder="Reference" />
-                </label>
+                  <textarea id="description" class="form-control" type="text" name="description" placeholder="Description" required></textarea>
               </div>
             </div>
 
             <div class="form-row">
               <div class="required form-group col-md-6">
-                <label class="control-label" for="stock">
+                <label for="stock" class="control-label" for="stock">
                   Stock
-                  <input class="form-control" id="stock" type="number" name="stock" placeholder="Stock" required />
                 </label>
+                  <input class="form-control" id="stock" type="number" name="stock" placeholder="Stock" required />
               </div>
               <div class="form-group required col-md-6">
                 <label class="control-label" for="price">

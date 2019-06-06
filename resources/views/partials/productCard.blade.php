@@ -3,11 +3,19 @@
 @else
     <li class='single-product-info-container'>
 @endif
-    <a href={{"/product/$product->id_product"}}><img src={{ asset("img/product$product->id_product.png") }} alt=''></a>
+        @if(isset($product->id))
+        <a href={{"/product/$product->id"}}><img src={{ asset("storage/img/product$product->id.png") }} alt=''></a>
+        @else
+        <a href={{"/product/$product->id_product"}}><img src={{ asset("storage/img/product$product->id_product.png") }} alt=''></a>
+        @endif
     <div class='single-product-info-text'>
         <div class='row'>
             <div class='col-6'>
-            <a href={{"/product/$product->id_product"}}><span class='title'>{{$product->name}}</span></a>
+                    @if(isset($product->id))
+                    <a href={{"/product/$product->id"}}><span class='title'>{{$product->name}}</span></a>
+                    @else
+                    <a href={{"/product/$product->id_product"}}><span class='title'>{{$product->name}}</span></a>
+                    @endif
             </div>
             @if(isset($product->id_context))
             <div class='col-6 state'>
