@@ -1186,7 +1186,7 @@ INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (4,10,'2019-12-
 INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (5,60,'2019-12-01 19:19:18','2019-12-31 02:52:36');
 
 /* REVIEWS */
-INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (1,16,'Fucking great product',5,'2019-04-19 14:48:40');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (1,16,'Great product',5,'2019-04-19 14:48:40');
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (2,36,'I loved everything about it',5,'2019-04-19 18:46:27');
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (3,32,'Did not meet my expectations',1,'2019-04-19 10:54:14');
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (4,34,'Was really wishing for something with a better quality',2,'2019-04-19 19:54:38');
