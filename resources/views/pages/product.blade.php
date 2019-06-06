@@ -51,7 +51,7 @@
                 <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
                 <span class="price float-right">{{$product->price}}€</span>
                 <label class="float-right quantity">
-                    <input type="number" name="quantity" class="product-quantity" value="1"> x
+                    <input type="number" name="quantity" class="product-quantity" value="1"> <span class="times">x</span>
                 </label>
                 
             </form>

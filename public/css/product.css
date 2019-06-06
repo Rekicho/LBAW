@@ -151,3 +151,18 @@ form#updateWishlist, form#updateCart, .reviewBtn {
 		margin-top: 50px;
 	}
 }
+
+.review:not(:last-child) {
+	padding-bottom: 20px;
+	border-bottom: 1px double lightgray;
+}
+
+@media print {
+	footer, input.product-quantity, span.times, .btn, .fa-flag {
+		display: none;
+	}
+
+	span.price::before {
+		content: "Price per unit: ";
+	}
+}
