@@ -20,7 +20,9 @@ class AccountingController extends BaseBOController
     public function getAccountingPayments()
     {
         $payments = Purchase::getProductsWaitingForConfirmation();
-        return view('pages.accountingPayments', ['payments' => $payments]);
+        
+        echo view('pages.accountingPayments', ['payments' => $payments]);
+        exit;
     }
   
     public function show()

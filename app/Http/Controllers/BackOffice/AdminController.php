@@ -8,21 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends BaseBOController
 {
-
   public function __construct()
   {
     parent::__construct();
-      $this->middleware('staffmember');
-  } 
+    $this->middleware('staffmember');
+  }
 
-    public function show()
-    {
-    //   if (!Auth::check()) return redirect('/login');
+  public function getStaffMembers()
+  {
+    $staff_members = Auth::user()->staff_members();
 
-     // $this->authorize('show', BackOfficePolicy::class);
+    echo view('pages.adminStaffMembers', ['staff_members' => $staff_members]);
+    exit;
+  }
 
-      $staff_members = Auth::user()->staff_members();
+  public function show()
+  {
+      //   if (!Auth::check()) return redirect('/login');
 
-      return view('pages.admin', ['staff_members' => $staff_members]);
-    }
+      // $this->authorize('show', BackOfficePolicy::class);
+
+      return view('pages.admin');
+  }
 }
