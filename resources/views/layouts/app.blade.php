@@ -60,6 +60,11 @@
 					<li class="nav-item">
 						<a class="nav-link {{ Request::is('contact') ? 'active' : '' }}" href="/contact">CONTACT</a>
 					</li>
+					@if(Auth::check() && Auth::user()->is_staff_member)
+					<li class="nav-item">
+						<a class="nav-link" href="/back-office/admin">BACK-OFFICE</a>
+					</li>
+					@endif
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="/search">
 					<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
@@ -69,15 +74,20 @@
 				<a href="{{ route('login') }}"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
 				@else
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
+				<div class="cart fa-stack has-badge dropdown show" data-count="{{ count($notifications) }}">
+					@if(count($notifications) != 0)
+					<a class="dropdown-toggle fas fa-bell fa-stack-1x nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+					@else
+					<i class="fas fa-bell fa-stack-1x nav-icon" aria-haspopup="true" aria-expanded="false"></i>
+					@endif
 
-					<a class="dropdown-toggle fas fa-bell nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 						
 						@foreach($notifications as $notification)
 							<div class="dropdown-item" href="#">A product on your wishlist is on sale! <a href="/product/{{$notification->data["product_id"]}}">Check it out</a></div>
 						@endforeach
-
 					</div>
+				</div>
 				<div class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon dropdown-toggle desktop-only" id="cartDropdown" href="#" data-toggle="dropdown"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
