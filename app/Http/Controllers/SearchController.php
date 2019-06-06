@@ -44,6 +44,8 @@ class SearchController extends BaseController
 
 		else $products = Product::search($search)->where($match)->paginate(15);
 
+		$products = Product::applyDiscounts($products);
+
 		$categories = Category::getAllCategories();
 
 		return view('pages.search', ['products' => $products->appends(Input::except('page')), 'query' => $search, 'categories' => $categories]);
