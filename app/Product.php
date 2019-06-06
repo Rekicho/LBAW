@@ -55,7 +55,10 @@ class Product extends Model
 
   public static function applyDiscounts($products) {
 	  foreach($products as $product) {
-		  $product->price = round($product->price * ((100 - Product::getDiscount($product->id_product)) / 100),2);
+		if($product->id_product)
+			$product->price = round($product->price * ((100 - Product::getDiscount($product->id_product)) / 100),2);
+			  
+		else $product->price = round($product->price * ((100 - Product::getDiscount($product->id)) / 100),2);
 	  }
 
 	  return $products;
