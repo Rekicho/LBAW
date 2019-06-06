@@ -181,8 +181,15 @@ function addEventListeners() {
   );
   if (updateReviewRating != null) {
     updateReviewRating.forEach(element => {
+      ratingState.push(element.className);
+
       element.addEventListener("click", updateReviewOfRating);
+      element.addEventListener("mouseover", highlightReviewOfRating);
     });
+  }
+  let reviewRatingDiv = document.querySelector("form#addReview div.review-rating");
+  if (reviewRatingDiv != null) {
+    reviewRatingDiv.addEventListener('mouseleave', () => resetState());
   }
 }
 
@@ -200,8 +207,17 @@ $("#reviewModal").on("hidden.bs.modal", function() {
   });
 });
 
+let ratingState = [];
+
+function resetState() {
+  document.querySelectorAll("form#addReview div.review-rating i.fa-star").forEach( (element, pos) => {
+      element.className = ratingState[pos];
+  })
+}
+
 function updateReviewOfRating(event) {
-  console.log(this);
+  
+  ratingState = [];
 
   let stars = document.querySelectorAll(
     "form#addReview div.review-rating i.fa-star"
@@ -215,10 +231,28 @@ function updateReviewOfRating(event) {
       element.classList.remove("fas");
       element.classList.add("far");
     }
+    ratingState.push(element.className);
   });
 
   let value = document.querySelector('form#addReview input[name="rating"]');
   value.setAttribute("value", chosenRating);
+}
+
+function highlightReviewOfRating(event) {
+
+  let stars = document.querySelectorAll(
+    "form#addReview div.review-rating i.fa-star"
+  );
+  let chosenRating = this.getAttribute("data-rating");
+  stars.forEach(element => {
+    if (element.getAttribute("data-rating") <= chosenRating) {
+      element.classList.remove("far");
+      element.classList.add("fas");
+    } else {
+      element.classList.remove("fas");
+      element.classList.add("far");
+    }
+  })
 }
 
 function encodeForAjax(data) {
