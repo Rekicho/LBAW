@@ -22,8 +22,6 @@ class WishListController extends BaseController
     {
       $wishlist = new WishList();
 
-      // $this->authorize('create', $user);
-
       $wishlist->id_product = intval($request->input('id_product'));
       $wishlist->id_client = Auth::user()->id;
       
@@ -35,7 +33,7 @@ class WishListController extends BaseController
     public function delete(Request $request, $id){
         $wishlistEntry = WishList::find($id);
 
-       //  $this->authorize('delete', $card);
+        $this->authorize('delete', $card);
         $wishlistEntry->delete();
   
         return $wishlistEntry;  

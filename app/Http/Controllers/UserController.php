@@ -25,7 +25,7 @@ class UserController extends BaseController
     {
         $user = new User();
 
-        // $this->authorize('create', $user);
+        $this->authorize('create', $user);
 
         $validator = \Validator::make($request->all(), [
             'username' => 'required|string|max:255|unique:users',
@@ -52,7 +52,7 @@ class UserController extends BaseController
 
         $type = $request->input('type');
 
-        // TODO: $this->authorize('update', $user);
+         $this->authorize('update', $user);
 
         if ($type == 'updateEmail') {
             $email = $request->input('email');

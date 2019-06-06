@@ -13,7 +13,7 @@ class BanController extends Controller
     {
         $ban = new Ban();
 
-        // $this->authorize('create', $user);
+        $this->authorize('create', $ban);
 
         $ban->id_staff_member = Auth::user()->id;
         $ban->id_client = intval($request->input('id_client'));

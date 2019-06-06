@@ -10,34 +10,15 @@
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light lightgrey dept-navbar">
     <ul class="navbar-nav">
+        @for ($i = 0; $i < 4; $i++)
         <li class="nav-item">
-            <a href="" class="dept-navbar-item">
-                <span>
-                    Books
-                </span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="" class="dept-navbar-item">
-                <span>
-                    Movies
-                </span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="" class="dept-navbar-item">
-                <span>
-                    Games
-                </span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="" class="dept-navbar-item">
-                <span>
-                    Clothes
-                </span>
-            </a>
-        </li>
+        <a href="/category/{{$categories[$i]->id}}" class="dept-navbar-item">
+                    <span>
+                        {{$categories[$i]->name}}
+                    </span>
+                </a>
+            </li>
+        @endfor
     </ul>
 </nav>
 <!-- 

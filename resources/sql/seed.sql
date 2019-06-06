@@ -17,6 +17,8 @@ DROP TABLE IF EXISTS purchase_log CASCADE;
 DROP TABLE IF EXISTS bans CASCADE;
 DROP TABLE IF EXISTS discounts CASCADE;
 DROP TABLE IF EXISTS help CASCADE;
+DROP TABLE IF EXISTS password_resets CASCADE;
+DROP TABLE IF EXISTS notifications CASCADE;
 
 DROP TYPE IF EXISTS state_purchase;
 
@@ -47,7 +49,7 @@ DROP INDEX IF EXISTS end_discount;
 DROP INDEX IF EXISTS start_discount;
 DROP INDEX IF EXISTS purchased_product_id_purchase;
 DROP INDEX IF EXISTS product_price;
-
+DROP INDEX IF EXISTS password_resets_email;
 
 -----------------------------------------
 -- Types
@@ -84,7 +86,8 @@ CREATE TABLE users (
     is_staff_member BOOLEAN DEFAULT FALSE NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
     is_enabled BOOLEAN DEFAULT TRUE NOT NULL,
-    remember_token VARCHAR
+    remember_token VARCHAR,
+    facebook_id VARCHAR
 );
 
 CREATE TABLE wishlists (
@@ -184,6 +187,24 @@ CREATE TABLE help (
     help_text TEXT NOT NULL
 );
 
+CREATE TABLE password_resets (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR NOT NULL,
+    token VARCHAR NOT NULL,
+    created_at TIMESTAMP
+);
+
+CREATE TABLE notifications (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR NOT NULL,
+    notifiable_id BIGINT NOT NULL,
+    notifiable_type text NOT NULL,
+    data text NOT NULL,
+    read_at timestamp,
+    created_at timestamp,
+    updated_at timestamp
+);
+
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
@@ -207,6 +228,8 @@ CREATE TABLE help (
  CREATE INDEX start_discount ON discounts USING btree (start_t); 
 
  CREATE INDEX end_discount ON discounts USING btree (end_t); 
+
+ CREATE INDEX password_resets_email ON password_resets USING hash (email); 
 
 -----------------------------------------
 -- FULL TEXT SEARCH
@@ -1186,7 +1209,7 @@ INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (4,10,'2019-12-
 INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (5,60,'2019-12-01 19:19:18','2019-12-31 02:52:36');
 
 /* REVIEWS */
-INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (1,16,'Fucking great product',5,'2019-04-19 14:48:40');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (1,16,'Great product',5,'2019-04-19 14:48:40');
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (2,36,'I loved everything about it',5,'2019-04-19 18:46:27');
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (3,32,'Did not meet my expectations',1,'2019-04-19 10:54:14');
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (4,34,'Was really wishing for something with a better quality',2,'2019-04-19 19:54:38');

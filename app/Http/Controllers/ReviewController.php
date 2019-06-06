@@ -14,8 +14,6 @@ class ReviewController extends Controller
     {
       $review = new Review();
 
-      // $this->authorize('create', $user);
-
       $review->id_product = intval($request->input('id_product'));
       $review->id_client = Auth::user()->id;
       $review->comment = $request->input('comment');
