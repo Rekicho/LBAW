@@ -4,7 +4,7 @@
         {{$review->username}}
     </td>
     <td>
-        @showRating($review->rating)
+        @showRating(floor($review->rating))
     </td>
     <td>
   </tr>

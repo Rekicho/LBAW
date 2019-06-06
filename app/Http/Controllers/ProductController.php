@@ -14,6 +14,7 @@ use App\WishList;
 use App\User;
 use App\Cart;
 use App\Category;
+use App\Purchase;
 
 use App\Notifications\ProductOnSale;
 
@@ -27,31 +28,34 @@ class ProductController extends BaseController
      */
     public function show($id)
     {
-        try {
-			$product = Product::getProductInfo($id);
-			$product->price = round($product->price * ((100 - Product::getDiscount($id)) / 100),2);
+      try {
+          $product = Product::getProductInfo($id);
+          $product->price = round($product->price * ((100 - Product::getDiscount($id)) / 100),2);
 
-            if ($product == null) {
-                return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
-            }
-        } catch (QueryException $e) {
-            Log::error("User tried to access nonexistant product", ['id' => $id]);
-            return view('errors.page_not_found', ['error' => 'Product not found!']);
-        }
+          if ($product == null) {
+              return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
+          }
+      } catch (QueryException $e) {
+          Log::error("User tried to access nonexistant product", ['id' => $id]);
+          return view('errors.page_not_found', ['error' => 'Product not found!']);
+      }
+    
+      $reviews = Review::getProductReviews($id);
+
+      $reviewsStats = Review::getProductReviewsStats($id);
+
+      if(Auth::user()){
+          $wishlist = WishList::exists(Auth::user()->id, $id);
+          $cart = Cart::exists(Auth::user()->id, $id);
+      } else {
+         $wishlist = array();
+         $cart = array();
+      }
       
-        $reviews = Review::getProductReviews($id);
-
-        $reviewsStats = Review::getProductReviewsStats($id);
-
-        if (Auth::user()) {
-            $wishlist = WishList::exists(Auth::user()->id, $id);
-            $cart = Cart::exists(Auth::user()->id, $id);
-        } else {
-            $wishlist = array();
-            $cart = array();
-		}
-      
-        return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart]);
+      // Check if the user can review
+      $canReview = $this->canReview(Auth::user()->id,$id);
+  
+      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart, 'canReview' => $canReview, 'username' => Auth::user()->username]);
     }
 
     /**
@@ -118,5 +122,17 @@ class ProductController extends BaseController
         $product->save();
 
         return $product;
+    }
+
+    public function canReview($client, $product) {
+      //Este client ja tem de ter comprado o producto e ja tem de estar a espera
+      $isWaitingShipment = Purchase::isWaitingShipment($client,$product);
+      $hasReviewd = Review::getReview($client,$product);
+      
+      if($isWaitingShipment && !$hasReviewd){
+        return true;
+      }else{
+        return false;
+      }
     }
 }

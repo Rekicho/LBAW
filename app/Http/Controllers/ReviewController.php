@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Review;
+
 
 class ReviewController extends Controller
 {
@@ -21,6 +23,9 @@ class ReviewController extends Controller
 
       $review->save();
 
+      $review->username = Auth::user()->username;
+      $review->date_time = Review::getReviewDate($review->id_client, $review->id_product);
+      $review->reviewsStats = Review::getProductReviewsStats($review->id_product);
       return $review;
     }
 
