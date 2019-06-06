@@ -182,7 +182,6 @@ function addEventListeners() {
   if (updateReviewRating != null) {
     updateReviewRating.forEach(element => {
       ratingState.push(element.className);
-
       element.addEventListener("click", updateReviewOfRating);
       element.addEventListener("mouseover", highlightReviewOfRating);
     });
@@ -193,8 +192,11 @@ function addEventListeners() {
   }
 }
 
+let ratingState = [];
+
 // Reset review modal
 $("#reviewModal").on("hidden.bs.modal", function() {
+  ratingState = [];
   $(this)
     .find("form")
     .trigger("reset");
@@ -204,10 +206,9 @@ $("#reviewModal").on("hidden.bs.modal", function() {
   stars.forEach(element => {
     element.classList.remove("fas");
     element.classList.add("far");
+    ratingState.push(element.className);
   });
 });
-
-let ratingState = [];
 
 function resetState() {
   document.querySelectorAll("form#addReview div.review-rating i.fa-star").forEach( (element, pos) => {
@@ -216,7 +217,7 @@ function resetState() {
 }
 
 function updateReviewOfRating(event) {
-  
+
   ratingState = [];
 
   let stars = document.querySelectorAll(
