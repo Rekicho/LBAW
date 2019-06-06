@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Category;
 
-class StockController extends Controller
+class StockController extends BaseBOController
 {
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('staffmember');
     }
 
@@ -32,9 +33,8 @@ class StockController extends Controller
 
     public function show()
     {
-        $username = Auth::user()->username;
         $categories = Category::categories();
 
-        return view('pages.stock', ['username' => $username, 'categories' => $categories]);
+        return view('pages.stock', ['categories' => $categories]);
     }
 }

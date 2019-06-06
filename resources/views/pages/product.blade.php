@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title', $product->prodname)
+
+@section('open-graph')
+    <meta property="og:title" content="{{$product->prodname}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://lbaw1844.lbaw-prod.fe.up.pt/product/{{$product->id}}/" />
+@endsection
+
 @section('css')
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 <link href="{{ asset('css/product.css') }}" rel="stylesheet">

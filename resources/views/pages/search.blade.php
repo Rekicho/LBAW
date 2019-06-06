@@ -5,6 +5,8 @@
 <link href="{{ asset('css/search.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Search')
+
 @section('content')
 <nav class="navbar navbar-expand-lg navbar-light lightgrey dept-navbar">
     <ul class="navbar-nav">
@@ -85,13 +87,13 @@
 					@endforeach
 				</select>
 				<br>
-				<section class="range-slider">
+				<div class="range-slider">
 						<input type="text" name="above" class="above" value="0">€ - 
 						<input type="text" name="below" class="below" value="1000">€
 						<br>
 						<input value="0" min="0" max="1000" step="1" type="range">
 						<input value="1000" min="0" max="1000" step="1" type="range">
-				</section>
+				</div>
 				<label for="orderPicker">Order by: </label>
 				<select class="form-control" id="orderPicker" name="order" form="filter">
 						<option selected value>Order by</option>
@@ -101,7 +103,7 @@
 			</form>
         </div> <!-- end of modal-body -->
         <div class="modal-footer">
-            <button type="role" form="filter" class="btn btn-primary">Apply filter</button>
+            <button type="submit" form="filter" class="btn btn-primary">Apply filter</button>
         </div>
     </div>
 </div>

@@ -36,10 +36,6 @@ body {
 	text-decoration: none;
 }
 
-img {
-	float: center;
-}
-
 .fas,
 .far {
 	color: var(--secondary-color);

@@ -42,7 +42,16 @@ class Purchase extends Model
 
         $id_purchase = DB::table('purchase')->insertGetId(
             ['id_billing_information' => $id_billing, 'id_client' => $id_client]
-        );
+		);
+
+		foreach ($products as $key => $value) {
+			foreach ($products as $key2 => $value2) {
+				if($key < $key2 && $value->id_product == $value2->id_product) {
+					$value->quantity += $value2->quantity;
+					$products->forget($key2);
+				}
+			}
+		}
 
         foreach ($products as $product) {
             Purchase::purchaseProduct($product, $id_purchase);
@@ -57,7 +66,7 @@ class Purchase extends Model
         foreach ($purchases as $purchase) {
             $last_log = PurchaseLog::where('id_purchase', $purchase->id)->orderByRaw('date_time DESC')->first();
 
-            if (strcmp($last_log->purchase_state, "Waiting for payment approval") == 0) {
+            if (strcmp($last_log->purchase_state, "Waiting for payment approval") == 0 || strcmp($last_log->purchase_state, "Waiting for payment") == 0) {
                 array_push($logs, $last_log);
             }
         }

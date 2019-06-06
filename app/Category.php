@@ -12,7 +12,7 @@ class Category extends Model
     protected $table = 'categories';
     
     // TODO: union e pagination = rip
-    public static function getProductsFromCategory($id)
+    public static function getProductsFromCategory($id, $limit)
     {
         $noRatings = DB::table('categories')
         ->join('products', 'products.id_category', '=', 'categories.id')
@@ -29,7 +29,11 @@ class Category extends Model
         ->where('categories.id', $id)
         ->groupBy('categories.id', 'categories.name', 'products.id', 'products.name', 'products.price', 'products.discount')
         ->union($noRatings)
-        ->paginate(5);
+        ->paginate($limit);
+    }
+
+    public static function getCategoryByName($name){
+        return Category::where('name', $name)->first();
     }
 
     public static function getFooterCategories()
@@ -37,6 +41,14 @@ class Category extends Model
         return DB::table('categories')
         ->select('id', 'name')
         ->limit(8)
+        ->get();
+    }
+
+    public static function getTopCategories()
+    {
+        return DB::table('categories')
+        ->select('id', 'name')
+        ->limit(4)
         ->get();
     }
 

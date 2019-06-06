@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class AdminController extends BaseBOController
 {
 
   public function __construct()
   {
-      $this->middleware('admin');
+    parent::__construct();
+      $this->middleware('staffmember');
   } 
 
     public function show()
@@ -21,8 +22,7 @@ class AdminController extends Controller
      // $this->authorize('show', BackOfficePolicy::class);
 
       $staff_members = Auth::user()->staff_members();
-      $user = Auth::user();
 
-      return view('pages.admin', ['staff_members' => $staff_members, 'user' => $user]);
+      return view('pages.admin', ['staff_members' => $staff_members]);
     }
 }

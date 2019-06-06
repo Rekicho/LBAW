@@ -129,10 +129,18 @@ function addEventListeners() {
   if (enableUser != null)
     enableUser.addEventListener("submit", sendEnableUserRequest);
 
-    let confirmPurchasePayment = document.querySelector("form#confirmPurchasePaymentForm");
-    if (confirmPurchasePayment != null)
-    confirmPurchasePayment.addEventListener("submit", sendConfirmPurchasePaymentRequest);
+    let confirmPurchasePayment = document.querySelectorAll("form.confirmPurchasePaymentForm");
+    if (confirmPurchasePayment != null){
+      for(let i = 0; i < confirmPurchasePayment.length; i++){
+        confirmPurchasePayment[i].addEventListener("submit", sendConfirmPurchasePaymentRequest);
+      }
+    }
 
+  let received = document.querySelectorAll(".received");
+  [].forEach.call(received, function(receivedInstance) {
+    receivedInstance.addEventListener("click", confirmReception);
+  });
+    
   let addReview = document.querySelector("form#addReview");
   if (addReview != null)
     addReview.addEventListener("submit", sendAddReviewRequest);
@@ -341,9 +349,14 @@ function sendAddReviewRequest(event) {
   let comment = this.querySelector("textarea#comment").value;
   let rating = this.querySelector("input[name=rating]").value;
 
-  console.log(id_product);
-  console.log(comment);
-  console.log(rating);
+  if(comment.length < 50){
+    let span = document.createElement("span");
+    span.className+=" error";
+    span.innerHTML = "Your comment must have at least 50 characters."
+    this.appendChild(span);
+    
+    return;
+  }
 
   sendAjaxRequest(
     "put",
@@ -468,7 +481,6 @@ function removedFromCartHandler(){
   let oldForm = document.querySelector('form#updateCart');
   let newForm = getAddToCartForm(cart);
   oldForm.parentNode.replaceChild(newForm, oldForm);
-// TODO
 }
 
 function addedReviewHandler() {
@@ -520,7 +532,7 @@ function createNewReview(review){
     else
       rating += `<i class="far fa-star"></i>`;
   }
-  let article = document.createElement("article");
+  let article = document.createElement("div");
   article.classList.add("review");
   article.innerHTML = 
   `<a href="profile.html"><span class="username">${review.username}</span></a>
@@ -656,11 +668,27 @@ function sendConfirmPurchasePaymentRequest(event) {
   event.preventDefault();                                                                               
 
   let id = this.querySelector("input[name=id_purchase]").value;
+  let state = this.querySelector("input[name=id_purchase]").getAttribute("data-state");
+  if(state == "Waiting for payment") {
+	sendAjaxRequest(
+		"put",
+		"/api/purchases/" + id,
+		{state: "Waiting for payment approval"},
+		null
+	);
+  }
 
   sendAjaxRequest(
     "put",
     "/api/purchases/" + id,
     {state: "Paid"},
+    null
+  );
+
+  sendAjaxRequest(
+    "put",
+    "/api/purchases/" + id,
+    {state: "Shipped"},
     purchasePaymentConfirmedHandler
   );
 
@@ -910,13 +938,11 @@ function billingInformationUpdatedHandler() {
   }
 
   if (form === null) {
-	if(window.location.pathname.split("/").pop() === "checkout")
-		return;
-
 	form = document.querySelector("form[class*=billingInfo]");
   }
-
+  
   form.innerHTML = newForm;
+  addEventListeners();
 }
 
 function createBillingInfoForm(billingInfo) {
@@ -1111,9 +1137,9 @@ function verifyCheckout(event){
 		document.querySelector(".final").parentNode.innerHTML += `<div class="alert alert-danger" role="alert">
 		Can't checkout an empty cart
 		</div>`;
-		
-		event.preventDefault();
 	}
+	
+	else location.href='/checkout';
 }
 
 function createProductRow(product) {
@@ -1220,6 +1246,40 @@ function createProductRow(product) {
   new_product.appendChild(newCell);
 
   return new_product;
+}
+
+function confirmReception(event) {
+	event.preventDefault();
+	let id = this.getAttribute("data-id");
+
+	sendAjaxRequest(
+		"put",
+		"/api/purchases/" + id,
+		{state: "Completed"},
+		purchaseCompleted
+	);
+}
+
+function purchaseCompleted() {
+	let response = JSON.parse(this.responseText);
+	let purchase = document.querySelector("#heading" + response["id_purchase"]);
+
+	purchase.children[0].removeChild(purchase.querySelector(".received-div"));
+
+	let complete = purchase.querySelector(".deactivate");
+
+	complete.classList.remove("deactivate");
+	complete.children[0].classList.remove("deactivate");
+
+	let today = new Date();
+	let month = '' + (today.getMonth() + 1);
+    let day = '' + today.getDate();
+	let year = today.getFullYear();
+	
+	if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+	complete.innerHTML += ": " + [year, month, day].join('-');
 }
 
 function getVals() {

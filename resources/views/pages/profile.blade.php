@@ -4,6 +4,8 @@
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', 'Profile')
+
 @section('content')
 <div class="container-profile m-md-5 px-0">
     <div class="row">
@@ -52,13 +54,15 @@
             </div>
             <div id="wishlist" class="collapse">
                 <h2><i class="fas fa-star"></i> Wish List</h2>
-                <ul>
+                
                     @if(count($wishlist) != 0)
+                    <ul>
                     @each('partials.productCard', $wishlist, 'product')
+                    </ul>
                     @else
                     No products found!
                     @endif
-            </ul>
+         
         </div>
         <div id="edit" class="collapse">
             <div class="mb-2">
@@ -100,8 +104,8 @@
                     <h3>Account Information</h3>
 
                     <form id="updateEmail">
-                        <div class="form-group">
-                            <label for="email">Email address</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="email">Email address</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="{{$user->email}}" required/>
                         </div>
 
@@ -115,17 +119,17 @@
                     </form>
                         <hr>
                     <form id="updatePassword">
-                        <div class="form-group">
-                            <label for="new_password">New password</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="new_password">New password</label>
                             <input type="password" name="new_password" id="new_password" class="form-control" placeholder="New password" required/>
                         </div>
-                        <div class="form-group">
-                            <label for="new_password_confirmation">Confirm New password</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="new_password_confirmation">Confirm New password</label>
                             <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Confirm New password" required/>
                         </div>
                       
-                        <div class="form-group">
-                            <label for="old_password">Old password</label>
+                        <div class="form-group required">
+                            <label class="control-label" for="old_password">Old password</label>
                             <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" required/>
                         </div>
 
@@ -141,8 +145,6 @@
                 </div>
                 </div>
     </div>
-</div>
-</div>
 </div>
 </div>
 @endsection

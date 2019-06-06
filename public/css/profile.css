@@ -45,7 +45,7 @@ body {
 	}
 }
 
-@media only screen and (min-width: 916) {
+@media only screen and (min-width: 916px) {
 	.profile-aside {
 		flex: 0 0 25% !important;
 		max-width: 25% !important;
@@ -77,10 +77,6 @@ body {
 .light-main-color-bg a {
 	color: var(--secondary-color);
 	text-decoration: none;
-}
-
-img {
-	float: center;
 }
 
 .fas,
@@ -163,6 +159,10 @@ h2 {
 
 /* PAYMENT STATES */
 .pay-complt {
+	color: lightgreen;
+}
+
+.pay-shipped {
 	color: green;
 }
 

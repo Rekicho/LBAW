@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Purchase;
 
-class AccountingController extends Controller
+class AccountingController extends BaseBOController
 {
     public function __construct()
-    {
-        $this->middleware('admin');
+    {    parent::__construct();
+
+        $this->middleware('staffmember');
     } 
   
     public function show()
@@ -22,10 +23,8 @@ class AccountingController extends Controller
 
      // $this->authorize('show', BackOfficePolicy::class);
 
-      $username = Auth::user()->username;
+	  $payments = Purchase::getProductsWaitingForConfirmation();
 
-      $payments = Purchase::getProductsWaitingForConfirmation();
-
-      return view('pages.accounting', ['username' => $username, 'payments' => $payments]);
+      return view('pages.accounting', ['payments' => $payments]);
     }
 }

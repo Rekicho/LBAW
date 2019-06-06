@@ -27,6 +27,11 @@ class CheckoutController extends BaseController
 
    public function buy() {
 		$user = Auth::user();
+
+		$products = Cart::getProductsFromCart($user->id);
+		if(count($products) == 0)
+			return redirect()->to('/checkout');
+
 		$billingInfo = BillingInformation::billingInformation($user->id);
 		$billingInfo = $billingInfo[count($billingInfo)-1];
 		Purchase::purchase($user->id, $billingInfo->id);

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Page not found')
+
 @section('css')
 <link href="{{ asset('css/errors.css') }}" rel="stylesheet"> 
 @endsection

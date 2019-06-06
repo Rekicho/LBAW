@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		@yield('open-graph')
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title')	- {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
 
@@ -20,8 +23,8 @@
 		@yield('css')
 
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
-
+		<link href="{{ asset('css/colors.css') }}" rel="stylesheet">
+		
 	 
 	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	 crossorigin="anonymous"></script>
@@ -30,11 +33,11 @@
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	 crossorigin="anonymous"></script>
    
-    <script type="text/javascript">
+    <script>
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
-    <script type="text/javascript" src={{ asset('js/app.js') }} defer>
+    <script src={{ asset('js/app.js') }} defer>
 </script>
   </head>
   <body class="bg-primary">
@@ -67,10 +70,7 @@
 				@else
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
 
-				<div class="dropdown">
-					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-bell fa-stack-1x nav-icon"></i>
-					</a>
+					<a class="dropdown-toggle fas fa-bell nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 						
 						@foreach($notifications as $notification)
@@ -78,8 +78,7 @@
 						@endforeach
 
 					</div>
-				</div>
-				<span class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
+				<div class="cart fa-stack has-badge dropdown show" data-count="{{ count($cartProducts) }}">
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon dropdown-toggle desktop-only" id="cartDropdown" href="#" data-toggle="dropdown"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
 						<ul> @each('partials/productCard', $cartProducts, 'product') </ul>
@@ -90,13 +89,14 @@
 						</div>
 					</div>
 					<a class="fa fa-shopping-cart fa-stack-1x nav-icon mobile-only" href="/cart"></a>
-				</span>
-			</div>
+				</div>
 			@endif
+		</div>
 		</nav>
-    <section id="content">
+    <div id="content">
         @yield('content')
-    </section>
+		</div>
+	</div>
     <footer class="page-footer font-small blue p-4 main-color-bg text-light">
 		<div class="container-fluid text-center text-md-left">
 			<div class="row">

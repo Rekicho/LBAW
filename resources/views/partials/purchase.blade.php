@@ -1,7 +1,7 @@
 <div class="card">
 <div class="card-header" id="heading{{$purchase->id}}">
-        <h5 class="mb-0">
-            <button class="btn btn-link w-100 p-0" data-toggle="collapse" data-target="#collapse{{$purchase->id}}" aria-expanded="true"
+        <div class="mb-0">
+            <div role="button" class="btn btn-link w-100 p-0" data-toggle="collapse" data-target="#collapse{{$purchase->id}}" aria-expanded="true"
              aria-controls="collapse{{$purchase->id}}">
                 <div class="cart-info">
                 <span class="float-left">Date: {{$purchase->date_time}}</span>
@@ -36,10 +36,10 @@
                     <br style="clear: both">
                     @if(count($purchase->logs)>3)
                         <div class="float-left step-by-step mt-3">
-                            <i class="fas fa-circle pay-complt"></i>Shipped: {{$purchase->logs[3]->date_time}}
+                            <i class="fas fa-circle pay-shipped"></i>Shipped: {{$purchase->logs[3]->date_time}}
                     @else
                         <div class="float-left step-by-step mt-3 deactivate">
-                            <i class="fas fa-circle pay-complt deactivate"></i>Shipped
+                            <i class="fas fa-circle pay-shipped deactivate"></i>Shipped
                     @endif
                     </div>
                     <br style="clear: both">
@@ -50,10 +50,16 @@
                         <div class="float-left step-by-step mt-3 deactivate">
                             <i class="fas fa-circle pay-complt deactivate"></i>Completed
                     @endif
+						</div>
                 </div>
-                </div>
-            </button>
-        </h5>
+			</div>
+			@if(count($purchase->logs)==4)
+			<div class="float-center mt-3 received-div">
+				<a href="#" class="btn btn-primary received" data-id="{{$purchase->id}}"><i class="fas fa-clipboard-check confirm pr-2"></i>Confirm
+					Reception</a>
+			</div>
+			@endif
+        </div>
     </div>
 
     <div id="collapse{{$purchase->id}}" class="collapse" aria-labelledby="heading{{$purchase->id}}" data-parent="#accordion">

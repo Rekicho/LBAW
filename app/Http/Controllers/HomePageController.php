@@ -17,11 +17,16 @@ class HomePageController extends BaseController
 
 		$topProducts =  Product::topProducts();
 
-        $footerCategories = Category::getFooterCategories();
+        $topCategories = Category::getTopCategories();
 
-        $featured = Product::topProductsFromCategory(rand(1, 4));
+        $category_id = rand(1, 4);
+        $category = Category::find($category_id);
 
-        return view('pages.home', ['topProducts' => $topProducts, 'featuredCategoryProducts' => $featured, 'categories' => $footerCategories]);
+        $featured = Product::topProductsFromCategory($category_id);
+
+        $watches = Category::getProductsFromCategory(Category::getCategoryByName('Watches')->id, 4);
+
+        return view('pages.home', ['topProducts' => $topProducts, 'featuredCategoryProducts' => $featured, 'featuredCategory' => $category, 'topCategories' => $topCategories, 'watches' => $watches]);
 
     }
 }

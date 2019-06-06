@@ -2,8 +2,9 @@
 
 @section('css')
 <link href="{{ asset('css/accounting.css') }}" rel="stylesheet">
-
 @endsection
+
+@section('title', 'Accounting')
 
 @section('script')
     <script src="{{asset('js/accounting.js')}}"></script>
@@ -33,7 +34,7 @@
       <div class="tab-pane fade show active" id="payments" role="tabpanel" aria-labelledby="payments-tab">
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
+            <span class="input-group-text search-addon"><i class="fas fa-search"></i></span>
           </div>
           <input class="form-control" id="search-payment" type="text" placeholder="Search...">
         </div>
@@ -52,8 +53,8 @@
                     <th scope="row">{{$payment->date_time}}</th>
                     <td>{{$payment->id_purchase}}</td>
                     <td>
-                        <form id="confirmPurchasePaymentForm">
-                        <input type="hidden" name="id_purchase" value="{{$payment->id_purchase}}">
+                        <form class="confirmPurchasePaymentForm">
+                        <input type="hidden" data-state="{{$payment->purchase_state}}" name="id_purchase" value="{{$payment->id_purchase}}">
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="fas fa-check-circle"></i>
                         </button>
@@ -78,7 +79,7 @@
           </select>
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
+              <span class="input-group-text search-addon"><i class="fas fa-search"></i></span>
             </div>
             <input class="form-control" id="search-product" type="text" placeholder="Search..." />
           </div>
@@ -96,19 +97,19 @@
             <tbody>
               <tr>
                 <th scope="row">06/03/2019</th>
-                <td><a href="../product.html">#1544</td>
+                <td><a href="../product.html">#1544</a></td>
                 <td>Sale</td>
                 <td>1</td>
               </tr>
               <tr>
                 <th scope="row">06/03/2019</th>
-                <td><a href="../product.html">#4564</td>
+                <td><a href="../product.html">#4564</a></td>
                 <td>Purchase</td>
                 <td>100</td>
               </tr>
               <tr>
                 <th scope="row">06/03/2019</th>
-                <td><a href="../product.html">#8544</td>
+                <td><a href="../product.html">#8544</a></td>
                 <td>Purchase</td>
                 <td>50</td>
               </tr>

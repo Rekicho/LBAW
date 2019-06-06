@@ -10,31 +10,30 @@ use App\User;
 use App\Review;
 use App\Report;
 
-class ModeratorController extends Controller
+class ModeratorController extends BaseBOController
 {
     public function __construct()
-    {
+    {    parent::__construct();
+
         $this->middleware('staffmember');
     }
 
     public function show()
     {
-        $username = Auth::user()->username;
-
-        return view('pages.moderator', ['username' => $username]);
+        return view('pages.moderator');
     }
 
     public function getModeratorType($type)
     {
         if ($type == 'users') {
             $clients = User::clients();
-            $view = view('pages.moderatorUsersAjax', ['clients' => $clients]);
+            $view = view('pages.moderatorUsers', ['clients' => $clients]);
         } else if ($type == 'reports') {
             $reports = Report::reports();
-            $view = view('pages.moderatorReportsAjax', ['reports' => $reports]);
+            $view = view('pages.moderatorReports', ['reports' => $reports]);
         } else {
             $reviews = Review::reviews();
-            $view = view('pages.moderatorReviewsAjax', ['reviews' => $reviews]);
+            $view = view('pages.moderatorReviews', ['reviews' => $reviews]);
         }
 
         echo $view;
