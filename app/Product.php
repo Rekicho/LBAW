@@ -13,6 +13,18 @@ class Product extends Model
 
   protected $searchable = ['search'];
 
+  public static function getDiscount($id) {
+	$product = DB::table('products')->where('id',$id)->first();
+	$category_discount = DB::table('discounts')->select('value')->whereNull('id_category')->orWhere('id_category',$product->id_category)->orderByRaw("value DESC")->first()->value;
+
+	if($product->discount < $category_discount)
+		$discount = $category_discount;
+		
+	else $discount = $product->discount;
+
+	return $discount;
+  }
+
   public static function topProducts(){
     return DB::table('purchased_product')->join('products', 'products.id', '=', 'purchased_product.id_product')
     ->join('purchase', 'purchase.id', '=', 'purchased_product.id_purchase')

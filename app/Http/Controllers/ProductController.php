@@ -28,7 +28,8 @@ class ProductController extends BaseController
     public function show($id)
     {
         try {
-            $product = Product::getProductInfo($id);
+			$product = Product::getProductInfo($id);
+			$product->price = round($product->price * ((100 - Product::getDiscount($id)) / 100),2);
 
             if ($product == null) {
                 return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
@@ -48,7 +49,7 @@ class ProductController extends BaseController
         } else {
             $wishlist = array();
             $cart = array();
-        }
+		}
       
         return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart]);
     }
