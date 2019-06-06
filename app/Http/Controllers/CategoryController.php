@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 use App\Category;
 
@@ -18,6 +19,7 @@ class CategoryController extends BaseController
                 return view('errors.page_not_found', ['error' => 'That category doesn\'t exist yet!']);
             }
         } catch (QueryException $e) {
+            Log::error("User tried to access nonexistant category", ['id' => $id]);
             return view('errors.page_not_found', ['error' => 'Category not found!']);
         }
 

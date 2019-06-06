@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 use App\Product;
 use App\Review;
@@ -33,6 +34,7 @@ class ProductController extends BaseController
                 return view('errors.page_not_found', ['error' => 'That product doesn\'t exist yet!']);
             }
         } catch (QueryException $e) {
+            Log::error("User tried to access nonexistant product", ['id' => $id]);
             return view('errors.page_not_found', ['error' => 'Product not found!']);
         }
       
