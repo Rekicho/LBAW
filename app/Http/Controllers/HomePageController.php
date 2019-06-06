@@ -19,14 +19,13 @@ class HomePageController extends BaseController
 
         $topCategories = Category::getTopCategories();
 
-        $category_id = rand(1, 4);
-        $category = Category::find($category_id);
+        // Watches
+        $category = Category::find(1);
+        $featured = Product::topProductsFromCategory(1);
 
-        $featured = Product::topProductsFromCategory($category_id);
+        $electronics = Category::getProductsFromCategory(Category::getCategoryByName('Electronics')->id, 4);
 
-        $watches = Category::getProductsFromCategory(Category::getCategoryByName('Watches')->id, 4);
-
-        return view('pages.home', ['topProducts' => $topProducts, 'featuredCategoryProducts' => $featured, 'featuredCategory' => $category, 'topCategories' => $topCategories, 'watches' => $watches]);
+        return view('pages.home', ['topProducts' => $topProducts, 'featuredCategoryProducts' => $featured, 'featuredCategory' => $category, 'topCategories' => $topCategories, 'electronics' => $electronics]);
 
     }
 }

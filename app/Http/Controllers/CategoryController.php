@@ -48,6 +48,8 @@ class CategoryController extends BaseController
 
 		else $products = Product::where($match)->paginate(15);
 
+		$products = Product::applyDiscounts($products);
+
         return view('pages.category', ['category' => $category, 'products' => $products, 'categories' => $footerCategories]);
     }
 

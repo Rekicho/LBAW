@@ -321,7 +321,7 @@ BEGIN
   UPDATE users SET is_enabled = false
   WHERE id = New.id_client;
   END IF;
-  RETURN NULL;
+  RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -337,13 +337,13 @@ BEGIN
   IF EXISTS (SELECT * FROM discounts WHERE id_category = New.id_category AND end_t > New.start_t)
   THEN RAISE EXCEPTION 'There''s already an active discount on this category';
   END IF;
-  RETURN NULL;
+  RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER ensure_discount
-    BEFORE INSERT ON discount
+    BEFORE INSERT ON discounts
     FOR EACH ROW
     EXECUTE PROCEDURE ensure_discount();
 -----------------------------------------
@@ -620,6 +620,7 @@ INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) 
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('consectetuer','in@nec.org','eget,',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Billy.','Phasellus.ornare@Praesentinterdum.com','gravida.',False,False,True);
 INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('admin','$2y$12$m0HQd2AFi/bT9/zyGcScb.tTW6vIHvOnWQPG6dozPcVn0/4synCtu',True,True,True);
+INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('staff_ssilva','$2y$12$aXQlneS7MQjz4jY/sPwmFuWK665cxHj/suiC9RY0pqGhHVKcBnKZe',True,False,True);
 INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('psilva','$2y$12$mOlFqoaBtLkMmPy/sMPATOaNuFIQYbjXHgTKyoU9UHlHJCN8Y3.M2',False,False,True);
 
 
@@ -928,14 +929,6 @@ INSERT INTO "billing_information" (id_client,full_name,address,city,state,zip_co
 INSERT INTO "billing_information" (id_client,full_name,address,city,state,zip_code) VALUES (24,'Davis Craig','P.O. Box 269, 2480 Non, Rd.','Vienna','Wie','9737');
 INSERT INTO "billing_information" (id_client,full_name,address,city,state,zip_code) VALUES (50,'Slade Mullins','642-2802 Velit. Rd.','Tiltil','RM','878271');
 
-/* PURCHASE STATE */
--- INSERT INTO "purchase_state" (id,state_p) VALUES (1,'Waiting for payment');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (2,'Waiting for payment approval');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (3,'Paid');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (4,'Shipped');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (5,'Completed');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (6,'Returned');
-
 /* PURCHASE */
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (97,16,'2019-04-12 06:22:37');
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (19,36,'2019-04-05 05:28:53');
@@ -1073,39 +1066,6 @@ INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,d
 INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (1,101,'Mens Armani Exchange Watch AX2104',134.07,'Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o''clock. The dial also features the Armani Exchange logo at 12 o''clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.',0,21);
 
 /* PURCHASE LOG */
-/* WAITING FOR PAYMENT */ 
-
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Waiting for payment', '2019-02-01 03:36:19');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (2,'Waiting for payment','2019-02-01 09:48:45');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (3,'Waiting for payment','2019-02-01 13:59:24');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (4,'Waiting for payment','2019-02-01 04:44:35');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (5,'Waiting for payment','2019-02-01 09:32:42');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (6,'Waiting for payment','2019-02-01 19:23:38');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (7,'Waiting for payment','2019-02-01 06:31:57');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (8,'Waiting for payment','2019-02-01 10:40:50');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (9,'Waiting for payment','2019-02-01 21:57:46');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (10,'Waiting for payment','2019-02-01 04:09:39');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (11,'Waiting for payment','2019-02-01 04:54:13');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (12,'Waiting for payment','2019-02-01 12:29:43');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (13,'Waiting for payment','2019-02-01 00:29:01');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (14,'Waiting for payment','2019-02-01 05:28:15');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (15,'Waiting for payment','2019-02-01 12:59:15');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (16,'Waiting for payment','2019-02-01 15:20:41');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (17,'Waiting for payment','2019-02-01 02:22:35');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (18,'Waiting for payment','2019-02-01 22:29:00');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (19,'Waiting for payment','2019-02-01 06:30:29');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (20,'Waiting for payment','2019-02-01 04:45:21');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (21,'Waiting for payment','2019-02-01 15:16:12');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (22,'Waiting for payment','2019-02-01 21:17:12');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (23,'Waiting for payment','2019-02-01 11:49:29');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (24,'Waiting for payment','2019-02-01 17:16:32');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (25,'Waiting for payment','2019-02-01 04:25:11');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (26,'Waiting for payment','2019-02-01 07:30:28');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (27,'Waiting for payment','2019-02-01 00:34:15');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (28,'Waiting for payment','2019-02-01 10:06:22');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (29,'Waiting for payment','2019-02-01 00:54:41');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (30,'Waiting for payment','2019-02-01 16:57:25');
-
 
 /* WAITING FOR PAYMENT APPROVAL */
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Waiting for payment approval','2019-05-05 05:01:51');
