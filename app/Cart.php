@@ -27,14 +27,16 @@ class Cart extends Model
             $q->select('reviews.id_product')->from('reviews');
         });
     
-            return DB::table('carts')
+        $products = DB::table('carts')
         ->join('products', 'products.id', '=', 'carts.id_product')
         ->join('reviews', 'carts.id_product', '=', 'reviews.id_product')
         ->selectRaw('carts.id AS id_context, carts.id_product, carts.quantity AS quantity, products.name, products.description, products.price, products.discount, AVG(reviews.rating) AS rating')
         ->where('carts.id_client', $userId)
         ->groupBy('id_context', 'carts.id_product', 'quantity', 'products.name', 'products.description', 'products.price', 'products.discount')
         ->union($noRatings)
-        ->get();
+		->get();
+		
+		return Product::applyDiscounts($products); 
 	}
 
 	public static function removeAllProductsFromCart($id_client) { 

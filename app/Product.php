@@ -52,4 +52,12 @@ class Product extends Model
     return Product::selectRaw('COUNT(*) as num_products')
     ->where('id_category', $id)->first();
   }
+
+  public static function applyDiscounts($products) {
+	  foreach($products as $product) {
+		  $product->price = round($product->price * ((100 - Product::getDiscount($product->id_product)) / 100),2);
+	  }
+
+	  return $products;
+  }
 }
