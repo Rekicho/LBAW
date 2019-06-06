@@ -15,8 +15,13 @@ class Product extends Model
 
   public static function getDiscount($id) {
 	$product = DB::table('products')->where('id',$id)->first();
-	$category_discount = DB::table('discounts')->select('value')->whereNull('id_category')->orWhere('id_category',$product->id_category)->orderByRaw("value DESC")->first()->value;
+	$category_discount = DB::table('discounts')->select('value')->whereNull('id_category')->orWhere('id_category',$product->id_category)->orderByRaw("value DESC")->first();
 
+	if(!$category_discount)
+		return;
+
+	$category_discount = $category_discount->value;
+	
 	if($product->discount < $category_discount)
 		$discount = $category_discount;
 		
