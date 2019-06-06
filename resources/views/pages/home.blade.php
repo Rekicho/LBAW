@@ -115,7 +115,7 @@
 
 			<div class="product-block">
 					<span class="product-block-title">{{$featuredCategory->name}} best sellers</span>
-					<a href="category/2" class="seemore-block">See more</a>
+			<a href="category/{{$featuredCategory->id}}" class="seemore-block">See more</a>
 					<br style="clear:both" />
 
 					<div class="row imagetiles">
