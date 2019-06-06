@@ -3,7 +3,7 @@
 @else
     <li class='single-product-info-container'>
 @endif
-    <a href={{"/product/$product->id_product"}}><img src={{ asset("img/product$product->id_product.jpg") }} alt=''></a>
+    <a href={{"/product/$product->id_product"}}><img src={{ asset("img/product$product->id_product.png") }} alt=''></a>
     <div class='single-product-info-text'>
         <div class='row'>
             <div class='col-6'>

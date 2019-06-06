@@ -1049,7 +1049,7 @@ function updateCartnewProduct(cart) {
 
 	newProduct.innerHTML = 
 	`
-	<a href="/product/${cart.id_product}"> <img src="/img/product${cart.id_product}.jpg" alt=''></a>
+	<a href="/product/${cart.id_product}"> <img src="/img/product${cart.id_product}.png" alt=''></a>
 	<div class='single-product-info-text'>
 		<div class='row'>
     		<div class='col-6'>
