@@ -321,7 +321,7 @@ BEGIN
   UPDATE users SET is_enabled = false
   WHERE id = New.id_client;
   END IF;
-  RETURN NULL;
+  RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -337,13 +337,13 @@ BEGIN
   IF EXISTS (SELECT * FROM discounts WHERE id_category = New.id_category AND end_t > New.start_t)
   THEN RAISE EXCEPTION 'There''s already an active discount on this category';
   END IF;
-  RETURN NULL;
+  RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER ensure_discount
-    BEFORE INSERT ON discount
+    BEFORE INSERT ON discounts
     FOR EACH ROW
     EXECUTE PROCEDURE ensure_discount();
 -----------------------------------------
@@ -518,6 +518,7 @@ INSERT INTO products (id_category,name,price,description,discount,stock,is_enabl
 
 
 /* USERS */
+INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('teste','teste@teste.com','$2y$12$O9f3ygtc5lo0X9q.lDEQ.e57m9U9TCFz2klb8rJMojpdhDXm8UHZ.',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('AdminMaster','inceptos@laoreet.co.uk','$2y$12$RA3WkNFo17IYPHd8/T1ixOEglLC1XYyoTZq2uWLPQNcmQC0pAeoDO',True,True,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('moviecookie','Suspendisse.sagittis@sapien.co.uk','$2y$12$L3NxUR7Dnx7eV9QyHnPjXOk5CT6P6QjGrL0utc3sGSiu0CVDcc5zW',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('termeditor','lacinia.Sed@scelerisquescelerisque.com','$2y$12$.QzLQYJN2VuG5gYmNXm7Mev5NctkrnASk4o1EzVr0Nl67f/8HR.Ne',False,False,True);
@@ -619,6 +620,7 @@ INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) 
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('consectetuer','in@nec.org','eget,',False,False,True);
 INSERT INTO users (username,email,password,is_staff_member,is_admin,is_enabled) VALUES ('Billy.','Phasellus.ornare@Praesentinterdum.com','gravida.',False,False,True);
 INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('admin','$2y$12$m0HQd2AFi/bT9/zyGcScb.tTW6vIHvOnWQPG6dozPcVn0/4synCtu',True,True,True);
+INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('staff_ssilva','$2y$12$aXQlneS7MQjz4jY/sPwmFuWK665cxHj/suiC9RY0pqGhHVKcBnKZe',True,False,True);
 INSERT INTO users (username,password,is_staff_member,is_admin,is_enabled) VALUES ('psilva','$2y$12$mOlFqoaBtLkMmPy/sMPATOaNuFIQYbjXHgTKyoU9UHlHJCN8Y3.M2',False,False,True);
 
 
@@ -927,14 +929,6 @@ INSERT INTO "billing_information" (id_client,full_name,address,city,state,zip_co
 INSERT INTO "billing_information" (id_client,full_name,address,city,state,zip_code) VALUES (24,'Davis Craig','P.O. Box 269, 2480 Non, Rd.','Vienna','Wie','9737');
 INSERT INTO "billing_information" (id_client,full_name,address,city,state,zip_code) VALUES (50,'Slade Mullins','642-2802 Velit. Rd.','Tiltil','RM','878271');
 
-/* PURCHASE STATE */
--- INSERT INTO "purchase_state" (id,state_p) VALUES (1,'Waiting for payment');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (2,'Waiting for payment approval');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (3,'Paid');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (4,'Shipped');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (5,'Completed');
--- INSERT INTO "purchase_state" (id,state_p) VALUES (6,'Returned');
-
 /* PURCHASE */
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (97,16,'2019-04-12 06:22:37');
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (19,36,'2019-04-05 05:28:53');
@@ -1036,6 +1030,7 @@ INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (67,4
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (38,23,'2019-04-15 10:56:59');
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (76,24,'2019-04-16 14:24:51');
 INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (42,4,'2019-04-09 06:11:33');
+INSERT INTO "purchase" (id_billing_information,id_client,date_time) VALUES (10,1,'2019-04-09 06:11:33'); /* 101 */
 
 /* PURCHASE PRDUCT */
 INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (1,1,'Mens Armani Exchange Watch AX2104',134.07,'Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o''clock. The dial also features the Armani Exchange logo at 12 o''clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.',0,21);
@@ -1068,41 +1063,9 @@ INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,d
 INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (28,28,'Limit 5484.01',34.67,'Limit 5484.01 is an amazing and attractive Gents watch. Material of the case is PVD rose plating and the Black dial gives the watch that unique look. The features of the watch include (among others) a date function. In regards to the water resistance, the watch has got a resistancy up to 30 metres. It means it can be worn in scenarios where it is likely to be splashed but not immersed in water. It can be worn while washing your hands and will be fine in rain. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35);
 INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (29,29,'Bulova 97A138',405.10,'Sophisticated design with full exhibition dial and case-back. Gold-tone stainless steel screw-back case, skeletonized silver white three-hand dial revealing the intricate workings of the self-winding 21-jewel movement, domed mineral crystal, brown leather strap with push-button deployant buckle, and water resistance to 30 meters. Diameter: 43mm Thickness: 12.15mm',0,35);
 INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (30,30,'G-Shock GWG-1000-1A1ER',766.08,'Casio G-Shock Premium Mudmaster Compass GWG-1000-1A1ER is an amazing and very impressive Gents watch. Case material is Stainless Steel and Resin, which stands for a high quality of the item while the dial colour is Black. The features of the watch include (among others) a chronograph and date function as well as an alarm. This model has got 200 metres water resistancy - it can be used for professional marine activity, skin diving and high impact water sports, but not deep sea or mixed gas diving. The watch is shipped with an original box and a guarantee from the manufacturer.',0,35);
+INSERT INTO "purchased_product" (id_product,id_purchase,name,price,description,discount,quantity) VALUES (1,101,'Mens Armani Exchange Watch AX2104',134.07,'Subtle mens Armani Exchange watch, with stylish stealth black Ion-plated steel case and bracelet. This sleek design has a black dial with black baton hour markers and detailing for maximum style. Inside the watch is a Japanese Quartz movement, featuring a date function at 3 o''clock. The dial also features the Armani Exchange logo at 12 o''clock for an added effect. It fastens with a push-button deployment on the black metal bracelet.',0,21);
 
 /* PURCHASE LOG */
-/* WAITING FOR PAYMENT */ 
-
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Waiting for payment', '2019-02-01 03:36:19');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (2,'Waiting for payment','2019-02-01 09:48:45');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (3,'Waiting for payment','2019-02-01 13:59:24');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (4,'Waiting for payment','2019-02-01 04:44:35');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (5,'Waiting for payment','2019-02-01 09:32:42');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (6,'Waiting for payment','2019-02-01 19:23:38');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (7,'Waiting for payment','2019-02-01 06:31:57');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (8,'Waiting for payment','2019-02-01 10:40:50');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (9,'Waiting for payment','2019-02-01 21:57:46');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (10,'Waiting for payment','2019-02-01 04:09:39');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (11,'Waiting for payment','2019-02-01 04:54:13');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (12,'Waiting for payment','2019-02-01 12:29:43');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (13,'Waiting for payment','2019-02-01 00:29:01');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (14,'Waiting for payment','2019-02-01 05:28:15');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (15,'Waiting for payment','2019-02-01 12:59:15');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (16,'Waiting for payment','2019-02-01 15:20:41');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (17,'Waiting for payment','2019-02-01 02:22:35');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (18,'Waiting for payment','2019-02-01 22:29:00');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (19,'Waiting for payment','2019-02-01 06:30:29');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (20,'Waiting for payment','2019-02-01 04:45:21');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (21,'Waiting for payment','2019-02-01 15:16:12');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (22,'Waiting for payment','2019-02-01 21:17:12');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (23,'Waiting for payment','2019-02-01 11:49:29');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (24,'Waiting for payment','2019-02-01 17:16:32');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (25,'Waiting for payment','2019-02-01 04:25:11');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (26,'Waiting for payment','2019-02-01 07:30:28');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (27,'Waiting for payment','2019-02-01 00:34:15');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (28,'Waiting for payment','2019-02-01 10:06:22');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (29,'Waiting for payment','2019-02-01 00:54:41');
--- INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (30,'Waiting for payment','2019-02-01 16:57:25');
-
 
 /* WAITING FOR PAYMENT APPROVAL */
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Waiting for payment approval','2019-05-05 05:01:51');
@@ -1130,6 +1093,7 @@ INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (22,'
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (23,'Waiting for payment approval', '2019-05-05 00:03:21');
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (24,'Waiting for payment approval', '2019-05-05 14:01:26');
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (25,'Waiting for payment approval', '2019-05-05 10:18:23');
+INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (101,'Waiting for payment approval', '2019-05-05 10:18:23');
 
 /* PAID */
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Paid', '2019-05-06 03:12:19');
@@ -1152,6 +1116,7 @@ INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (17,'
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (18,'Paid','2019-05-06 01:46:37');
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (19,'Paid','2019-05-06 11:13:26');
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (20,'Paid','2019-05-06 12:58:51');
+INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (101,'Paid','2019-05-06 12:58:51');
 
 /* SHIPPED */
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Shipped','2019-05-07 10:47:14');
@@ -1169,6 +1134,7 @@ INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (12,'
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (13,'Shipped','2019-05-07 07:52:24');
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (14,'Shipped','2019-05-07 00:19:55');
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (15,'Shipped','2019-05-07 13:24:37');
+INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (101,'Shipped','2019-05-07 13:24:37');
 
 /* COMPLETED */
 INSERT INTO "purchase_log" (id_purchase,purchase_state,"date_time") VALUES (1,'Completed','2019-05-08 01:51:50');
@@ -1220,26 +1186,26 @@ INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (4,10,'2019-12-
 INSERT INTO "discounts" (id_category,value,start_t,end_t) VALUES (5,60,'2019-12-01 19:19:18','2019-12-31 02:52:36');
 
 /* REVIEWS */
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (1,1,16,'Fucking great product',5,'2019-04-19 14:48:40');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (2,2,36,'I loved everything about it',5,'2019-04-19 18:46:27');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (3,3,32,'Did not meet my expectations',1,'2019-04-19 10:54:14');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (4,4,34,'Was really wishing for something with a better quality',2,'2019-04-19 19:54:38');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (5,5,12,'Service and product are great, so happy I made this purchase',5,'2019-04-19 18:59:33');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (6,6,9,'Product is what I was expecting but the order came a bit late',3,'2019-04-19 23:55:52');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (7,7,46,'Did not get quite what was advertised in the description',3,'2019-04-19 22:27:04');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (8,8,11,'Good costumer service',3,'2019-04-19 02:47:55');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (9,9,23,'My father really liked the gift',4,'2019-04-19 03:35:19');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (10,10,43,'It got broken in the transportation and they said it was my problem I did not get insurance',1,'2019-04-19 20:31:04');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (11,11,37,'I regret making this purchase, its terrible',1,'2019-04-19 08:10:46');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (12,12,38,'Service could have been better',2,'2019-04-19 16:23:32');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (13,13,27,'Messed up my order and I ended up with the wrong order...',2,'2019-04-19 09:05:03');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (14,14,26,'Really fast service, thank you',5,'2019-04-19 19:46:36');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (15,15,11,'Great experience buying here, will definetly come back again',5,'2019-04-19 13:05:59');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (16,16,36,'Will never come back again, my order got delayed 2 days more than it was supposed to',1,'2019-04-19 13:28:50');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (17,17,2,'Costumer service are very friendly and helpfull, great buying experience.',4,'2019-04-19 16:40:13');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (18,18,19,'Cant wait to shop here again',4,'2019-04-19 13:48:57');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (19,19,10,'Great expereince overall',5,'2019-04-19 19:18:46');
-INSERT INTO reviews (id,id_product,id_client,comment,rating,"date_time") VALUES (20,20,47,'My order got lost and I had to wait 3 more days',2,'2019-04-19 07:22:49');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (1,16,'Fucking great product',5,'2019-04-19 14:48:40');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (2,36,'I loved everything about it',5,'2019-04-19 18:46:27');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (3,32,'Did not meet my expectations',1,'2019-04-19 10:54:14');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (4,34,'Was really wishing for something with a better quality',2,'2019-04-19 19:54:38');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (5,12,'Service and product are great, so happy I made this purchase',5,'2019-04-19 18:59:33');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (6,9,'Product is what I was expecting but the order came a bit late',3,'2019-04-19 23:55:52');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (7,46,'Did not get quite what was advertised in the description',3,'2019-04-19 22:27:04');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (8,11,'Good costumer service',3,'2019-04-19 02:47:55');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (9,23,'My father really liked the gift',4,'2019-04-19 03:35:19');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (10,43,'It got broken in the transportation and they said it was my problem I did not get insurance',1,'2019-04-19 20:31:04');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (11,37,'I regret making this purchase, its terrible',1,'2019-04-19 08:10:46');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (12,38,'Service could have been better',2,'2019-04-19 16:23:32');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (13,27,'Messed up my order and I ended up with the wrong order...',2,'2019-04-19 09:05:03');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (14,26,'Really fast service, thank you',5,'2019-04-19 19:46:36');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (15,11,'Great experience buying here, will definetly come back again',5,'2019-04-19 13:05:59');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (16,36,'Will never come back again, my order got delayed 2 days more than it was supposed to',1,'2019-04-19 13:28:50');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (17,2,'Costumer service are very friendly and helpfull, great buying experience.',4,'2019-04-19 16:40:13');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (18,19,'Cant wait to shop here again',4,'2019-04-19 13:48:57');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (19,10,'Great expereince overall',5,'2019-04-19 19:18:46');
+INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (20,47,'My order got lost and I had to wait 3 more days',2,'2019-04-19 07:22:49');
 
 /* REPORT */
 INSERT INTO reports (id,reason,id_review,id_client,"date_time") VALUES (1,'It has a swear word in it',1,32,'2019-02-11 14:53:40');

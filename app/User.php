@@ -43,8 +43,9 @@ class User extends Authenticatable
     public static function purchaseHistory($userId){
 
         $purchases = DB::table('purchase')
-        ->selectRaw('id, date_time::date')
-        ->where('id_client', $userId)
+        ->selectRaw('id, date_time::date, date_time AS time')
+		->where('id_client', $userId)
+		->orderByRaw('time DESC')
         ->get();
   
         foreach ($purchases as $purchase){
@@ -64,18 +65,18 @@ class User extends Authenticatable
         }
   
         return $purchases;
-      }
+    }
 
-      public function addNew($input)
-      {
-          $check = static::where('facebook_id',$input['facebook_id'])->first();
-  
-  
-          if(is_null($check)){
-              return static::create($input);
-          }
-  
-  
-          return $check;
-      }
+    public function addNew($input)
+    {
+        $check = static::where('facebook_id',$input['facebook_id'])->first();
+
+
+        if(is_null($check)){
+            return static::create($input);
+        }
+
+
+        return $check;
+    }
 }

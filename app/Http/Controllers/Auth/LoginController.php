@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\User;
+use App\Ban;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BaseController;
 
@@ -68,7 +69,7 @@ class LoginController extends BaseController
             if ($user->is_enabled && $this->attemptLogin($request)) {
                 // Send the normal successful login response
                 return $this->sendLoginResponse($request);
-            } else {
+            } else if(!$user->is_staff_member){
                 // Increment the failed login attempts and redirect back to the
                 // login form with an error message.
                 $this->incrementLoginAttempts($request);
@@ -78,7 +79,15 @@ class LoginController extends BaseController
                 return redirect()
                     ->back()
                     ->withInput($request->only($this->username(), 'remember'))
-                    ->withErrors(['is_enabled' => 'You must be enabled to login.', 'reason' => $ban->reason]);
+                    ->withErrors(['is_enabled' => 'You must be enabled to login.', 'reason' => $ban->reason, 'until' => $ban->end_t]);
+            }
+            else{
+                $this->incrementLoginAttempts($request);
+
+                return redirect()
+                ->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors(['is_enabled' => 'This staff member account is currently disabled.']);
             }
         }
     

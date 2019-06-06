@@ -19,7 +19,7 @@
         <span class="product-title float-left">{{$product->prodname}}</span>
         <div class="float-right product-rating">
             <span class="n-ratings mr-1">{{$reviewsStats->numratings}}</span>
-            @showRating($reviewsStats->rating)
+            @showRating(floor($reviewsStats->rating))
         </div>
         <br style="clear:both">
         <hr>
@@ -34,7 +34,7 @@
             <div class="float-right product-rating">
                 <span class="n-ratings mr-1">{{$reviewsStats->numratings}}</span>
 
-                @showRating($reviewsStats->rating)
+                @showRating(floor($reviewsStats->rating))
 
             </div>
             <br style="clear:both">
@@ -42,20 +42,22 @@
         </div>
     <p class="p-3 mb-0">{{$product->description}}</p>
         <div class="p-3">
-            <button type="button" class="btn btn-secondary float-left">Review</button>
-
+            
+            
             <form id="updateCart">
-                <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
-            <span class="price float-right">{{$product->price}}€</span>
-            <label class="float-right quantity">
-                <input type="number" name="quantity" class="product-quantity" value="1"> x
-            </label>
-            <button type="submit" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+1);">
-                Add to cart
+                <button type="submit" class="btn btn-primary float-right" onclick="$('.cart').attr('data-count',parseInt($('.cart').attr('data-count'))+1);">
+                    Add to cart
                 </button>
-        </form> 
+                <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
+                <span class="price float-right">{{$product->price}}€</span>
+                <label class="float-right quantity">
+                    <input type="number" name="quantity" class="product-quantity" value="1"> x
+                </label>
+                
+            </form>
+            <br style="clear:both">
             <form id="updateWishlist">
-                <br style="clear:both">
+               
                 <input type="hidden" class="d-none    " name="id_product" value={{$product->id}}>
             @if($wishlist != null)
                 <input type="hidden" class="d-none    " name="id" value={{$wishlist->id}}>
@@ -67,7 +69,14 @@
                     Add to wishlist <i class="fas fa-bookmark"></i>
                 </button>
             @endif
-        </form> 
+            <br style="clear:both">
+            @if($canReview)
+                <button type="button" class="btn btn-secondary reviewBtn" data-toggle="modal" data-target="#reviewModal">Review</button>
+            @else
+                <button type="button" class="btn btn-secondary reviewBtn" data-toggle="modal" data-target="#reviewModal" disabled>Review</button>
+            @endif
+                
+            </form>     
         </div>
     </div>
     <br style="clear:both">
@@ -110,6 +119,35 @@
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Review Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addReview">
+                    <input type="hidden" name="id_product" value={{$product->id}}>
+                    <div class="review-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <textarea class="review-text-area" id="comment"></textarea>
+                    <input type="hidden" name="rating" value="0">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="addReview" class="btn btn-primary">Review</button>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

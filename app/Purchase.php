@@ -42,7 +42,16 @@ class Purchase extends Model
 
         $id_purchase = DB::table('purchase')->insertGetId(
             ['id_billing_information' => $id_billing, 'id_client' => $id_client]
-        );
+		);
+
+		foreach ($products as $key => $value) {
+			foreach ($products as $key2 => $value2) {
+				if($key < $key2 && $value->id_product == $value2->id_product) {
+					$value->quantity += $value2->quantity;
+					$products->forget($key2);
+				}
+			}
+		}
 
         foreach ($products as $product) {
             Purchase::purchaseProduct($product, $id_purchase);
@@ -55,5 +64,15 @@ class Purchase extends Model
         ->whereNotIn('id_purchase', PurchaseLog::select('id_purchase')->where('purchase_state', '>', 'Waiting for payment approval'))
         ->groupBy('id_purchase')
         ->paginate(10);
+    }
+
+    public static function isWaitingShipment($client_id, $product_id) {
+        return DB::table('purchase')
+            ->join('purchase_log','purchase_log.id_purchase','purchase.id')
+            ->join('purchased_product','purchased_product.id_purchase','purchase.id')
+            ->where('id_client', $client_id)
+            ->where('purchase_state',"Shipped")
+            ->where('id_product',$product_id)
+            ->first();
     }
 }

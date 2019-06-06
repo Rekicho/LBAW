@@ -16,7 +16,7 @@
             @endif
         </div>
         <div>
-            @showRating($product->rating)
+            @showRating(floor($product->rating))
 		</div>
         <span class='price float-right'>
 			@if(@isset($product->quantity))

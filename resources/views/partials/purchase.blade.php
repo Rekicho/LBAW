@@ -36,10 +36,10 @@
                     <br style="clear: both">
                     @if(count($purchase->logs)>3)
                         <div class="float-left step-by-step mt-3">
-                            <i class="fas fa-circle pay-complt"></i>Shipped: {{$purchase->logs[3]->date_time}}
+                            <i class="fas fa-circle pay-shipped"></i>Shipped: {{$purchase->logs[3]->date_time}}
                     @else
                         <div class="float-left step-by-step mt-3 deactivate">
-                            <i class="fas fa-circle pay-complt deactivate"></i>Shipped
+                            <i class="fas fa-circle pay-shipped deactivate"></i>Shipped
                     @endif
                     </div>
                     <br style="clear: both">
@@ -50,9 +50,15 @@
                         <div class="float-left step-by-step mt-3 deactivate">
                             <i class="fas fa-circle pay-complt deactivate"></i>Completed
                     @endif
-                        </div>
+						</div>
                 </div>
-            </div>
+			</div>
+			@if(count($purchase->logs)==4)
+			<div class="float-center mt-3 received-div">
+				<a href="#" class="btn btn-primary received" data-id="{{$purchase->id}}"><i class="fas fa-clipboard-check confirm pr-2"></i>Confirm
+					Reception</a>
+			</div>
+			@endif
         </div>
     </div>
 

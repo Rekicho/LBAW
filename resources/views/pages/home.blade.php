@@ -133,7 +133,7 @@
 				<a href="category/1" class="seemore-block">See more</a>
 				<br style="clear:both" />
 				<div class="row imagetiles">
-					@foreach($watches as $product)
+					@foreach($electronics as $product)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
 					<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("img/product$product->id_product.jpg") }}
 								class="img-responsive imgSizing"></a>
