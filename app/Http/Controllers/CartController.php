@@ -21,8 +21,6 @@ class CartController extends BaseController
    {
      $cart = new Cart();
 
-     // $this->authorize('create', $user);
-
      $cart->id_product = intval($request->input('id_product'));
      $cart->id_client = Auth::user()->id;
      $cart->quantity = intval($request->input('quantity'));
@@ -45,8 +43,9 @@ class CartController extends BaseController
    public function delete(Request $request, $id){
        $cartEntry = Cart::find($id);
 
-      //  $this->authorize('delete', $card);
-       $cartEntry->delete();
+      $this->authorize('delete', $card);
+      
+      $cartEntry->delete();
  
        return $cartEntry;  
    }

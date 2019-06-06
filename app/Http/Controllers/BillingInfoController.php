@@ -22,8 +22,6 @@ class BillingInfoController extends BaseController
     {
       $billingInfo = new BillingInformation();
 
-      // $this->authorize('create', $user);
-
       $billingInfo->full_name = $request->input('full_name');
       $billingInfo->address = $request->input('address');
       $billingInfo->city = $request->input('city');
@@ -39,7 +37,7 @@ class BillingInfoController extends BaseController
     public function update(Request $request, $id){
       $billingInfo = BillingInformation::find($id);
 
-      // TODO: $this->authorize('update', $user);
+      $this->authorize('update', $billingInfo);
     
       $billingInfo->full_name = $request->input('full_name');
       $billingInfo->address = $request->input('address');

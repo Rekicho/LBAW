@@ -27,10 +27,6 @@ class AccountingController extends BaseBOController
   
     public function show()
     {
-    //   if (!Auth::check()) return redirect('/login');
-
-     // $this->authorize('show', BackOfficePolicy::class);
-
       return view('pages.accounting');
     }
 }

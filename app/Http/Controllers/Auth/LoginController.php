@@ -32,8 +32,6 @@ class LoginController extends BaseController
      */
     protected $redirectTo = '/';
     
-    // TODO: verificar is_enabled
-
     /**
      * Create a new controller instance.
      *

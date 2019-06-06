@@ -11,7 +11,6 @@ class Category extends Model
 
     protected $table = 'categories';
     
-    // TODO: union e pagination = rip
     public static function getProductsFromCategory($id, $limit)
     {
         $noRatings = DB::table('categories')

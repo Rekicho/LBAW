@@ -67,7 +67,7 @@ class ProductController extends BaseController
     {
         $product = new Product();
 
-        //$this->authorize('create', $product);
+        $this->authorize('create', $product);
 
         $validator = \Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:products',
