@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Sign up')
+
 @section('css')
 <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 @endsection
