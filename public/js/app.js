@@ -136,6 +136,42 @@ function addEventListeners() {
   let addReview = document.querySelector("form#addReview");
   if (addReview != null)
     addReview.addEventListener("submit", sendAddReviewRequest);
+
+  let updateReviewRating = document.querySelectorAll('form#addReview div.review-rating i.fa-star');
+  if(updateReviewRating != null){
+    updateReviewRating.forEach(element => {
+      element.addEventListener("click", updateReviewOfRating);
+    });
+  }
+}
+
+// Reset review modal
+$('#reviewModal').on('hidden.bs.modal', function () {
+  $(this).find('form').trigger('reset');
+  let stars = document.querySelectorAll('form#addReview div.review-rating i.fa-star');
+  stars.forEach(element => {
+    element.classList.remove("fas");
+    element.classList.add("far");
+  });
+})
+
+function updateReviewOfRating(event){
+  console.log(this);
+
+  let stars = document.querySelectorAll('form#addReview div.review-rating i.fa-star');
+  let chosenRating = this.getAttribute("data-rating");
+  stars.forEach(element => {
+    if(element.getAttribute("data-rating") <= chosenRating){
+      element.classList.remove("far");
+      element.classList.add("fas");
+    }else{
+      element.classList.remove("fas");
+      element.classList.add("far");
+    }
+  });
+
+  let value = document.querySelector('form#addReview input[name="rating"]');
+  value.setAttribute("value",chosenRating);
 }
 
 function encodeForAjax(data) {
@@ -302,11 +338,15 @@ function sendAddReviewRequest(event) {
   event.preventDefault();
 
   let id_product = this.querySelector("input[name=id_product]").value;
-  let comment = this.querySelector("input[name=comment]").value;
+  let comment = this.querySelector("textarea#comment").value;
   let rating = this.querySelector("input[name=rating]").value;
 
+  console.log(id_product);
+  console.log(comment);
+  console.log(rating);
+
   sendAjaxRequest(
-    "post",
+    "put",
     "/api/reviews/",
     {
       id_product: id_product,
@@ -429,10 +469,69 @@ function removedFromCartHandler(){
   let newForm = getAddToCartForm(cart);
   oldForm.parentNode.replaceChild(newForm, oldForm);
 // TODO
+}
+
 function addedReviewHandler() {
   console.log(this.status);
+  $("#reviewModal").modal("hide");
+
+  console.log(this.responseText );
 
   let review = JSON.parse(this.responseText);
+  let newReview = createNewReview(review);
+
+  let allReviewsContainer = document.querySelector(".reviews"); 
+  console.log(allReviewsContainer);
+  allReviewsContainer.insertBefore(newReview,allReviewsContainer.firstChild);
+
+  let reviewButton = document.querySelector(".reviewBtn");
+  reviewButton.disabled = true;
+
+  let numRatings = document.querySelectorAll('span.n-ratings');
+  
+  numRatings.forEach(element => {
+    element.innerHTML = review.reviewsStats.numratings;
+  });
+  
+  
+  let productRating = document.querySelectorAll(".product-right-block .product-rating");
+  console.log("o meu novo rating é " + review.reviewsStats.rating);
+  productRating.forEach(element => {
+    let stars = element.querySelectorAll(".fa-star");
+    console.log(stars);
+    for(let i = 0; i < stars.length; i++){
+      stars[i].classList.remove("fas");
+      if(i+1 <= review.reviewsStats.rating){
+        stars[i].classList.add("fas");
+      }else{
+        stars[i].classList.add("far");
+      }
+    }
+  });
+}
+
+function createNewReview(review){
+  let rating = "";
+
+
+  for(let i = 1 ; i <= 5 ; i++){
+    if(i <= review.rating)
+      rating += `<i class="fas fa-star"></i>`;
+    else
+      rating += `<i class="far fa-star"></i>`;
+  }
+  let article = document.createElement("article");
+  article.classList.add("review");
+  article.innerHTML = 
+  `<a href="profile.html"><span class="username">${review.username}</span></a>
+  <i class="fas fa-flag" data-toggle="modal" data-target="#reportModal"></i>
+  <div class="float-right product-rating">
+      ${rating}
+  </div>
+  <p>${review.comment}</p>
+  <span class="date">${(review.date_time).date_time}</span>`;
+
+  return article;
 }
 
 function sendCreateStaffMemberRequest(event) {

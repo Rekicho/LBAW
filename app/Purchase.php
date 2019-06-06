@@ -64,4 +64,14 @@ class Purchase extends Model
 
         return $logs;
     }
+
+    public static function isWaitingShipment($client_id, $product_id) {
+        return DB::table('purchase')
+            ->join('purchase_log','purchase_log.id_purchase','purchase.id')
+            ->join('purchased_product','purchased_product.id_purchase','purchase.id')
+            ->where('id_client', $client_id)
+            ->where('purchase_state',"Shipped")
+            ->where('id_product',$product_id)
+            ->first();
+    }
 }

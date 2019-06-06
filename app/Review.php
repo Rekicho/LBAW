@@ -23,4 +23,19 @@ class Review extends Model
         ->join('users', 'users.id', 'reviews.id_client')
         ->paginate(10);
     }
+
+    public static function getReview($client,$product) {
+        return DB::table('reviews')
+                ->where("id_product",$product)
+                ->where("id_client",$client)
+                ->first();
+    }
+
+    public static function getReviewDate($client,$product){
+        return DB::table('reviews')
+                ->select('date_time')
+                ->where("id_product",$product)
+                ->where("id_client",$client)
+                ->first();
+    }
 }
