@@ -60,6 +60,11 @@
 					<li class="nav-item">
 						<a class="nav-link {{ Request::is('contact') ? 'active' : '' }}" href="/contact">CONTACT</a>
 					</li>
+					@if(Auth::check() && Auth::user()->is_staff_member)
+					<li class="nav-item">
+						<a class="nav-link" href="/back-office/admin">BACK-OFFICE</a>
+					</li>
+					@endif
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="/search">
 					<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" required>

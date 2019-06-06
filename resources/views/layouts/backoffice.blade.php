@@ -37,7 +37,7 @@
 
 <body class="bg-primary">
   <nav class="navbar navbar-expand-lg navbar-dark main-color-bg">
-    <a class="navbar-brand mr-lg-4" href="/back-office/admin">
+    <a class="navbar-brand mr-lg-4" href="/">
       <span class="sec-color">KEY</span>VALUE
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
