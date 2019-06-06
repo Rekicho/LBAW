@@ -47,13 +47,14 @@ class ProductController extends BaseController
       if(Auth::user()){
           $wishlist = WishList::exists(Auth::user()->id, $id);
           $cart = Cart::exists(Auth::user()->id, $id);
+          $canReview = $this->canReview(Auth::user()->id,$id);
       } else {
-         $wishlist = array();
-         $cart = array();
+         $wishlist = [];
+         $cart = [];
+         $canReview = false;
       }
       
       // Check if the user can review
-      $canReview = $this->canReview(Auth::user()->id,$id);
   
       return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart, 'canReview' => $canReview, 'username' => Auth::user()->username]);
     }

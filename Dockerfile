@@ -12,7 +12,6 @@ RUN chown -R www-data:www-data /var/www/
 WORKDIR "/var/www"
 RUN php artisan config:cache
 RUN php artisan config:clear
-RUN php artisan migrate
 
 # Copy project configurations
 COPY ./etc/php/php.ini /usr/local/etc/php/conf.d/php.ini
