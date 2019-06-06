@@ -71,10 +71,11 @@ Route::get('back-office/moderator/ajax/{type}', 'BackOffice\ModeratorController@
 Route::get('back-office/moderator', 'BackOffice\ModeratorController@show');
 Route::get('back-office/stock/ajax/{type}', 'BackOffice\StockController@getStockType')->where('type', 'products|categories');
 Route::get('back-office/stock', 'BackOffice\StockController@show');
+Route::get('back-office/accounting/ajax/payments', 'BackOffice\AccountingController@getAccountingPayments');
+Route::get('back-office/accounting', 'BackOffice\AccountingController@show');
 
 Route::get('back-office/profile', 'BackOffice\BaseBOController@showStaffProfile');
 Route::get('search/', 'SearchController@show');
-Route::get('back-office/accounting', 'BackOffice\AccountingController@show');
 
 // Facebook login
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');

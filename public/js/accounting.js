@@ -29,4 +29,33 @@ $(document).ready(function () {
             isModalEnabled = false;
         }
     }
+
+    function getPaginationSelectedPage(url) {
+        let chunks = url.split('?');
+        let querystr = chunks[1].split('&');
+        let pg = 1;
+        for (i in querystr) {
+            let qs = querystr[i].split('=');
+            if (qs[0] == 'page') {
+                pg = qs[1];
+                break;
+            }
+        }
+        return pg;
+    }
+
+    $('#payments').on('click', '.pagination a', function (e) {
+        e.preventDefault();
+        let pg = getPaginationSelectedPage($(this).attr('href'));
+    
+        $.ajax({
+          url: '/back-office/accounting/ajax/payments',
+          data: { page: pg },
+          success: function (data) {
+            $('#payments').html(data);
+          }
+        });
+      });
+
+    $('#payments').load('/back-office/accounting/ajax/payments?page=1');
 });

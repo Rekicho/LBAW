@@ -51,17 +51,9 @@ class Purchase extends Model
 
     public static function getProductsWaitingForConfirmation()
     {
-        $purchases = Purchase::all();
-        $logs = [];
-
-        foreach ($purchases as $purchase) {
-            $last_log = PurchaseLog::where('id_purchase', $purchase->id)->orderByRaw('date_time DESC')->first();
-
-            if (strcmp($last_log->purchase_state, "Waiting for payment approval") == 0 || strcmp($last_log->purchase_state, "Waiting for payment") == 0) {
-                array_push($logs, $last_log);
-            }
-        }
-
-        return $logs;
+        return PurchaseLog::selectRaw('id_purchase, max(purchase_state) as purchase_state, max(date_time) as date_time')
+        ->whereNotIn('id_purchase', PurchaseLog::select('id_purchase')->where('purchase_state', '>', 'Waiting for payment approval'))
+        ->groupBy('id_purchase')
+        ->paginate(10);
     }
 }

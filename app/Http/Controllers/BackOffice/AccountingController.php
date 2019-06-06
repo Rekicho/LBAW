@@ -15,7 +15,13 @@ class AccountingController extends BaseBOController
     {    parent::__construct();
 
         $this->middleware('staffmember');
-    } 
+    }
+
+    public function getAccountingPayments()
+    {
+        $payments = Purchase::getProductsWaitingForConfirmation();
+        return view('pages.accountingPayments', ['payments' => $payments]);
+    }
   
     public function show()
     {
@@ -23,8 +29,6 @@ class AccountingController extends BaseBOController
 
      // $this->authorize('show', BackOfficePolicy::class);
 
-	  $payments = Purchase::getProductsWaitingForConfirmation();
-
-      return view('pages.accounting', ['payments' => $payments]);
+      return view('pages.accounting');
     }
 }
