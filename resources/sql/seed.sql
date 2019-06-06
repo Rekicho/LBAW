@@ -17,6 +17,8 @@ DROP TABLE IF EXISTS purchase_log CASCADE;
 DROP TABLE IF EXISTS bans CASCADE;
 DROP TABLE IF EXISTS discounts CASCADE;
 DROP TABLE IF EXISTS help CASCADE;
+DROP TABLE IF EXISTS password_resets CASCADE;
+DROP TABLE IF EXISTS notifications CASCADE;
 
 DROP TYPE IF EXISTS state_purchase;
 
@@ -47,7 +49,7 @@ DROP INDEX IF EXISTS end_discount;
 DROP INDEX IF EXISTS start_discount;
 DROP INDEX IF EXISTS purchased_product_id_purchase;
 DROP INDEX IF EXISTS product_price;
-
+DROP INDEX IF EXISTS password_resets_email;
 
 -----------------------------------------
 -- Types
@@ -84,7 +86,8 @@ CREATE TABLE users (
     is_staff_member BOOLEAN DEFAULT FALSE NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
     is_enabled BOOLEAN DEFAULT TRUE NOT NULL,
-    remember_token VARCHAR
+    remember_token VARCHAR,
+    facebook_id VARCHAR
 );
 
 CREATE TABLE wishlists (
@@ -184,6 +187,24 @@ CREATE TABLE help (
     help_text TEXT NOT NULL
 );
 
+CREATE TABLE password_resets (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR NOT NULL,
+    token VARCHAR NOT NULL,
+    created_at TIMESTAMP
+);
+
+CREATE TABLE notifications (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR NOT NULL,
+    notifiable_id BIGINT NOT NULL,
+    notifiable_type text NOT NULL,
+    data text NOT NULL,
+    read_at timestamp,
+    created_at timestamp,
+    updated_at timestamp
+);
+
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
@@ -207,6 +228,8 @@ CREATE TABLE help (
  CREATE INDEX start_discount ON discounts USING btree (start_t); 
 
  CREATE INDEX end_discount ON discounts USING btree (end_t); 
+
+ CREATE INDEX password_resets_email ON password_resets USING hash (email); 
 
 -----------------------------------------
 -- FULL TEXT SEARCH
