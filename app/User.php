@@ -43,8 +43,9 @@ class User extends Authenticatable
     public static function purchaseHistory($userId){
 
         $purchases = DB::table('purchase')
-        ->selectRaw('id, date_time::date')
-        ->where('id_client', $userId)
+        ->selectRaw('id, date_time::date, date_time AS time')
+		->where('id_client', $userId)
+		->orderByRaw('time DESC')
         ->get();
   
         foreach ($purchases as $purchase){

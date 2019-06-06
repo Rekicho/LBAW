@@ -138,7 +138,12 @@ function addEventListeners() {
     
   let addReview = document.querySelector("form#addReview");
   if (addReview != null)
-    addReview.addEventListener("submit", sendAddReviewRequest);
+	addReview.addEventListener("submit", sendAddReviewRequest);
+	
+	let received = document.querySelectorAll(".received");
+	[].forEach.call(received, function(receivedInstance) {
+	receivedInstance.addEventListener("click", confirmReception);
+	});
 }
 
 function encodeForAjax(data) {
@@ -1149,6 +1154,40 @@ function createProductRow(product) {
   new_product.appendChild(newCell);
 
   return new_product;
+}
+
+function confirmReception(event) {
+	event.preventDefault();
+	let id = this.getAttribute("data-id");
+
+	sendAjaxRequest(
+		"put",
+		"/api/purchases/" + id,
+		{state: "Completed"},
+		purchaseCompleted
+	);
+}
+
+function purchaseCompleted() {
+	let response = JSON.parse(this.responseText);
+	let purchase = document.querySelector("#heading" + response["id_purchase"]);
+
+	purchase.children[0].removeChild(purchase.querySelector(".received-div"));
+
+	let complete = purchase.querySelector(".deactivate");
+
+	complete.classList.remove("deactivate");
+	complete.children[0].classList.remove("deactivate");
+
+	let today = new Date();
+	let month = '' + (today.getMonth() + 1);
+    let day = '' + today.getDate();
+	let year = today.getFullYear();
+	
+	if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+	complete.innerHTML += ": " + [year, month, day].join('-');
 }
 
 function getVals() {

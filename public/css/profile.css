@@ -159,6 +159,10 @@ h2 {
 
 /* PAYMENT STATES */
 .pay-complt {
+	color: lightgreen;
+}
+
+.pay-shipped {
 	color: green;
 }
 
