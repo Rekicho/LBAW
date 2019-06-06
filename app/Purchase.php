@@ -60,8 +60,12 @@ class Purchase extends Model
 
     public static function getProductsWaitingForConfirmation()
     {
+        $aux = PurchaseLog::select('id_purchase')
+        ->where('purchase_state', '>', 'Waiting for payment approval')
+        ->get();
+
         return PurchaseLog::selectRaw('id_purchase, max(purchase_state) as purchase_state, max(date_time) as date_time')
-        ->whereNotIn('id_purchase', PurchaseLog::select('id_purchase')->where('purchase_state', '>', 'Waiting for payment approval'))
+        ->whereNotIn('id_purchase', $aux)
         ->groupBy('id_purchase')
         ->paginate(10);
     }
