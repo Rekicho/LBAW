@@ -42,7 +42,16 @@ class Purchase extends Model
 
         $id_purchase = DB::table('purchase')->insertGetId(
             ['id_billing_information' => $id_billing, 'id_client' => $id_client]
-        );
+		);
+
+		foreach ($products as $key => $value) {
+			foreach ($products as $key2 => $value2) {
+				if($key < $key2 && $value->id_product == $value2->id_product) {
+					$value->quantity += $value2->quantity;
+					$products->forget($key2);
+				}
+			}
+		}
 
         foreach ($products as $product) {
             Purchase::purchaseProduct($product, $id_purchase);
