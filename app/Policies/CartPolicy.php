@@ -20,6 +20,10 @@ class CartPolicy
         //
     }
 
+    public function create(User $user, Cart $cart){
+        return Auth::check();
+    }
+
     public function delete(User $user, Cart $cart){
         return $user->id == $cart->id_client;
     }

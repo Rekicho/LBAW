@@ -19,6 +19,10 @@ class WishListPolicy
     {
         //
     }
+    
+    public function create(User $user, WishList $list){
+        return Auth::check();
+    }
 
     public function delete(User $user, WishList $list){
         return $user->id == $list->id_client;

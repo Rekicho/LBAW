@@ -22,6 +22,8 @@ class WishListController extends BaseController
     {
       $wishlist = new WishList();
 
+        $this->authorize('create', $wishlist);
+
       $wishlist->id_product = intval($request->input('id_product'));
       $wishlist->id_client = Auth::user()->id;
       

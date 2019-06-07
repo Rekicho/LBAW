@@ -20,6 +20,8 @@ class CartController extends BaseController
    public function create(Request $request)
    {
      $cart = new Cart();
+     
+     $this->authorize('create', $cart);
 
      $cart->id_product = intval($request->input('id_product'));
      $cart->id_client = Auth::user()->id;
