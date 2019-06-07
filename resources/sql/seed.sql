@@ -123,7 +123,8 @@ CREATE TABLE reports (
 );
 
 CREATE TABLE report_log (
-    report_id INTEGER REFERENCES reports (id) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    id_report INTEGER NOT NULL REFERENCES reports (id),
     id_staff_member INTEGER NOT NULL REFERENCES users (id),
     has_deleted BOOLEAN NOT NULL,
     "date_time" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
@@ -1231,10 +1232,10 @@ INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (19
 INSERT INTO reviews (id_product,id_client,comment,rating,"date_time") VALUES (20,47,'My order got lost and I had to wait 3 more days',2,'2019-04-19 07:22:49');
 
 /* REPORT */
-INSERT INTO reports (id,reason,id_review,id_client,"date_time") VALUES (1,'It has a swear word in it',1,32,'2019-02-11 14:53:40');
+INSERT INTO reports (reason,id_review,id_client,"date_time") VALUES ('It has a swear word in it',1,32,'2019-02-11 14:53:40');
 
 /* REPORT LOG*/
-INSERT INTO "report_log" (report_id,id_staff_member,has_deleted,"date_time") VALUES (1,1,True,'2019-02-13 14:53:40');
+INSERT INTO "report_log" (id_report,id_staff_member,has_deleted,"date_time") VALUES (1,1,True,'2019-02-13 14:53:40');
 
 /* HELP */
 INSERT INTO "help" (description,help_text) VALUES (

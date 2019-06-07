@@ -36,10 +36,11 @@
     </div>
 </div>
 
-<ul>
-    @each('partials.productCard', $products, 'product')
-</ul>
-
+<div class="container">
+    <ul>
+        @each('partials.productCard', $products, 'product')
+    </ul>
+</div>
 <!-- PAGE TURNER -->
 
 <nav aria-label="table navigation">

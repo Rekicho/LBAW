@@ -21,6 +21,6 @@ class ProductPolicy
     }
 
     public function create(User $user, Product $product){
-        return $user->is_staff_member;
+        return $user->is_staff_member && $user->is_enabled;
     }
 }

@@ -50,6 +50,8 @@ Route::post('api/reviews/{id}', 'ReviewController@update');
 
 Route::put('api/reports/', 'ReportController@create');
 
+Route::put('api/reportlogs/', 'ReportLogController@create');
+
 // Products
 Route::get('product/{id}', 'ProductController@show');
 Route::get('category/{id}', 'CategoryController@show');

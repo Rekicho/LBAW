@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\User;
-use App\Ban;
+use App\ReportLog;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BanPolicy
+class ReportLogPolicy
 {
     use HandlesAuthorization;
 
@@ -20,8 +20,7 @@ class BanPolicy
         //
     }
 
-    public function create(User $user, Ban $ban)
-    {
-      return $user->is_staff_member && $user->is_enabled;
+    public function create(User $user, ReportLog $reportLog){
+        return $user->is_staff_member && $user->is_enabled;
     }
 }

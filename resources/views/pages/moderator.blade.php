@@ -114,14 +114,14 @@
         <div class="modal-body">
           Are you sure?
           <form id="disableReviewForm">
-            <input type="hidden" name="id_review">
+            <input type="hidden" name="id_report">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="submit" form="disableReviewForm" class="btn btn-primary">Confirm</button>
         </div>
       </div>
     </div>
