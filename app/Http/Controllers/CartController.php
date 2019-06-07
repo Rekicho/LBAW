@@ -43,10 +43,15 @@ class CartController extends BaseController
    public function delete(Request $request, $id){
        $cartEntry = Cart::find($id);
 
-      $this->authorize('delete', $card);
+      $this->authorize('delete', $cartEntry);
       
       $cartEntry->delete();
+
+      $products = Cart::getProductsFromCart($cartEntry->id_client);
+      $total = Cart::getCartTotal($products);
+    
+      $cartEntry->total = $total;
  
-       return $cartEntry;  
+      return $cartEntry;  
    }
 }

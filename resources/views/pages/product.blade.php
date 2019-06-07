@@ -72,14 +72,13 @@
                     Add to wishlist <i class="fas fa-bookmark"></i>
                 </button>
             @endif
+        </form>     
             <br style="clear:both">
             @if($canReview)
                 <button type="button" class="btn btn-secondary reviewBtn" data-toggle="modal" data-target="#reviewModal">Review</button>
             @else
                 <button type="button" class="btn btn-secondary reviewBtn" data-toggle="modal" data-target="#reviewModal" disabled>Review</button>
             @endif
-                
-            </form>     
         </div>
     </div>
     <br style="clear:both">

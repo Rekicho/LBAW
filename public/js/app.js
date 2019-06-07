@@ -404,6 +404,12 @@ function productCartDeleteHandler() {
     "data-count",
     parseInt(cart.getAttribute("data-count")) - 1
   );
+
+  let total = document.querySelector("span.price");
+  let newTotal = document.createElement("span");
+  newTotal.className = "price";
+  newTotal.innerHTML = product.total + "€";
+  total.parentNode.replaceChild(newTotal, total);
 }
 
 function sendUpdateEmailRequest(event) {
@@ -913,7 +919,6 @@ function getRemoveFromWishListForm(wishlist) {
   form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
-  <br style="clear:both">
   <input type="hidden" class="d-none    " name="id_product" value=${
     wishlist.id_product
   }>
@@ -946,7 +951,6 @@ function getAddToWishListForm(wishlist) {
   form.setAttribute("id", "updateWishlist");
 
   form.innerHTML = `
-  <br style="clear:both">
   <input type="hidden" class="d-none    " name="id_product" value=${
     wishlist.id_product
   }>
@@ -1125,7 +1129,7 @@ function updateCartnewProduct(cart) {
   newProduct.setAttribute("data-id", cart.id);
 
   newProduct.innerHTML = `
-	<a href="/product/${cart.id_product}"> <img src="storage/img/product${
+	<a href="/product/${cart.id_product}"> <img src="/public/storage/img/product${
     cart.id_product
   }.png" alt=''></a>
 	<div class='single-product-info-text'>
