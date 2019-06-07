@@ -17,7 +17,7 @@ class AdminController extends BaseBOController
   public function getStaffMembers()
   {
     $staff_members = Auth::user()->staff_members();
-
+    
     echo view('pages.adminStaffMembers', ['staff_members' => $staff_members]);
     exit;
   }

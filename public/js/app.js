@@ -152,11 +152,11 @@ function addEventListeners() {
       sendAddProductDiscountRequest
     );
 
-  let disableUser = document.querySelector(".confirmDisableUser form");
+  let disableUser = document.querySelector("#confirmUserDisable form#confirmDisableForm");
   if (disableUser != null)
     disableUser.addEventListener("submit", sendDisableUserRequest);
 
-  let enableUser = document.querySelector(".confirmEnableUser form");
+  let enableUser = document.querySelector("#confirmUserEnable form#confirmEnableForm");
   if (enableUser != null)
     enableUser.addEventListener("submit", sendEnableUserRequest);
 
@@ -707,7 +707,7 @@ function sendUpdateStaffMemberRequest(event) {
 
 function sendEnableUserRequest(event) {
   let id = this.querySelector("input[name=id]").value;
-
+  
   sendAjaxRequest(
     "post",
     "/api/users/" + id,
@@ -724,7 +724,7 @@ function sendDisableUserRequest(event) {
   let id_client = this.querySelector("input[name=id]").value;
   let end_t = this.querySelector("input[name=end_t]").value;
   let reason = this.querySelector("textarea[name=reason]").value;
-
+  
   console.log({ id_client: id_client, end_t: end_t, reason: reason });
 
   sendAjaxRequest(
@@ -737,13 +737,13 @@ function sendDisableUserRequest(event) {
 
 function userUpdatedHandler() {
   let user = JSON.parse(this.responseText);
-
-  let row = document.querySelector("[data-id='" + user.id + "']");
-  let newRow = createUserRow(staff_member);
+  
+  let row = document.querySelector("[data-id='" + user.id_client + "']");
+  let newRow = createUserRow(user, false);
   row.parentNode.replaceChild(newRow, row);
 
-  $("#confirmEnable").modal("hide");
-  $("#confirmDisable").modal("hide");
+  $("#confirmUserEnable").modal("hide");
+  $("#confirmUserDisable").modal("hide");
 }
 
 function sendUpdateProductRequest(event) {
@@ -915,7 +915,7 @@ function staffMemberAddedHandler() {
   let feedbackMsg = "Staff member added with success";
   message.innerHTML = feedbackMsg;
 
-  let newRow = createUserRow(response);
+  let newRow = createUserRow(response, true);
   let table = document.getElementById("staffMemberTable");
   table.appendChild(newRow);
 }
@@ -1026,10 +1026,10 @@ function getAddToCartForm(cart) {
 }
 
 function staffMemberUpdatedHandler() {
-  console.log(1)
+  
   let staff_member = JSON.parse(this.responseText);
   let row = document.querySelector("[data-id='" + staff_member.id + "']");
-  let newRow = createUserRow(staff_member);
+  let newRow = createUserRow(staff_member, true);
   row.parentNode.replaceChild(newRow, row);
 
   $("#confirmStaffEnable").modal("hide");
@@ -1118,7 +1118,8 @@ Edit
   );
 }
 
-function createUserRow(user) {
+function createUserRow(user, is_staffmember) {
+  console.log(user);
   let new_user = document.createElement("tr");
   new_user.setAttribute("data-id", user.id);
 
@@ -1131,8 +1132,8 @@ function createUserRow(user) {
   button.setAttribute("data-id", user.id);
   button.setAttribute("data-toggle", "modal");
 
-  if (user.is_enabled) button.setAttribute("data-target", "#confirmStaffDisable");
-  else button.setAttribute("data-target", "#confirmStaffEnable");
+  if (user.is_enabled) button.setAttribute("data-target", is_staffmember ? "#confirmStaffDisable" : "#confirmUserDisable");
+  else button.setAttribute("data-target", is_staffmember ? "#confirmStaffEnable" : "#confirmUserEnable");
 
   let icon = document.createElement("i");
   icon.classList = user.is_enabled

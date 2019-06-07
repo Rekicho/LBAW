@@ -8,13 +8,23 @@
         @endif
     </td>
     <td>
-    @if($user->is_enabled)
+    @if($user->is_enabled && $user->is_staff_member)
         <button type="button" class="btn btn-danger btn-sm updateMember" data-id={{$user->id}} data-toggle="modal" data-target="#confirmStaffDisable">
             <i class="fas fa-minus-circle"></i>
             <span class="button-text">Disable</span>
           </button>
+    @elseif($user->is_enabled && !$user->is_staff_member)
+        <button type="button" class="btn btn-danger btn-sm updateMember" data-id={{$user->id}} data-toggle="modal" data-target="#confirmUserDisable">
+            <i class="fas fa-minus-circle"></i>
+            <span class="button-text">Disable</span>
+          </button>
+    @elseif(!$user->is_enabled && $user->is_staff_member)
+        <button type="button" class="btn btn-success btn-sm updateMember" data-id={{$user->id}} data-toggle="modal" data-target="#confirmStaffEnable">
+            <i class="fas fa-plus-circle"></i>
+            <span class="button-text">Enable</span>
+        </button>
     @else
-    <button type="button" class="btn btn-success btn-sm updateMember" data-id={{$user->id}} data-toggle="modal" data-target="#confirmStaffEnable">
+        <button type="button" class="btn btn-success btn-sm updateMember" data-id={{$user->id}} data-toggle="modal" data-target="#confirmUserEnable">
             <i class="fas fa-plus-circle"></i>
             <span class="button-text">Enable</span>
         </button>

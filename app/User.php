@@ -33,7 +33,7 @@ class User extends Authenticatable
 
 
     public function staff_members(){
-       return DB::table('users')->select('id', 'username', 'is_enabled')->where('is_staff_member', true)->paginate(10);
+       return DB::table('users')->select('id', 'username', 'is_enabled', 'is_staff_member')->where('is_staff_member', true)->paginate(10);
     }
 
     public static function clients(){

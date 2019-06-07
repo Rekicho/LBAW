@@ -40,7 +40,7 @@
   </div>
 
   <!-- Modals -->
-  <div class="modal fade confirmDisableUser" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="confirmDisableLabel"
+  <div class="modal fade confirmDisableUser" id="confirmUserDisable" tabindex="-1" role="dialog" aria-labelledby="confirmDisableLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -54,11 +54,11 @@
           <form id="confirmDisableForm">
               <div class="form-group">
                   <label for="reason">Reason </label>
-                  <textarea id="reason" rows="3" cols="30" name="reason"></textarea>
+                  <textarea id="reason" rows="3" cols="30" name="reason" required></textarea>
               </div>
               <div class="form-group">
                   <label for="end_t">End date </label>
-                  <input type="date" id="end_t" name="end_t">
+                  <input type="date" id="end_t" name="end_t" required>
               </div>
               <input type="hidden" name="id">
           </form>
@@ -74,7 +74,7 @@
   </div>
 
 
-  <div class="modal fade confirmEnableUser" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="confirmEnableLabel"
+  <div class="modal fade confirmEnableUser" id="confirmUserEnable" tabindex="-1" role="dialog" aria-labelledby="confirmEnableLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

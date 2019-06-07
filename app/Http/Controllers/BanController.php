@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Ban;
+use App\User;
 
 class BanController extends Controller
 {
@@ -21,6 +22,8 @@ class BanController extends Controller
         $ban->reason = $request->input('reason');
       
         $ban->save();
+
+        $ban->username = User::find($ban->id_client)->username;
 
         return $ban;
     }
