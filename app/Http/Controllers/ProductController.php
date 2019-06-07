@@ -56,7 +56,7 @@ class ProductController extends BaseController
       
       // Check if the user can review
   
-      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart, 'canReview' => $canReview, 'username' => Auth::user()->username]);
+      return view('pages.product', ['product' => $product, 'reviews' => $reviews, 'reviewsStats' => $reviewsStats, 'wishlist' => $wishlist, 'cart' => $cart, 'canReview' => $canReview]);
     }
 
     /**
