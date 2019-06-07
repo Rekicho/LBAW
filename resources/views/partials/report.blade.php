@@ -4,11 +4,12 @@
         {{$report->username}}
     </td>
     <td>
-        @if(!$report->has_deleted)
+        {{-- @if(!$report->has_deleted)
             Enabled
         @else
             Disabled
-        @endif
+        @endif --}}
+        {{$report->reason}}
     </td>
     <td>
     @if(!$report->has_deleted)

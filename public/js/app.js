@@ -471,7 +471,7 @@ function sendAddReportRequest(event) {
   event.preventDefault();
 
   let id_review = this.querySelector("input[name=id_review]").value;
-  let reason = this.querySelector("textarea[name=reason]").value;
+  let reason = this.querySelector("input[name=reason]:checked").value;
 
   console.log(id_review);
   console.log(reason);
