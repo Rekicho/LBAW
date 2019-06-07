@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-    
-    <p>{{$error}} </p>
-
-    <a href="{{ url()->previous() }}">Click here to go back.</a>
+    <div class="container error-div">
+        <h3>{{$error}} </h3>        
+        <a href="{{ url()->previous() }}">Click here to go back.</a>
+    </div>
 @endsection
