@@ -1,0 +1,19 @@
+.error-div {
+    background-color: white;
+    max-width: 50%;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 991px) {
+    .error-div {
+        max-width: 90%;
+
+    }
+}
+
+h3 {
+    margin-bottom: 20px;
+}
