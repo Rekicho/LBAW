@@ -58,5 +58,5 @@ $(document).ready(function () {
         });
       });
 
-    $('#payments').load('/back-office/accounting/ajax/payments?page=1');
+    $('#payments').load('/back-office/accounting/ajax/payments?page=1',addEventListeners);
 });

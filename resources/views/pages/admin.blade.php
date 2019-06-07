@@ -129,12 +129,16 @@
           </div>
           <div class="modal-body">
             Are you sure?
+            <form id="confirmEnableFormMobile" class="confirmStaffDisable">
+              <input type="hidden" name="id">
+              <input type="hidden" name="is_enabled" value="true">
+          </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-danger"><i class="fas fa-minus-circle"></i> Disable</button>
+            <button form="confirmEnableFormMobile" type="submit" class="btn btn-danger"><i class="fas fa-minus-circle"></i> Disable</button>
           </div>
         </div>
       </div>

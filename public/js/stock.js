@@ -11,20 +11,6 @@ $(document).ready(function () {
 
   checkScreenSize();
 
-  $("#search-product").on("keyup", function () {
-    var value = $(this)
-      .val()
-      .toLowerCase();
-    $("#productsTable tr").filter(function () {
-      $(this).toggle(
-        $(this)
-          .text()
-          .toLowerCase()
-          .indexOf(value) > -1
-      );
-    });
-  });
-
   function checkScreenSize() {
     let newWindowWidth = $(window).width();
     if (!isModalEnabled && newWindowWidth < MAX_WIDTH) {
