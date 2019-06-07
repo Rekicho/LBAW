@@ -1080,7 +1080,7 @@ function productUpdatedHandler() {
   console.log(this.status);
 
   let product = JSON.parse(this.responseText);
-  console.log(product);
+  console.log(this.responseText);
   let row = document.querySelector("[data-id='" + product.id + "']");
   let newRow = createProductRow(product);
   row.parentNode.replaceChild(newRow, row);

@@ -116,8 +116,6 @@ class ProductController extends BaseController
             $users = Wishlist::usersWishlisted($product->id);
 
             Notification::send($users, new ProductOnSale($product));
-
-            return $users;
         } else {
             $is_enabled = $request->input('is_enabled');
             $product->is_enabled = $is_enabled === 'true' ? true : false;
