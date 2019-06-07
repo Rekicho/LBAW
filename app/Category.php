@@ -59,8 +59,8 @@ class Category extends Model
     {
         $categories = Category::paginate(10);
         foreach ($categories as $category) {
+            $category->num_products = Product::getNumProductsFromCategory($category->id)["num_products"];
         }
-        $category->num_products = Product::getNumProductsFromCategory($category->id)["num_products"];
         return $categories;
     }
 }

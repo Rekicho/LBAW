@@ -736,7 +736,7 @@ function sendEnableUserRequest(event) {
   sendAjaxRequest(
     "post",
     "/api/users/" + id,
-    { type: "updateUser" },
+    { type: "updateUser", is_enabled: true},
     userUpdatedHandler
   );
 
@@ -762,7 +762,7 @@ function sendDisableUserRequest(event) {
 
 function userUpdatedHandler() {
   let user = JSON.parse(this.responseText);
-  
+  console.log(user);
   let row = document.querySelector("[data-id='" + user.id_client + "']");
   let newRow = createUserRow(user, false);
   row.parentNode.replaceChild(newRow, row);
@@ -1153,7 +1153,7 @@ Edit
 }
 
 function createUserRow(user, is_staffmember) {
-  console.log(user);
+  
   let new_user = document.createElement("tr");
   new_user.setAttribute("data-id", user.id);
 

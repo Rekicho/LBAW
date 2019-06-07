@@ -29,6 +29,7 @@ DROP FUNCTION IF EXISTS product_search_update() CASCADE;
 DROP FUNCTION IF EXISTS add_initial_state() CASCADE;
 DROP FUNCTION IF EXISTS ensure_discount() CASCADE;
 DROP FUNCTION IF EXISTS update_user_status() CASCADE;
+DROP FUNCTION IF EXISTS reset_user_status() CASCADE;
 
 DROP TRIGGER IF EXISTS ensure_admin ON users;
 DROP TRIGGER IF EXISTS ensure_stock ON purchased_product;
@@ -37,6 +38,7 @@ DROP TRIGGER IF EXISTS product_search ON products;
 DROP TRIGGER IF EXISTS add_initial_state ON purchase;
 DROP TRIGGER IF EXISTS ensure_discount ON discounts;
 DROP TRIGGER IF EXISTS update_user_status ON ban;
+DROP TRIGGER IF EXISTS reset_user_status on users;
 
 DROP INDEX IF EXISTS product_id_category;
 DROP INDEX IF EXISTS username_user;
@@ -354,6 +356,20 @@ CREATE TRIGGER update_user_status
     BEFORE INSERT ON bans
     FOR EACH ROW
     EXECUTE PROCEDURE update_user_status();
+
+CREATE FUNCTION reset_user_status() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM bans WHERE bans.id_client = New.id;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER reset_user_status
+    AFTER UPDATE ON users
+    FOR EACH ROW
+    EXECUTE PROCEDURE reset_user_status();
 
 CREATE FUNCTION ensure_discount() RETURNS TRIGGER AS
 $BODY$
