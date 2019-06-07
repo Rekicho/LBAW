@@ -15,7 +15,7 @@
                     <a href="#">OP <i class="fas fa-sort"></i></a>
                 </th>
                 <th scope="col">
-                    <a href="#">Status <i class="fas fa-sort"></i></a>
+                    <a href="#">Reason <i class="fas fa-sort"></i></a>
                 </th>
                 <th scope="col">Actions</th>
             </tr>

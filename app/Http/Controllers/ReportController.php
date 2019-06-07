@@ -24,7 +24,6 @@ class ReportController extends Controller
                 return $query->where('id_review', $id_review)
                 ->where('id_client', $id_client);
             }),
-            'reason' => 'required|string|min:6'
         ]);
         
         if ($validator->fails()) {

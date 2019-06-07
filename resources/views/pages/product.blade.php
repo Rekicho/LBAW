@@ -102,8 +102,19 @@
 				<div class="modal-body">
 					<form id="sendReportForm">
 						<div class="form-group required">
-							<label for="control-label message-text" class="col-form-label">Reason</label>
-							<textarea class="form-control" name="reason" id="message-text" required></textarea>
+                            <span class="control-label">Reason</span>
+                            <div class="form-check required">
+                                    <input class="form-check-input" type="radio" name="reason" id="reason1" value="Innaproppriate">
+                                    <label class="form-check-label" for="reason1">
+                                    Innaproppriate language
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="reason" id="reason2" value="Irrelevant">
+                                    <label class="form-check-label" for="reason2">
+                                      Irrelevant
+                                    </label>
+                                  </div>
                         </div>
                         <input type="hidden" name="id_review">
                     </form>
