@@ -22,6 +22,6 @@ class BanPolicy
 
     public function create(User $user, Ban $ban)
     {
-      return $user->is_staff_member;
+      return $user->is_staff_member && $user->is_enabled;
     }
 }

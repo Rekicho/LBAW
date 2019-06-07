@@ -23,6 +23,11 @@ $(document).on("click", ".report", function() {
   $("#sendReportForm [name=id_review]").val(reviewId);
 });
 
+$(document).on("click", ".updateReport", function() {
+  var reportId = $(this).data("id");
+  $("#disableReviewForm [name=id_report]").val(reportId);
+});
+
 function addEventListeners() {
   let wishlistDeleters = document.querySelectorAll(
     "#wishlist div.single-product-info-text a.delete"
@@ -199,6 +204,11 @@ function addEventListeners() {
   let addReport = document.querySelector("form#sendReportForm");
   if (addReport != null)
   addReport.addEventListener("submit", sendAddReportRequest);
+
+
+  let disableReview = document.querySelector("form#disableReviewForm");
+  if (disableReview != null)
+  disableReview.addEventListener("submit", sendDisableReviewRequest);
 }
 
 let ratingState = [];
@@ -484,6 +494,24 @@ function sendAddReportRequest(event) {
       reason: reason,
     },
     addedReportHandler
+  );
+}
+
+
+function sendDisableReviewRequest(event) {
+  event.preventDefault();
+
+  let id_report = this.querySelector("input[name=id_report]").value;
+
+  console.log(id_report);
+
+  sendAjaxRequest(
+    "put",
+    "/api/reportlogs/",
+    {
+      id_report: id_report,
+    },
+    addedReportLogHandler
   );
 }
 
@@ -1034,6 +1062,15 @@ function staffMemberUpdatedHandler() {
 
   $("#confirmStaffEnable").modal("hide");
   $("#confirmStaffDisable").modal("hide");
+}
+
+function addedReportLogHandler() {
+  let report = JSON.parse(this.responseText);
+  let row = document.querySelector("#reportsTable [data-id='" + report.id_report + "']");
+  console.log(row);
+  row.parentNode.removeChild(row)
+
+  $("#disableReview").modal("hide");
 }
 
 function productUpdatedHandler() {

@@ -20,10 +20,10 @@ class UserPolicy
     }
 
     public function create(User $user, User $new_user){
-        return $user->is_staff_member;
+        return $user->is_staff_member && $user->is_enabled;
     }
 
     public function update(User $user, User $other_user){
-        return $user->is_staff_member || $user->id == $other_user->id;
+        return ($user->is_staff_member && $user->is_enabled) || $user->id == $other_user->id;
     }
 }
