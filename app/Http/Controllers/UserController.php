@@ -103,8 +103,8 @@ class UserController extends BaseController
             $user->is_enabled = $is_enabled === 'true' ? true : false;
         }
 
-
         $user->save();
+        $user->id_client = $id;
 
         return $user;
     }

@@ -24,6 +24,7 @@ Route::get('contact', 'AboutController@showContact');
 Route::post('api/users', 'UserController@create');
 Route::post('api/users/{id}', 'UserController@update');
 
+
 Route::post('api/bans', 'BanController@create');
 
 Route::post('api/billingInfo', 'BillingInfoController@create');
