@@ -36,18 +36,28 @@ class SearchController extends BaseController
 		if($below != "")
 			array_push($match,['price', '<=', $below]);
 
-		if($order == "DESC")		
-			$products = Product::orderByRaw("price DESC")->search($search)->where($match)->paginate(15);
+		if($order == "DESC"){
+			$temp = Product::orderByRaw("price DESC")->search($search)->where($match);
+			$count = count($temp->get());
+			$products = $temp->paginate(15);
+		}		
 
-		else if($order == "ASC")
-			$products = Product::orderByRaw("price ASC")->search($search)->where($match)->paginate(15);
+		else if($order == "ASC"){
+			$temp = Product::orderByRaw("price ASC")->search($search)->where($match);
+			$count = count($temp->get());
+			$products = $temp->paginate(15);
+		}
 
-		else $products = Product::search($search)->where($match)->paginate(15);
+		else{
+			$temp = Product::search($search)->where($match);
+			$count = count($temp->get());
+			$products = $temp->paginate(15);
+		}
 
 		$products = Product::applyDiscounts($products);
 
 		$categories = Category::getAllCategories();
 
-		return view('pages.search', ['products' => $products->appends(Input::except('page')), 'query' => $search, 'categories' => $categories]);
+		return view('pages.search', ['products' => $products->appends(Input::except('page')), 'query' => $search, 'categories' => $categories, 'count' => $count]);
     }
 }
