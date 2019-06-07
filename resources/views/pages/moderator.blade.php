@@ -119,6 +119,9 @@
         </div>
         <div class="modal-body">
           Are you sure?
+          <form id="disableReviewForm">
+            <input type="hidden" name="id_review">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
