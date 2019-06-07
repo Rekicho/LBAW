@@ -79,7 +79,7 @@
 					<div class="imagetiles">
 						<div class="productSize">
 							<a href="category/8"><img src="http://www.drawingforall.net/wp-content/uploads/2018/01/4-how-to-draw-a-closed-book.jpg"
-								 class="img-responsive imgSizing"></a>
+								 class="img-responsive imgSizing" alt="books"></a>
 						</div>
 					</div>
 					<p class="description mt-4">
@@ -94,7 +94,7 @@
 					<div class="imagetiles">
 						<div class="productSize">
 							<a href="category/3"> <img src="https://comps.canstockphoto.com/personal-pc-hand-draw-clip-art-vector_csp8551936.jpg"
-								 class="img-responsive imgSizing"> </a>
+								 class="img-responsive imgSizing" alt="books"> </a>
 						</div>
 					</div>
 					<p class="description mt-4">
@@ -110,7 +110,7 @@
 					<div class="imagetiles">
 						<div class="productSize">
 							<a href="category/9"><img src="https://www.cuinsight.com/wp-content/uploads/2017/09/bigstock-193075030.jpg"
-								 class="img-responsive imgSizing" style="width:100%;"></a>
+								 class="img-responsive imgSizing" style="width:100%;" alt="beauty"></a>
 						</div>
 					</div>
 					<p class="description mt-4">

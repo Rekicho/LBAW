@@ -136,8 +136,7 @@ form#updateWishlist, form#updateCart, .reviewBtn {
 		width: -moz-calc(100% - 420px);
 		/* WebKit */
 		width: -webkit-calc(100% - 420px);
-		/* Opera */
-		width: -o-calc(100% - 420px);
+
 		/* Standard */
 		width: calc(100% - 420px);
 		float: left;
