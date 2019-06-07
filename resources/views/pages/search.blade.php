@@ -27,7 +27,7 @@
 
 <div class="search-result-bar bg-light">
     <span class="result-count">
-        1-16 of {{count($products)}} results for <span class="sec-color font-weight-bold">{{$query}}</span>
+        Returned {{$count}} results for <span class="sec-color font-weight-bold">{{$query}}</span>
     </span>
     <div class="filter-container">
         <span class="cart fa-stack has-badge" data-count="0" data-toggle="modal" data-target="#exampleModal">

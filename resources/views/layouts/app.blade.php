@@ -78,7 +78,7 @@
 				<a href="{{ route('login') }}"><i class="fas fa-sign-in-alt p-3 nav-icon"></i></a>
 				@else
 				<a href="/profile"><i class="fas fa-user p-3 nav-icon"></i></a>
-				<div class="cart fa-stack has-badge dropdown show" data-count="{{ count($notifications) }}">
+				<div class="fa-stack has-badge dropdown show" data-count="{{ count($notifications) }}">
 					@if(count($notifications) != 0)
 					<a class="dropdown-toggle fas fa-bell fa-stack-1x nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 					@else

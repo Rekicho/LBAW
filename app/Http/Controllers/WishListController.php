@@ -33,7 +33,7 @@ class WishListController extends BaseController
     public function delete(Request $request, $id){
         $wishlistEntry = WishList::find($id);
 
-        $this->authorize('delete', $card);
+        $this->authorize('delete', $wishlistEntry);
         $wishlistEntry->delete();
   
         return $wishlistEntry;  

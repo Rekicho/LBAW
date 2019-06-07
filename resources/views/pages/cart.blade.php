@@ -15,7 +15,7 @@
 </ul>
 <div class="final row mt-5 ml-3">
 	<div class="col-md-6 total">
-		<h2>Total: <span class="price">{{ $total }}€</span> </h2>
+		<h2>Total: <span class="total">{{ $total }}€</span> </h2>
 	</div>
     <div class="col-md-6 checkout">
 		<button type="button" class="btn btn-primary checkout-btn"><i
