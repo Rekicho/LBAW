@@ -82,7 +82,7 @@
 					@if(count($notifications) != 0)
 					<a class="dropdown-toggle fas fa-bell fa-stack-1x nav-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 					@else
-					<i class="fas fa-bell fa-stack-1x nav-icon" aria-haspopup="true" aria-expanded="false"></i>
+					<i class="fas fa-bell fa-stack-1x nav-icon" aria-haspopup="true" role="button" id="dropdownMenuLink" aria-expanded="false"></i>
 					@endif
 
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
@@ -111,6 +111,7 @@
         @yield('content')
 		</div>
 	</div>
+</div>
     <footer class="page-footer font-small blue p-4 main-color-bg text-light">
 		<div class="container-fluid text-center text-md-left">
 			<div class="row">
