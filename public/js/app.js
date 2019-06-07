@@ -168,14 +168,11 @@ function addEventListeners() {
   let confirmPurchasePayment = document.querySelectorAll(
     "form.confirmPurchasePaymentForm"
   );
-  if (confirmPurchasePayment != null) {
-    for (let i = 0; i < confirmPurchasePayment.length; i++) {
-      confirmPurchasePayment[i].addEventListener(
-        "submit",
-        sendConfirmPurchasePaymentRequest
-      );
-    }
-  }
+
+
+  [].forEach.call(confirmPurchasePayment, function(deleter) {
+    deleter.addEventListener("submit", sendConfirmPurchasePaymentRequest);
+  });
 
   let received = document.querySelectorAll(".received");
   [].forEach.call(received, function(receivedInstance) {
@@ -1487,6 +1484,7 @@ function getVals() {
 }
 
 window.onload = function() {
+  addEventListeners();
   var sliderSections = document.getElementsByClassName("range-slider");
   if (sliderSections == null) return;
   for (var x = 0; x < sliderSections.length; x++) {

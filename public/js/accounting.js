@@ -53,6 +53,7 @@ $(document).ready(function () {
           data: { page: pg },
           success: function (data) {
             $('#payments').html(data);
+            addEventListeners();
           }
         });
       });
