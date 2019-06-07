@@ -405,9 +405,9 @@ function productCartDeleteHandler() {
     parseInt(cart.getAttribute("data-count")) - 1
   );
 
-  let total = document.querySelector("span.price");
+  let total = document.querySelector("span.total");
   let newTotal = document.createElement("span");
-  newTotal.className = "price";
+  newTotal.className = "total";
   newTotal.innerHTML = product.total + "€";
   total.parentNode.replaceChild(newTotal, total);
 }
