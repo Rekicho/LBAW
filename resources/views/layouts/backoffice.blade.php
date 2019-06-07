@@ -47,9 +47,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        @if(Auth::check() && Auth::user()->is_admin)
         <li class="nav-item mr-lg-3">
           <a class="nav-link {{ Request::is('back-office/admin') ? 'active' : '' }}" href="/back-office/admin">Administration</a>
         </li>
+        @endif
         <li class="nav-item mr-lg-2">
           <a class="nav-link {{ Request::is('back-office/moderator') ? 'active' : '' }}" href="/back-office/moderator">
             <span class="notification-container">

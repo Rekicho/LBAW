@@ -60,9 +60,13 @@
 					<li class="nav-item">
 						<a class="nav-link {{ Request::is('contact') ? 'active' : '' }}" href="/contact">CONTACT</a>
 					</li>
-					@if(Auth::check() && Auth::user()->is_staff_member)
+					@if(Auth::check() && Auth::user()->is_admin)
 					<li class="nav-item">
 						<a class="nav-link" href="/back-office/admin">BACK-OFFICE</a>
+					</li>
+					@elseif(Auth::check() && Auth::user()->is_staff_member)
+					<li class="nav-item">
+						<a class="nav-link" href="/back-office/moderator">BACK-OFFICE</a>
 					</li>
 					@endif
 				</ul>

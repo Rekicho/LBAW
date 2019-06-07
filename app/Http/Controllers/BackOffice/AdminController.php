@@ -24,6 +24,9 @@ class AdminController extends BaseBOController
 
   public function show()
   {
-      return view('pages.admin');
+    if (!Auth::user()->is_admin)
+      return redirect('back-office/moderator');
+
+    return view('pages.admin');
   }
 }
