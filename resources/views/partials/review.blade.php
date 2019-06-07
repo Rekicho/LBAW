@@ -1,8 +1,7 @@
 <div class="review">
-    <a href="profile.html"><span class="username">{{$review->username}}</span></a>
-    <i class="fas fa-flag" data-toggle="modal" data-target="#reportModal"></i>
+    <span class="username">{{$review->username}}</span>
+    <i class="report fas fa-flag" data-toggle="modal" data-target="#reportModal"  data-id="{{$review->id}}"></i>
     <div class="float-right product-rating">
-
         @showRating(floor($review->rating))
     </div>
     <p>{{$review->comment}}</p>

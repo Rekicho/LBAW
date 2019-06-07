@@ -94,30 +94,24 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Report</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Report Review</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form>
-
-						<div class="radio">
-							<label><input type="radio" name="optradio" checked>Report User</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="optradio">Report Review</label>
-						</div>
-
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">Reason:</label>
-							<textarea class="form-control" id="message-text"></textarea>
-						</div>
-					</form>
+					<form id="sendReportForm">
+						<div class="form-group required">
+							<label for="control-label message-text" class="col-form-label">Reason</label>
+							<textarea class="form-control" name="reason" id="message-text" required></textarea>
+                        </div>
+                        <input type="hidden" name="id_review">
+                    </form>
+                    <span class="response"></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Send</button>
+					<button type="submit" form="sendReportForm" class="btn btn-primary">Send</button>
 				</div>
 			</div>
 		</div>

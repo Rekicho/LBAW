@@ -18,6 +18,11 @@ $(document).on("click", ".updateCategory", function() {
   $("#addDiscountForm [name=id]").val(categoryId);
 });
 
+$(document).on("click", ".report", function() {
+  var reviewId = $(this).data("id");
+  $("#sendReportForm [name=id_review]").val(reviewId);
+});
+
 function addEventListeners() {
   let wishlistDeleters = document.querySelectorAll(
     "#wishlist div.single-product-info-text a.delete"
@@ -190,6 +195,10 @@ function addEventListeners() {
   if (reviewRatingDiv != null) {
     reviewRatingDiv.addEventListener('mouseleave', () => resetState());
   }
+
+  let addReport = document.querySelector("form#sendReportForm");
+  if (addReport != null)
+  addReport.addEventListener("submit", sendAddReportRequest);
 }
 
 let ratingState = [];
@@ -458,6 +467,26 @@ function sendAddReviewRequest(event) {
   );
 }
 
+function sendAddReportRequest(event) {
+  event.preventDefault();
+
+  let id_review = this.querySelector("input[name=id_review]").value;
+  let reason = this.querySelector("textarea[name=reason]").value;
+
+  console.log(id_review);
+  console.log(reason);
+
+  sendAjaxRequest(
+    "put",
+    "/api/reports/",
+    {
+      id_review: id_review,
+      reason: reason,
+    },
+    addedReportHandler
+  );
+}
+
 function sendUpdatePasswordRequest(event) {
   event.preventDefault();
 
@@ -607,6 +636,22 @@ function addedReviewHandler() {
       }
     }
   });
+}
+
+function addedReportHandler() {
+  let report = JSON.parse(this.responseText);
+  let modal = document.querySelector("#reportModal .modal-body");
+  let message = document.createElement("span");
+
+  if(report.id_review != null){
+    message.innerHTML = "Thank for your report! Our staff members will soon handle it."
+  }
+  else {
+    message.innerHTML = "Sorry! Some error ocurred. Maybe you already reported this review?"
+  }
+
+  let span = modal.querySelector("span.response");
+  span.parentNode.replaceChild(message, span);
 }
 
 function createNewReview(review) {

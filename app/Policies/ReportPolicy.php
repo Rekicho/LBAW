@@ -3,11 +3,11 @@
 namespace App\Policies;
 
 use App\User;
-use App\WishList;
+use App\Report;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
-class WishListPolicy
+class ReportPolicy 
 {
     use HandlesAuthorization;
 
@@ -20,12 +20,8 @@ class WishListPolicy
     {
         //
     }
-    
-    public function create(User $user, WishList $list){
-        return Auth::check();
-    }
 
-    public function delete(User $user, WishList $list){
-        return $user->id == $list->id_client;
+    public function create(User $user, Report $report){
+        return Auth::check();
     }
 }

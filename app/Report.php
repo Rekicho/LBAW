@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
+    public $timestamps  = false;
+
     public static function reports(){
         return Report::join('users', 'users.id', 'reports.id_client')
         ->join('reviews', 'reviews.id', 'reports.id_review')
