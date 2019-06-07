@@ -1129,7 +1129,7 @@ function updateCartnewProduct(cart) {
   newProduct.setAttribute("data-id", cart.id);
 
   newProduct.innerHTML = `
-	<a href="/product/${cart.id_product}"> <img src="/public/storage/img/product${
+	<a href="/product/${cart.id_product}"> <img src="/storage/img/product${
     cart.id_product
   }.png" alt=''></a>
 	<div class='single-product-info-text'>
