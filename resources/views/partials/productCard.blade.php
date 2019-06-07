@@ -4,9 +4,23 @@
     <li class='single-product-info-container'>
 @endif
         @if(isset($product->id))
-        <a href={{"/product/$product->id"}}><img src={{ asset("storage/img/product$product->id.png") }} alt=''></a>
+        @if (file_exists(public_path("storage/img/product$product->id.png")))
+        <a href="/product/{{$product->id}}"><img src="{{ asset("storage/img/product$product->id.png") }}"
+            alt=""></a>
         @else
-        <a href={{"/product/$product->id_product"}}><img src={{ asset("storage/img/product$product->id_product.png") }} alt=''></a>
+        <a href="/product/{{$product->id}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product-image-placeholder.jpg") }}
+            class="img-responsive imgSizing"></a>
+
+        @endif
+        @else
+        @if (file_exists(public_path("storage/img/product$product->id_product.png")))
+        <a href="/product/{{$product->id_product}}"><img src="{{ asset("storage/img/product$product->id_product.png") }}"
+            alt=""></a>
+        @else
+        <a href="/product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product-image-placeholder.jpg") }}
+            class="img-responsive imgSizing"></a>
+
+        @endif
         @endif
     <div class='single-product-info-text'>
         <div class='row'>

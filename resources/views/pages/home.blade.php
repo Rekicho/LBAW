@@ -57,8 +57,15 @@
 
 					@foreach ($topProducts as $topProduct)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-					<a href="product/{{$topProduct->id_product}}"><img alt="{{$topProduct->name}}" src={{ asset("storage/img/product$topProduct->id_product.png") }}
-						class="img-responsive imgSizing"></a>
+							@if (file_exists(public_path("storage/img/product$topProduct->id_product.png")))
+							<a href="product/{{$topProduct->id_product}}"><img alt="{{$topProduct->name}}" src={{ asset("storage/img/product$topProduct->id_product.png") }}
+								class="img-responsive imgSizing"></a>
+						@else
+						<a href="product/{{$topProduct->id_product}}"><img alt="{{$topProduct->name}}" src={{ asset("storage/img/product-image-placeholder.jpg") }}
+							class="img-responsive imgSizing"></a>
+
+						@endif
+
 						</div>
 					@endforeach
 
@@ -121,9 +128,14 @@
 					<div class="row imagetiles">
 						@foreach ($featuredCategoryProducts as $product)
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
-						<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product$product->id_product.png") }}
+						@if (file_exists(public_path("storage/img/product$product->id_product.png")))
+							<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product$product->id_product.png") }}
+								class="img-responsive imgSizing"></a>
+						@else
+						<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product-image-placeholder.jpg") }}
 							class="img-responsive imgSizing"></a>
-							</div>
+						@endif
+					</div>
 						@endforeach
 					</div>
 				</div>
@@ -135,11 +147,15 @@
 				<div class="row imagetiles">
 					@foreach($electronics as $product)
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 productSize">
+					@if (file_exists(public_path("storage/img/product$product->id_product.png")))
 					<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product$product->id_product.png") }}
-								class="img-responsive imgSizing"></a>
-						</div>
-					@endforeach
+						class="img-responsive imgSizing"></a>
+				@else
+				<a href="product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product-image-placeholder.jpg") }}
+					class="img-responsive imgSizing"></a>
+				@endif
 				</div>
+					@endforeach
 			</div>
 
 		</div> <!-- container -->

@@ -25,8 +25,11 @@
         <hr>
     </div>
     <div class="img-frame">
-        <img src={{ asset("storage/img/product$product->id.png") }}
-        alt="">
+            @if (file_exists(public_path("storage/img/product$product->id.png")))
+            <img src="{{ asset("storage/img/product$product->id.png") }}" alt=""/>
+            @else
+            <img src="{{ asset("storage/img/product-image-placeholder.jpg") }}" alt="">
+            @endif
     </div>
     <div class="product-info">
         <div class="product-right-block desktop-only">

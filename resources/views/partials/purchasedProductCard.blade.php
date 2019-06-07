@@ -1,6 +1,14 @@
 <div class="single-product-info-container">
-    <a href="/product/{{$product->id_product}}"><img src="{{ asset("storage/img/product$product->id_product.png") }}"
-         alt=""></a>
+    	@if (file_exists(public_path("storage/img/product$product->id_product.png")))
+        <a href="/product/{{$product->id_product}}"><img src="{{ asset("storage/img/product$product->id_product.png") }}"
+            alt=""></a>
+        @else
+        <a href="/product/{{$product->id_product}}"><img alt="{{$product->name}}" src={{ asset("storage/img/product-image-placeholder.jpg") }}
+            class="img-responsive imgSizing"></a>
+
+        @endif
+
+
     <div class="single-product-info-text">
         <div class="row">
             <div class="col-6">
