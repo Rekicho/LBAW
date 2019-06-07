@@ -47,7 +47,7 @@ function addEventListeners() {
   if (addStaffMember != null)
     addStaffMember.addEventListener("submit", sendCreateStaffMemberRequest);
 
-  let disableStaffMember = document.querySelector("#confirmStaffDisable form");
+  let disableStaffMember = document.querySelector("form.confirmStaffDisable");
   if (disableStaffMember != null)
     disableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
@@ -344,7 +344,7 @@ function sendUpdatePriceRequest(event) {
     "post",
     "/api/products/" + id,
     { type: "price", price: price },
-    priceUpdatedHandler
+    productUpdatedHandler
   );
 }
 
@@ -359,9 +359,15 @@ function sendUpdateStockRequest(event) {
     "post",
     "/api/products/" + id,
     { type: "stock", stock: stock },
-    stockUpdatedHandler
+    productUpdatedHandler
   );
 }
+
+// function stockUpdatedHandler() {
+//   let product = JSON.parse(this.responseText);
+
+//   console.log(category);
+// }
 
 function productAddedHandler() {
   let product = JSON.parse(this.responseText);
@@ -1074,6 +1080,7 @@ function productUpdatedHandler() {
   console.log(this.status);
 
   let product = JSON.parse(this.responseText);
+  console.log(product);
   let row = document.querySelector("[data-id='" + product.id + "']");
   let newRow = createProductRow(product);
   row.parentNode.replaceChild(newRow, row);
@@ -1081,6 +1088,8 @@ function productUpdatedHandler() {
   $("#confirmProductEnable").modal("hide");
   $("#confirmProductDisable").modal("hide");
   $("#addProductDiscountModal").modal("hide");
+  $("#updatePriceModal").modal("hide");
+  $("#updateStockModal").modal("hide");
 }
 
 function billingInformationUpdatedHandler() {

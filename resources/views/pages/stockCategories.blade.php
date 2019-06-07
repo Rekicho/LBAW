@@ -1,10 +1,4 @@
-<div class="input-group mb-2">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="search-addon"><i class="fas fa-search"></i></span>
-    </div>
-    <input class="form-control" id="search-product" type="text" placeholder="Search..." />
-  </div>
-  <div class="table-responsive">
+<div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead class="thead-light">
         <tr>
