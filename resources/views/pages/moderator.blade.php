@@ -7,12 +7,6 @@
 @section('title', 'Moderating')
 
 @section('content')
-<div class="alert alert-primary alert-dismissible fade show" role="alert">
-    You have a new report
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
 
   <ul class="nav nav-tabs mb-3" id="tasks" role="tablist">
     <li class="nav-item">

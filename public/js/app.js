@@ -42,11 +42,11 @@ function addEventListeners() {
   if (addStaffMember != null)
     addStaffMember.addEventListener("submit", sendCreateStaffMemberRequest);
 
-  let disableStaffMember = document.querySelector(".confirmDisable form");
+  let disableStaffMember = document.querySelector("#confirmStaffDisable form");
   if (disableStaffMember != null)
     disableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
-  let enableStaffMember = document.querySelector(".confirmEnable form");
+  let enableStaffMember = document.querySelector("#confirmStaffEnable form");
   if (enableStaffMember != null)
     enableStaffMember.addEventListener("submit", sendUpdateStaffMemberRequest);
 
@@ -124,11 +124,11 @@ function addEventListeners() {
   if (updateStock != null)
     updateStock.addEventListener("submit", sendUpdateStockRequest);
 
-  let disableProduct = document.querySelector("form#confirmDisableForm");
+  let disableProduct = document.querySelector("#confirmProductDisable form#confirmDisableForm");
   if (disableProduct != null)
     disableProduct.addEventListener("submit", sendUpdateProductRequest);
 
-  let enableProduct = document.querySelector("form#confirmEnableForm");
+  let enableProduct = document.querySelector("#confirmProductEnable form#confirmEnableForm");
   if (enableProduct != null)
     enableProduct.addEventListener("submit", sendUpdateProductRequest);
 
@@ -1026,13 +1026,14 @@ function getAddToCartForm(cart) {
 }
 
 function staffMemberUpdatedHandler() {
+  console.log(1)
   let staff_member = JSON.parse(this.responseText);
   let row = document.querySelector("[data-id='" + staff_member.id + "']");
   let newRow = createUserRow(staff_member);
   row.parentNode.replaceChild(newRow, row);
 
-  $("#confirmEnable").modal("hide");
-  $("#confirmDisable").modal("hide");
+  $("#confirmStaffEnable").modal("hide");
+  $("#confirmStaffDisable").modal("hide");
 }
 
 function productUpdatedHandler() {
@@ -1043,8 +1044,8 @@ function productUpdatedHandler() {
   let newRow = createProductRow(product);
   row.parentNode.replaceChild(newRow, row);
 
-  $("#confirmEnable").modal("hide");
-  $("#confirmDisable").modal("hide");
+  $("#confirmProductEnable").modal("hide");
+  $("#confirmProductDisable").modal("hide");
   $("#addProductDiscountModal").modal("hide");
 }
 
@@ -1130,8 +1131,8 @@ function createUserRow(user) {
   button.setAttribute("data-id", user.id);
   button.setAttribute("data-toggle", "modal");
 
-  if (user.is_enabled) button.setAttribute("data-target", "#confirmDisable");
-  else button.setAttribute("data-target", "#confirmEnable");
+  if (user.is_enabled) button.setAttribute("data-target", "#confirmStaffDisable");
+  else button.setAttribute("data-target", "#confirmStaffEnable");
 
   let icon = document.createElement("i");
   icon.classList = user.is_enabled
@@ -1301,8 +1302,8 @@ function createProductRow(product) {
   button.setAttribute("data-id", product.id);
   button.setAttribute("data-toggle", "modal");
 
-  if (product.is_enabled) button.setAttribute("data-target", "#confirmDisable");
-  else button.setAttribute("data-target", "#confirmEnable");
+  if (product.is_enabled) button.setAttribute("data-target", "#confirmProductDisable");
+  else button.setAttribute("data-target", "#confirmProductEnable");
 
   let icon = document.createElement("i");
   icon.classList = product.is_enabled

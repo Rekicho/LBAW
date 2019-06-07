@@ -23,7 +23,7 @@
     </div>
 
     <!-- Modals -->
-    <div class="modal fade confirmDisable" id="confirmDisable" tabindex="-1" role="dialog" aria-labelledby="disableModalLabel"
+    <div class="modal fade confirmDisable" id="confirmStaffDisable" tabindex="-1" role="dialog" aria-labelledby="disableModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade confirmEnable" id="confirmEnable" tabindex="-1" role="dialog" aria-labelledby="enableModalLabel"
+    <div class="modal fade confirmEnable" id="confirmStaffEnable" tabindex="-1" role="dialog" aria-labelledby="enableModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

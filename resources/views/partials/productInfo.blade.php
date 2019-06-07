@@ -11,12 +11,12 @@
     </td>
     <td>
         @if($product->is_enabled)
-    <button type="button" class="btn btn-danger btn-sm updateProduct" data-id={{$product->id}} data-toggle="modal" data-target="#confirmDisable">
+    <button type="button" class="btn btn-danger btn-sm updateProduct" data-id={{$product->id}} data-toggle="modal" data-target="#confirmProductDisable">
             <i class="fas fa-minus-circle"></i>
             <span class="button-text">Disable</span>
           </button>
     @else
-    <button type="button" class="btn btn-success btn-sm updateProduct"  data-id={{$product->id}} data-toggle="modal" data-target="#confirmEnable">
+    <button type="button" class="btn btn-success btn-sm updateProduct"  data-id={{$product->id}} data-toggle="modal" data-target="#confirmProductEnable">
         <i class="fas fa-plus-circle"></i>
         <span class="button-text">Enable</span>
       </button>
