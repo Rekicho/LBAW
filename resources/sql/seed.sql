@@ -198,7 +198,7 @@ CREATE TABLE password_resets (
 );
 
 CREATE TABLE notifications (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY,
     type VARCHAR NOT NULL,
     notifiable_id BIGINT NOT NULL,
     notifiable_type text NOT NULL,
